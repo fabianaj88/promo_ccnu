@@ -26,5 +26,15 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_codigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
