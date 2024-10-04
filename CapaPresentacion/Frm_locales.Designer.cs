@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class Frm_clientes
+    partial class Frm_locales
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_clientes));
-            contextMenuStrip1 = new ContextMenuStrip(components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_locales));
             Locales = new TabControl();
             tabPage1 = new TabPage();
-            comboBox1 = new ComboBox();
-            label7 = new Label();
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
@@ -67,31 +63,21 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.ShowCheckMargin = true;
-            contextMenuStrip1.ShowImageMargin = false;
-            contextMenuStrip1.Size = new Size(61, 4);
-            contextMenuStrip1.Text = "1";
-            // 
             // Locales
             // 
             Locales.Controls.Add(tabPage1);
             Locales.Controls.Add(tabPage2);
             Locales.Controls.Add(tabPage3);
             Locales.Controls.Add(tabPage4);
-            Locales.Location = new Point(12, 12);
+            Locales.Location = new Point(4, 1);
             Locales.Name = "Locales";
             Locales.SelectedIndex = 0;
-            Locales.Size = new Size(857, 465);
-            Locales.TabIndex = 1;
+            Locales.Size = new Size(857, 486);
+            Locales.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
-            tabPage1.Controls.Add(comboBox1);
-            tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(radioButton3);
             tabPage1.Controls.Add(radioButton2);
             tabPage1.Controls.Add(radioButton1);
@@ -117,33 +103,14 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(849, 437);
+            tabPage1.Size = new Size(849, 458);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
-            // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(127, 384);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(203, 24);
-            comboBox1.TabIndex = 23;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(40, 392);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 16);
-            label7.TabIndex = 22;
-            label7.Text = "Genero:";
             // 
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(253, 94);
+            radioButton3.Location = new Point(256, 97);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(77, 19);
             radioButton3.TabIndex = 21;
@@ -154,7 +121,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(164, 94);
+            radioButton2.Location = new Point(167, 97);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(45, 19);
             radioButton2.TabIndex = 20;
@@ -165,7 +132,7 @@
             // radioButton1
             // 
             radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(55, 94);
+            radioButton1.Location = new Point(58, 97);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(62, 19);
             radioButton1.TabIndex = 19;
@@ -177,7 +144,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(40, 348);
+            label6.Location = new Point(43, 351);
             label6.Name = "label6";
             label6.Size = new Size(55, 16);
             label6.TabIndex = 18;
@@ -195,7 +162,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(42, 300);
+            label5.Location = new Point(45, 303);
             label5.Name = "label5";
             label5.Size = new Size(65, 16);
             label5.TabIndex = 16;
@@ -205,7 +172,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(42, 253);
+            label4.Location = new Point(45, 256);
             label4.Name = "label4";
             label4.Size = new Size(70, 16);
             label4.TabIndex = 15;
@@ -218,19 +185,18 @@
             label3.Name = "label3";
             label3.Size = new Size(100, 20);
             label3.TabIndex = 14;
-            label3.Text = "Clientes";
+            label3.Text = "Locales";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(40, 209);
+            label2.Location = new Point(43, 212);
             label2.Name = "label2";
             label2.Size = new Size(55, 16);
             label2.TabIndex = 13;
             label2.Text = "Cliente:";
-            label2.Click += label2_Click;
             // 
             // textBox3
             // 
@@ -263,7 +229,6 @@
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(203, 23);
             txt_codigo.TabIndex = 9;
-            txt_codigo.TextChanged += txt_codigo_TextChanged;
             // 
             // label1
             // 
@@ -271,7 +236,7 @@
             label1.BackColor = Color.Transparent;
             label1.BorderStyle = BorderStyle.Fixed3D;
             label1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(40, 166);
+            label1.Location = new Point(43, 169);
             label1.Name = "label1";
             label1.Size = new Size(58, 18);
             label1.TabIndex = 8;
@@ -351,7 +316,6 @@
             btn_nuevo.TabIndex = 1;
             btn_nuevo.Text = "Nuevo";
             btn_nuevo.UseVisualStyleBackColor = true;
-            btn_nuevo.Click += btn_nuevo_Click;
             // 
             // pictureBox1
             // 
@@ -367,9 +331,9 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(849, 437);
+            tabPage2.Size = new Size(849, 458);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Listado";
+            tabPage2.Text = "Facturas por local";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
@@ -377,7 +341,7 @@
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(849, 437);
+            tabPage3.Size = new Size(849, 458);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -387,21 +351,19 @@
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(849, 437);
+            tabPage4.Size = new Size(849, 458);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // Frm_clientes
+            // Frm_locales
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(881, 489);
+            ClientSize = new Size(866, 502);
             Controls.Add(Locales);
-            Name = "Frm_clientes";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Frm_clientes";
-            Load += Frm_clientes_Load;
+            Name = "Frm_locales";
+            Text = "Frm_locales";
             Locales.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
@@ -413,34 +375,31 @@
 
         #endregion
 
-        private ContextMenuStrip contextMenuStrip1;
         private TabControl Locales;
         private TabPage tabPage1;
-        private PictureBox pictureBox1;
-        private TabPage tabPage2;
-        private Button btn_nuevo;
-        private Button btn_eliminar;
-        private Button btn_editar;
-        private Button btn_grabar;
-        private PictureBox pictureBox2;
-        private Button btn_buscar;
-        private TextBox txt_codigo;
-        private Label label1;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
+        private Label label6;
+        private TextBox textBox4;
+        private Label label5;
+        private Label label4;
+        private Label label3;
         private Label label2;
         private TextBox textBox3;
         private TextBox textBox2;
         private TextBox textBox1;
+        private TextBox txt_codigo;
+        private Label label1;
         private PictureBox pictureBox3;
-        private Label label3;
-        private Label label4;
-        private Label label6;
-        private TextBox textBox4;
-        private Label label5;
-        private ComboBox comboBox1;
-        private Label label7;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private PictureBox pictureBox2;
+        private Button btn_buscar;
+        private Button btn_eliminar;
+        private Button btn_editar;
+        private Button btn_grabar;
+        private Button btn_nuevo;
+        private PictureBox pictureBox1;
+        private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
     }

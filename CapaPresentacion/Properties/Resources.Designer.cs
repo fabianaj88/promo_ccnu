@@ -59,5 +59,15 @@ namespace CapaPresentacion.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Crystal_Clear_app_password {
+            get {
+                object obj = ResourceManager.GetObject("Crystal_Clear_app_password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
