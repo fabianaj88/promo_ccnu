@@ -30,18 +30,18 @@
         {
             button1 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txt_numf = new TextBox();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txt_loc = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            txt_cli = new TextBox();
             label4 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtim_fec = new DateTimePicker();
             label5 = new Label();
-            textBox4 = new TextBox();
+            txt_tot = new TextBox();
             label6 = new Label();
-            textBox5 = new TextBox();
-            button2 = new Button();
+            txt_obv = new TextBox();
+            btn_gentik = new Button();
             panel1 = new Panel();
             dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
@@ -68,12 +68,13 @@
             label1.Text = "Número de factura:";
             label1.Click += label1_Click;
             // 
-            // textBox1
+            // txt_numf
             // 
-            textBox1.Location = new Point(190, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(307, 27);
-            textBox1.TabIndex = 2;
+            txt_numf.Location = new Point(190, 30);
+            txt_numf.Name = "txt_numf";
+            txt_numf.Size = new Size(307, 27);
+            txt_numf.TabIndex = 2;
+            txt_numf.TextChanged += txt_numf_TextChanged;
             // 
             // label2
             // 
@@ -85,12 +86,13 @@
             label2.Text = "Local:";
             label2.Click += label2_Click;
             // 
-            // textBox2
+            // txt_loc
             // 
-            textBox2.Location = new Point(190, 71);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(307, 27);
-            textBox2.TabIndex = 4;
+            txt_loc.Location = new Point(190, 71);
+            txt_loc.Name = "txt_loc";
+            txt_loc.Size = new Size(307, 27);
+            txt_loc.TabIndex = 4;
+            txt_loc.TextChanged += txt_loc_TextChanged;
             // 
             // label3
             // 
@@ -101,12 +103,13 @@
             label3.TabIndex = 5;
             label3.Text = "Cliente:";
             // 
-            // textBox3
+            // txt_cli
             // 
-            textBox3.Location = new Point(190, 114);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(307, 27);
-            textBox3.TabIndex = 6;
+            txt_cli.Location = new Point(190, 114);
+            txt_cli.Name = "txt_cli";
+            txt_cli.Size = new Size(307, 27);
+            txt_cli.TabIndex = 6;
+            txt_cli.TextChanged += txt_cli_TextChanged;
             // 
             // label4
             // 
@@ -118,12 +121,13 @@
             label4.Text = "Fecha:";
             label4.Click += label4_Click;
             // 
-            // dateTimePicker1
+            // dtim_fec
             // 
-            dateTimePicker1.Location = new Point(619, 32);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(301, 27);
-            dateTimePicker1.TabIndex = 8;
+            dtim_fec.Location = new Point(619, 32);
+            dtim_fec.Name = "dtim_fec";
+            dtim_fec.Size = new Size(365, 27);
+            dtim_fec.TabIndex = 8;
+            dtim_fec.ValueChanged += dtim_fec_ValueChanged;
             // 
             // label5
             // 
@@ -134,12 +138,13 @@
             label5.TabIndex = 9;
             label5.Text = "Total:";
             // 
-            // textBox4
+            // txt_tot
             // 
-            textBox4.Location = new Point(619, 75);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(113, 27);
-            textBox4.TabIndex = 10;
+            txt_tot.Location = new Point(619, 75);
+            txt_tot.Name = "txt_tot";
+            txt_tot.Size = new Size(113, 27);
+            txt_tot.TabIndex = 10;
+            txt_tot.TextChanged += txt_tot_TextChanged;
             // 
             // label6
             // 
@@ -151,21 +156,23 @@
             label6.Text = "Observación:";
             label6.Click += label6_Click;
             // 
-            // textBox5
+            // txt_obv
             // 
-            textBox5.Location = new Point(619, 118);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(365, 27);
-            textBox5.TabIndex = 12;
+            txt_obv.Location = new Point(619, 118);
+            txt_obv.Name = "txt_obv";
+            txt_obv.Size = new Size(365, 27);
+            txt_obv.TabIndex = 12;
+            txt_obv.TextChanged += txt_obv_TextChanged;
             // 
-            // button2
+            // btn_gentik
             // 
-            button2.Location = new Point(50, 165);
-            button2.Name = "button2";
-            button2.Size = new Size(149, 29);
-            button2.TabIndex = 13;
-            button2.Text = "Generar Tickets";
-            button2.UseVisualStyleBackColor = true;
+            btn_gentik.Location = new Point(50, 165);
+            btn_gentik.Name = "btn_gentik";
+            btn_gentik.Size = new Size(149, 29);
+            btn_gentik.TabIndex = 13;
+            btn_gentik.Text = "Generar Tickets";
+            btn_gentik.UseVisualStyleBackColor = true;
+            btn_gentik.Click += btn_gentik_Click;
             // 
             // panel1
             // 
@@ -192,18 +199,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 488);
             Controls.Add(dataGridView1);
-            Controls.Add(button2);
-            Controls.Add(textBox5);
+            Controls.Add(btn_gentik);
+            Controls.Add(txt_obv);
             Controls.Add(label6);
-            Controls.Add(textBox4);
+            Controls.Add(txt_tot);
             Controls.Add(label5);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtim_fec);
             Controls.Add(label4);
-            Controls.Add(textBox3);
+            Controls.Add(txt_cli);
             Controls.Add(label3);
-            Controls.Add(textBox2);
+            Controls.Add(txt_loc);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txt_numf);
             Controls.Add(label1);
             Controls.Add(panel1);
             Name = "Frm_Documentos";
@@ -218,18 +225,18 @@
 
         private Button button1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txt_numf;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txt_loc;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox txt_cli;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtim_fec;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox txt_tot;
         private Label label6;
-        private TextBox textBox5;
-        private Button button2;
+        private TextBox txt_obv;
+        private Button btn_gentik;
         private Panel panel1;
         private DataGridView dataGridView1;
     }

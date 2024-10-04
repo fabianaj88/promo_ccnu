@@ -69,5 +69,40 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void txt_numf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_loc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txt_cli_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btn_gentik_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_tot_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_obv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtim_fec_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
