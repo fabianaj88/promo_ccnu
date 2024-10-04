@@ -47,9 +47,8 @@
             label2 = new Label();
             txt_telefono = new TextBox();
             txt_direccion = new TextBox();
-            txt_nombre = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txt_nombre = new TextBox();  
+            
             txt_codigo = new TextBox();
             label1 = new Label();
             pictureBox3 = new PictureBox();
@@ -388,11 +387,8 @@
 
             // 
             // textBox1
-            // 
-            textBox1.Location = new Point(106, 206);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(388, 23);
-            textBox1.TabIndex = 10;
+            //
+            //     
             // 
             // textBox2
             // 
@@ -439,11 +435,8 @@
             grid_lista_clientes.CellContentClick += grid_lista_clientes_CellContentClick;
             // 
             // tabPage3
+            //
             // 
-            textBox3.Location = new Point(106, 297);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(203, 23);
-            textBox3.TabIndex = 12;
             // 
             // label2
             // 
