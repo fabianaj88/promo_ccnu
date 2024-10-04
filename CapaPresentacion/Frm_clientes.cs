@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -37,9 +38,10 @@ namespace CapaPresentacion
 
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void btn_nuevo_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }
