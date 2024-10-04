@@ -116,7 +116,7 @@
             tabPage1.Size = new Size(849, 437);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
-            tabPage1.Click += tabPage1_Click;
+            //tabPage1.Click += tabPage1_Click;
             // 
             // tabPage2
             // 
@@ -219,13 +219,13 @@
             // 
             // txt_codigo
             // 
-<<<<<<< HEAD
+
             txt_codigo.Location = new Point(106, 166);
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(203, 23);
             txt_codigo.TabIndex = 9;
             txt_codigo.TextChanged += txt_codigo_TextChanged;
-=======
+
             btn_nuevo.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
             btn_nuevo.Location = new Point(55, 48);
@@ -235,7 +235,7 @@
             btn_nuevo.Text = "Nuevo";
             btn_nuevo.UseVisualStyleBackColor = true;
             btn_nuevo.Click += btn_nuevo_Click;
->>>>>>> 89d711c02b77af036eb212f8e26c792173d09186
+
             // 
             // textBox1
             // 
