@@ -32,7 +32,7 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txt_usuario = new TextBox();
             label2 = new Label();
             txt_password = new TextBox();
             btn_cancelar = new Button();
@@ -72,13 +72,13 @@
             label1.TabIndex = 2;
             label1.Text = "Usuario:";
             // 
-            // textBox1
+            // txt_usuario
             // 
-            textBox1.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBox1.Location = new Point(211, 87);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 25);
-            textBox1.TabIndex = 3;
+            txt_usuario.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txt_usuario.Location = new Point(211, 87);
+            txt_usuario.Name = "txt_usuario";
+            txt_usuario.Size = new Size(100, 25);
+            txt_usuario.TabIndex = 3;
             // 
             // label2
             // 
@@ -133,7 +133,7 @@
             Controls.Add(btn_cancelar);
             Controls.Add(txt_password);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txt_usuario);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -153,7 +153,7 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txt_usuario;
         private Label label2;
         private TextBox txt_password;
         private Button btn_cancelar;

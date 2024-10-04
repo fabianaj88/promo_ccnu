@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -15,6 +16,7 @@ namespace CapaPresentacion
         public Frm_Login()
         {
             InitializeComponent();
+            datos_conexion();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -24,9 +26,32 @@ namespace CapaPresentacion
 
         private void btn_aceptar_Click(object sender, EventArgs e)
         {
-            Frm_menu_principal frm = new Frm_menu_principal();
+            if (txt_usuario.Text!="" && txt_usuario.Text != "")
+            {
+                string xusuario=txt_usuario.Text;
+                string  xclave=txt_password.Text;
+                string xsentencia = "";
+                DataTable dt_usu = new DataTable();
+                xsentencia = "select * from usuarios where codigo_usu='"+xusuario.Trim()+"' and clave_usu='"+xclave.Trim()+"' ";
+                dt_usu = Cls_funciones.VisualizaS(xsentencia);
+                if (dt_usu.Rows.Count > 0 )
+                {
+                    Frm_menu_principal frm = new Frm_menu_principal();
+                    frm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Datos Incorrectos");
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Datos Incompletos");
+            }
 
-            frm.Show();
+
+            
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -38,5 +63,14 @@ namespace CapaPresentacion
         {
 
         }
+        private void datos_conexion()
+        {
+            Cls_variables.servidor_bd = "DEVELOPMENT";
+            Cls_variables.basedatos = "ccnu";
+            Cls_variables.usuario_bd = "sa";
+            Cls_variables.clave_bd = "alf";
+            Conexion.ConeccionBD();
+        }
+
     }
 }
