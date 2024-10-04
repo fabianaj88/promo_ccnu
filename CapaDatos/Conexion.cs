@@ -12,54 +12,20 @@ namespace CapaDatos
 {
     public class Conexion
     {
-        private string connectionString;
-        public Conexion()
-        {
-            // Leer cadena de conexión desde App.config
-            connectionString = ConfigurationManager.ConnectionStrings["sqlconex"].ConnectionString;
-        }
-        public SqlConnection GetConnection()
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                return connection;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
-                throw;
-            }
-        }
+        private SqlConnection Con = new SqlConnection("Server=DESKTOP-QDFSRUE;Database=ccnu;User Id=sa;Password=alf;");
 
-        public void CloseConnection(SqlConnection connection)
+        public SqlConnection AbrirConexion()
         {
-            if (connection != null && connection.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
+            if (Con.State == ConnectionState.Closed)
+                Con.Open();
+            return Con;
         }
-        // Método para probar la conexión
-        public void TestConnection()
+        public SqlConnection CerrarConexion()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    Console.WriteLine("Conexión a la base de datos establecida correctamente.");
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
+            if (Con.State == ConnectionState.Open)
+                Con.Open();
+            return Con;
         }
     }
-    
+  
 }
