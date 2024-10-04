@@ -48,6 +48,8 @@
             txt_telefono = new TextBox();
             txt_direccion = new TextBox();
             txt_nombre = new TextBox();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
             txt_codigo = new TextBox();
             label1 = new Label();
             pictureBox3 = new PictureBox();
@@ -128,6 +130,7 @@
             tabPage1.Size = new Size(849, 437);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
+            //tabPage1.Click += tabPage1_Click;
             // 
             // btn_cancelar
             // 
@@ -153,26 +156,24 @@
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(40, 392);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 16);
-            label7.TabIndex = 22;
-            label7.Text = "Genero:";
+            pictureBox1.BackColor = Color.LightSkyBlue;
+            pictureBox1.Location = new Point(17, 42);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(805, 37);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
-            // radioButton3
+            // btn_nuevo
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(253, 94);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(77, 19);
-            radioButton3.TabIndex = 21;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Pasaporte";
-            radioButton3.UseVisualStyleBackColor = true;
+            btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
+            btn_nuevo.Location = new Point(55, 48);
+            btn_nuevo.Name = "btn_nuevo";
+            btn_nuevo.Size = new Size(75, 23);
+            btn_nuevo.TabIndex = 1;
+            btn_nuevo.Text = "Nuevo";
+            btn_nuevo.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // btn_grabar
             // 
             radioButton2.AutoSize = true;
             radioButton2.Location = new Point(164, 94);
@@ -233,16 +234,17 @@
             label4.TabIndex = 15;
             label4.Text = "Direccion:";
             // 
-            // label3
+            // btn_editar
             // 
-            label3.Font = new Font("Arial", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(379, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 20);
-            label3.TabIndex = 14;
-            label3.Text = "Clientes";
+            btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
+            btn_editar.Location = new Point(253, 48);
+            btn_editar.Name = "btn_editar";
+            btn_editar.Size = new Size(75, 23);
+            btn_editar.TabIndex = 3;
+            btn_editar.Text = "Editar";
+            btn_editar.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btn_eliminar
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
@@ -342,7 +344,7 @@
             btn_eliminar.Text = "Eliminar";
             btn_eliminar.UseVisualStyleBackColor = true;
             // 
-            // btn_editar
+            // pictureBox3
             // 
             btn_editar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
@@ -353,7 +355,7 @@
             btn_editar.Text = "Editar";
             btn_editar.UseVisualStyleBackColor = true;
             // 
-            // btn_grabar
+            // label1
             // 
             btn_grabar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
@@ -365,8 +367,15 @@
             btn_grabar.UseVisualStyleBackColor = true;
             btn_grabar.Click += btn_grabar_Click;
             // 
-            // btn_nuevo
+            // txt_codigo
             // 
+
+            txt_codigo.Location = new Point(106, 166);
+            txt_codigo.Name = "txt_codigo";
+            txt_codigo.Size = new Size(203, 23);
+            txt_codigo.TabIndex = 9;
+            txt_codigo.TextChanged += txt_codigo_TextChanged;
+
             btn_nuevo.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
             btn_nuevo.Location = new Point(55, 48);
@@ -376,17 +385,16 @@
             btn_nuevo.Text = "Nuevo";
             btn_nuevo.UseVisualStyleBackColor = true;
             btn_nuevo.Click += btn_nuevo_Click;
+
             // 
-            // pictureBox1
+            // textBox1
             // 
-            pictureBox1.BackColor = Color.LightSkyBlue;
-            pictureBox1.Location = new Point(17, 42);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(805, 37);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            textBox1.Location = new Point(106, 206);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(388, 23);
+            textBox1.TabIndex = 10;
             // 
-            // tabPage2
+            // textBox2
             // 
             tabPage2.Controls.Add(btn_busca_cli);
             tabPage2.Controls.Add(txt_dato_buscar);
@@ -432,23 +440,20 @@
             // 
             // tabPage3
             // 
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(849, 437);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
-            tabPage3.UseVisualStyleBackColor = true;
+            textBox3.Location = new Point(106, 297);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(203, 23);
+            textBox3.TabIndex = 12;
             // 
-            // tabPage4
+            // label2
             // 
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(849, 437);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "tabPage4";
-            tabPage4.UseVisualStyleBackColor = true;
+            label2.AutoSize = true;
+            label2.Location = new Point(40, 209);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 15);
+            label2.TabIndex = 13;
+            label2.Text = "Cliente";
+            label2.Click += label2_Click;
             // 
             // seleccionar
             // 
