@@ -98,6 +98,7 @@
             txt_password.Name = "txt_password";
             txt_password.Size = new Size(100, 25);
             txt_password.TabIndex = 5;
+            txt_password.UseSystemPasswordChar = true;
             // 
             // btn_cancelar
             // 
@@ -137,8 +138,10 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Name = "Frm_Login";
+            ShowIcon = false;
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Frm_Login";
+            Load += Frm_Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

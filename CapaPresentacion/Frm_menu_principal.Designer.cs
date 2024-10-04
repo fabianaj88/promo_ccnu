@@ -96,6 +96,7 @@
             Controls.Add(pictureBox1);
             Name = "Frm_menu_principal";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_menu_principal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
