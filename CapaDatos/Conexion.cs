@@ -12,54 +12,21 @@ namespace CapaDatos
 {
     public class Conexion
     {
-        private string connectionString;
-        public Conexion()
+        private SqlConnection Con = new SqlConnection("Server=FABIANA;Database=ccnu;User Id=sa;Password=alf;");
+
+        public SqlConnection AbrirConexion()
         {
-            // Leer cadena de conexión desde App.config
-            connectionString = ConfigurationManager.ConnectionStrings["sqlconex"].ConnectionString;
+            if (Con.State == ConnectionState.Closed)
+                Con.Open();
+            return Con;
         }
-        public SqlConnection GetConnection()
+        public SqlConnection CerrarConexion()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                return connection;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
-                throw;
-            }
+            if (Con.State == ConnectionState.Open)
+                Con.Close();
+            return Con;
         }
 
-        public void CloseConnection(SqlConnection connection)
-        {
-            if (connection != null && connection.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
-        // Método para probar la conexión
-        public void TestConnection()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    Console.WriteLine("Conexión a la base de datos establecida correctamente.");
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-        }
     }
-    
+  
 }
