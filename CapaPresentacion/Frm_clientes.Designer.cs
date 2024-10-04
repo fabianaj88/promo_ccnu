@@ -33,26 +33,26 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            pictureBox1 = new PictureBox();
-            btn_nuevo = new Button();
-            btn_grabar = new Button();
-            btn_editar = new Button();
-            btn_eliminar = new Button();
-            btn_buscar = new Button();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            label1 = new Label();
-            txt_codigo = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
             label2 = new Label();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            txt_codigo = new TextBox();
+            label1 = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            btn_buscar = new Button();
+            btn_eliminar = new Button();
+            btn_editar = new Button();
+            btn_grabar = new Button();
+            btn_nuevo = new Button();
+            pictureBox1 = new PictureBox();
+            tabPage2 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -96,84 +96,55 @@
             tabPage1.Size = new Size(849, 437);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
+            tabPage1.Click += tabPage1_Click;
             // 
-            // tabPage2
+            // label2
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(849, 437);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Listado";
-            tabPage2.UseVisualStyleBackColor = true;
+            label2.AutoSize = true;
+            label2.Location = new Point(40, 209);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 15);
+            label2.TabIndex = 13;
+            label2.Text = "Cliente";
+            label2.Click += label2_Click;
             // 
-            // pictureBox1
+            // textBox3
             // 
-            pictureBox1.BackColor = Color.LightSkyBlue;
-            pictureBox1.Location = new Point(17, 42);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(805, 37);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            textBox3.Location = new Point(106, 297);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(203, 23);
+            textBox3.TabIndex = 12;
             // 
-            // btn_nuevo
+            // textBox2
             // 
-            btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
-            btn_nuevo.Location = new Point(55, 48);
-            btn_nuevo.Name = "btn_nuevo";
-            btn_nuevo.Size = new Size(75, 23);
-            btn_nuevo.TabIndex = 1;
-            btn_nuevo.Text = "Nuevo";
-            btn_nuevo.UseVisualStyleBackColor = true;
+            textBox2.Location = new Point(106, 250);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(388, 23);
+            textBox2.TabIndex = 11;
             // 
-            // btn_grabar
+            // textBox1
             // 
-            btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
-            btn_grabar.Location = new Point(151, 48);
-            btn_grabar.Name = "btn_grabar";
-            btn_grabar.Size = new Size(75, 23);
-            btn_grabar.TabIndex = 2;
-            btn_grabar.Text = "Grabar";
-            btn_grabar.UseVisualStyleBackColor = true;
+            textBox1.Location = new Point(106, 206);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(388, 23);
+            textBox1.TabIndex = 10;
             // 
-            // btn_editar
+            // txt_codigo
             // 
-            btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
-            btn_editar.Location = new Point(253, 48);
-            btn_editar.Name = "btn_editar";
-            btn_editar.Size = new Size(75, 23);
-            btn_editar.TabIndex = 3;
-            btn_editar.Text = "Editar";
-            btn_editar.UseVisualStyleBackColor = true;
+            txt_codigo.Location = new Point(106, 166);
+            txt_codigo.Name = "txt_codigo";
+            txt_codigo.Size = new Size(203, 23);
+            txt_codigo.TabIndex = 9;
+            txt_codigo.TextChanged += txt_codigo_TextChanged;
             // 
-            // btn_eliminar
+            // label1
             // 
-            btn_eliminar.Image = (Image)resources.GetObject("btn_eliminar.Image");
-            btn_eliminar.Location = new Point(353, 48);
-            btn_eliminar.Name = "btn_eliminar";
-            btn_eliminar.Size = new Size(75, 23);
-            btn_eliminar.TabIndex = 4;
-            btn_eliminar.Text = "Eliminar";
-            btn_eliminar.UseVisualStyleBackColor = true;
-            // 
-            // btn_buscar
-            // 
-            btn_buscar.Image = (Image)resources.GetObject("btn_buscar.Image");
-            btn_buscar.Location = new Point(451, 48);
-            btn_buscar.Name = "btn_buscar";
-            btn_buscar.Size = new Size(75, 23);
-            btn_buscar.TabIndex = 5;
-            btn_buscar.Text = "Buscar";
-            btn_buscar.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox2.Location = new Point(17, 85);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(805, 38);
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            label1.AutoSize = true;
+            label1.Location = new Point(40, 166);
+            label1.Name = "label1";
+            label1.Size = new Size(46, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Código";
             // 
             // pictureBox3
             // 
@@ -185,53 +156,83 @@
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
             // 
-            // label1
+            // pictureBox2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 166);
-            label1.Name = "label1";
-            label1.Size = new Size(46, 15);
-            label1.TabIndex = 8;
-            label1.Text = "Código";
+            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox2.Location = new Point(17, 85);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(805, 38);
+            pictureBox2.TabIndex = 6;
+            pictureBox2.TabStop = false;
             // 
-            // txt_codigo
+            // btn_buscar
             // 
-            txt_codigo.Location = new Point(106, 166);
-            txt_codigo.Name = "txt_codigo";
-            txt_codigo.Size = new Size(203, 23);
-            txt_codigo.TabIndex = 9;
-            txt_codigo.TextChanged += txt_codigo_TextChanged;
+            btn_buscar.Image = (Image)resources.GetObject("btn_buscar.Image");
+            btn_buscar.Location = new Point(451, 48);
+            btn_buscar.Name = "btn_buscar";
+            btn_buscar.Size = new Size(75, 23);
+            btn_buscar.TabIndex = 5;
+            btn_buscar.Text = "Buscar";
+            btn_buscar.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // btn_eliminar
             // 
-            textBox1.Location = new Point(106, 206);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(388, 23);
-            textBox1.TabIndex = 10;
+            btn_eliminar.Image = (Image)resources.GetObject("btn_eliminar.Image");
+            btn_eliminar.Location = new Point(353, 48);
+            btn_eliminar.Name = "btn_eliminar";
+            btn_eliminar.Size = new Size(75, 23);
+            btn_eliminar.TabIndex = 4;
+            btn_eliminar.Text = "Eliminar";
+            btn_eliminar.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // btn_editar
             // 
-            textBox2.Location = new Point(106, 250);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(388, 23);
-            textBox2.TabIndex = 11;
+            btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
+            btn_editar.Location = new Point(253, 48);
+            btn_editar.Name = "btn_editar";
+            btn_editar.Size = new Size(75, 23);
+            btn_editar.TabIndex = 3;
+            btn_editar.Text = "Editar";
+            btn_editar.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // btn_grabar
             // 
-            textBox3.Location = new Point(106, 297);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(203, 23);
-            textBox3.TabIndex = 12;
+            btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
+            btn_grabar.Location = new Point(151, 48);
+            btn_grabar.Name = "btn_grabar";
+            btn_grabar.Size = new Size(75, 23);
+            btn_grabar.TabIndex = 2;
+            btn_grabar.Text = "Grabar";
+            btn_grabar.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btn_nuevo
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(40, 209);
-            label2.Name = "label2";
-            label2.Size = new Size(44, 15);
-            label2.TabIndex = 13;
-            label2.Text = "Cliente";
-            label2.Click += label2_Click;
+            btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
+            btn_nuevo.Location = new Point(55, 48);
+            btn_nuevo.Name = "btn_nuevo";
+            btn_nuevo.Size = new Size(75, 23);
+            btn_nuevo.TabIndex = 1;
+            btn_nuevo.Text = "Nuevo";
+            btn_nuevo.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.LightSkyBlue;
+            pictureBox1.Location = new Point(17, 42);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(805, 37);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(849, 437);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Listado";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // Frm_clientes
             // 
@@ -245,9 +246,9 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
