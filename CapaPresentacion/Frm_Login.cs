@@ -36,8 +36,12 @@ namespace CapaPresentacion
                 dt_usu = Cls_funciones.VisualizaS(xsentencia);
                 if (dt_usu.Rows.Count > 0 )
                 {
-                    Frm_menu_principal frm = new Frm_menu_principal();
-                    frm.Show();
+                    Frm_Login frm1 = new Frm_Login();
+                    frm1.Close();
+                    Frm_menu_principal frm2 = new Frm_menu_principal();
+                    frm2.Show();
+                    
+                   // this.Close();
                 }
                 else
                 {
