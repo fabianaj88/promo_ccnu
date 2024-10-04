@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CapaDatos
 {
     
-    internal class Cls_funciones
+    public class Cls_funciones
     {
          
         public static DataTable leer_campos_sql(string xtabla )

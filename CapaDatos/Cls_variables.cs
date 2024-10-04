@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-     internal class Cls_variables
+     public class Cls_variables
     {
         public static SqlConnection ConectDB = new SqlConnection();
         public static SqlConnection conect_emp = new SqlConnection();
