@@ -156,7 +156,8 @@ namespace CapaPresentacion
                 dt_datos.Rows[0]["direccion_cli"] = txt_direccion.Text;
                 dt_datos.Rows[0]["telefono_cli"] = txt_telefono.Text;
                 //dt_datos.Rows[0]["codigo_cli"] = txt_correo.Text;
-                dt_datos.Rows[0]["genero_cli"] = cmb_genero.SelectedValue;
+                dt_datos.Rows[0]["genero_cli"] = cmb_genero.Text;
+                dt_datos.Rows[0]["fecha_nac_cli"] = dateTimePicker1.Value;
 
                 xcondicion_cli = Cls_funciones.Condicion_grabar(dt_datos, false);
                 if (Cls_funciones.Grabar_Datos_DB("clientes", xcampos, xcondicion_cli) == true)
@@ -193,11 +194,11 @@ namespace CapaPresentacion
             DataTable dt_clientes = new DataTable();
             if (txt_dato_buscar.Text == "")
             {
-                xsentencia = "select codigo_cli as Codigo,nombre_cli as Nombre,direccion_cli as Direccion,telefono_cli as Telefono,fecha_nac_cli as Nacimiento from clientes order by nombre_cli";
+                xsentencia = "select codigo_cli as Codigo,nombre_cli as Nombre,direccion_cli as Direccion,telefono_cli as Telefono,fecha_nac_cli as Nacimiento,genero_cli as Genero from clientes order by nombre_cli";
             }
             else
             {
-                xsentencia = "select codigo_cli as Codigo,nombre_cli as Nombre,direccion_cli as Direccion,telefono_cli as Telefono,fecha_nac_cli as Nacimiento from clientes where codigo_like'%" + txt_dato_buscar.Text + "%' or nombre_cli like'%" + txt_dato_buscar.Text + "%'";
+                xsentencia = "select codigo_cli as Codigo,nombre_cli as Nombre,direccion_cli as Direccion,telefono_cli as Telefono,fecha_nac_cli as Nacimiento,genero_cli as Genero from clientes where codigo_like'%" + txt_dato_buscar.Text + "%' or nombre_cli like'%" + txt_dato_buscar.Text + "%'";
             }
             dt_clientes = Cls_funciones.VisualizaS(xsentencia);
             grid_lista_clientes.DataSource = dt_clientes;
@@ -209,22 +210,23 @@ namespace CapaPresentacion
 
         private void grid_lista_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //MessageBox.Show(grid_lista_clientes.SelectedRows[0];)
-            if (grid_lista_clientes.SelectedRows.Count > 0)
+            // MessageBox.Show(e.RowIndex); ;
+            if (e.RowIndex >= 0) // Ignorar la cabecera
             {
-                // Obtener la primera fila seleccionada
-                DataGridViewRow filaSeleccionada = grid_lista_clientes.SelectedRows[0];
+                // Selecciona la fila
+                grid_lista_clientes.Rows[e.RowIndex].Selected = true;
 
-                // Obtener el valor de la columna "codigo_cli"
-                string codigoCli = filaSeleccionada.Cells["codigo_cli"].Value.ToString();
+                // Si quieres hacer algo con la fila seleccionada
+                var selectedRow = grid_lista_clientes.Rows[e.RowIndex];
+                // Ejemplo: obtener un valor de la primera columna
+                var value = selectedRow.Cells[1].ToString();
+                // MessageBox.Show($"Has seleccionado: {value}");
+                string nombre = grid_lista_clientes.Rows[e.RowIndex].Cells["Codigo"].Value.ToString();
 
-                // Mostrar el valor (puedes hacer lo que necesites con él)
-                MessageBox.Show("Código Cliente: " + codigoCli);
+                // Muestra el valor en un mensaje
+                //  MessageBox.Show($"Has seleccionado el nombre: {nombre}");
             }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ninguna fila.");
-            }
+
         }
     }
 }

@@ -68,6 +68,8 @@
             seleccionar = new DataGridViewButtonColumn();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            txt_saldo_cli = new TextBox();
+            label10 = new Label();
             Locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -100,6 +102,8 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(label10);
+            tabPage1.Controls.Add(txt_saldo_cli);
             tabPage1.Controls.Add(label9);
             tabPage1.Controls.Add(dateTimePicker1);
             tabPage1.Controls.Add(label8);
@@ -149,12 +153,13 @@
             // 
             dateTimePicker1.CustomFormat = "";
             dateTimePicker1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.ImeMode = ImeMode.NoControl;
             dateTimePicker1.Location = new Point(127, 381);
             dateTimePicker1.MaxDate = new DateTime(2050, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(232, 22);
+            dateTimePicker1.Size = new Size(152, 22);
             dateTimePicker1.TabIndex = 29;
             dateTimePicker1.Value = new DateTime(2024, 10, 7, 0, 0, 0, 0);
             // 
@@ -187,7 +192,7 @@
             cmb_genero.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
             cmb_genero.Location = new Point(127, 343);
             cmb_genero.Name = "cmb_genero";
-            cmb_genero.Size = new Size(232, 24);
+            cmb_genero.Size = new Size(152, 24);
             cmb_genero.TabIndex = 23;
             // 
             // label7
@@ -311,7 +316,7 @@
             // txt_codigo
             // 
             txt_codigo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_codigo.Location = new Point(127, 166);
+            txt_codigo.Location = new Point(127, 164);
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(152, 23);
             txt_codigo.TabIndex = 9;
@@ -321,11 +326,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.BorderStyle = BorderStyle.Fixed3D;
             label1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(36, 166);
             label1.Name = "label1";
-            label1.Size = new Size(58, 18);
+            label1.Size = new Size(56, 16);
             label1.TabIndex = 8;
             label1.Text = "Código:";
             // 
@@ -466,6 +470,7 @@
             seleccionar.HeaderText = "#";
             seleccionar.Name = "seleccionar";
             seleccionar.ReadOnly = true;
+            seleccionar.SortMode = DataGridViewColumnSortMode.Programmatic;
             seleccionar.Text = "Seleccionar";
             // 
             // tabPage3
@@ -481,6 +486,25 @@
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(849, 437);
             tabPage4.TabIndex = 3;
+            // 
+            // txt_saldo_cli
+            // 
+            txt_saldo_cli.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_saldo_cli.Location = new Point(717, 161);
+            txt_saldo_cli.Name = "txt_saldo_cli";
+            txt_saldo_cli.Size = new Size(105, 23);
+            txt_saldo_cli.TabIndex = 31;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(639, 168);
+            label10.Name = "label10";
+            label10.Size = new Size(47, 16);
+            label10.TabIndex = 32;
+            label10.Text = "Saldo ";
             // 
             // Frm_clientes
             // 
@@ -540,9 +564,11 @@
         private Button btn_busca_cli;
         private TextBox txt_dato_buscar;
         private DataGridView grid_lista_clientes;
-        private DataGridViewButtonColumn seleccionar;
         private Label label8;
         private DateTimePicker dateTimePicker1;
         private Label label9;
+        private DataGridViewButtonColumn seleccionar;
+        private Label label10;
+        private TextBox txt_saldo_cli;
     }
 }
