@@ -98,7 +98,8 @@ namespace CapaDatos
         }
         public static string leer_Campos_tabla(string tabla)
         {
-            string sentencia = $"SELECT COLUMN_NAME FROM information_schema.columns WHERE table_name = '{tabla}'";
+            string sentencia = $"SELECT COLUMN_NAME FROM information_schema.columns WHERE table_name = '{tabla}'" +
+                $"AND COLUMNPROPERTY(object_id(table_name), COLUMN_NAME, 'IsIdentity') = 0";
             DataTable dt = new DataTable();
             string campos = "";
 
@@ -232,6 +233,28 @@ namespace CapaDatos
             
             try
             {
+                // Dividir los campos y los valores en listas
+                string[] lista_campos = campos.Split(',');
+                string[] lista_valores = valores.Split(',');
+
+                // Verificar si la cantidad de valores es mayor que la de campos
+                if (lista_valores.Length > lista_campos.Length)
+                {
+                    // Omitir el primer valor si hay más valores que campos
+                    lista_valores = lista_valores.Skip(1).ToArray();
+                }
+
+                // Reconstruir la cadena de valores si se ha omitido el primero
+                valores = string.Join(",", lista_valores);
+
+                // Verificar nuevamente si los campos y valores tienen la misma cantidad de elementos
+                if (lista_campos.Length != lista_valores.Length)
+                {
+                    // Si aún no coinciden, salir de la función
+                    return false;
+                }
+
+                // Construir la consulta de inserción
                 string query = $"INSERT INTO {tabla} ({campos}) VALUES ({valores})";
                 SqlCommand cmdquery = new SqlCommand(query, Cls_variables.conect_emp)
                 {

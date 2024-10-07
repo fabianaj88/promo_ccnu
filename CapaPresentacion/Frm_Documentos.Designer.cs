@@ -44,10 +44,10 @@
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             panel1 = new Panel();
+            btn_grabarTicket = new Button();
             tabPage1 = new TabPage();
             pictureBox1 = new PictureBox();
             label6 = new Label();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -217,7 +217,7 @@
             // 
             panel1.BackColor = Color.LightSteelBlue;
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btn_grabarTicket);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(txt_numf);
             panel1.Controls.Add(label2);
@@ -232,6 +232,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(856, 137);
             panel1.TabIndex = 16;
+            // 
+            // btn_grabarTicket
+            // 
+            btn_grabarTicket.BackColor = Color.Silver;
+            btn_grabarTicket.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_grabarTicket.Image = (Image)resources.GetObject("btn_grabarTicket.Image");
+            btn_grabarTicket.Location = new Point(727, 97);
+            btn_grabarTicket.Margin = new Padding(3, 2, 3, 2);
+            btn_grabarTicket.Name = "btn_grabarTicket";
+            btn_grabarTicket.Size = new Size(51, 38);
+            btn_grabarTicket.TabIndex = 15;
+            btn_grabarTicket.UseVisualStyleBackColor = false;
+            btn_grabarTicket.Click += btn_grabarTicket_Click;
             // 
             // tabPage1
             // 
@@ -267,29 +280,17 @@
             label6.Text = "GENERAR TICKETS";
             label6.Click += label6_Click_1;
             // 
-            // button2
-            // 
-            button2.BackColor = Color.Silver;
-            button2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(727, 97);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(51, 38);
-            button2.TabIndex = 15;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // Frm_Documentos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(922, 539);
+            ClientSize = new Size(923, 545);
             Controls.Add(label6);
             Controls.Add(tabControl1);
             Controls.Add(pictureBox1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Frm_Documentos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_Documentos";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabControl1.ResumeLayout(false);
@@ -320,6 +321,6 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Label label6;
-        private Button button2;
+        private Button btn_grabarTicket;
     }
 }

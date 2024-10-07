@@ -115,9 +115,70 @@ namespace CapaPresentacion
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_grabarTicket_Click(object sender, EventArgs e)
         {
+            if (txt_numf.Text == "")
+            {
+                MessageBox.Show("Ingrese el número de factura.");
+                return;
+            }
+            if (txt_loc.Text == "")
+            {
+                MessageBox.Show("Ingrese el código del local.");
+                return;
+            }
+            if (txt_cli.Text == "")
+            {
+                MessageBox.Show("Ingrese el código del cliente.");
+                return;
+            }
+            if (txt_tot.Text == "")
+            {
+                MessageBox.Show("Ingrese el valor de la factura.");
+                return;
+            }
 
+            var result = MessageBox.Show("¿Estás seguro de grabar los datos del documento?",
+                                    "Confirmación",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                grabar_datos_documentos();
+            }
         }
+        private void grabar_datos_documentos()
+        {
+            DataTable dt_datos = new DataTable();
+            string xcondicion_doc = "";
+            string xcampos = "";
+            xcampos = Cls_funciones.leer_Campos_tabla("documentos");
+            dt_datos = Cls_funciones.Inserta_Datos_tabla_tmp("documentos", "numfac_doc", "I");
+
+            if (dt_datos.Rows.Count == 1)
+            {
+                dt_datos.Rows[0]["numfac_doc"] = int.Parse(txt_numf.Text);
+                dt_datos.Rows[0]["codigo_loc_doc"] = txt_loc.Text;
+                dt_datos.Rows[0]["codigo_cli_doc"] = txt_cli.Text;
+                dt_datos.Rows[0]["fecfac_doc"] = dtim_fec.Value; // Asumiendo que usas DateTimePicker para la fecha
+                dt_datos.Rows[0]["valfac_doc"] = float.Parse(txt_tot.Text);
+                //dt_datos.Rows[0]["obv_doc"] = txt_obv.Text; // Observación es opcional
+
+                xcondicion_doc = Cls_funciones.Condicion_grabar(dt_datos, false);
+                if (Cls_funciones.Grabar_Datos_DB("documentos", xcampos, xcondicion_doc) == true)
+                {
+                    MessageBox.Show("Documento grabado con éxito.");
+                }
+                else
+                {
+                    MessageBox.Show("Error al grabar el documento.");
+                }
+            }
+        }
+
     }
 }
