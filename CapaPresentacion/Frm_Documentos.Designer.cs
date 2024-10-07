@@ -259,10 +259,11 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.GradientInactiveCaption;
+            pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1, 0);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(921, 545);
+            pictureBox1.Size = new Size(923, 545);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 17;
             pictureBox1.TabStop = false;
@@ -272,10 +273,10 @@
             // 
             label6.AutoSize = true;
             label6.FlatStyle = FlatStyle.Flat;
-            label6.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(324, 24);
+            label6.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(338, 34);
             label6.Name = "label6";
-            label6.Size = new Size(269, 37);
+            label6.Size = new Size(208, 24);
             label6.TabIndex = 0;
             label6.Text = "GENERAR TICKETS";
             label6.Click += label6_Click_1;

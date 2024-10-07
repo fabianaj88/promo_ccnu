@@ -32,7 +32,7 @@ namespace CapaPresentacion
                 string xclave = txt_password.Text;
                 string xsentencia = "";
                 DataTable dt_usu = new DataTable();
-                xsentencia = "select * from usuarios where codigo_usu='" + xusuario.Trim() + "' and clave_usu='" + xclave.Trim() + "' ";
+                xsentencia = "select * from usuarios where nombre_usu='" + xusuario.Trim() + "' and clave_usu='" + xclave.Trim() + "' ";
                 dt_usu = Cls_funciones.VisualizaS(xsentencia);
                 if (dt_usu.Rows.Count > 0)
                 {
@@ -76,5 +76,9 @@ namespace CapaPresentacion
             Conexion.ConeccionBD();
         }
 
+        private void txt_usuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

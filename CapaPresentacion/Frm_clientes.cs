@@ -226,5 +226,15 @@ namespace CapaPresentacion
                 MessageBox.Show("No se ha seleccionado ninguna fila.");
             }
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
