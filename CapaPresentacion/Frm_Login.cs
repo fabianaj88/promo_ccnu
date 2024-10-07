@@ -26,28 +26,28 @@ namespace CapaPresentacion
 
         private void btn_aceptar_Click(object sender, EventArgs e)
         {
-            if (txt_usuario.Text!="" && txt_usuario.Text != "")
+            if (txt_usuario.Text != "" && txt_usuario.Text != "")
             {
-                string xusuario=txt_usuario.Text;
-                string  xclave=txt_password.Text;
+                string xusuario = txt_usuario.Text;
+                string xclave = txt_password.Text;
                 string xsentencia = "";
                 DataTable dt_usu = new DataTable();
-                xsentencia = "select * from usuarios where codigo_usu='"+xusuario.Trim()+"' and clave_usu='"+xclave.Trim()+"' ";
+                xsentencia = "select * from usuarios where codigo_usu='" + xusuario.Trim() + "' and clave_usu='" + xclave.Trim() + "' ";
                 dt_usu = Cls_funciones.VisualizaS(xsentencia);
-                if (dt_usu.Rows.Count > 0 )
+                if (dt_usu.Rows.Count > 0)
                 {
                     Frm_Login frm1 = new Frm_Login();
                     frm1.Close();
                     Frm_menu_principal frm2 = new Frm_menu_principal();
                     frm2.Show();
-                    
-                   // this.Close();
+
+                    // this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Datos Incorrectos");
                 }
-                
+
             }
             else
             {
@@ -55,7 +55,7 @@ namespace CapaPresentacion
             }
 
 
-            
+
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
