@@ -33,6 +33,9 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             Locales = new TabControl();
             tabPage1 = new TabPage();
+            label9 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            label8 = new Label();
             btn_cancelar = new Button();
             cmb_genero = new ComboBox();
             label7 = new Label();
@@ -65,8 +68,7 @@
             seleccionar = new DataGridViewButtonColumn();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            pictureBox4 = new PictureBox();
-            label8 = new Label();
+            seleccionar = new DataGridViewButtonColumn();
             Locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -74,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)grid_lista_clientes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -100,6 +101,11 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(label10);
+            tabPage1.Controls.Add(txt_saldo_cli);
+            tabPage1.Controls.Add(label9);
+            tabPage1.Controls.Add(dateTimePicker1);
+            tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(btn_cancelar);
             tabPage1.Controls.Add(cmb_genero);
             tabPage1.Controls.Add(label7);
@@ -132,6 +138,40 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(36, 386);
+            label9.Name = "label9";
+            label9.Size = new Size(79, 16);
+            label9.TabIndex = 30;
+            label9.Text = "Fecha Nac:";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "";
+            dateTimePicker1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.ImeMode = ImeMode.NoControl;
+            dateTimePicker1.Location = new Point(127, 381);
+            dateTimePicker1.MaxDate = new DateTime(2050, 12, 31, 0, 0, 0, 0);
+            dateTimePicker1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(152, 22);
+            dateTimePicker1.TabIndex = 29;
+            dateTimePicker1.Value = new DateTime(2024, 10, 7, 0, 0, 0, 0);
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(36, 346);
+            label8.Name = "label8";
+            label8.Size = new Size(59, 16);
+            label8.TabIndex = 28;
+            label8.Text = "Genero:";
+            // 
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -148,27 +188,24 @@
             cmb_genero.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cmb_genero.FormattingEnabled = true;
             cmb_genero.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
-            cmb_genero.Location = new Point(127, 346);
+            cmb_genero.Location = new Point(127, 343);
             cmb_genero.Name = "cmb_genero";
             cmb_genero.Size = new Size(152, 24);
             cmb_genero.TabIndex = 23;
             // 
             // label7
             // 
-            label7.Location = new Point(413, 57);
+            label7.Location = new Point(0, 0);
             label7.Name = "label7";
             label7.Size = new Size(100, 23);
             label7.TabIndex = 25;
             // 
             // radioButton3
             // 
-            radioButton3.BackColor = Color.Gainsboro;
-            radioButton3.Location = new Point(268, 57);
+            radioButton3.Location = new Point(0, 0);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(104, 24);
             radioButton3.TabIndex = 26;
-            radioButton3.Text = "Pasaporte";
-            radioButton3.UseVisualStyleBackColor = false;
             // 
             // radioButton2
             // 
@@ -199,7 +236,7 @@
             label6.AutoSize = true;
             label6.BackColor = Color.Gainsboro;
             label6.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(40, 310);
+            label6.Location = new Point(36, 306);
             label6.Name = "label6";
             label6.Size = new Size(55, 16);
             label6.TabIndex = 18;
@@ -208,9 +245,9 @@
             // txt_correo
             // 
             txt_correo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_correo.Location = new Point(127, 303);
+            txt_correo.Location = new Point(127, 306);
             txt_correo.Name = "txt_correo";
-            txt_correo.Size = new Size(203, 23);
+            txt_correo.Size = new Size(232, 23);
             txt_correo.TabIndex = 17;
             txt_correo.TextChanged += textBox4_TextChanged;
             // 
@@ -219,7 +256,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.Gainsboro;
             label5.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(40, 256);
+            label5.Location = new Point(36, 272);
             label5.Name = "label5";
             label5.Size = new Size(65, 16);
             label5.TabIndex = 16;
@@ -230,7 +267,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Gainsboro;
             label4.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(40, 215);
+            label4.Location = new Point(36, 235);
             label4.Name = "label4";
             label4.Size = new Size(70, 16);
             label4.TabIndex = 15;
@@ -238,9 +275,9 @@
             // 
             // label3
             // 
-            label3.Location = new Point(539, 55);
+            label3.Location = new Point(0, 0);
             label3.Name = "label3";
-            label3.Size = new Size(77, 24);
+            label3.Size = new Size(100, 23);
             label3.TabIndex = 27;
             // 
             // label2
@@ -248,7 +285,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Gainsboro;
             label2.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(40, 174);
+            label2.Location = new Point(36, 199);
             label2.Name = "label2";
             label2.Size = new Size(51, 16);
             label2.TabIndex = 13;
@@ -258,7 +295,7 @@
             // txt_telefono
             // 
             txt_telefono.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_telefono.Location = new Point(125, 208);
+            txt_telefono.Location = new Point(127, 270);
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(152, 23);
             txt_telefono.TabIndex = 12;
@@ -266,7 +303,7 @@
             // txt_direccion
             // 
             txt_direccion.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_direccion.Location = new Point(125, 249);
+            txt_direccion.Location = new Point(127, 236);
             txt_direccion.Name = "txt_direccion";
             txt_direccion.Size = new Size(388, 23);
             txt_direccion.TabIndex = 11;
@@ -274,7 +311,7 @@
             // txt_nombre
             // 
             txt_nombre.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_nombre.Location = new Point(125, 167);
+            txt_nombre.Location = new Point(127, 200);
             txt_nombre.Name = "txt_nombre";
             txt_nombre.Size = new Size(388, 23);
             txt_nombre.TabIndex = 10;
@@ -282,18 +319,18 @@
             // txt_codigo
             // 
             txt_codigo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_codigo.Location = new Point(125, 128);
+            txt_codigo.Location = new Point(127, 164);
             txt_codigo.Name = "txt_codigo";
-            txt_codigo.Size = new Size(203, 23);
+            txt_codigo.Size = new Size(152, 23);
             txt_codigo.TabIndex = 9;
             txt_codigo.TextChanged += txt_codigo_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Gainsboro;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(40, 135);
+            label1.Location = new Point(36, 166);
             label1.Name = "label1";
             label1.Size = new Size(56, 16);
             label1.TabIndex = 8;
@@ -305,7 +342,7 @@
             pictureBox3.BorderStyle = BorderStyle.FixedSingle;
             pictureBox3.Location = new Point(6, 92);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(849, 326);
+            pictureBox3.Size = new Size(805, 10);
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
             // 
@@ -375,10 +412,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.LightSteelBlue;
-            pictureBox1.Location = new Point(6, 6);
+            pictureBox1.BackColor = Color.LightSkyBlue;
+            pictureBox1.Location = new Point(17, 42);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(849, 37);
+            pictureBox1.Size = new Size(805, 37);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -431,45 +468,41 @@
             seleccionar.HeaderText = "#";
             seleccionar.Name = "seleccionar";
             seleccionar.ReadOnly = true;
+            seleccionar.SortMode = DataGridViewColumnSortMode.Programmatic;
             seleccionar.Text = "Seleccionar";
             // 
             // tabPage3
             // 
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(861, 424);
+            tabPage3.Size = new Size(849, 437);
             tabPage3.TabIndex = 2;
             // 
             // tabPage4
             // 
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(861, 424);
+            tabPage4.Size = new Size(849, 437);
             tabPage4.TabIndex = 3;
             // 
-            // pictureBox4
+            // txt_saldo_cli
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.Dock = DockStyle.Fill;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(0, 0);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(923, 545);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 2;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            txt_saldo_cli.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_saldo_cli.Location = new Point(717, 161);
+            txt_saldo_cli.Name = "txt_saldo_cli";
+            txt_saldo_cli.Size = new Size(105, 23);
+            txt_saldo_cli.TabIndex = 31;
             // 
-            // label8
+            // label10
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(402, 29);
-            label8.Name = "label8";
-            label8.Size = new Size(112, 24);
-            label8.TabIndex = 3;
-            label8.Text = "CLIENTES";
-            label8.Click += label8_Click;
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(639, 168);
+            label10.Name = "label10";
+            label10.Size = new Size(47, 16);
+            label10.TabIndex = 32;
+            label10.Text = "Saldo ";
             // 
             // Frm_clientes
             // 
@@ -533,8 +566,11 @@
         private Button btn_busca_cli;
         private TextBox txt_dato_buscar;
         private DataGridView grid_lista_clientes;
-        private DataGridViewButtonColumn seleccionar;
-        private PictureBox pictureBox4;
         private Label label8;
+        private DateTimePicker dateTimePicker1;
+        private Label label9;
+        private DataGridViewButtonColumn seleccionar;
+        private Label label10;
+        private TextBox txt_saldo_cli;
     }
 }
