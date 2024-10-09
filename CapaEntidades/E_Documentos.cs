@@ -17,6 +17,7 @@ namespace CapaEntidades
         public DateTime fecfac_doc { get; set; }
         public float valfac_doc { get; set; }
         public string obv_doc { get; set; }
+        public bool doble_tick { get; set; }
 
     }
 }

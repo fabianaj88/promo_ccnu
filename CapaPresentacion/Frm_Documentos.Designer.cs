@@ -44,14 +44,14 @@
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             panel1 = new Panel();
+            chk_dobleTi = new CheckBox();
+            cmb_nompro = new ComboBox();
             btn_anulartick = new Button();
             btn_nuevoDoc = new Button();
             btn_limpiar = new Button();
-            lbl_codpro = new Label();
+            lbl_nompro = new Label();
             label7 = new Label();
             txt_num = new TextBox();
-            pictureBox2 = new PictureBox();
-            lbl_promo = new Label();
             panel2 = new Panel();
             textBox1 = new TextBox();
             txt_nomcli = new TextBox();
@@ -61,6 +61,7 @@
             lbl_salcli = new Label();
             cmb_loc = new ComboBox();
             btn_grabarTicket = new Button();
+            pib_dobleT = new PictureBox();
             tabPage1 = new TabPage();
             dtg_lisDoc = new DataGridView();
             panel3 = new Panel();
@@ -70,7 +71,7 @@
             btn_impTicket = new Button();
             panel_impTickets = new Panel();
             panel4 = new Panel();
-            txt_proT = new TextBox();
+            lbl_numdT = new Label();
             label19 = new Label();
             txt_dirT = new TextBox();
             label18 = new Label();
@@ -80,7 +81,7 @@
             txt_telfT = new TextBox();
             lbl_nregdocT = new Label();
             txt_nomcliT = new TextBox();
-            lbl_numdT = new Label();
+            txt_proT = new TextBox();
             pictureBox1 = new PictureBox();
             label6 = new Label();
             toolTip = new ToolTip(components);
@@ -90,8 +91,8 @@
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pib_dobleT).BeginInit();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).BeginInit();
             panel3.SuspendLayout();
@@ -207,11 +208,14 @@
             txt_tot.Size = new Size(161, 22);
             txt_tot.TabIndex = 7;
             txt_tot.TextAlign = HorizontalAlignment.Right;
+            txt_tot.TextChanged += txt_tot_TextChanged;
             txt_tot.KeyDown += txt_tot_KeyDown;
+            txt_tot.KeyPress += txt_tot_KeyPress;
             // 
             // btn_gentik
             // 
             btn_gentik.BackColor = Color.Silver;
+            btn_gentik.Enabled = false;
             btn_gentik.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_gentik.Image = (Image)resources.GetObject("btn_gentik.Image");
             btn_gentik.Location = new Point(793, 102);
@@ -273,14 +277,14 @@
             // 
             panel1.BackColor = Color.LightSteelBlue;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(chk_dobleTi);
+            panel1.Controls.Add(cmb_nompro);
             panel1.Controls.Add(btn_anulartick);
             panel1.Controls.Add(btn_nuevoDoc);
             panel1.Controls.Add(btn_limpiar);
-            panel1.Controls.Add(lbl_codpro);
+            panel1.Controls.Add(lbl_nompro);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(txt_num);
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(lbl_promo);
             panel1.Controls.Add(btn_gentik);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(cmb_loc);
@@ -292,14 +296,47 @@
             panel1.Controls.Add(dtim_fec);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(txt_tot);
+            panel1.Controls.Add(pib_dobleT);
             panel1.Location = new Point(6, 9);
             panel1.Name = "panel1";
             panel1.Size = new Size(856, 145);
             panel1.TabIndex = 16;
             // 
+            // chk_dobleTi
+            // 
+            chk_dobleTi.AutoSize = true;
+            chk_dobleTi.BackColor = Color.LightSteelBlue;
+            chk_dobleTi.BackgroundImageLayout = ImageLayout.None;
+            chk_dobleTi.FlatAppearance.BorderSize = 0;
+            chk_dobleTi.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_dobleTi.ImageAlign = ContentAlignment.BottomCenter;
+            chk_dobleTi.Location = new Point(303, 117);
+            chk_dobleTi.Margin = new Padding(0);
+            chk_dobleTi.Name = "chk_dobleTi";
+            chk_dobleTi.Size = new Size(15, 14);
+            chk_dobleTi.TabIndex = 26;
+            chk_dobleTi.TextAlign = ContentAlignment.MiddleCenter;
+            toolTip.SetToolTip(chk_dobleTi, "Doble Ticket");
+            chk_dobleTi.UseVisualStyleBackColor = false;
+            chk_dobleTi.Visible = false;
+            // 
+            // cmb_nompro
+            // 
+            cmb_nompro.BackColor = SystemColors.Window;
+            cmb_nompro.Enabled = false;
+            cmb_nompro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            cmb_nompro.FormattingEnabled = true;
+            cmb_nompro.Location = new Point(93, 107);
+            cmb_nompro.Name = "cmb_nompro";
+            cmb_nompro.Size = new Size(162, 24);
+            cmb_nompro.TabIndex = 25;
+            cmb_nompro.SelectedIndexChanged += cmb_nompro_SelectedIndexChanged;
+            cmb_nompro.Click += cmb_nompro_Click;
+            // 
             // btn_anulartick
             // 
             btn_anulartick.BackColor = Color.Silver;
+            btn_anulartick.Enabled = false;
             btn_anulartick.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_anulartick.Image = (Image)resources.GetObject("btn_anulartick.Image");
             btn_anulartick.Location = new Point(740, 102);
@@ -327,6 +364,7 @@
             // btn_limpiar
             // 
             btn_limpiar.BackColor = Color.Silver;
+            btn_limpiar.Enabled = false;
             btn_limpiar.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_limpiar.Image = (Image)resources.GetObject("btn_limpiar.Image");
             btn_limpiar.Location = new Point(687, 102);
@@ -338,15 +376,15 @@
             btn_limpiar.UseVisualStyleBackColor = false;
             btn_limpiar.Click += btn_limpiar_Click;
             // 
-            // lbl_codpro
+            // lbl_nompro
             // 
-            lbl_codpro.AutoSize = true;
-            lbl_codpro.Location = new Point(77, 112);
-            lbl_codpro.Name = "lbl_codpro";
-            lbl_codpro.Size = new Size(13, 16);
-            lbl_codpro.TabIndex = 24;
-            lbl_codpro.Text = "0";
-            lbl_codpro.Visible = false;
+            lbl_nompro.AutoSize = true;
+            lbl_nompro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_nompro.Location = new Point(10, 113);
+            lbl_nompro.Name = "lbl_nompro";
+            lbl_nompro.Size = new Size(66, 16);
+            lbl_nompro.TabIndex = 24;
+            lbl_nompro.Text = "Campaña:";
             // 
             // label7
             // 
@@ -354,9 +392,9 @@
             label7.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(10, 15);
             label7.Name = "label7";
-            label7.Size = new Size(72, 16);
+            label7.Size = new Size(52, 16);
             label7.TabIndex = 23;
-            label7.Text = "N° de doc.:";
+            label7.Text = "Reg N°:";
             // 
             // txt_num
             // 
@@ -368,26 +406,6 @@
             txt_num.ReadOnly = true;
             txt_num.Size = new Size(162, 22);
             txt_num.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(14, 101);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(53, 41);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 19;
-            pictureBox2.TabStop = false;
-            // 
-            // lbl_promo
-            // 
-            lbl_promo.AutoSize = true;
-            lbl_promo.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbl_promo.Location = new Point(96, 111);
-            lbl_promo.Name = "lbl_promo";
-            lbl_promo.Size = new Size(131, 19);
-            lbl_promo.TabIndex = 18;
-            lbl_promo.Text = "PROMOCIONES";
             // 
             // panel2
             // 
@@ -477,16 +495,15 @@
             cmb_loc.Name = "cmb_loc";
             cmb_loc.Size = new Size(161, 24);
             cmb_loc.TabIndex = 3;
-            cmb_loc.SelectedIndexChanged += cmb_loc_SelectedIndexChanged;
             cmb_loc.TextUpdate += cmb_loc_TextUpdate;
             cmb_loc.TextChanged += cmb_loc_TextChanged;
             cmb_loc.Click += cmb_loc_Click;
-            cmb_loc.Enter += cmb_loc_Enter;
             cmb_loc.Leave += cmb_loc_Leave;
             // 
             // btn_grabarTicket
             // 
             btn_grabarTicket.BackColor = Color.Silver;
+            btn_grabarTicket.Enabled = false;
             btn_grabarTicket.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_grabarTicket.Image = (Image)resources.GetObject("btn_grabarTicket.Image");
             btn_grabarTicket.Location = new Point(634, 102);
@@ -497,6 +514,17 @@
             toolTip.SetToolTip(btn_grabarTicket, "Guardar");
             btn_grabarTicket.UseVisualStyleBackColor = false;
             btn_grabarTicket.Click += btn_grabarTicket_Click;
+            // 
+            // pib_dobleT
+            // 
+            pib_dobleT.Image = (Image)resources.GetObject("pib_dobleT.Image");
+            pib_dobleT.Location = new Point(315, 106);
+            pib_dobleT.Name = "pib_dobleT";
+            pib_dobleT.Size = new Size(24, 24);
+            pib_dobleT.SizeMode = PictureBoxSizeMode.AutoSize;
+            pib_dobleT.TabIndex = 27;
+            pib_dobleT.TabStop = false;
+            pib_dobleT.Visible = false;
             // 
             // tabPage1
             // 
@@ -591,7 +619,7 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(txt_proT);
+            panel4.Controls.Add(lbl_numdT);
             panel4.Controls.Add(label19);
             panel4.Controls.Add(txt_dirT);
             panel4.Controls.Add(label18);
@@ -601,24 +629,21 @@
             panel4.Controls.Add(txt_telfT);
             panel4.Controls.Add(lbl_nregdocT);
             panel4.Controls.Add(txt_nomcliT);
-            panel4.Controls.Add(lbl_numdT);
+            panel4.Controls.Add(txt_proT);
             panel4.Location = new Point(21, 9);
             panel4.Name = "panel4";
             panel4.Size = new Size(287, 210);
             panel4.TabIndex = 35;
             // 
-            // txt_proT
+            // lbl_numdT
             // 
-            txt_proT.BackColor = SystemColors.Window;
-            txt_proT.BorderStyle = BorderStyle.None;
-            txt_proT.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_proT.Location = new Point(10, 12);
-            txt_proT.Name = "txt_proT";
-            txt_proT.ReadOnly = true;
-            txt_proT.Size = new Size(263, 22);
-            txt_proT.TabIndex = 35;
-            txt_proT.Text = "CAMPAÑA";
-            txt_proT.TextAlign = HorizontalAlignment.Center;
+            lbl_numdT.AutoSize = true;
+            lbl_numdT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_numdT.Location = new Point(10, 7);
+            lbl_numdT.Name = "lbl_numdT";
+            lbl_numdT.Size = new Size(52, 16);
+            lbl_numdT.TabIndex = 24;
+            lbl_numdT.Text = "Nº. Doc";
             // 
             // label19
             // 
@@ -654,7 +679,7 @@
             // 
             lbl_fechaproT.AutoSize = true;
             lbl_fechaproT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_fechaproT.Location = new Point(82, 46);
+            lbl_fechaproT.Location = new Point(82, 38);
             lbl_fechaproT.Name = "lbl_fechaproT";
             lbl_fechaproT.Size = new Size(51, 16);
             lbl_fechaproT.TabIndex = 34;
@@ -694,7 +719,7 @@
             // 
             lbl_nregdocT.AutoSize = true;
             lbl_nregdocT.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_nregdocT.Location = new Point(141, 72);
+            lbl_nregdocT.Location = new Point(110, 72);
             lbl_nregdocT.Name = "lbl_nregdocT";
             lbl_nregdocT.Size = new Size(96, 18);
             lbl_nregdocT.TabIndex = 25;
@@ -710,15 +735,18 @@
             txt_nomcliT.Size = new Size(186, 22);
             txt_nomcliT.TabIndex = 28;
             // 
-            // lbl_numdT
+            // txt_proT
             // 
-            lbl_numdT.AutoSize = true;
-            lbl_numdT.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_numdT.Location = new Point(117, 72);
-            lbl_numdT.Name = "lbl_numdT";
-            lbl_numdT.Size = new Size(61, 18);
-            lbl_numdT.TabIndex = 24;
-            lbl_numdT.Text = "Nº. Doc";
+            txt_proT.BackColor = SystemColors.Window;
+            txt_proT.BorderStyle = BorderStyle.None;
+            txt_proT.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txt_proT.Location = new Point(10, 12);
+            txt_proT.Name = "txt_proT";
+            txt_proT.ReadOnly = true;
+            txt_proT.Size = new Size(263, 22);
+            txt_proT.TabIndex = 35;
+            txt_proT.Text = "CAMPAÑA";
+            txt_proT.TextAlign = HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -775,9 +803,9 @@
             tabPage2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pib_dobleT).EndInit();
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).EndInit();
             panel3.ResumeLayout(false);
@@ -815,13 +843,11 @@
         private Label lbl_salcli;
         private Label lbl_saldocli;
         private TextBox txt_saldocli;
-        private Label lbl_promo;
-        private PictureBox pictureBox2;
         private Label lbl_codcli;
         private TextBox txt_nomcli;
         private TextBox txt_num;
         private Label label7;
-        private Label lbl_codpro;
+        private Label lbl_nompro;
         private Button btn_limpiar;
         private TextBox textBox1;
         private DataGridView dtg_lisDoc;
@@ -848,5 +874,9 @@
         private PrintPreviewDialog printPreviewDialog1;
         private Button btn_impTicket;
         private TextBox txt_proT;
+        private ComboBox cmb_nompro;
+        private CheckBox chk_dobleTi;
+        private PictureBox pictureBox2;
+        private PictureBox pib_dobleT;
     }
 }

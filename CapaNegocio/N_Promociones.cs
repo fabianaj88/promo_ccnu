@@ -23,7 +23,7 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["nombre_pro"] = promocion.nombre_pro;
                 dtDatos.Rows[0]["fec_ini_pro"] = promocion.fec_ini_pro;
                 dtDatos.Rows[0]["fec_fin_pro"] = promocion.fec_fin_pro;
-                dtDatos.Rows[0]["estado_pro"] = false;
+                dtDatos.Rows[0]["estado_pro"] = true;
                 dtDatos.Rows[0]["monto_pro"] = promocion.monto_pro;
                 dtDatos.Rows[0]["limtick_pro"] = promocion.limtick_pro;
 

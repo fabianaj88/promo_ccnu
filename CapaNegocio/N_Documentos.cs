@@ -31,6 +31,7 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["fecfac_doc"] = documento.fecfac_doc;
                 dtDatos.Rows[0]["valfac_doc"] = documento.valfac_doc;
                 dtDatos.Rows[0]["obv_doc"] = documento.obv_doc; // Opcional
+                dtDatos.Rows[0]["doble_tick"] = documento.doble_tick; 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);
 
@@ -49,6 +50,25 @@ namespace CapaNegocio
         public DataTable ObtenerLocalesFiltrados(string textoBusqueda)
         {
             return docu.ObtenerLocalesFiltrados(textoBusqueda);
+        }
+
+        // Método para obtener los promociones como DataTable, usando la capa de datos
+        public DataTable ObtenerPromociones()
+        {
+            return docu.ObtenerPromociones();
+        }
+        // Método para buscar documentos por un término de búsqueda
+        public DataTable BuscarPromociones(string busqueda)
+        {
+            D_Documentos datosPromo = new D_Documentos();
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                return datosPromo.ObtenerTodasLasPromo();
+            }
+            else
+            {
+                return datosPromo.BuscarPromo(busqueda);
+            }
         }
 
         // Método para buscar documentos por un término de búsqueda
