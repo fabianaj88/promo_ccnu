@@ -95,9 +95,20 @@ namespace CapaPresentacion
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_busca_cli_Click(object sender, EventArgs e)
         {
-
+            string xsentencia = "";
+            DataTable dt_clientes = new DataTable();
+            if (txt_dato_buscar.Text == "")
+            {
+                xsentencia = "select codigo_loc as Codigo,nombre_loc as Nombre,ubi_loc as Ubicacion,email_loc as Correo,telefono_loc as Telefono,copro_escri_loc as Copropietario_escritura,copro_act_loc as Copropietario_Actual,arrend_loc as Arrendatario from locales order by nombre_loc";
+            }
+            else
+            {
+                xsentencia = "select codigo_loc as Codigo,nombre_loc as Nombre,ubi_loc as Ubicacion,email_loc as Correo,telefono_loc as Telefono,copro_escri_loc as Copropietario_escritura,copro_act_loc as Copropietario_Actual,arrend_loc as Arrendatario from locales where codigo_loc like'%" + txt_dato_buscar.Text + "%' or nombre_loc like'%" + txt_dato_buscar.Text + "%' order by nombre_loc";
+            }
+            dt_clientes = Cls_funciones.VisualizaS(xsentencia);
+            grid_lista_locales.DataSource = dt_clientes;
         }
     }
 }

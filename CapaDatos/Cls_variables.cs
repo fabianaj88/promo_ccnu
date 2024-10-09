@@ -20,7 +20,7 @@ namespace CapaDatos
         private static SqlConnection conec_emp = new SqlConnection(ConfigurationManager.AppSettings["dbConnection2"]);
 
         public static string empresa { get; set; }
-        public static string cod_usu { get; set; }
+        public static string xcodigo_usu { get; set; }
         public static string usuario { get; set; }
         public static string servidor_bd { get; set; }
         public static string clave_bd { get; set; }
