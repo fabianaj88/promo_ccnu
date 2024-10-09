@@ -9,11 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaNegocio;
+using System.Drawing.Text;
+using CapaEntidades;
 
 namespace CapaPresentacion
 {
     public partial class Frm_Documentos : Form
     {
+        private N_Documentos ndocu = new N_Documentos();
         public Frm_Documentos()
         {
             InitializeComponent();
@@ -87,6 +91,11 @@ namespace CapaPresentacion
 
         private void btn_gentik_Click(object sender, EventArgs e)
         {
+            float totalFactura = float.Parse(txt_tot.Text);
+            string codigoCliente = txt_cli.Text;
+
+            // Aquí llamas a la capa de negocio para procesar saldo y tickets
+            N_RegistroDoc.GenerarTicket(codigoCliente, totalFactura, 25); // Donde 25 es el valor requerido para generar un ticket
 
         }
 
@@ -122,9 +131,9 @@ namespace CapaPresentacion
                 MessageBox.Show("Ingrese el número de factura.");
                 return;
             }
-            if (txt_loc.Text == "")
+            if (cmb_loc.Text == "")
             {
-                MessageBox.Show("Ingrese el código del local.");
+                MessageBox.Show("Ingrese el local.");
                 return;
             }
             if (txt_cli.Text == "")
@@ -148,28 +157,22 @@ namespace CapaPresentacion
             }
             else
             {
-                grabar_datos_documentos();
-            }
-        }
-        private void grabar_datos_documentos()
-        {
-            DataTable dt_datos = new DataTable();
-            string xcondicion_doc = "";
-            string xcampos = "";
-            xcampos = Cls_funciones.leer_Campos_tabla("documentos");
-            dt_datos = Cls_funciones.Inserta_Datos_tabla_tmp("documentos", "numfac_doc", "I");
+                // Crear un objeto de la entidad Documento
+                E_Documentos documento = new E_Documentos
+                {
+                    numfac_doc = int.Parse(txt_numf.Text),
+                    codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
+                    codigo_cli_doc = txt_cli.Text,
+                    fecfac_doc = dtim_fec.Value,
+                    valfac_doc = float.Parse(txt_tot.Text),
+                    //Observacion = txt_obv.Text // Opcional
+                };
 
-            if (dt_datos.Rows.Count == 1)
-            {
-                dt_datos.Rows[0]["numfac_doc"] = int.Parse(txt_numf.Text);
-                dt_datos.Rows[0]["codigo_loc_doc"] = txt_loc.Text;
-                dt_datos.Rows[0]["codigo_cli_doc"] = txt_cli.Text;
-                dt_datos.Rows[0]["fecfac_doc"] = dtim_fec.Value; // Asumiendo que usas DateTimePicker para la fecha
-                dt_datos.Rows[0]["valfac_doc"] = float.Parse(txt_tot.Text);
-                //dt_datos.Rows[0]["obv_doc"] = txt_obv.Text; // Observación es opcional
+                // Llamar a la capa de negocio para grabar los datos
+                N_Documentos negocio = new N_Documentos();
+                bool exito = negocio.GrabarDocumento(documento);
 
-                xcondicion_doc = Cls_funciones.Condicion_grabar(dt_datos, false);
-                if (Cls_funciones.Grabar_Datos_DB("documentos", xcampos, xcondicion_doc) == true)
+                if (exito)
                 {
                     MessageBox.Show("Documento grabado con éxito.");
                 }
@@ -180,5 +183,36 @@ namespace CapaPresentacion
             }
         }
 
+
+        private void cmb_loc_Click(object sender, EventArgs e)
+        {
+            LlenarComboBoxLocales();
+        }
+        private void LlenarComboBoxLocales()
+        {
+            // Llamar a la capa de negocio para obtener los locales
+            DataTable dtLocales = ndocu.ObtenerLocales();
+
+            if (dtLocales.Rows.Count > 0)
+            {
+                cmb_loc.DataSource = dtLocales;
+                cmb_loc.DisplayMember = "nombre_loc";  // Nombre que se mostrará en el ComboBox
+                cmb_loc.ValueMember = "codigo_loc";    // Valor asociado 
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron locales.");
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

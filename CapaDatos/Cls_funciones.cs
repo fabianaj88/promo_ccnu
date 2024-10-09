@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
+using Microsoft.VisualBasic;
+using Microsoft.Win32;
 
 
 namespace CapaDatos
@@ -346,5 +349,119 @@ namespace CapaDatos
 
             return control;
         }
+
+        public static object LeerRegistrosEnTablaSql(string wtabla, string wcampo, string wtipo, string wcondicion)
+        {
+            string wseleccion = "";
+            double wint = 0;
+            string wchar = "";
+            bool wboll = false;
+            DateTime wfec = new DateTime(1900, 1, 1);
+
+            if (string.IsNullOrWhiteSpace(wcondicion))
+            {
+                wseleccion = "SELECT " + wcampo + " FROM " + wtabla + " with(NOLOCK)";
+            }
+            else
+            {
+                wseleccion = "SELECT " + wcampo + " FROM " + wtabla + " with(NOLOCK) WHERE " + wcondicion;
+            }
+
+            DataTable DtResultado = new DataTable();
+  
+            using (SqlCommand cmdquery = new SqlCommand(wseleccion, Cls_variables.conect_emp))
+            {
+                cmdquery.CommandType = CommandType.Text;
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmdquery))
+                {
+                    try
+                    {
+                        da.Fill(DtResultado);
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ERROR.. no se puede mostrar el registro, revise la información");
+                        
+                    }
+                }
+            }
+
+            try
+            {
+                if (DtResultado.Rows.Count == 0)
+                {
+                    switch (wtipo)
+                    {
+                        case "N":
+                            wint = 0;
+                            break;
+                        case "C":
+                            wchar = "";
+                            break;
+                        case "L":
+                            wboll = false;
+                            break;
+                        case "D":
+                            wfec = new DateTime(1900, 1, 1);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (wtipo)
+                    {
+                        case "N":
+                            wint = Convert.ToDouble(DtResultado.Rows[0][0]);
+                            break;
+                        case "C":
+                            wchar = DtResultado.Rows[0][0].ToString();
+                            break;
+                        case "L":
+                            wboll = Convert.ToBoolean(DtResultado.Rows[0][0]);
+                            break;
+                        case "D":
+                            wfec = Convert.ToDateTime(DtResultado.Rows[0][0]);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, "Error..revise la información");
+
+                switch (wtipo)
+                {
+                    case "N":
+                        wint = 0;
+                        break;
+                    case "C":
+                        wchar = "";
+                        break;
+                    case "L":
+                        wboll = false;
+                        break;
+                    case "D":
+                        wfec = new DateTime(1900, 1, 1);
+                        break;
+                }
+            }
+
+            switch (wtipo)
+            {
+                case "N":
+                    return wint;
+                case "C":
+                    return wchar;
+                case "L":
+                    return wboll;
+                case "D":
+                    return wfec;
+                default:
+                    return null;
+            }
+        }
+
     }
 }

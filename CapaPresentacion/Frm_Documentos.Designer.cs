@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Documentos));
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             label1 = new Label();
             txt_numf = new TextBox();
             label2 = new Label();
-            txt_loc = new TextBox();
             label3 = new Label();
             txt_cli = new TextBox();
             label4 = new Label();
@@ -40,29 +42,37 @@
             label5 = new Label();
             txt_tot = new TextBox();
             btn_gentik = new Button();
-            dataGridView1 = new DataGridView();
+            dgvRegisDoc = new DataGridView();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             panel1 = new Panel();
+            cmb_loc = new ComboBox();
             btn_grabarTicket = new Button();
             tabPage1 = new TabPage();
             pictureBox1 = new PictureBox();
             label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2 = new Panel();
+            label7 = new Label();
+            lbl_saldocli = new Label();
+            txt_saldocli = new TextBox();
+            lbl_promo = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.LightSteelBlue;
+            label1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.WindowText;
-            label1.Location = new Point(18, 28);
+            label1.Location = new Point(11, 17);
             label1.Name = "label1";
-            label1.Size = new Size(97, 16);
+            label1.Size = new Size(117, 16);
             label1.TabIndex = 1;
             label1.Text = "Número de factura:";
             label1.Click += label1_Click;
@@ -70,10 +80,11 @@
             // txt_numf
             // 
             txt_numf.BackColor = SystemColors.MenuBar;
-            txt_numf.Location = new Point(134, 20);
+            txt_numf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_numf.Location = new Point(134, 11);
             txt_numf.Margin = new Padding(3, 2, 3, 2);
             txt_numf.Name = "txt_numf";
-            txt_numf.Size = new Size(269, 22);
+            txt_numf.Size = new Size(203, 22);
             txt_numf.TabIndex = 2;
             txt_numf.TextChanged += txt_numf_TextChanged;
             // 
@@ -81,49 +92,43 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.LightSteelBlue;
-            label2.Location = new Point(18, 55);
+            label2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(11, 44);
             label2.Name = "label2";
-            label2.Size = new Size(35, 16);
+            label2.Size = new Size(42, 16);
             label2.TabIndex = 3;
             label2.Text = "Local:";
             label2.Click += label2_Click;
-            // 
-            // txt_loc
-            // 
-            txt_loc.BackColor = SystemColors.MenuBar;
-            txt_loc.Location = new Point(134, 47);
-            txt_loc.Margin = new Padding(3, 2, 3, 2);
-            txt_loc.Name = "txt_loc";
-            txt_loc.Size = new Size(269, 22);
-            txt_loc.TabIndex = 4;
-            txt_loc.TextChanged += txt_loc_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.LightSteelBlue;
-            label3.Location = new Point(18, 82);
+            label3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(11, 9);
             label3.Name = "label3";
-            label3.Size = new Size(42, 16);
+            label3.Size = new Size(51, 16);
             label3.TabIndex = 5;
             label3.Text = "Cliente:";
             // 
             // txt_cli
             // 
             txt_cli.BackColor = SystemColors.MenuBar;
-            txt_cli.Location = new Point(134, 74);
+            txt_cli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_cli.Location = new Point(133, 4);
             txt_cli.Margin = new Padding(3, 2, 3, 2);
             txt_cli.Name = "txt_cli";
-            txt_cli.Size = new Size(269, 22);
+            txt_cli.Size = new Size(203, 22);
             txt_cli.TabIndex = 6;
             txt_cli.TextChanged += txt_cli_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(423, 22);
+            label4.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(378, 15);
             label4.Name = "label4";
-            label4.Size = new Size(40, 16);
+            label4.Size = new Size(47, 16);
             label4.TabIndex = 7;
             label4.Text = "Fecha:";
             label4.Click += label4_Click;
@@ -131,30 +136,35 @@
             // dtim_fec
             // 
             dtim_fec.CalendarMonthBackground = SystemColors.MenuBar;
-            dtim_fec.Location = new Point(511, 22);
+            dtim_fec.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dtim_fec.Format = DateTimePickerFormat.Short;
+            dtim_fec.Location = new Point(431, 10);
             dtim_fec.Margin = new Padding(3, 2, 3, 2);
             dtim_fec.Name = "dtim_fec";
-            dtim_fec.Size = new Size(212, 22);
+            dtim_fec.Size = new Size(161, 22);
             dtim_fec.TabIndex = 8;
-            dtim_fec.Value = new DateTime(2024, 10, 4, 11, 8, 27, 0);
+            dtim_fec.Value = new DateTime(2024, 10, 8, 10, 18, 12, 0);
             dtim_fec.ValueChanged += dtim_fec_ValueChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(423, 55);
+            label5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(378, 44);
             label5.Name = "label5";
-            label5.Size = new Size(33, 16);
+            label5.Size = new Size(40, 16);
             label5.TabIndex = 9;
-            label5.Text = "Total:";
+            label5.Text = "Valor:";
+            label5.Click += label5_Click;
             // 
             // txt_tot
             // 
             txt_tot.BackColor = SystemColors.MenuBar;
-            txt_tot.Location = new Point(511, 49);
+            txt_tot.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_tot.Location = new Point(431, 40);
             txt_tot.Margin = new Padding(3, 2, 3, 2);
             txt_tot.Name = "txt_tot";
-            txt_tot.Size = new Size(99, 22);
+            txt_tot.Size = new Size(161, 22);
             txt_tot.TabIndex = 10;
             txt_tot.TextChanged += txt_tot_TextChanged;
             // 
@@ -163,7 +173,7 @@
             btn_gentik.BackColor = Color.Silver;
             btn_gentik.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_gentik.Image = (Image)resources.GetObject("btn_gentik.Image");
-            btn_gentik.Location = new Point(779, 97);
+            btn_gentik.Location = new Point(792, 102);
             btn_gentik.Margin = new Padding(3, 2, 3, 2);
             btn_gentik.Name = "btn_gentik";
             btn_gentik.Size = new Size(51, 38);
@@ -171,20 +181,46 @@
             btn_gentik.UseVisualStyleBackColor = false;
             btn_gentik.Click += btn_gentik_Click;
             // 
-            // dataGridView1
+            // dgvRegisDoc
             // 
-            dataGridView1.BackgroundColor = Color.Gainsboro;
-            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.GridColor = SystemColors.ButtonFace;
-            dataGridView1.Location = new Point(6, 151);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(856, 269);
-            dataGridView1.TabIndex = 15;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dgvRegisDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRegisDoc.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            dgvRegisDoc.BackgroundColor = Color.Gainsboro;
+            dgvRegisDoc.BorderStyle = BorderStyle.Fixed3D;
+            dgvRegisDoc.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Control;
+            dataGridViewCellStyle16.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = SystemColors.Window;
+            dataGridViewCellStyle17.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dgvRegisDoc.DefaultCellStyle = dataGridViewCellStyle17;
+            dgvRegisDoc.GridColor = SystemColors.AppWorkspace;
+            dgvRegisDoc.Location = new Point(6, 157);
+            dgvRegisDoc.Margin = new Padding(3, 2, 3, 2);
+            dgvRegisDoc.Name = "dgvRegisDoc";
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = SystemColors.Control;
+            dataGridViewCellStyle18.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dgvRegisDoc.RowHeadersWidth = 51;
+            dgvRegisDoc.RowTemplate.Height = 29;
+            dgvRegisDoc.Size = new Size(856, 262);
+            dgvRegisDoc.TabIndex = 15;
+            dgvRegisDoc.CellContentClick += dataGridView1_CellContentClick;
             // 
             // tabControl1
             // 
@@ -202,7 +238,7 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
-            tabPage2.Controls.Add(dataGridView1);
+            tabPage2.Controls.Add(dgvRegisDoc);
             tabPage2.Controls.Add(panel1);
             tabPage2.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage2.ForeColor = Color.Black;
@@ -216,29 +252,38 @@
             // panel1
             // 
             panel1.BackColor = Color.LightSteelBlue;
+            panel1.Controls.Add(lbl_promo);
+            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(cmb_loc);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btn_grabarTicket);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(txt_numf);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(dtim_fec);
-            panel1.Controls.Add(txt_loc);
             panel1.Controls.Add(btn_gentik);
-            panel1.Controls.Add(label3);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(txt_cli);
             panel1.Controls.Add(txt_tot);
             panel1.Location = new Point(6, 9);
             panel1.Name = "panel1";
-            panel1.Size = new Size(856, 137);
+            panel1.Size = new Size(856, 145);
             panel1.TabIndex = 16;
+            // 
+            // cmb_loc
+            // 
+            cmb_loc.FormattingEnabled = true;
+            cmb_loc.Location = new Point(134, 38);
+            cmb_loc.Name = "cmb_loc";
+            cmb_loc.Size = new Size(203, 24);
+            cmb_loc.TabIndex = 16;
+            cmb_loc.Click += cmb_loc_Click;
             // 
             // btn_grabarTicket
             // 
             btn_grabarTicket.BackColor = Color.Silver;
             btn_grabarTicket.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_grabarTicket.Image = (Image)resources.GetObject("btn_grabarTicket.Image");
-            btn_grabarTicket.Location = new Point(727, 97);
+            btn_grabarTicket.Location = new Point(741, 102);
             btn_grabarTicket.Margin = new Padding(3, 2, 3, 2);
             btn_grabarTicket.Name = "btn_grabarTicket";
             btn_grabarTicket.Size = new Size(51, 38);
@@ -281,6 +326,56 @@
             label6.Text = "GENERAR TICKETS";
             label6.Click += label6_Click_1;
             // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(txt_saldocli);
+            panel2.Controls.Add(lbl_saldocli);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(txt_cli);
+            panel2.Location = new Point(0, 66);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(856, 33);
+            panel2.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(377, 9);
+            label7.Name = "label7";
+            label7.Size = new Size(107, 16);
+            label7.TabIndex = 7;
+            label7.Text = "Saldo del cliente:";
+            // 
+            // lbl_saldocli
+            // 
+            lbl_saldocli.AutoSize = true;
+            lbl_saldocli.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl_saldocli.Location = new Point(494, 9);
+            lbl_saldocli.Name = "lbl_saldocli";
+            lbl_saldocli.Size = new Size(0, 20);
+            lbl_saldocli.TabIndex = 8;
+            // 
+            // txt_saldocli
+            // 
+            txt_saldocli.Location = new Point(491, 4);
+            txt_saldocli.Name = "txt_saldocli";
+            txt_saldocli.Size = new Size(100, 22);
+            txt_saldocli.TabIndex = 9;
+            // 
+            // lbl_promo
+            // 
+            lbl_promo.AutoSize = true;
+            lbl_promo.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl_promo.Location = new Point(134, 111);
+            lbl_promo.Name = "lbl_promo";
+            lbl_promo.Size = new Size(78, 19);
+            lbl_promo.TabIndex = 18;
+            lbl_promo.Text = "PROMO1";
+            lbl_promo.Click += label8_Click;
+            // 
             // Frm_Documentos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -293,12 +388,14 @@
             Name = "Frm_Documentos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_Documentos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -307,7 +404,6 @@
         private Label label1;
         private TextBox txt_numf;
         private Label label2;
-        private TextBox txt_loc;
         private Label label3;
         private TextBox txt_cli;
         private Label label4;
@@ -315,7 +411,7 @@
         private Label label5;
         private TextBox txt_tot;
         private Button btn_gentik;
-        private DataGridView dataGridView1;
+        private DataGridView dgvRegisDoc;
         private TabControl tabControl1;
         private TabPage tabPage2;
         private TabPage tabPage1;
@@ -323,5 +419,11 @@
         private Panel panel1;
         private Label label6;
         private Button btn_grabarTicket;
+        private ComboBox cmb_loc;
+        private Panel panel2;
+        private Label label7;
+        private Label lbl_saldocli;
+        private TextBox txt_saldocli;
+        private Label lbl_promo;
     }
 }

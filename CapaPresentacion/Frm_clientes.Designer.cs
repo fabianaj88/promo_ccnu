@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_clientes));
             contextMenuStrip1 = new ContextMenuStrip(components);
             Locales = new TabControl();
             tabPage1 = new TabPage();
@@ -68,7 +67,6 @@
             seleccionar = new DataGridViewButtonColumn();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            seleccionar = new DataGridViewButtonColumn();
             Locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -101,11 +99,9 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
-            tabPage1.Controls.Add(label10);
-            tabPage1.Controls.Add(txt_saldo_cli);
             tabPage1.Controls.Add(label9);
-            tabPage1.Controls.Add(dateTimePicker1);
             tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(dateTimePicker1);
             tabPage1.Controls.Add(btn_cancelar);
             tabPage1.Controls.Add(cmb_genero);
             tabPage1.Controls.Add(label7);
@@ -166,7 +162,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(36, 346);
+            label8.Location = new Point(36, 351);
             label8.Name = "label8";
             label8.Size = new Size(59, 16);
             label8.TabIndex = 28;
@@ -195,14 +191,14 @@
             // 
             // label7
             // 
-            label7.Location = new Point(0, 0);
+            label7.Location = new Point(455, 56);
             label7.Name = "label7";
             label7.Size = new Size(100, 23);
             label7.TabIndex = 25;
             // 
             // radioButton3
             // 
-            radioButton3.Location = new Point(0, 0);
+            radioButton3.Location = new Point(230, 57);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(104, 24);
             radioButton3.TabIndex = 26;
@@ -275,7 +271,7 @@
             // 
             // label3
             // 
-            label3.Location = new Point(0, 0);
+            label3.Location = new Point(349, 56);
             label3.Name = "label3";
             label3.Size = new Size(100, 23);
             label3.TabIndex = 27;
@@ -329,10 +325,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(36, 166);
             label1.Name = "label1";
-            label1.Size = new Size(56, 16);
+            label1.Size = new Size(51, 16);
             label1.TabIndex = 8;
             label1.Text = "Código:";
             // 
@@ -342,7 +338,7 @@
             pictureBox3.BorderStyle = BorderStyle.FixedSingle;
             pictureBox3.Location = new Point(6, 92);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(805, 10);
+            pictureBox3.Size = new Size(849, 326);
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
             // 
@@ -413,9 +409,9 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.LightSkyBlue;
-            pictureBox1.Location = new Point(17, 42);
+            pictureBox1.Location = new Point(6, 6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(805, 37);
+            pictureBox1.Size = new Size(849, 37);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -475,43 +471,22 @@
             // 
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(849, 437);
+            tabPage3.Size = new Size(861, 424);
             tabPage3.TabIndex = 2;
             // 
             // tabPage4
             // 
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(849, 437);
+            tabPage4.Size = new Size(861, 424);
             tabPage4.TabIndex = 3;
-            // 
-            // txt_saldo_cli
-            // 
-            txt_saldo_cli.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_saldo_cli.Location = new Point(717, 161);
-            txt_saldo_cli.Name = "txt_saldo_cli";
-            txt_saldo_cli.Size = new Size(105, 23);
-            txt_saldo_cli.TabIndex = 31;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.Transparent;
-            label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(639, 168);
-            label10.Name = "label10";
-            label10.Size = new Size(47, 16);
-            label10.TabIndex = 32;
-            label10.Text = "Saldo ";
             // 
             // Frm_clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
-            Controls.Add(label8);
             Controls.Add(Locales);
-            Controls.Add(pictureBox4);
             Name = "Frm_clientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_clientes";
@@ -525,9 +500,7 @@
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)grid_lista_clientes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

@@ -13,20 +13,15 @@ namespace CapaDatos
 {
     public class D_Documentos
     {
-       private Conexion con = new Conexion();
+        
 
-        SqlDataReader leer;
-        DataTable tabla = new DataTable();
-        SqlCommand cmd = new SqlCommand();
-
-        public DataTable Mostrar() 
+        public DataTable ObtenerLocales()
         {
-            cmd.Connection = con.AbrirConexion();
-            cmd.CommandText = "Select * from documentos";
-            leer = cmd.ExecuteReader();
-            tabla.Load(leer);
-            con.CerrarConexion();
-            return tabla;
+            // Definir la consulta SQL para obtener los nombres de los locales
+            string query = "SELECT * FROM locales";  
+
+            // Llamar a la función VisualizaS para obtener los datos de la tabla locales
+            return Cls_funciones.VisualizaS(query);
         }
 
     }
