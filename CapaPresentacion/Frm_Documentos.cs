@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using CapaNegocio;
 using System.Drawing.Text;
 using CapaEntidades;
+using Microsoft.Win32;
 
 namespace CapaPresentacion
 {
@@ -49,80 +50,21 @@ namespace CapaPresentacion
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void txt_numf_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_loc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void txt_cli_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void btn_gentik_Click(object sender, EventArgs e)
         {
             float totalFactura = float.Parse(txt_tot.Text);
             string codigoCliente = txt_cli.Text;
 
             // Aquí llamas a la capa de negocio para procesar saldo y tickets
-            N_RegistroDoc.GenerarTicket(codigoCliente, totalFactura, 25); // Donde 25 es el valor requerido para generar un ticket
+            (float nuevoSaldo, List<E_RegistroDoc> registros) = N_RegistroDoc.ProcesarSaldoCliente(codigoCliente, totalFactura, 25); // Donde 25 es el valor requerido para generar un ticket
 
+            // Mostrar el nuevo saldo o saldo restante en el TextBox 'txt_saldocli'
+            txt_saldocli.Text = nuevoSaldo.ToString("0.00");
+
+            // Mostrar los registros generados en el DataGridView
+            dgvRegisDoc.DataSource = registros;
         }
 
-        private void txt_tot_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_obv_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtim_fec_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_grabarTicket_Click(object sender, EventArgs e)
         {
@@ -205,12 +147,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
+        private void label8_Click_1(object sender, EventArgs e)
         {
 
         }
