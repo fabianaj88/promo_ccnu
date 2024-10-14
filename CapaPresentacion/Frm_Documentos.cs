@@ -59,6 +59,8 @@ namespace CapaPresentacion
             (float nuevoSaldo, List<E_RegistroDoc> registros) = N_RegistroDoc.ProcesarSaldoCliente(codigoCliente, totalFactura, 25); // Donde 25 es el valor requerido para generar un ticket
 
             // Mostrar el nuevo saldo o saldo restante en el TextBox 'txt_saldocli'
+            lbl_salcli.Visible = true;
+            txt_saldocli.Visible = true;
             txt_saldocli.Text = nuevoSaldo.ToString("0.00");
 
             // Mostrar los registros generados en el DataGridView
@@ -102,6 +104,7 @@ namespace CapaPresentacion
                 // Crear un objeto de la entidad Documento
                 E_Documentos documento = new E_Documentos
                 {
+                    //codigo_doc = 0,
                     numfac_doc = int.Parse(txt_numf.Text),
                     codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
                     codigo_cli_doc = txt_cli.Text,
@@ -116,7 +119,8 @@ namespace CapaPresentacion
 
                 if (exito)
                 {
-                    MessageBox.Show("Documento grabado con éxito.");
+                    //MessageBox.Show("Documento grabado con éxito.");
+                    
                 }
                 else
                 {
@@ -145,11 +149,6 @@ namespace CapaPresentacion
             {
                 MessageBox.Show("No se encontraron locales.");
             }
-        }
-
-        private void label8_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

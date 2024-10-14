@@ -19,11 +19,17 @@ namespace CapaNegocio
             // Leer los campos de la tabla
             string campos = Cls_funciones.leer_Campos_tabla("documentos");
 
+            int cod_doc = 0;
+            // Obtener saldo actual del cliente
+            object res_doc = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "ISNULL(MAX(codigo_doc), 0) + 1", "N","");
+            cod_doc = (int)Convert.ToInt64(res_doc);
+
             // Crear tabla temporal
-            DataTable dtDatos = Cls_funciones.Inserta_Datos_tabla_tmp("documentos", "numfac_doc", "I");
+            DataTable dtDatos = Cls_funciones.Inserta_Datos_tabla_tmp("documentos", "codigo_doc", "I");
 
             if (dtDatos.Rows.Count == 1)
             {
+                dtDatos.Rows[0]["numfac_doc"] = cod_doc;
                 dtDatos.Rows[0]["numfac_doc"] = documento.numfac_doc;
                 dtDatos.Rows[0]["codigo_loc_doc"] = documento.codigo_loc_doc;
                 dtDatos.Rows[0]["codigo_cli_doc"] = documento.codigo_cli_doc;

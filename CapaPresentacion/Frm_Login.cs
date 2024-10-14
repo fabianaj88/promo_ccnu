@@ -69,7 +69,7 @@ namespace CapaPresentacion
         }
         private void datos_conexion()
         {
-            Cls_variables.servidor_bd = "DEVELOPMENT";
+            Cls_variables.servidor_bd = "DESKTOP-QDFSRUE";
             Cls_variables.basedatos = "ccnu";
             Cls_variables.usuario_bd = "sa";
             Cls_variables.clave_bd = "alf";
