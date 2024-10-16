@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Documentos));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             label1 = new Label();
             txt_numf = new TextBox();
             label2 = new Label();
@@ -65,6 +65,7 @@
             tabPage1 = new TabPage();
             pictureBox1 = new PictureBox();
             label6 = new Label();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -191,34 +192,34 @@
             dgvRegisDoc.BackgroundColor = Color.Gainsboro;
             dgvRegisDoc.BorderStyle = BorderStyle.Fixed3D;
             dgvRegisDoc.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvRegisDoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvRegisDoc.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvRegisDoc.DefaultCellStyle = dataGridViewCellStyle2;
             dgvRegisDoc.GridColor = SystemColors.AppWorkspace;
             dgvRegisDoc.Location = new Point(6, 157);
             dgvRegisDoc.Margin = new Padding(3, 2, 3, 2);
             dgvRegisDoc.Name = "dgvRegisDoc";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvRegisDoc.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvRegisDoc.RowHeadersWidth = 51;
             dgvRegisDoc.RowTemplate.Height = 29;
             dgvRegisDoc.Size = new Size(856, 262);
@@ -249,7 +250,7 @@
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(867, 425);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Documentos";
             // 
             // panel1
             // 
@@ -315,6 +316,7 @@
             // txt_num
             // 
             txt_num.Enabled = false;
+            txt_num.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_num.Location = new Point(93, 11);
             txt_num.Name = "txt_num";
             txt_num.Size = new Size(162, 22);
@@ -322,6 +324,7 @@
             // 
             // txt_obv
             // 
+            txt_obv.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_obv.Location = new Point(655, 39);
             txt_obv.Name = "txt_obv";
             txt_obv.Size = new Size(188, 22);
@@ -361,6 +364,7 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(textBox1);
             panel2.Controls.Add(txt_nomcli);
             panel2.Controls.Add(lbl_codcli);
             panel2.Controls.Add(txt_saldocli);
@@ -376,6 +380,7 @@
             // txt_nomcli
             // 
             txt_nomcli.Enabled = false;
+            txt_nomcli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_nomcli.Location = new Point(380, 4);
             txt_nomcli.Name = "txt_nomcli";
             txt_nomcli.Size = new Size(161, 22);
@@ -397,7 +402,7 @@
             txt_saldocli.BackColor = SystemColors.Window;
             txt_saldocli.Enabled = false;
             txt_saldocli.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_saldocli.ForeColor = SystemColors.InfoText;
+            txt_saldocli.ForeColor = SystemColors.WindowText;
             txt_saldocli.Location = new Point(655, 4);
             txt_saldocli.Name = "txt_saldocli";
             txt_saldocli.Size = new Size(137, 22);
@@ -427,6 +432,7 @@
             // 
             // cmb_loc
             // 
+            cmb_loc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             cmb_loc.FormattingEnabled = true;
             cmb_loc.Location = new Point(93, 38);
             cmb_loc.Name = "cmb_loc";
@@ -454,7 +460,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(867, 425);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Listado";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
@@ -479,6 +485,13 @@
             label6.Size = new Size(208, 24);
             label6.TabIndex = 0;
             label6.Text = "GENERAR TICKETS";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(419, 31);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 22);
+            textBox1.TabIndex = 12;
             // 
             // Frm_Documentos
             // 
@@ -539,5 +552,6 @@
         private Label label7;
         private Label lbl_codpro;
         private Button btn_limpiar;
+        private TextBox textBox1;
     }
 }

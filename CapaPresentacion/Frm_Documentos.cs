@@ -184,15 +184,15 @@ namespace CapaPresentacion
                                 MessageBox.Show("Error al grabar el documento.");
                             }
                         }
-                        else 
+                        else
                         {
                             //Actualizar saldo del cliente
                             Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
-                            
+
                             MessageBox.Show("Documento grabado con éxito.");
                             LimpiarGenTicket();
                         }
-                        
+
 
                     }
                     else

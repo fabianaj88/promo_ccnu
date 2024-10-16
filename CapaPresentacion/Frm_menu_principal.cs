@@ -35,5 +35,12 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Frm_locales frm = new Frm_locales();
+
+            frm.Show();
+        }
     }
 }
