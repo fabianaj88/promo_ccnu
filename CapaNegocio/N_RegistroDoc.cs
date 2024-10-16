@@ -12,7 +12,7 @@ namespace CapaNegocio
 {
     public class N_RegistroDoc
     {
-        public static (float , List<E_RegistroDoc>) ProcesarSaldoCliente(string codigoCliente, float totalFactura, float montoTicket)
+        public static (float , List<E_RegistroDoc>) ProcesarSaldoCliente(int coddoc, string codigoCliente, float totalFactura, float montoTicket)
         {
             float salActcli = 0;
             // Obtener saldo actual del cliente
@@ -37,13 +37,17 @@ namespace CapaNegocio
                 float sobra = nuevoSaldo % montoTicket;
                 //Cls_funciones.ModificaS("clientes", "saldo_cli=" + sobra.ToString() + "", "codigo_cli='" + codigoCliente + "'");
                 // Generar los registros de los tickets
-                List<E_RegistroDoc> registros = GenerarRegistrosDoc(cantidadTickets);
+                int codpro = 0;
+                object res_codpro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "codigo_pro", "N", "estado_pro = 1");
+                codpro = (int)Convert.ToInt64(res_codpro);
+
+                List<E_RegistroDoc> registros = GenerarRegistrosDoc(coddoc,cantidadTickets,codpro);
 
                 return (sobra,registros);
             }   
         }
 
-        public static List<E_RegistroDoc> GenerarRegistrosDoc(int cantidadTickets)
+        public static List<E_RegistroDoc> GenerarRegistrosDoc(int coddoc,int cantidadTickets,int codpro)
         {
             List<E_RegistroDoc> registrosDoc = new List<E_RegistroDoc>();
             DateTime fechaActual = DateTime.Now;
@@ -52,11 +56,11 @@ namespace CapaNegocio
             {
                 E_RegistroDoc registro = new E_RegistroDoc
                 {
-                    num_Tic = i + 1,  
-                    codigo_doc = 0,
+                    num_tic = i + 1,  
+                    codigo_doc = coddoc,
                     fecemi_tic = fechaActual,
                     estado_tic = false,  
-                    codigo_pro = 0
+                    codigo_pro = codpro
                 };
 
                 registrosDoc.Add(registro);
@@ -65,6 +69,49 @@ namespace CapaNegocio
             return registrosDoc;
 
         }
-        
+
+        public static bool GrabarRegdoc(List<E_RegistroDoc> registros, int codigoDoc, string codigoCliente ,float saldocliente)
+        {
+            //Actualizar saldo del cliente
+            Cls_funciones.ModificaS("clientes","saldo_cli ="+saldocliente+"","codigo_cli ='"+codigoCliente+"'");
+
+            // Obtener los campos de la tabla registro_doc
+            string campos = Cls_funciones.leer_Campos_tabla("registro_doc");
+            
+            // Indicador para saber si al menos un registro fue grabado correctamente
+            bool exito = false;
+
+            foreach (var registro in registros)
+            {
+                // Insertar los datos en la tabla temporal antes de grabar
+                DataTable dt_registro = Cls_funciones.Inserta_Datos_tabla_tmp("registro_doc", "num_tic", "I");
+
+                if (dt_registro.Rows.Count == 1)
+                {
+                    //dt_registro.Rows[0]["num_Tic"] = registro.num_tic;
+                    dt_registro.Rows[0]["codigo_doc"] = codigoDoc;
+                    dt_registro.Rows[0]["fecemi_tic"] = registro.fecemi_tic;
+                    dt_registro.Rows[0]["estado_tic"] = registro.estado_tic ? 1 : 0;
+                    dt_registro.Rows[0]["codigo_pro"] = registro.codigo_pro;
+
+                    // Condición para grabar en la base de datos
+                    string condicion = Cls_funciones.Condicion_grabar(dt_registro, false);
+
+                    // Grabar los datos en la tabla real (registro_doc)
+                    bool resultado = Cls_funciones.Grabar_Datos_DB("registro_doc", campos, condicion);
+                    if (resultado)
+                    {
+                        exito = true;
+                    }
+                    else
+                    {
+                        exito = false;
+                    }
+                }
+            }
+            return exito;
+        }
+
+
     }
 }

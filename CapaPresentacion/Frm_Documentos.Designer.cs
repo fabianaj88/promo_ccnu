@@ -46,12 +46,16 @@
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             panel1 = new Panel();
-            textBox1 = new TextBox();
+            btn_limpiar = new Button();
+            lbl_codpro = new Label();
+            label7 = new Label();
+            txt_num = new TextBox();
+            txt_obv = new TextBox();
             lbl_obs = new Label();
             pictureBox2 = new PictureBox();
             lbl_promo = new Label();
             panel2 = new Panel();
-            textBox2 = new TextBox();
+            txt_nomcli = new TextBox();
             lbl_codcli = new Label();
             txt_saldocli = new TextBox();
             lbl_saldocli = new Label();
@@ -76,20 +80,20 @@
             label1.BackColor = Color.LightSteelBlue;
             label1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.WindowText;
-            label1.Location = new Point(11, 17);
+            label1.Location = new Point(288, 14);
             label1.Name = "label1";
-            label1.Size = new Size(117, 16);
+            label1.Size = new Size(86, 16);
             label1.TabIndex = 1;
-            label1.Text = "Número de factura:";
+            label1.Text = "N° de factura:";
             // 
             // txt_numf
             // 
             txt_numf.BackColor = SystemColors.MenuBar;
             txt_numf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_numf.Location = new Point(133, 11);
+            txt_numf.Location = new Point(380, 11);
             txt_numf.Margin = new Padding(3, 2, 3, 2);
             txt_numf.Name = "txt_numf";
-            txt_numf.Size = new Size(162, 22);
+            txt_numf.Size = new Size(161, 22);
             txt_numf.TabIndex = 2;
             // 
             // label2
@@ -97,7 +101,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.LightSteelBlue;
             label2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(11, 44);
+            label2.Location = new Point(10, 43);
             label2.Name = "label2";
             label2.Size = new Size(42, 16);
             label2.TabIndex = 3;
@@ -108,7 +112,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.LightSteelBlue;
             label3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(327, 8);
+            label3.Location = new Point(288, 10);
             label3.Name = "label3";
             label3.Size = new Size(51, 16);
             label3.TabIndex = 5;
@@ -118,17 +122,18 @@
             // 
             txt_cli.BackColor = SystemColors.MenuBar;
             txt_cli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_cli.Location = new Point(134, 4);
+            txt_cli.Location = new Point(93, 4);
             txt_cli.Margin = new Padding(3, 2, 3, 2);
             txt_cli.Name = "txt_cli";
             txt_cli.Size = new Size(162, 22);
             txt_cli.TabIndex = 6;
+            txt_cli.TextChanged += txt_cli_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(327, 15);
+            label4.Location = new Point(571, 13);
             label4.Name = "label4";
             label4.Size = new Size(47, 16);
             label4.TabIndex = 7;
@@ -139,10 +144,10 @@
             dtim_fec.CalendarMonthBackground = SystemColors.MenuBar;
             dtim_fec.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dtim_fec.Format = DateTimePickerFormat.Short;
-            dtim_fec.Location = new Point(380, 10);
+            dtim_fec.Location = new Point(655, 9);
             dtim_fec.Margin = new Padding(3, 2, 3, 2);
             dtim_fec.Name = "dtim_fec";
-            dtim_fec.Size = new Size(161, 22);
+            dtim_fec.Size = new Size(188, 22);
             dtim_fec.TabIndex = 8;
             dtim_fec.Value = new DateTime(2024, 10, 14, 15, 9, 26, 0);
             // 
@@ -150,7 +155,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(327, 44);
+            label5.Location = new Point(288, 44);
             label5.Name = "label5";
             label5.Size = new Size(40, 16);
             label5.TabIndex = 9;
@@ -250,7 +255,11 @@
             // 
             panel1.BackColor = Color.LightSteelBlue;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(btn_limpiar);
+            panel1.Controls.Add(lbl_codpro);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(txt_num);
+            panel1.Controls.Add(txt_obv);
             panel1.Controls.Add(lbl_obs);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(lbl_promo);
@@ -270,12 +279,53 @@
             panel1.Size = new Size(856, 145);
             panel1.TabIndex = 16;
             // 
-            // textBox1
+            // btn_limpiar
             // 
-            textBox1.Location = new Point(655, 39);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(188, 22);
-            textBox1.TabIndex = 21;
+            btn_limpiar.BackColor = Color.Silver;
+            btn_limpiar.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_limpiar.Image = (Image)resources.GetObject("btn_limpiar.Image");
+            btn_limpiar.Location = new Point(739, 102);
+            btn_limpiar.Margin = new Padding(3, 2, 3, 2);
+            btn_limpiar.Name = "btn_limpiar";
+            btn_limpiar.Size = new Size(51, 38);
+            btn_limpiar.TabIndex = 25;
+            btn_limpiar.UseVisualStyleBackColor = false;
+            btn_limpiar.Click += btn_limpiar_Click;
+            // 
+            // lbl_codpro
+            // 
+            lbl_codpro.AutoSize = true;
+            lbl_codpro.Location = new Point(77, 112);
+            lbl_codpro.Name = "lbl_codpro";
+            lbl_codpro.Size = new Size(13, 16);
+            lbl_codpro.TabIndex = 24;
+            lbl_codpro.Text = "0";
+            lbl_codpro.Visible = false;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(10, 15);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 16);
+            label7.TabIndex = 23;
+            label7.Text = "N° de doc.:";
+            // 
+            // txt_num
+            // 
+            txt_num.Enabled = false;
+            txt_num.Location = new Point(93, 11);
+            txt_num.Name = "txt_num";
+            txt_num.Size = new Size(162, 22);
+            txt_num.TabIndex = 22;
+            // 
+            // txt_obv
+            // 
+            txt_obv.Location = new Point(655, 39);
+            txt_obv.Name = "txt_obv";
+            txt_obv.Size = new Size(188, 22);
+            txt_obv.TabIndex = 21;
             // 
             // lbl_obs
             // 
@@ -302,16 +352,16 @@
             // 
             lbl_promo.AutoSize = true;
             lbl_promo.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbl_promo.Location = new Point(134, 111);
+            lbl_promo.Location = new Point(96, 111);
             lbl_promo.Name = "lbl_promo";
-            lbl_promo.Size = new Size(78, 19);
+            lbl_promo.Size = new Size(131, 19);
             lbl_promo.TabIndex = 18;
-            lbl_promo.Text = "PROMO1";
+            lbl_promo.Text = "PROMOCIONES";
             // 
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(txt_nomcli);
             panel2.Controls.Add(lbl_codcli);
             panel2.Controls.Add(txt_saldocli);
             panel2.Controls.Add(lbl_saldocli);
@@ -323,23 +373,23 @@
             panel2.Size = new Size(856, 33);
             panel2.TabIndex = 17;
             // 
-            // textBox2
+            // txt_nomcli
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(380, 4);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(161, 22);
-            textBox2.TabIndex = 11;
+            txt_nomcli.Enabled = false;
+            txt_nomcli.Location = new Point(380, 4);
+            txt_nomcli.Name = "txt_nomcli";
+            txt_nomcli.Size = new Size(161, 22);
+            txt_nomcli.TabIndex = 11;
             // 
             // lbl_codcli
             // 
             lbl_codcli.AutoSize = true;
             lbl_codcli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_codcli.Location = new Point(11, 10);
+            lbl_codcli.Location = new Point(10, 10);
             lbl_codcli.Name = "lbl_codcli";
-            lbl_codcli.Size = new Size(114, 16);
+            lbl_codcli.Size = new Size(80, 16);
             lbl_codcli.TabIndex = 10;
-            lbl_codcli.Text = "Código del cliente:";
+            lbl_codcli.Text = "Cod. cliente:";
             lbl_codcli.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txt_saldocli
@@ -348,9 +398,9 @@
             txt_saldocli.Enabled = false;
             txt_saldocli.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             txt_saldocli.ForeColor = SystemColors.InfoText;
-            txt_saldocli.Location = new Point(679, 5);
+            txt_saldocli.Location = new Point(655, 4);
             txt_saldocli.Name = "txt_saldocli";
-            txt_saldocli.Size = new Size(81, 22);
+            txt_saldocli.Size = new Size(137, 22);
             txt_saldocli.TabIndex = 9;
             txt_saldocli.TextAlign = HorizontalAlignment.Right;
             txt_saldocli.Visible = false;
@@ -370,15 +420,15 @@
             lbl_salcli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_salcli.Location = new Point(571, 10);
             lbl_salcli.Name = "lbl_salcli";
-            lbl_salcli.Size = new Size(107, 16);
+            lbl_salcli.Size = new Size(44, 16);
             lbl_salcli.TabIndex = 7;
-            lbl_salcli.Text = "Saldo del cliente:";
+            lbl_salcli.Text = "Saldo:";
             lbl_salcli.Visible = false;
             // 
             // cmb_loc
             // 
             cmb_loc.FormattingEnabled = true;
-            cmb_loc.Location = new Point(134, 38);
+            cmb_loc.Location = new Point(93, 38);
             cmb_loc.Name = "cmb_loc";
             cmb_loc.Size = new Size(161, 24);
             cmb_loc.TabIndex = 16;
@@ -389,7 +439,7 @@
             btn_grabarTicket.BackColor = Color.Silver;
             btn_grabarTicket.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btn_grabarTicket.Image = (Image)resources.GetObject("btn_grabarTicket.Image");
-            btn_grabarTicket.Location = new Point(741, 102);
+            btn_grabarTicket.Location = new Point(686, 102);
             btn_grabarTicket.Margin = new Padding(3, 2, 3, 2);
             btn_grabarTicket.Name = "btn_grabarTicket";
             btn_grabarTicket.Size = new Size(51, 38);
@@ -482,8 +532,12 @@
         private Label lbl_promo;
         private PictureBox pictureBox2;
         private Label lbl_obs;
-        private TextBox textBox1;
+        private TextBox txt_obv;
         private Label lbl_codcli;
-        private TextBox textBox2;
+        private TextBox txt_nomcli;
+        private TextBox txt_num;
+        private Label label7;
+        private Label lbl_codpro;
+        private Button btn_limpiar;
     }
 }
