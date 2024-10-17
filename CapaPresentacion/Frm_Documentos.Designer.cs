@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Documentos));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
             label1 = new Label();
             txt_numf = new TextBox();
             label2 = new Label();
@@ -55,6 +55,7 @@
             pictureBox2 = new PictureBox();
             lbl_promo = new Label();
             panel2 = new Panel();
+            textBox1 = new TextBox();
             txt_nomcli = new TextBox();
             lbl_codcli = new Label();
             txt_saldocli = new TextBox();
@@ -65,14 +66,20 @@
             tabPage1 = new TabPage();
             pictureBox1 = new PictureBox();
             label6 = new Label();
-            textBox1 = new TextBox();
+            dtg_lisDoc = new DataGridView();
+            textBox2 = new TextBox();
+            button1 = new Button();
+            panel3 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
+            tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -192,34 +199,34 @@
             dgvRegisDoc.BackgroundColor = Color.Gainsboro;
             dgvRegisDoc.BorderStyle = BorderStyle.Fixed3D;
             dgvRegisDoc.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvRegisDoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvRegisDoc.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = SystemColors.Control;
+            dataGridViewCellStyle28.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle28.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = SystemColors.Window;
+            dataGridViewCellStyle29.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle29.ForeColor = Color.Black;
+            dataGridViewCellStyle29.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
+            dgvRegisDoc.DefaultCellStyle = dataGridViewCellStyle29;
             dgvRegisDoc.GridColor = SystemColors.AppWorkspace;
             dgvRegisDoc.Location = new Point(6, 157);
             dgvRegisDoc.Margin = new Padding(3, 2, 3, 2);
             dgvRegisDoc.Name = "dgvRegisDoc";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvRegisDoc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = SystemColors.Control;
+            dataGridViewCellStyle30.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle30.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
+            dgvRegisDoc.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             dgvRegisDoc.RowHeadersWidth = 51;
             dgvRegisDoc.RowTemplate.Height = 29;
             dgvRegisDoc.Size = new Size(856, 262);
@@ -250,7 +257,7 @@
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(867, 425);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Documentos";
+            tabPage2.Text = "Registro";
             // 
             // panel1
             // 
@@ -377,6 +384,13 @@
             panel2.Size = new Size(856, 33);
             panel2.TabIndex = 17;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(419, 31);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 22);
+            textBox1.TabIndex = 12;
+            // 
             // txt_nomcli
             // 
             txt_nomcli.Enabled = false;
@@ -455,6 +469,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(dtg_lisDoc);
+            tabPage1.Controls.Add(panel3);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -486,12 +502,43 @@
             label6.TabIndex = 0;
             label6.Text = "GENERAR TICKETS";
             // 
-            // textBox1
+            // dtg_lisDoc
             // 
-            textBox1.Location = new Point(419, 31);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 22);
-            textBox1.TabIndex = 12;
+            dtg_lisDoc.BackgroundColor = Color.Gainsboro;
+            dtg_lisDoc.BorderStyle = BorderStyle.Fixed3D;
+            dtg_lisDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_lisDoc.Location = new Point(6, 56);
+            dtg_lisDoc.Name = "dtg_lisDoc";
+            dtg_lisDoc.RowTemplate.Height = 25;
+            dtg_lisDoc.Size = new Size(855, 363);
+            dtg_lisDoc.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(27, 10);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(259, 21);
+            textBox2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(308, 9);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Buscar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.LightSteelBlue;
+            panel3.Controls.Add(button1);
+            panel3.Controls.Add(textBox2);
+            panel3.Location = new Point(6, 10);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(855, 41);
+            panel3.TabIndex = 3;
             // 
             // Frm_Documentos
             // 
@@ -513,7 +560,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -553,5 +604,9 @@
         private Label lbl_codpro;
         private Button btn_limpiar;
         private TextBox textBox1;
+        private DataGridView dtg_lisDoc;
+        private Button button1;
+        private TextBox textBox2;
+        private Panel panel3;
     }
 }

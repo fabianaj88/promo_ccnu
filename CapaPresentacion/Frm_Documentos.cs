@@ -25,7 +25,6 @@ namespace CapaPresentacion
             int cod_doc = 0;
             int cod_pro = 0;
 
-
             object res_doc = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "ISNULL(MAX(codigo_doc), 0) + 1", "N", "");
             cod_doc = (int)Convert.ToInt64(res_doc);
             txt_num.Text = cod_doc.ToString();

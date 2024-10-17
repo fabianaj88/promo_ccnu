@@ -33,9 +33,9 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             panel2 = new Panel();
+            txt_limticket = new TextBox();
             dtp_fecinipro = new DateTimePicker();
             dtp_fecfinpro = new DateTimePicker();
-            cmb_estpro = new ComboBox();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -52,11 +52,19 @@
             btn_grabpro = new Button();
             button1 = new Button();
             tabPage2 = new TabPage();
+            button2 = new Button();
+            textBox1 = new TextBox();
+            dtg_lisPro = new DataGridView();
+            panel3 = new Panel();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_lisPro).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -89,15 +97,15 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(837, 431);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Registro";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(txt_limticket);
             panel2.Controls.Add(dtp_fecinipro);
             panel2.Controls.Add(dtp_fecfinpro);
-            panel2.Controls.Add(cmb_estpro);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
@@ -107,18 +115,26 @@
             panel2.Controls.Add(txt_montpro);
             panel2.Controls.Add(txt_nompro);
             panel2.Controls.Add(txt_codpro);
-            panel2.Location = new Point(6, 78);
+            panel2.Location = new Point(6, 62);
             panel2.Name = "panel2";
-            panel2.Size = new Size(825, 347);
+            panel2.Size = new Size(825, 363);
             panel2.TabIndex = 1;
+            // 
+            // txt_limticket
+            // 
+            txt_limticket.Location = new Point(175, 259);
+            txt_limticket.Name = "txt_limticket";
+            txt_limticket.ShortcutsEnabled = false;
+            txt_limticket.Size = new Size(159, 23);
+            txt_limticket.TabIndex = 15;
             // 
             // dtp_fecinipro
             // 
             dtp_fecinipro.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_fecinipro.Format = DateTimePickerFormat.Short;
-            dtp_fecinipro.Location = new Point(151, 125);
+            dtp_fecinipro.Location = new Point(175, 130);
             dtp_fecinipro.Name = "dtp_fecinipro";
-            dtp_fecinipro.Size = new Size(184, 23);
+            dtp_fecinipro.Size = new Size(159, 23);
             dtp_fecinipro.TabIndex = 14;
             dtp_fecinipro.Value = new DateTime(2024, 10, 16, 12, 37, 55, 0);
             // 
@@ -126,25 +142,17 @@
             // 
             dtp_fecfinpro.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_fecfinpro.Format = DateTimePickerFormat.Short;
-            dtp_fecfinpro.Location = new Point(151, 170);
+            dtp_fecfinpro.Location = new Point(175, 170);
             dtp_fecfinpro.Name = "dtp_fecfinpro";
-            dtp_fecfinpro.Size = new Size(184, 23);
+            dtp_fecfinpro.Size = new Size(159, 23);
             dtp_fecfinpro.TabIndex = 13;
             dtp_fecfinpro.Value = new DateTime(2024, 10, 16, 12, 33, 25, 0);
-            // 
-            // cmb_estpro
-            // 
-            cmb_estpro.FormattingEnabled = true;
-            cmb_estpro.Location = new Point(151, 219);
-            cmb_estpro.Name = "cmb_estpro";
-            cmb_estpro.Size = new Size(184, 23);
-            cmb_estpro.TabIndex = 12;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(41, 268);
+            label6.Location = new Point(41, 218);
             label6.Name = "label6";
             label6.Size = new Size(50, 16);
             label6.TabIndex = 11;
@@ -154,11 +162,12 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(41, 221);
+            label5.Location = new Point(41, 261);
             label5.Name = "label5";
-            label5.Size = new Size(55, 16);
+            label5.Size = new Size(116, 16);
             label5.TabIndex = 10;
-            label5.Text = "Estado:";
+            label5.Text = "Limite de Tickets:";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -202,23 +211,24 @@
             // 
             // txt_montpro
             // 
-            txt_montpro.Location = new Point(151, 265);
+            txt_montpro.Location = new Point(175, 218);
             txt_montpro.Name = "txt_montpro";
-            txt_montpro.Size = new Size(184, 23);
+            txt_montpro.Size = new Size(159, 23);
             txt_montpro.TabIndex = 5;
             // 
             // txt_nompro
             // 
-            txt_nompro.Location = new Point(151, 82);
+            txt_nompro.Location = new Point(175, 83);
             txt_nompro.Name = "txt_nompro";
-            txt_nompro.Size = new Size(184, 23);
+            txt_nompro.Size = new Size(276, 23);
             txt_nompro.TabIndex = 1;
             // 
             // txt_codpro
             // 
-            txt_codpro.Location = new Point(151, 38);
+            txt_codpro.Enabled = false;
+            txt_codpro.Location = new Point(175, 39);
             txt_codpro.Name = "txt_codpro";
-            txt_codpro.Size = new Size(184, 23);
+            txt_codpro.Size = new Size(159, 23);
             txt_codpro.TabIndex = 0;
             // 
             // panel1
@@ -231,13 +241,13 @@
             panel1.Controls.Add(button1);
             panel1.Location = new Point(6, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(825, 66);
+            panel1.Size = new Size(825, 52);
             panel1.TabIndex = 0;
             // 
             // button5
             // 
             button5.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(448, 15);
+            button5.Location = new Point(448, 9);
             button5.Name = "button5";
             button5.Size = new Size(75, 35);
             button5.TabIndex = 7;
@@ -247,7 +257,7 @@
             // button4
             // 
             button4.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(344, 15);
+            button4.Location = new Point(344, 9);
             button4.Name = "button4";
             button4.Size = new Size(75, 35);
             button4.TabIndex = 6;
@@ -257,7 +267,7 @@
             // button3
             // 
             button3.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(240, 15);
+            button3.Location = new Point(240, 9);
             button3.Name = "button3";
             button3.Size = new Size(75, 35);
             button3.TabIndex = 5;
@@ -267,7 +277,7 @@
             // btn_grabpro
             // 
             btn_grabpro.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_grabpro.Location = new Point(138, 15);
+            btn_grabpro.Location = new Point(138, 9);
             btn_grabpro.Name = "btn_grabpro";
             btn_grabpro.Size = new Size(75, 35);
             btn_grabpro.TabIndex = 4;
@@ -278,7 +288,7 @@
             // button1
             // 
             button1.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(41, 15);
+            button1.Location = new Point(41, 9);
             button1.Name = "button1";
             button1.Size = new Size(75, 35);
             button1.TabIndex = 3;
@@ -287,22 +297,75 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(dtg_lisPro);
+            tabPage2.Controls.Add(panel3);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(837, 431);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(326, 10);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 2;
+            button2.Text = "Buscar";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(31, 10);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(264, 23);
+            textBox1.TabIndex = 1;
+            // 
+            // dtg_lisPro
+            // 
+            dtg_lisPro.BackgroundColor = Color.Gainsboro;
+            dtg_lisPro.BorderStyle = BorderStyle.Fixed3D;
+            dtg_lisPro.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_lisPro.Location = new Point(4, 57);
+            dtg_lisPro.Name = "dtg_lisPro";
+            dtg_lisPro.RowTemplate.Height = 25;
+            dtg_lisPro.Size = new Size(827, 368);
+            dtg_lisPro.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.LightSteelBlue;
+            panel3.Controls.Add(button2);
+            panel3.Controls.Add(textBox1);
+            panel3.Location = new Point(4, 8);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(827, 43);
+            panel3.TabIndex = 3;
+            panel3.Paint += panel3_Paint;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(375, 30);
+            label7.Name = "label7";
+            label7.Size = new Size(161, 24);
+            label7.TabIndex = 15;
+            label7.Text = "PROMOCIONES";
             // 
             // Frm_Promociones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
+            Controls.Add(label7);
             Controls.Add(tabControl1);
             Controls.Add(pictureBox1);
             Name = "Frm_Promociones";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_Promociones";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabControl1.ResumeLayout(false);
@@ -310,7 +373,12 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtg_lisPro).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -336,7 +404,12 @@
         private Label label3;
         private Label label2;
         private DateTimePicker dtp_fecfinpro;
-        private ComboBox cmb_estpro;
         private DateTimePicker dtp_fecinipro;
+        private Label label7;
+        private TextBox txt_limticket;
+        private Panel panel3;
+        private Button button2;
+        private TextBox textBox1;
+        private DataGridView dtg_lisPro;
     }
 }

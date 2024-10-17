@@ -36,8 +36,10 @@
             label1 = new Label();
             button3 = new Button();
             button4 = new Button();
+            pictureBox3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -58,9 +60,9 @@
             pictureBox2.BackColor = Color.WhiteSmoke;
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(25, 21);
+            pictureBox2.Location = new Point(31, 26);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(85, 79);
+            pictureBox2.Size = new Size(92, 82);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -70,7 +72,7 @@
             button1.BackColor = Color.LightSteelBlue;
             button1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(135, 435);
+            button1.Location = new Point(133, 435);
             button1.Name = "button1";
             button1.Size = new Size(155, 56);
             button1.TabIndex = 2;
@@ -83,7 +85,7 @@
             button2.BackColor = Color.LightSteelBlue;
             button2.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(642, 435);
+            button2.Location = new Point(640, 435);
             button2.Name = "button2";
             button2.Size = new Size(143, 56);
             button2.TabIndex = 3;
@@ -95,7 +97,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(250, 39);
+            label1.Location = new Point(249, 51);
             label1.Name = "label1";
             label1.Size = new Size(394, 24);
             label1.TabIndex = 4;
@@ -106,7 +108,7 @@
             button3.BackColor = Color.LightSteelBlue;
             button3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(312, 435);
+            button3.Location = new Point(310, 435);
             button3.Name = "button3";
             button3.Size = new Size(143, 56);
             button3.TabIndex = 5;
@@ -119,18 +121,32 @@
             button4.BackColor = Color.LightSteelBlue;
             button4.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(477, 435);
+            button4.Location = new Point(475, 435);
             button4.Name = "button4";
             button4.Size = new Size(143, 56);
             button4.TabIndex = 6;
             button4.Text = "Promociones";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.ErrorImage = null;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(266, 126);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(392, 261);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 7;
+            pictureBox3.TabStop = false;
             // 
             // Frm_menu_principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
+            Controls.Add(pictureBox3);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label1);
@@ -144,6 +160,7 @@
             Text = "Frm_menu_principal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,5 +174,6 @@
         private Label label1;
         private Button button3;
         private Button button4;
+        private PictureBox pictureBox3;
     }
 }

@@ -1,4 +1,5 @@
-﻿using CapaEntidades;
+﻿using CapaDatos;
+using CapaEntidades;
 using CapaNegocio;
 using System;
 using System.Collections.Generic;
@@ -17,20 +18,30 @@ namespace CapaPresentacion
         public Frm_Promociones()
         {
             InitializeComponent();
+
+            int cod_pro = 0;
+
+            object res_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "ISNULL(MAX(codigo_pro), 0) + 1", "N", "");
+            cod_pro = (int)Convert.ToInt64(res_pro);
+            txt_codpro.Text = cod_pro.ToString();
         }
 
         private void btn_grabpro_Click(object sender, EventArgs e)
         {
-            
+
             if (txt_nompro.Text == "")
             {
                 MessageBox.Show("Ingrese el nombre de la promoción.");
                 return;
             }
-            
             if (txt_montpro.Text == "")
             {
                 MessageBox.Show("Ingrese el monto de la promoción.");
+                return;
+            }
+            if (txt_limticket.Text == "")
+            {
+                MessageBox.Show("Ingrese el límite de tickets.");
                 return;
             }
 
@@ -44,33 +55,53 @@ namespace CapaPresentacion
             }
             else
             {
-                //// Crear un objeto de la entidad Documento
-                //E_Locales local = new E_Locales
-                //{
-                //    codigo_loc = txt_codigoloc.Text,
-                //    nombre_loc = txt_nomloc.Text,
-                //    ubi_loc = txt_mail_loc.Text,
-                //    email_loc = txt_mail_loc.Text,
-                //    telefono_loc = txt_telfloc.Text,
-                //    responsable_loc = txt_resloc.Text,
+                //// Crear un objeto de la entidad Promociones
+                E_Promociones promocion = new E_Promociones
+                {
+                    codigo_pro = int.Parse(txt_codpro.Text),
+                    nombre_pro = txt_nompro.Text,
+                    fec_ini_pro = dtp_fecinipro.Value,
+                    fec_fin_pro = dtp_fecfinpro.Value,
+                    monto_pro = float.Parse(txt_montpro.Text),
+                    limtick_pro = int.Parse(txt_limticket.Text)
 
-                //};
+                };
 
 
-                //// Llamar a la capa de negocio para grabar los datos
-                //N_Locales negocio = new N_Locales();
-                //bool exito = negocio.GrabarLocales(local);
+                // Llamar a la capa de negocio para grabar los datos
+                N_Promociones promo = new N_Promociones();
+                bool exito = promo.GrabarPromociones(promocion);
 
-                //if (exito)
-                //{
-                //    MessageBox.Show("Local grabado con éxito.");
-                //    //LimpiarLocal();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Error al grabar el local.");
-                //}
+                if (exito)
+                {
+                    MessageBox.Show("Promoción grabada con éxito.");
+                    LimpiarPromocion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al grabar la promoción.");
+                }
             }
+        }
+
+        private void LimpiarPromocion()
+        {
+            //txt_codigoloc.Text = "";
+            txt_nompro.Text = "";
+            txt_montpro.Text = "";
+
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+
         }
     }
 }
