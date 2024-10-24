@@ -37,6 +37,7 @@
             button3 = new Button();
             button4 = new Button();
             pictureBox3 = new PictureBox();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -72,7 +73,7 @@
             button1.BackColor = Color.LightSteelBlue;
             button1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(133, 435);
+            button1.Location = new Point(229, 435);
             button1.Name = "button1";
             button1.Size = new Size(155, 56);
             button1.TabIndex = 2;
@@ -85,7 +86,7 @@
             button2.BackColor = Color.LightSteelBlue;
             button2.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(640, 435);
+            button2.Location = new Point(396, 435);
             button2.Name = "button2";
             button2.Size = new Size(143, 56);
             button2.TabIndex = 3;
@@ -108,7 +109,7 @@
             button3.BackColor = Color.LightSteelBlue;
             button3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(310, 435);
+            button3.Location = new Point(554, 435);
             button3.Name = "button3";
             button3.Size = new Size(143, 56);
             button3.TabIndex = 5;
@@ -121,7 +122,7 @@
             button4.BackColor = Color.LightSteelBlue;
             button4.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(475, 435);
+            button4.Location = new Point(711, 435);
             button4.Name = "button4";
             button4.Size = new Size(143, 56);
             button4.TabIndex = 6;
@@ -134,18 +135,31 @@
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.ErrorImage = null;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(266, 126);
+            pictureBox3.Location = new Point(266, 131);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(392, 261);
+            pictureBox3.Size = new Size(387, 256);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.LightSteelBlue;
+            button5.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.ImageAlign = ContentAlignment.MiddleLeft;
+            button5.Location = new Point(60, 435);
+            button5.Name = "button5";
+            button5.Size = new Size(155, 56);
+            button5.TabIndex = 8;
+            button5.Text = "Usuarios";
+            button5.UseVisualStyleBackColor = false;
             // 
             // Frm_menu_principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
+            Controls.Add(button5);
             Controls.Add(pictureBox3);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -175,5 +189,6 @@
         private Button button3;
         private Button button4;
         private PictureBox pictureBox3;
+        private Button button5;
     }
 }

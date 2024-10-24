@@ -19,8 +19,6 @@ namespace CapaNegocio
             // Leer los campos de la tabla
             string campos = Cls_funciones.leer_Campos_tabla("documentos");
 
-
-
             // Crear tabla temporal
             DataTable dtDatos = Cls_funciones.Inserta_Datos_tabla_tmp("documentos", "codigo_doc", "I");
 
@@ -48,6 +46,28 @@ namespace CapaNegocio
         {
             return docu.ObtenerLocales();
         }
-       
+
+        // Método para buscar documentos por un término de búsqueda
+        public DataTable BuscarDocumentos(string busqueda)
+        {
+            D_Documentos datosDocumentos = new D_Documentos();
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                return datosDocumentos.ObtenerTodosLosDocumentos();
+            }
+            else
+            {
+                return datosDocumentos.BuscarDocumentos(busqueda);
+            }
+        }
+
+        // Método para obtener registros de un documento específico
+        public DataTable ObtenerRegistrosPorDocumento(string codigoDoc)
+        {
+            D_Documentos datosDocumentos = new D_Documentos();
+            return datosDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
+        }
+
+
     }
 }

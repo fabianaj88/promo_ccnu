@@ -69,9 +69,9 @@
             txt_dato_buscar = new TextBox();
             grid_lista_clientes = new DataGridView();
             seleccionar = new DataGridViewButtonColumn();
+            panel1 = new Panel();
             pictureBox4 = new PictureBox();
             label15 = new Label();
-            panel1 = new Panel();
             Locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -266,6 +266,7 @@
             cmb_genero.Name = "cmb_genero";
             cmb_genero.Size = new Size(152, 24);
             cmb_genero.TabIndex = 23;
+            cmb_genero.SelectedIndexChanged += cmb_genero_SelectedIndexChanged;
             // 
             // radioButton3
             // 
@@ -535,6 +536,14 @@
             seleccionar.SortMode = DataGridViewColumnSortMode.Programmatic;
             seleccionar.Text = "Seleccionar";
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSteelBlue;
+            panel1.Location = new Point(6, 11);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(849, 43);
+            panel1.TabIndex = 3;
+            // 
             // pictureBox4
             // 
             pictureBox4.Dock = DockStyle.Fill;
@@ -545,6 +554,7 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click_1;
             // 
             // label15
             // 
@@ -555,14 +565,6 @@
             label15.Size = new Size(107, 24);
             label15.TabIndex = 2;
             label15.Text = "CLIENTES";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.LightSteelBlue;
-            panel1.Location = new Point(6, 11);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(849, 43);
-            panel1.TabIndex = 3;
             // 
             // Frm_clientes
             // 

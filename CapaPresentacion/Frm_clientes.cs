@@ -238,5 +238,15 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void cmb_genero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

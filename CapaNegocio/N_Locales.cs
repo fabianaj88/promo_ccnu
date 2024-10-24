@@ -29,7 +29,9 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["ubi_loc"] = local.ubi_loc;
                 dtDatos.Rows[0]["email_loc"] = local.email_loc;
                 dtDatos.Rows[0]["telefono_loc"] = local.telefono_loc;
-                dtDatos.Rows[0]["responsable_loc"] = local.responsable_loc;
+                dtDatos.Rows[0]["copro_escri_loc"] = local.copro_escri_loc;
+                dtDatos.Rows[0]["copro_act_loc"] = local.copro_act_loc;
+                dtDatos.Rows[0]["arrend_loc"] = local.arrend_loc;
                 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);

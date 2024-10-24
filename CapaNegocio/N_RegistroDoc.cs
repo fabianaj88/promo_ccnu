@@ -12,7 +12,7 @@ namespace CapaNegocio
 {
     public class N_RegistroDoc
     {
-        public static (float , List<E_RegistroDoc>) ProcesarSaldoCliente(int coddoc, string codigoCliente, float totalFactura, float montoTicket)
+        public static (float , List<E_RegistroDoc>, bool) ProcesarSaldoCliente(int coddoc, string codigoCliente, float totalFactura, float montoTicket)
         {
             float salActcli = 0;
             // Obtener saldo actual del cliente
@@ -25,11 +25,38 @@ namespace CapaNegocio
             // Calcular cuántos tickets se pueden generar
             int cantidadTickets = (int)(nuevoSaldo / montoTicket);
 
+            // Obtener el código de la promoción activa
+            int codpro = 0;
+            object res_codpro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "codigo_pro", "N", "estado_pro = 1");
+            codpro = (int)Convert.ToInt64(res_codpro);
+
+            // Obtener el límite de tickets permitido por la promoción
+            int limpro = 0;
+            object res_limpro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "limtick_pro", "N", "codigo_pro =" + codpro + "");
+            limpro = (int)Convert.ToInt64(res_limpro);
+
+            // Obtener el número de tickets actuales del cliente
+            object res_ticketsActuales = Cls_funciones.LeerRegistrosEnTablaSql("registro_doc r inner join documentos d on d.codigo_doc = r.codigo_doc", "COUNT(r.num_tic)", "N", "d.codigo_cli_doc='" + codigoCliente + "' AND codigo_pro=" + codpro + "");
+            int ticketsActuales = (int)Convert.ToInt64(res_ticketsActuales);
+
+            // Verificar si el cliente ya alcanzó el límite de tickets para la promoción
+            int ticketsDisponibles = limpro - ticketsActuales;
+            if (ticketsDisponibles <= 0)
+            {
+                // Si ya alcanzó el límite, se deja el saldo en 0 y no se generan más tickets
+                Cls_funciones.ModificaS("clientes", "saldo_cli=0", "codigo_cli='" + codigoCliente + "'");
+                // true indica que se alcanzó el límite
+                return (0, new List<E_RegistroDoc> { },true); // Retornar saldo 0 y sin generar tickets
+            }
+
+            // Ajustar la cantidad de tickets a generar según el límite de la promoción
+            cantidadTickets = Math.Min(cantidadTickets, ticketsDisponibles);
+
             //Si no alcanza para un ticket, solo actualizamos el saldo
             if (cantidadTickets == 0)
             {
                 //Cls_funciones.ModificaS("clientes", "saldo_cli=" + nuevoSaldo.ToString() + "", "codigo_cli='" + codigoCliente + "'");
-                return (nuevoSaldo, new List<E_RegistroDoc> { });
+                return (nuevoSaldo, new List<E_RegistroDoc> { },false);
             }
             else
             {
@@ -37,29 +64,27 @@ namespace CapaNegocio
                 float sobra = nuevoSaldo % montoTicket;
                 //Cls_funciones.ModificaS("clientes", "saldo_cli=" + sobra.ToString() + "", "codigo_cli='" + codigoCliente + "'");
                 // Generar los registros de los tickets
-                int codpro = 0;
-                object res_codpro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "codigo_pro", "N", "estado_pro = 1");
-                codpro = (int)Convert.ToInt64(res_codpro);
+               
+                List<E_RegistroDoc> registros = GenerarRegistrosDoc(coddoc,cantidadTickets,codpro,limpro);
 
-                List<E_RegistroDoc> registros = GenerarRegistrosDoc(coddoc,cantidadTickets,codpro);
-
-                return (sobra,registros);
+                return (sobra,registros,false);// false indica que no se alcanzó el límite
             }   
         }
 
-        public static List<E_RegistroDoc> GenerarRegistrosDoc(int coddoc,int cantidadTickets,int codpro)
+        public static List<E_RegistroDoc> GenerarRegistrosDoc(int coddoc,int cantidadTickets,int codpro, int limpro)
         {
             List<E_RegistroDoc> registrosDoc = new List<E_RegistroDoc>();
             DateTime fechaActual = DateTime.Now;
 
-            for (int i = 0; i < cantidadTickets; i++)
+            // Generar solo la cantidad de tickets que se puede según el límite de la promoción
+            for (int i = 0; i < Math.Min(cantidadTickets, limpro); i++)
             {
                 E_RegistroDoc registro = new E_RegistroDoc
                 {
-                    num_tic = i + 1,  
+                    num_tic = i + 1,
                     codigo_doc = coddoc,
                     fecemi_tic = fechaActual,
-                    estado_tic = false,  
+                    estado_tic = false,
                     codigo_pro = codpro
                 };
 

@@ -11,7 +11,7 @@ namespace CapaEntidades
     public class E_Documentos
     {
         public int codigo_doc { get; set; }
-        public int numfac_doc { get; set; }
+        public string numfac_doc { get; set; }
         public string codigo_loc_doc { get; set; }
         public string codigo_cli_doc { get; set; }
         public DateTime fecfac_doc { get; set; }

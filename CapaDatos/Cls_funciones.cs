@@ -360,11 +360,11 @@ namespace CapaDatos
 
             if (string.IsNullOrWhiteSpace(wcondicion))
             {
-                wseleccion = "SELECT " + wcampo + " FROM " + wtabla + " with(NOLOCK)";
+                wseleccion = "SELECT " + wcampo + " FROM " + wtabla;
             }
             else
             {
-                wseleccion = "SELECT " + wcampo + " FROM " + wtabla + " with(NOLOCK) WHERE " + wcondicion;
+                wseleccion = "SELECT " + wcampo + " FROM " + wtabla + " WHERE " + wcondicion;
             }
 
             DataTable DtResultado = new DataTable();

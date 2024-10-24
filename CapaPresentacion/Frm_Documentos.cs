@@ -38,33 +38,6 @@ namespace CapaPresentacion
 
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Crear una instancia de la clase Conexion
-            Conexion conexion = new Conexion();
-
-            try
-            {
-                // Abrir la conexión
-                SqlConnection con = conexion.AbrirConexion();
-                MessageBox.Show("Conexión abierta correctamente.");
-
-                // Realizar aquí las operaciones que necesites con la conexión...
-            }
-            catch (Exception ex)
-            {
-                // Manejar cualquier error
-                MessageBox.Show("Error al abrir la conexión: " + ex.Message);
-            }
-            finally
-            {
-                // Cerrar la conexión
-                conexion.CerrarConexion();
-                MessageBox.Show("Conexión cerrada.");
-            }
-        }
-
         private void btn_gentik_Click(object sender, EventArgs e)
         {
             if (txt_numf.Text == "")
@@ -82,6 +55,11 @@ namespace CapaPresentacion
                 MessageBox.Show("Ingrese el código del cliente.");
                 return;
             }
+            if (txt_nomcli.Text == "")
+            {
+                MessageBox.Show("Ingrese un cliente válido.");
+                return;
+            }
             if (txt_tot.Text == "")
             {
                 MessageBox.Show("Ingrese el valor de la factura.");
@@ -95,7 +73,15 @@ namespace CapaPresentacion
             montpro = (float)Convert.ToDouble(monto_pro);
 
             // Aquí llamas a la capa de negocio para procesar saldo y tickets
-            (float nuevoSaldo, List<E_RegistroDoc> registros) = N_RegistroDoc.ProcesarSaldoCliente(coddoc, codigoCliente, totalFactura, montpro);
+            (float nuevoSaldo, List<E_RegistroDoc> registros, bool limiteAlcanzado) = N_RegistroDoc.ProcesarSaldoCliente(coddoc, codigoCliente, totalFactura, montpro);
+
+            // Si el límite se alcanzó, mostrar el mensaje
+            if (limiteAlcanzado)
+            {
+                LimpiarGenTicket();
+                MessageBox.Show("El cliente ha alcanzado el límite de tickets para esta promoción. No se generarán más tickets.", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Salir para no seguir procesando tickets
+            }
 
             // Mostrar el nuevo saldo o saldo restante en el TextBox 'txt_saldocli'
             lbl_salcli.Visible = true;
@@ -105,7 +91,6 @@ namespace CapaPresentacion
             // Mostrar los registros generados en el DataGridView
             dgvRegisDoc.DataSource = registros;
         }
-
 
         private void btn_grabarTicket_Click(object sender, EventArgs e)
         {
@@ -130,87 +115,80 @@ namespace CapaPresentacion
                 return;
             }
 
-            var result = MessageBox.Show("¿Estás seguro de grabar los datos del documento?",
-                                    "Confirmación",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-            else
-            {
-                // Crear un objeto de la entidad Documento
-                E_Documentos documento = new E_Documentos
-                {
-                    codigo_doc = int.Parse(txt_num.Text),
-                    numfac_doc = int.Parse(txt_numf.Text),
-                    codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
-                    codigo_cli_doc = txt_cli.Text,
-                    fecfac_doc = dtim_fec.Value,
-                    valfac_doc = float.Parse(txt_tot.Text),
-                    obv_doc = txt_obv.Text // Opcional
-                };
+            //MessageBox.Show("Grabar e imprimir tickets");
 
-                if (dgvRegisDoc.Columns.Count > 0)
-                {
-                    // Llamar a la capa de negocio para grabar los datos
-                    N_Documentos negocio = new N_Documentos();
-                    bool exito = negocio.GrabarDocumento(documento);
 
-                    if (exito)
+            // Crear un objeto de la entidad Documento
+            E_Documentos documento = new E_Documentos
+            {
+                codigo_doc = int.Parse(txt_num.Text),
+                numfac_doc = txt_numf.Text,
+                codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
+                codigo_cli_doc = txt_cli.Text,
+                fecfac_doc = dtim_fec.Value,
+                valfac_doc = float.Parse(txt_tot.Text),
+                //obv_doc = txt_obv.Text // Opcional
+            };
+
+            if (dgvRegisDoc.Columns.Count > 0)
+            {
+                // Llamar a la capa de negocio para grabar los datos
+                N_Documentos negocio = new N_Documentos();
+                bool exito = negocio.GrabarDocumento(documento);
+
+                if (exito)
+                {
+                    //MessageBox.Show("Documento grabado con éxito.");
+                    //Obtener datos para guardar 
+                    int coddoc = int.Parse(txt_num.Text);
+                    string codigoCliente = txt_cli.Text;
+                    float saldocliente = (float)Convert.ToDouble(txt_saldocli.Text);
+
+                    // Obtener los registros actuales que están en el DataGridView
+                    List<E_RegistroDoc> regdoc = (List<E_RegistroDoc>)dgvRegisDoc.DataSource;
+                    if (regdoc.Count > 0)
                     {
-                        //MessageBox.Show("Documento grabado con éxito.");
-                        //Obtener datos para guardar 
-                        int coddoc = int.Parse(txt_num.Text);
-                        string codigoCliente = txt_cli.Text;
-                        float saldocliente = (float)Convert.ToDouble(txt_saldocli.Text);
+                        // Llamar a la capa de negocios para guardar los registros en la base de datos
+                        bool exito_reg = N_RegistroDoc.GrabarRegdoc(regdoc, coddoc, codigoCliente, saldocliente);
 
-                        // Obtener los registros actuales que están en el DataGridView
-                        List<E_RegistroDoc> regdoc = (List<E_RegistroDoc>)dgvRegisDoc.DataSource;
-                        if (regdoc.Count > 0)
+                        if (exito_reg)
                         {
-                            // Llamar a la capa de negocios para guardar los registros en la base de datos
-                            bool exito_reg = N_RegistroDoc.GrabarRegdoc(regdoc, coddoc, codigoCliente, saldocliente);
-
-                            if (exito_reg)
-                            {
-                                MessageBox.Show("Documento grabado con éxito.");
-                                LimpiarGenTicket();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error al grabar el documento.");
-                            }
+                            MessageBox.Show("Tickets generados con éxito.");
+                            LimpiarGenTicket();
                         }
                         else
                         {
-                            //Actualizar saldo del cliente
-                            Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
-
-                            MessageBox.Show("Documento grabado con éxito.");
-                            LimpiarGenTicket();
+                            MessageBox.Show("Error al generar tickets.");
                         }
-
-
                     }
                     else
                     {
-                        MessageBox.Show("Error al grabar el documento.");
+                        //Actualizar saldo del cliente
+                        Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
+
+                        MessageBox.Show("Tickets generados con éxito.");
+                        LimpiarGenTicket();
                     }
+
+
                 }
                 else
                 {
-                    MessageBox.Show("Genere los tickets para grabar.");
+                    MessageBox.Show("Error al generar tickets.");
                 }
             }
-        }
+            else
+            {
+                MessageBox.Show("Genere los tickets para grabar.");
+            }
 
+        }
 
         private void cmb_loc_Click(object sender, EventArgs e)
         {
             LlenarComboBoxLocales();
         }
+
         private void LlenarComboBoxLocales()
         {
             // Llamar a la capa de negocio para obtener los locales
@@ -236,8 +214,154 @@ namespace CapaPresentacion
         private void txt_cli_TextChanged(object sender, EventArgs e)
         {
             string codigoCliente = txt_cli.Text;
-            object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "Concat(nombre_cli,'',apellido_cli)", "C", "codigo_cli='" + codigoCliente + "'");
+            object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
             txt_nomcli.Text = codcli.ToString();
+
+        }
+
+        private void btn_nuevoDoc_Click(object sender, EventArgs e)
+        {
+            NuevoGenTicket();
+        }
+
+        private void txt_numf_TextChanged(object sender, EventArgs e)
+        {
+            // Elimina los guiones del texto ingresado
+            string input = txt_numf.Text.Replace("-", "");
+
+            // Controla que no exceda los 17 caracteres numéricos (sin guiones)
+            if (input.Length > 15)
+                input = input.Substring(0, 15);
+
+            // Agrega los guiones según el número de caracteres ingresados
+            if (input.Length <= 3)
+            {
+                txt_numf.Text = input;
+            }
+            else if (input.Length > 3 && input.Length <= 6)
+            {
+                txt_numf.Text = input.Substring(0, 3) + "-" + input.Substring(3);
+            }
+            else if (input.Length > 6)
+            {
+                txt_numf.Text = input.Substring(0, 3) + "-" + input.Substring(3, 3) + "-" + input.Substring(6);
+            }
+
+            // Posiciona el cursor al final del texto
+            txt_numf.SelectionStart = txt_numf.Text.Length;
+        }
+
+        private void txt_numf_Leave(object sender, EventArgs e)
+        {
+            // Elimina los guiones para procesar el texto completo
+            string input = txt_numf.Text.Replace("-", "");
+
+            if (input.Length > 6 && input.Length <= 15)
+            {
+                // Completamos solo los últimos 9 dígitos con ceros a la izquierda si el usuario no ingresó todos los números
+                string lastPart = input.Substring(6).PadLeft(9, '0'); // Llena con ceros a la izquierda
+                input = input.Substring(0, 6) + lastPart; // Reconstruye la cadena completa
+            }
+
+            // Reconstruimos el formato con los guiones
+            if (input.Length > 6)
+            {
+                txt_numf.Text = input.Substring(0, 3) + "-" + input.Substring(3, 3) + "-" + input.Substring(6);
+            }
+
+            // Posiciona el cursor al final del texto
+            txt_numf.SelectionStart = txt_numf.Text.Length;
+
+            dtim_fec.Focus();
+        }
+
+        private void txt_numf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y controlar la longitud
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
+            }
+        }
+
+        private void txt_tot_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Ejecutar la lógica del botón 'Generar Ticket' al presionar Enter
+                btn_gentik_Click(sender, e);
+            }
+        }
+
+        private void cmb_loc_Leave(object sender, EventArgs e)
+        {
+            txt_cli.Focus();
+
+        }
+
+        private void txt_cli_Leave(object sender, EventArgs e)
+        {
+            if (txt_nomcli.Text == "")
+            {
+                Frm_CrearCliente frm = new Frm_CrearCliente();
+
+                // Mostrar el formulario de cliente como modal
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Después de cerrar el formulario modal, puedes acceder al cliente creado
+                    E_Clientes cliente = frm.ClienteCreado;
+                    string codigoCliente = txt_cli.Text;
+                    object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
+                    txt_nomcli.Text = codcli.ToString();
+                    //MessageBox.Show("Cliente agregado.");
+                }
+
+            }
+            //txt_numf.Focus();
+
+        }
+
+        private void dtim_fec_Leave(object sender, EventArgs e)
+        {
+            txt_tot.Focus();
+        }
+
+        private void txt_nomcli_Leave(object sender, EventArgs e)
+        {
+            txt_numf.Focus();
+        }
+
+        private void btn_busTick_Click(object sender, EventArgs e)
+        {
+            string busqueda = txt_busTick.Text;
+            N_Documentos negocioDocumentos = new N_Documentos();
+            DataTable dt_registro = negocioDocumentos.BuscarDocumentos(busqueda);
+            dtg_lisDoc.DataSource = dt_registro;
+        }
+
+        private void dtg_lisDoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            N_Documentos negocioDocumentos = new N_Documentos();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = dtg_lisDoc.Rows[e.RowIndex];
+
+                // Llenar los controles TextBox
+                txt_num.Text = filaSeleccionada.Cells["Codigo"].Value.ToString();
+                txt_numf.Text = filaSeleccionada.Cells["Factura"].Value.ToString();
+                cmb_loc.Text = filaSeleccionada.Cells["Local"].Value.ToString();
+                txt_nomcli.Text = filaSeleccionada.Cells["nombre_cli"].Value.ToString();
+                dtim_fec.Value = Convert.ToDateTime(filaSeleccionada.Cells["fecfac_doc"].Value);
+                txt_tot.Text = filaSeleccionada.Cells["valfac_doc"].Value.ToString();
+
+                // Llenar el segundo DataGridView
+                string codigoDoc = filaSeleccionada.Cells["Codigo"].Value.ToString();
+                DataTable dt_registroDoc = negocioDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
+                dgvRegisDoc.DataSource = dt_registroDoc;
+
+                // Redirigir al primer TabPage
+                tabControl1.SelectedTab = tabControl1.TabPages[0];  
+            }
         }
 
         private void LimpiarGenTicket()
@@ -252,12 +376,27 @@ namespace CapaPresentacion
             cmb_loc.Text = "";
             txt_cli.Text = "";
             txt_tot.Text = "";
-            txt_obv.Text = "";
+            txt_tot.Enabled = false;
+            //txt_obv.Text = "";
             txt_saldocli.Text = "";
             txt_saldocli.Visible = false;
             lbl_salcli.Visible = false;
             dgvRegisDoc.DataSource = null;
             dgvRegisDoc.Columns.Clear();
+        }
+
+        private void NuevoGenTicket()
+        {
+
+            txt_num.Enabled = true;
+            txt_numf.Enabled = true;
+            cmb_loc.Enabled = true;
+            txt_cli.Enabled = true;
+            txt_nomcli.Enabled = true;
+            txt_tot.Enabled = true;
+            dtim_fec.Enabled = true;
+            //txt_obv.Enabled = true;
+
         }
     }
 }

@@ -37,14 +37,9 @@ namespace CapaPresentacion
                 MessageBox.Show("Ingrese la ubicación del local.");
                 return;
             }
-            if (txt_mail_loc.Text == "")
-            {
-                MessageBox.Show("Ingrese el correo del local.");
-                return;
-            }
             if (txt_resloc.Text == "")
             {
-                MessageBox.Show("Ingrese el responsable del local.");
+                MessageBox.Show("Ingrese el arrendatario del local.");
                 return;
             }
 
@@ -66,7 +61,9 @@ namespace CapaPresentacion
                     ubi_loc = txt_mail_loc.Text,
                     email_loc = txt_mail_loc.Text,
                     telefono_loc = txt_telfloc.Text,
-                    responsable_loc = txt_resloc.Text,
+                    copro_escri_loc = txt_coproes.Text,
+                    copro_act_loc = txt_coproact.Text,
+                    arrend_loc = txt_resloc.Text,
 
                 };
 
@@ -95,6 +92,11 @@ namespace CapaPresentacion
             txt_mail_loc.Text = "";
             txt_telfloc.Text = "";
             txt_resloc.Text = "";
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }

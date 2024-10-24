@@ -13,6 +13,8 @@ namespace CapaEntidades
         public string ubi_loc { get; set; }
         public string email_loc { get; set; }
         public string telefono_loc { get; set; }
-        public string responsable_loc { get; set; }
+        public string copro_escri_loc { get; set; }
+        public string copro_act_loc { get; set; }
+        public string arrend_loc { get; set; }
     }
 }
