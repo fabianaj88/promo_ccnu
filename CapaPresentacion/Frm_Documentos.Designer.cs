@@ -88,6 +88,7 @@
             label19 = new Label();
             label20 = new Label();
             label21 = new Label();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -603,16 +604,17 @@
             panel_impTickets.Controls.Add(label10);
             panel_impTickets.Controls.Add(label9);
             panel_impTickets.Controls.Add(label8);
-            panel_impTickets.Location = new Point(40, 25);
+            panel_impTickets.Controls.Add(panel4);
+            panel_impTickets.Location = new Point(14, 14);
             panel_impTickets.Name = "panel_impTickets";
-            panel_impTickets.Size = new Size(813, 216);
+            panel_impTickets.Size = new Size(839, 216);
             panel_impTickets.TabIndex = 0;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(86, 73);
+            label8.Location = new Point(70, 46);
             label8.Name = "label8";
             label8.Size = new Size(94, 32);
             label8.TabIndex = 0;
@@ -622,7 +624,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(86, 109);
+            label9.Location = new Point(70, 82);
             label9.Name = "label9";
             label9.Size = new Size(131, 19);
             label9.TabIndex = 19;
@@ -631,7 +633,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(114, 140);
+            label10.Location = new Point(98, 113);
             label10.Name = "label10";
             label10.Size = new Size(48, 15);
             label10.TabIndex = 20;
@@ -640,7 +642,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(162, 140);
+            label11.Location = new Point(146, 113);
             label11.Name = "label11";
             label11.Size = new Size(76, 15);
             label11.TabIndex = 21;
@@ -649,7 +651,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(91, 170);
+            label12.Location = new Point(75, 143);
             label12.Name = "label12";
             label12.Size = new Size(47, 15);
             label12.TabIndex = 22;
@@ -659,7 +661,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(91, 139);
+            label13.Location = new Point(75, 112);
             label13.Name = "label13";
             label13.Size = new Size(21, 16);
             label13.TabIndex = 23;
@@ -669,7 +671,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(628, 185);
+            label14.Location = new Point(660, 173);
             label14.Name = "label14";
             label14.Size = new Size(21, 16);
             label14.TabIndex = 26;
@@ -678,7 +680,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(699, 186);
+            label15.Location = new Point(731, 174);
             label15.Name = "label15";
             label15.Size = new Size(76, 15);
             label15.TabIndex = 25;
@@ -687,7 +689,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(651, 186);
+            label16.Location = new Point(683, 174);
             label16.Name = "label16";
             label16.Size = new Size(48, 15);
             label16.TabIndex = 24;
@@ -696,7 +698,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(506, 89);
+            label17.Location = new Point(538, 77);
             label17.Name = "label17";
             label17.Size = new Size(55, 15);
             label17.TabIndex = 27;
@@ -704,14 +706,14 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(567, 86);
+            textBox2.Location = new Point(599, 74);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(208, 21);
             textBox2.TabIndex = 28;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(567, 117);
+            textBox3.Location = new Point(599, 105);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(208, 21);
             textBox3.TabIndex = 30;
@@ -720,7 +722,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(506, 120);
+            label18.Location = new Point(538, 108);
             label18.Name = "label18";
             label18.Size = new Size(57, 15);
             label18.TabIndex = 29;
@@ -729,7 +731,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(567, 147);
+            textBox4.Location = new Point(599, 135);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(208, 21);
             textBox4.TabIndex = 32;
@@ -738,7 +740,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(506, 150);
+            label19.Location = new Point(538, 138);
             label19.Name = "label19";
             label19.Size = new Size(42, 15);
             label19.TabIndex = 31;
@@ -749,7 +751,7 @@
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label20.Location = new Point(589, 38);
+            label20.Location = new Point(621, 26);
             label20.Name = "label20";
             label20.Size = new Size(141, 22);
             label20.TabIndex = 33;
@@ -758,11 +760,19 @@
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(628, 62);
+            label21.Location = new Point(660, 50);
             label21.Name = "label21";
             label21.Size = new Size(47, 15);
             label21.TabIndex = 34;
             label21.Text = "Fecha: ";
+            // 
+            // panel4
+            // 
+            panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Location = new Point(511, 3);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(325, 210);
+            panel4.TabIndex = 35;
             // 
             // Frm_Documentos
             // 
@@ -855,5 +865,6 @@
         private Label label19;
         private Label label20;
         private Label label21;
+        private Panel panel4;
     }
 }
