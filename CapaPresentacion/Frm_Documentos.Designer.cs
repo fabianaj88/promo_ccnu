@@ -66,29 +66,33 @@
             panel3 = new Panel();
             btn_busTick = new Button();
             txt_busTick = new TextBox();
-            tabPage3 = new TabPage();
+            Tickets = new TabPage();
+            button1 = new Button();
+            panel_impTickets = new Panel();
+            panel4 = new Panel();
+            label19 = new Label();
+            txt_dirT = new TextBox();
+            label18 = new Label();
+            lbl_fechaproT = new Label();
+            label17 = new Label();
+            label20 = new Label();
+            label14 = new Label();
+            txt_telfT = new TextBox();
+            lbl_nregdogT = new Label();
+            txt_nomcliT = new TextBox();
+            lbl_numdT = new Label();
+            panel5 = new Panel();
+            label8 = new Label();
+            label9 = new Label();
+            lbl_nrdT = new Label();
+            lbl_ndT = new Label();
+            label13 = new Label();
+            lbl_fecproT = new Label();
             pictureBox1 = new PictureBox();
             label6 = new Label();
             toolTip = new ToolTip(components);
-            panel_impTickets = new Panel();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            label16 = new Label();
-            label17 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            label18 = new Label();
-            textBox4 = new TextBox();
-            label19 = new Label();
-            label20 = new Label();
-            label21 = new Label();
-            panel4 = new Panel();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            printPreviewDialog1 = new PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -98,9 +102,11 @@
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).BeginInit();
             panel3.SuspendLayout();
-            tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            Tickets.SuspendLayout();
             panel_impTickets.SuspendLayout();
+            panel4.SuspendLayout();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -117,7 +123,7 @@
             // 
             // txt_numf
             // 
-            txt_numf.BackColor = SystemColors.MenuBar;
+            txt_numf.BackColor = SystemColors.Window;
             txt_numf.Enabled = false;
             txt_numf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_numf.Location = new Point(399, 11);
@@ -153,7 +159,7 @@
             // 
             // txt_cli
             // 
-            txt_cli.BackColor = SystemColors.MenuBar;
+            txt_cli.BackColor = SystemColors.Window;
             txt_cli.Enabled = false;
             txt_cli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_cli.Location = new Point(93, 4);
@@ -200,7 +206,7 @@
             // 
             // txt_tot
             // 
-            txt_tot.BackColor = SystemColors.MenuBar;
+            txt_tot.BackColor = SystemColors.Window;
             txt_tot.Enabled = false;
             txt_tot.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_tot.Location = new Point(678, 11);
@@ -247,7 +253,7 @@
             // 
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(Tickets);
             tabControl1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.ImeMode = ImeMode.NoControl;
             tabControl1.Location = new Point(24, 61);
@@ -362,6 +368,7 @@
             // 
             // txt_num
             // 
+            txt_num.BackColor = SystemColors.Window;
             txt_num.Enabled = false;
             txt_num.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_num.Location = new Point(93, 11);
@@ -415,6 +422,7 @@
             // 
             // txt_nomcli
             // 
+            txt_nomcli.BackColor = SystemColors.Window;
             txt_nomcli.Enabled = false;
             txt_nomcli.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_nomcli.Location = new Point(399, 4);
@@ -552,15 +560,224 @@
             txt_busTick.Size = new Size(259, 22);
             txt_busTick.TabIndex = 1;
             // 
-            // tabPage3
+            // Tickets
             // 
-            tabPage3.Controls.Add(panel_impTickets);
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(867, 425);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
-            tabPage3.UseVisualStyleBackColor = true;
+            Tickets.Controls.Add(button1);
+            Tickets.Controls.Add(panel_impTickets);
+            Tickets.Location = new Point(4, 24);
+            Tickets.Name = "Tickets";
+            Tickets.Size = new Size(867, 425);
+            Tickets.TabIndex = 2;
+            Tickets.Text = "Tickets";
+            Tickets.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(35, 250);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // panel_impTickets
+            // 
+            panel_impTickets.Controls.Add(panel4);
+            panel_impTickets.Controls.Add(panel5);
+            panel_impTickets.Location = new Point(14, 3);
+            panel_impTickets.Name = "panel_impTickets";
+            panel_impTickets.Size = new Size(828, 227);
+            panel_impTickets.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label19);
+            panel4.Controls.Add(txt_dirT);
+            panel4.Controls.Add(label18);
+            panel4.Controls.Add(lbl_fechaproT);
+            panel4.Controls.Add(label17);
+            panel4.Controls.Add(label20);
+            panel4.Controls.Add(label14);
+            panel4.Controls.Add(txt_telfT);
+            panel4.Controls.Add(lbl_nregdogT);
+            panel4.Controls.Add(txt_nomcliT);
+            panel4.Controls.Add(lbl_numdT);
+            panel4.Location = new Point(489, 9);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(287, 210);
+            panel4.TabIndex = 35;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(10, 130);
+            label19.Name = "label19";
+            label19.Size = new Size(62, 15);
+            label19.TabIndex = 31;
+            label19.Text = "Dirección:";
+            label19.Click += label19_Click;
+            // 
+            // txt_dirT
+            // 
+            txt_dirT.Location = new Point(82, 127);
+            txt_dirT.Name = "txt_dirT";
+            txt_dirT.Size = new Size(186, 21);
+            txt_dirT.TabIndex = 32;
+            txt_dirT.TextChanged += textBox4_TextChanged;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(10, 103);
+            label18.Name = "label18";
+            label18.Size = new Size(57, 15);
+            label18.TabIndex = 29;
+            label18.Text = "Teléfono:";
+            label18.Click += label18_Click;
+            // 
+            // lbl_fechaproT
+            // 
+            lbl_fechaproT.AutoSize = true;
+            lbl_fechaproT.Location = new Point(117, 40);
+            lbl_fechaproT.Name = "lbl_fechaproT";
+            lbl_fechaproT.Size = new Size(47, 15);
+            lbl_fechaproT.TabIndex = 34;
+            lbl_fechaproT.Text = "Fecha: ";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(10, 75);
+            label17.Name = "label17";
+            label17.Size = new Size(55, 15);
+            label17.TabIndex = 27;
+            label17.Text = "Nombre:";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label20.Location = new Point(72, 15);
+            label20.Name = "label20";
+            label20.Size = new Size(141, 22);
+            label20.TabIndex = 33;
+            label20.Text = "CCNU TICKET";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.Location = new Point(119, 165);
+            label14.Name = "label14";
+            label14.Size = new Size(21, 16);
+            label14.TabIndex = 26;
+            label14.Text = "Nº";
+            // 
+            // txt_telfT
+            // 
+            txt_telfT.Location = new Point(82, 100);
+            txt_telfT.Name = "txt_telfT";
+            txt_telfT.Size = new Size(186, 21);
+            txt_telfT.TabIndex = 30;
+            txt_telfT.TextChanged += textBox3_TextChanged;
+            // 
+            // lbl_nregdogT
+            // 
+            lbl_nregdogT.AutoSize = true;
+            lbl_nregdogT.Location = new Point(190, 166);
+            lbl_nregdogT.Name = "lbl_nregdogT";
+            lbl_nregdogT.Size = new Size(76, 15);
+            lbl_nregdogT.TabIndex = 25;
+            lbl_nregdogT.Text = "Nº. Reg_doc";
+            // 
+            // txt_nomcliT
+            // 
+            txt_nomcliT.Location = new Point(82, 72);
+            txt_nomcliT.Name = "txt_nomcliT";
+            txt_nomcliT.Size = new Size(186, 21);
+            txt_nomcliT.TabIndex = 28;
+            // 
+            // lbl_numdT
+            // 
+            lbl_numdT.AutoSize = true;
+            lbl_numdT.Location = new Point(142, 166);
+            lbl_numdT.Name = "lbl_numdT";
+            lbl_numdT.Size = new Size(48, 15);
+            lbl_numdT.TabIndex = 24;
+            lbl_numdT.Text = "Nº. Doc";
+            // 
+            // panel5
+            // 
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(label8);
+            panel5.Controls.Add(label9);
+            panel5.Controls.Add(lbl_nrdT);
+            panel5.Controls.Add(lbl_ndT);
+            panel5.Controls.Add(label13);
+            panel5.Controls.Add(lbl_fecproT);
+            panel5.Location = new Point(21, 9);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(465, 210);
+            panel5.TabIndex = 36;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(18, 16);
+            label8.Name = "label8";
+            label8.Size = new Size(164, 56);
+            label8.TabIndex = 0;
+            label8.Text = "CCNU";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(33, 84);
+            label9.Name = "label9";
+            label9.Size = new Size(131, 19);
+            label9.TabIndex = 19;
+            label9.Text = "PROMOCIONES";
+            // 
+            // lbl_nrdT
+            // 
+            lbl_nrdT.AutoSize = true;
+            lbl_nrdT.Location = new Point(106, 132);
+            lbl_nrdT.Name = "lbl_nrdT";
+            lbl_nrdT.Size = new Size(76, 15);
+            lbl_nrdT.TabIndex = 21;
+            lbl_nrdT.Text = "Nº. Reg_doc";
+            // 
+            // lbl_ndT
+            // 
+            lbl_ndT.AutoSize = true;
+            lbl_ndT.Location = new Point(58, 132);
+            lbl_ndT.Name = "lbl_ndT";
+            lbl_ndT.Size = new Size(48, 15);
+            lbl_ndT.TabIndex = 20;
+            lbl_ndT.Text = "Nº. Doc";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(35, 131);
+            label13.Name = "label13";
+            label13.Size = new Size(21, 16);
+            label13.TabIndex = 23;
+            label13.Text = "Nº";
+            // 
+            // lbl_fecproT
+            // 
+            lbl_fecproT.AutoSize = true;
+            lbl_fecproT.Location = new Point(35, 158);
+            lbl_fecproT.Name = "lbl_fecproT";
+            lbl_fecproT.Size = new Size(47, 15);
+            lbl_fecproT.TabIndex = 22;
+            lbl_fecproT.Text = "Fecha: ";
             // 
             // pictureBox1
             // 
@@ -585,194 +802,20 @@
             label6.TabIndex = 0;
             label6.Text = "GENERAR TICKETS";
             // 
-            // panel_impTickets
+            // printDocument1
             // 
-            panel_impTickets.Controls.Add(label21);
-            panel_impTickets.Controls.Add(label20);
-            panel_impTickets.Controls.Add(textBox4);
-            panel_impTickets.Controls.Add(label19);
-            panel_impTickets.Controls.Add(textBox3);
-            panel_impTickets.Controls.Add(label18);
-            panel_impTickets.Controls.Add(textBox2);
-            panel_impTickets.Controls.Add(label17);
-            panel_impTickets.Controls.Add(label14);
-            panel_impTickets.Controls.Add(label15);
-            panel_impTickets.Controls.Add(label16);
-            panel_impTickets.Controls.Add(label13);
-            panel_impTickets.Controls.Add(label12);
-            panel_impTickets.Controls.Add(label11);
-            panel_impTickets.Controls.Add(label10);
-            panel_impTickets.Controls.Add(label9);
-            panel_impTickets.Controls.Add(label8);
-            panel_impTickets.Controls.Add(panel4);
-            panel_impTickets.Location = new Point(14, 14);
-            panel_impTickets.Name = "panel_impTickets";
-            panel_impTickets.Size = new Size(839, 216);
-            panel_impTickets.TabIndex = 0;
+            printDocument1.PrintPage += ImprimiTicket;
             // 
-            // label8
+            // printPreviewDialog1
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(70, 46);
-            label8.Name = "label8";
-            label8.Size = new Size(94, 32);
-            label8.TabIndex = 0;
-            label8.Text = "CCNU";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(70, 82);
-            label9.Name = "label9";
-            label9.Size = new Size(131, 19);
-            label9.TabIndex = 19;
-            label9.Text = "PROMOCIONES";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(98, 113);
-            label10.Name = "label10";
-            label10.Size = new Size(48, 15);
-            label10.TabIndex = 20;
-            label10.Text = "Nº. Doc";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(146, 113);
-            label11.Name = "label11";
-            label11.Size = new Size(76, 15);
-            label11.TabIndex = 21;
-            label11.Text = "Nº. Reg_doc";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(75, 143);
-            label12.Name = "label12";
-            label12.Size = new Size(47, 15);
-            label12.TabIndex = 22;
-            label12.Text = "Fecha: ";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(75, 112);
-            label13.Name = "label13";
-            label13.Size = new Size(21, 16);
-            label13.TabIndex = 23;
-            label13.Text = "Nº";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(660, 173);
-            label14.Name = "label14";
-            label14.Size = new Size(21, 16);
-            label14.TabIndex = 26;
-            label14.Text = "Nº";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(731, 174);
-            label15.Name = "label15";
-            label15.Size = new Size(76, 15);
-            label15.TabIndex = 25;
-            label15.Text = "Nº. Reg_doc";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(683, 174);
-            label16.Name = "label16";
-            label16.Size = new Size(48, 15);
-            label16.TabIndex = 24;
-            label16.Text = "Nº. Doc";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(538, 77);
-            label17.Name = "label17";
-            label17.Size = new Size(55, 15);
-            label17.TabIndex = 27;
-            label17.Text = "Nombre:";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(599, 74);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(208, 21);
-            textBox2.TabIndex = 28;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(599, 105);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(208, 21);
-            textBox3.TabIndex = 30;
-            textBox3.TextChanged += textBox3_TextChanged;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(538, 108);
-            label18.Name = "label18";
-            label18.Size = new Size(57, 15);
-            label18.TabIndex = 29;
-            label18.Text = "Teléfono:";
-            label18.Click += label18_Click;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(599, 135);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(208, 21);
-            textBox4.TabIndex = 32;
-            textBox4.TextChanged += textBox4_TextChanged;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Location = new Point(538, 138);
-            label19.Name = "label19";
-            label19.Size = new Size(42, 15);
-            label19.TabIndex = 31;
-            label19.Text = "Email:";
-            label19.Click += label19_Click;
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label20.Location = new Point(621, 26);
-            label20.Name = "label20";
-            label20.Size = new Size(141, 22);
-            label20.TabIndex = 33;
-            label20.Text = "CCNU TICKET";
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Location = new Point(660, 50);
-            label21.Name = "label21";
-            label21.Size = new Size(47, 15);
-            label21.TabIndex = 34;
-            label21.Text = "Fecha: ";
-            // 
-            // panel4
-            // 
-            panel4.BorderStyle = BorderStyle.Fixed3D;
-            panel4.Location = new Point(511, 3);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(325, 210);
-            panel4.TabIndex = 35;
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
             // 
             // Frm_Documentos
             // 
@@ -798,10 +841,13 @@
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            Tickets.ResumeLayout(false);
             panel_impTickets.ResumeLayout(false);
-            panel_impTickets.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -846,25 +892,29 @@
         private Button btn_nuevoDoc;
         private ToolTip toolTip;
         private Button btn_anulartick;
-        private TabPage tabPage3;
+        private TabPage Tickets;
         private Panel panel_impTickets;
         private Label label8;
         private Label label9;
-        private Label label11;
-        private Label label10;
-        private Label label12;
+        private Label lbl_nrdT;
+        private Label lbl_ndT;
+        private Label lbl_fecproT;
         private Label label17;
         private Label label14;
-        private Label label15;
-        private Label label16;
+        private Label lbl_nregdogT;
+        private Label lbl_numdT;
         private Label label13;
-        private TextBox textBox3;
+        private TextBox txt_telfT;
         private Label label18;
-        private TextBox textBox2;
-        private TextBox textBox4;
+        private TextBox txt_nomcliT;
+        private TextBox txt_dirT;
         private Label label19;
         private Label label20;
-        private Label label21;
+        private Label lbl_fechaproT;
         private Panel panel4;
+        private Panel panel5;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private PrintPreviewDialog printPreviewDialog1;
+        private Button button1;
     }
 }
