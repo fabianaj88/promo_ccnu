@@ -75,13 +75,17 @@ namespace CapaNegocio
         {
             List<E_RegistroDoc> registrosDoc = new List<E_RegistroDoc>();
             DateTime fechaActual = DateTime.Now;
+            int cod_regdoc = 0;
+            
+            object res_regdoc = Cls_funciones.LeerRegistrosEnTablaSql("registro_doc", "ISNULL(MAX(num_tic), 0) + 1", "N", "");
+            cod_regdoc = (int)Convert.ToInt64(res_regdoc);
 
             // Generar solo la cantidad de tickets que se puede según el límite de la promoción
             for (int i = 0; i < Math.Min(cantidadTickets, limpro); i++)
             {
                 E_RegistroDoc registro = new E_RegistroDoc
                 {
-                    num_tic = i + 1,
+                    num_tic = cod_regdoc + i,
                     codigo_doc = coddoc,
                     fecemi_tic = fechaActual,
                     estado_tic = false,

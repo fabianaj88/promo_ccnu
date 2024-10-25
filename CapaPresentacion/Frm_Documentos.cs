@@ -434,7 +434,7 @@ namespace CapaPresentacion
         private void LlenarPanelImp()
         {
             lbl_numdT.Text = txt_num.Text;
-            lbl_ndT.Text = txt_num.Text;
+            lbl_proT.Text = lbl_promo.Text;
             object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             txt_nomcliT.Text = txt_nomcli.Text;
