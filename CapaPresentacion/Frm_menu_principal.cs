@@ -49,5 +49,12 @@ namespace CapaPresentacion
 
             frm.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Frm_Usuarios frm = new Frm_Usuarios();
+
+            frm.Show();
+        }
     }
 }
