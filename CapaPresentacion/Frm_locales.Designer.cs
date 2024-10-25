@@ -148,7 +148,7 @@
             // btn_nuevo_loc
             // 
             btn_nuevo_loc.BackColor = Color.LightGray;
-            btn_nuevo_loc.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_nuevo_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_nuevo_loc.Image = (Image)resources.GetObject("btn_nuevo_loc.Image");
             btn_nuevo_loc.ImageAlign = ContentAlignment.MiddleRight;
             btn_nuevo_loc.Location = new Point(46, 11);
@@ -293,7 +293,7 @@
             // btn_eliminar_loc
             // 
             btn_eliminar_loc.BackColor = Color.LightGray;
-            btn_eliminar_loc.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_eliminar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_eliminar_loc.Image = (Image)resources.GetObject("btn_eliminar_loc.Image");
             btn_eliminar_loc.ImageAlign = ContentAlignment.MiddleRight;
             btn_eliminar_loc.Location = new Point(400, 11);
@@ -307,7 +307,7 @@
             // btn_editar_loc
             // 
             btn_editar_loc.BackColor = Color.LightGray;
-            btn_editar_loc.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_editar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_editar_loc.Image = (Image)resources.GetObject("btn_editar_loc.Image");
             btn_editar_loc.ImageAlign = ContentAlignment.MiddleRight;
             btn_editar_loc.Location = new Point(282, 11);
@@ -321,7 +321,7 @@
             // btn_grabar_loc
             // 
             btn_grabar_loc.BackColor = Color.LightGray;
-            btn_grabar_loc.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_grabar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_grabar_loc.Image = (Image)resources.GetObject("btn_grabar_loc.Image");
             btn_grabar_loc.ImageAlign = ContentAlignment.MiddleRight;
             btn_grabar_loc.Location = new Point(164, 11);

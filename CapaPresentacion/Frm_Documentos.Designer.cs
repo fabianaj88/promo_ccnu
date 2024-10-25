@@ -66,9 +66,28 @@
             panel3 = new Panel();
             btn_busTick = new Button();
             txt_busTick = new TextBox();
+            tabPage3 = new TabPage();
             pictureBox1 = new PictureBox();
             label6 = new Label();
             toolTip = new ToolTip(components);
+            panel_impTickets = new Panel();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            label18 = new Label();
+            textBox4 = new TextBox();
+            label19 = new Label();
+            label20 = new Label();
+            label21 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -78,7 +97,9 @@
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).BeginInit();
             panel3.SuspendLayout();
+            tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel_impTickets.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -225,6 +246,7 @@
             // 
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.ImeMode = ImeMode.NoControl;
             tabControl1.Location = new Point(24, 61);
@@ -508,21 +530,36 @@
             // 
             // btn_busTick
             // 
-            btn_busTick.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_busTick.Location = new Point(308, 9);
+            btn_busTick.BackColor = Color.LightGray;
+            btn_busTick.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_busTick.Image = (Image)resources.GetObject("btn_busTick.Image");
+            btn_busTick.ImageAlign = ContentAlignment.MiddleRight;
+            btn_busTick.Location = new Point(308, 4);
             btn_busTick.Name = "btn_busTick";
-            btn_busTick.Size = new Size(75, 23);
+            btn_busTick.Size = new Size(100, 32);
             btn_busTick.TabIndex = 2;
             btn_busTick.Text = "Buscar";
-            btn_busTick.UseVisualStyleBackColor = true;
+            btn_busTick.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_busTick.UseVisualStyleBackColor = false;
             btn_busTick.Click += btn_busTick_Click;
             // 
             // txt_busTick
             // 
-            txt_busTick.Location = new Point(27, 10);
+            txt_busTick.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_busTick.Location = new Point(27, 9);
             txt_busTick.Name = "txt_busTick";
-            txt_busTick.Size = new Size(259, 21);
+            txt_busTick.Size = new Size(259, 22);
             txt_busTick.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(panel_impTickets);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(867, 425);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -546,6 +583,186 @@
             label6.Size = new Size(208, 24);
             label6.TabIndex = 0;
             label6.Text = "GENERAR TICKETS";
+            // 
+            // panel_impTickets
+            // 
+            panel_impTickets.Controls.Add(label21);
+            panel_impTickets.Controls.Add(label20);
+            panel_impTickets.Controls.Add(textBox4);
+            panel_impTickets.Controls.Add(label19);
+            panel_impTickets.Controls.Add(textBox3);
+            panel_impTickets.Controls.Add(label18);
+            panel_impTickets.Controls.Add(textBox2);
+            panel_impTickets.Controls.Add(label17);
+            panel_impTickets.Controls.Add(label14);
+            panel_impTickets.Controls.Add(label15);
+            panel_impTickets.Controls.Add(label16);
+            panel_impTickets.Controls.Add(label13);
+            panel_impTickets.Controls.Add(label12);
+            panel_impTickets.Controls.Add(label11);
+            panel_impTickets.Controls.Add(label10);
+            panel_impTickets.Controls.Add(label9);
+            panel_impTickets.Controls.Add(label8);
+            panel_impTickets.Location = new Point(40, 25);
+            panel_impTickets.Name = "panel_impTickets";
+            panel_impTickets.Size = new Size(813, 216);
+            panel_impTickets.TabIndex = 0;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(86, 73);
+            label8.Name = "label8";
+            label8.Size = new Size(94, 32);
+            label8.TabIndex = 0;
+            label8.Text = "CCNU";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(86, 109);
+            label9.Name = "label9";
+            label9.Size = new Size(131, 19);
+            label9.TabIndex = 19;
+            label9.Text = "PROMOCIONES";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(114, 140);
+            label10.Name = "label10";
+            label10.Size = new Size(48, 15);
+            label10.TabIndex = 20;
+            label10.Text = "Nº. Doc";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(162, 140);
+            label11.Name = "label11";
+            label11.Size = new Size(76, 15);
+            label11.TabIndex = 21;
+            label11.Text = "Nº. Reg_doc";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(91, 170);
+            label12.Name = "label12";
+            label12.Size = new Size(47, 15);
+            label12.TabIndex = 22;
+            label12.Text = "Fecha: ";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(91, 139);
+            label13.Name = "label13";
+            label13.Size = new Size(21, 16);
+            label13.TabIndex = 23;
+            label13.Text = "Nº";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.Location = new Point(628, 185);
+            label14.Name = "label14";
+            label14.Size = new Size(21, 16);
+            label14.TabIndex = 26;
+            label14.Text = "Nº";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(699, 186);
+            label15.Name = "label15";
+            label15.Size = new Size(76, 15);
+            label15.TabIndex = 25;
+            label15.Text = "Nº. Reg_doc";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(651, 186);
+            label16.Name = "label16";
+            label16.Size = new Size(48, 15);
+            label16.TabIndex = 24;
+            label16.Text = "Nº. Doc";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(506, 89);
+            label17.Name = "label17";
+            label17.Size = new Size(55, 15);
+            label17.TabIndex = 27;
+            label17.Text = "Nombre:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(567, 86);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(208, 21);
+            textBox2.TabIndex = 28;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(567, 117);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(208, 21);
+            textBox3.TabIndex = 30;
+            textBox3.TextChanged += textBox3_TextChanged;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(506, 120);
+            label18.Name = "label18";
+            label18.Size = new Size(57, 15);
+            label18.TabIndex = 29;
+            label18.Text = "Teléfono:";
+            label18.Click += label18_Click;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(567, 147);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(208, 21);
+            textBox4.TabIndex = 32;
+            textBox4.TextChanged += textBox4_TextChanged;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(506, 150);
+            label19.Name = "label19";
+            label19.Size = new Size(42, 15);
+            label19.TabIndex = 31;
+            label19.Text = "Email:";
+            label19.Click += label19_Click;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label20.Location = new Point(589, 38);
+            label20.Name = "label20";
+            label20.Size = new Size(141, 22);
+            label20.TabIndex = 33;
+            label20.Text = "CCNU TICKET";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(628, 62);
+            label21.Name = "label21";
+            label21.Size = new Size(47, 15);
+            label21.TabIndex = 34;
+            label21.Text = "Fecha: ";
             // 
             // Frm_Documentos
             // 
@@ -571,7 +788,10 @@
             ((System.ComponentModel.ISupportInitialize)dtg_lisDoc).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel_impTickets.ResumeLayout(false);
+            panel_impTickets.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -616,5 +836,24 @@
         private Button btn_nuevoDoc;
         private ToolTip toolTip;
         private Button btn_anulartick;
+        private TabPage tabPage3;
+        private Panel panel_impTickets;
+        private Label label8;
+        private Label label9;
+        private Label label11;
+        private Label label10;
+        private Label label12;
+        private Label label17;
+        private Label label14;
+        private Label label15;
+        private Label label16;
+        private Label label13;
+        private TextBox textBox3;
+        private Label label18;
+        private TextBox textBox2;
+        private TextBox textBox4;
+        private Label label19;
+        private Label label20;
+        private Label label21;
     }
 }

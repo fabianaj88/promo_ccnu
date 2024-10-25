@@ -13,6 +13,7 @@ using CapaNegocio;
 using System.Drawing.Text;
 using CapaEntidades;
 using Microsoft.Win32;
+using System.Drawing.Printing;
 
 namespace CapaPresentacion
 {
@@ -360,7 +361,7 @@ namespace CapaPresentacion
                 dgvRegisDoc.DataSource = dt_registroDoc;
 
                 // Redirigir al primer TabPage
-                tabControl1.SelectedTab = tabControl1.TabPages[0];  
+                tabControl1.SelectedTab = tabControl1.TabPages[0];
             }
         }
 
@@ -398,5 +399,27 @@ namespace CapaPresentacion
             //txt_obv.Enabled = true;
 
         }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        p
+
+
     }
 }
