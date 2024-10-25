@@ -291,6 +291,7 @@ namespace CapaPresentacion
             {
                 // Ejecutar la lógica del botón 'Generar Ticket' al presionar Enter
                 btn_gentik_Click(sender, e);
+                LlenarPanelImp();
             }
         }
 
@@ -418,8 +419,27 @@ namespace CapaPresentacion
         {
         }
 
-        p
+        private void ImprimiTicket(object sender, PrintPageEventArgs e)
+        {
+            Bitmap bm = new Bitmap(panel_impTickets.Width, panel_impTickets.Height);
+            panel_impTickets.DrawToBitmap(bm, new Rectangle(0, 0, panel_impTickets.Width, panel_impTickets.Height));
+            e.Graphics.DrawImage(bm, 0, 0);
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.ShowDialog();
+        }
 
+        private void LlenarPanelImp()
+        {
+            lbl_numdT.Text = txt_num.Text;
+            lbl_ndT.Text = txt_num.Text;
+            object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            txt_nomcliT.Text = txt_nomcli.Text;
+            txt_telfT.Text = nomTcli.ToString();
+            txt_dirT.Text = dirTcli.ToString();
+        }
     }
 }
