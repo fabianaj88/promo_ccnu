@@ -24,7 +24,7 @@ namespace CapaPresentacion
         {
             if (txt_codigoloc.Text == "")
             {
-                MessageBox.Show("Ingrese el código del local.");
+                MessageBox.Show("Ingrese el código del local..");
                 return;
             }
             if (txt_nomloc.Text == "")

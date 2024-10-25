@@ -8,6 +8,7 @@ namespace CapaEntidades
 {
     public class E_Locales
     {
+        //
         public string codigo_loc { get; set; }
         public string nombre_loc { get; set; }
         public string ubi_loc { get; set; }

@@ -36,7 +36,7 @@ namespace CapaNegocio
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);
 
-                // Grabar datos en la base de datos
+                // Grabar datos en la base de datos l
                 return Cls_funciones.Grabar_Datos_DB("locales", campos, condicion);
             }
 
