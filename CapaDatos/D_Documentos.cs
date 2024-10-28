@@ -24,8 +24,17 @@ namespace CapaDatos
             return Cls_funciones.VisualizaS(query);
         }
 
-        // Método para obtener todos los documentos
-        public DataTable ObtenerTodosLosDocumentos()
+        public DataTable ObtenerLocalesFiltrados(string textoBusqueda)
+        {
+            string query = "SELECT codigo_loc, nombre_loc FROM locales WHERE nombre_loc like '%" + textoBusqueda + "%'";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+            return dt;
+        }
+
+            // Método para obtener todos los documentos
+            public DataTable ObtenerTodosLosDocumentos()
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +

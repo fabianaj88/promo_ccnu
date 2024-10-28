@@ -314,24 +314,28 @@ namespace CapaPresentacion
 
         private void txt_cli_Leave(object sender, EventArgs e)
         {
-            if (txt_cli.Text != " ")
+            if (txt_cli.Text != "")
             {
-                string codigoCliente = txt_cli.Text;
-                Frm_CrearCliente frm = new Frm_CrearCliente(codigoCliente);
-
-                // Mostrar el formulario de cliente como modal
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (txt_nomcli.Text == "")
                 {
-                    // Después de cerrar el formulario modal, puedes acceder al cliente creado
-                    E_Clientes cliente = frm.ClienteCreado;
+                    string codigoCliente = txt_cli.Text;
+                    Frm_CrearCliente frm = new Frm_CrearCliente(codigoCliente);
 
-                    object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
-                    txt_nomcli.Text = codcli.ToString();
+                    // Mostrar el formulario de cliente como modal
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Después de cerrar el formulario modal, puedes acceder al cliente creado
+                        E_Clientes cliente = frm.ClienteCreado;
+
+                        object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
+                        txt_nomcli.Text = codcli.ToString();
+                    }
                 }
             }
-            else 
-            { 
-
+            else
+            {
+                MessageBox.Show("Ingrese el código del cliente.");
+                return;
             }
         }
 
@@ -390,7 +394,7 @@ namespace CapaPresentacion
             cmb_loc.Text = "";
             txt_cli.Text = "";
             txt_tot.Text = "";
-            txt_tot.Enabled = false;
+            //txt_tot.Enabled = false;
             //txt_obv.Text = "";
             txt_saldocli.Text = "";
             txt_saldocli.Visible = false;
@@ -411,24 +415,6 @@ namespace CapaPresentacion
             dtim_fec.Enabled = true;
             //txt_obv.Enabled = true;
 
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
         }
 
         private void ImprimiTicket(object sender, PrintPageEventArgs e)
@@ -472,9 +458,37 @@ namespace CapaPresentacion
             txt_dirT.Text = dirTcli.ToString();
         }
 
-        private void txt_tot_TextChanged(object sender, EventArgs e)
+        private void cmb_loc_TextChanged(object sender, EventArgs e)
         {
+            // Realizar búsqueda en base a lo que el usuario está escribiendo
+            string textoBusqueda = cmb_loc.Text;
+            FiltrarLocales(textoBusqueda);
+        }
 
+        private void FiltrarLocales(string textoBusqueda)
+        {
+            // Llamar a la capa de negocio para obtener los locales filtrados por el texto ingresado
+            DataTable dtLocales = ndocu.ObtenerLocalesFiltrados(textoBusqueda);
+
+            if (dtLocales.Rows.Count > 0)
+            {
+                cmb_loc.DataSource = dtLocales;
+                cmb_loc.DisplayMember = "nombre_loc";
+                cmb_loc.ValueMember = "codigo_loc";
+
+                // Actualizar sugerencias para autocompletado
+                AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+                foreach (DataRow row in dtLocales.Rows)
+                {
+                    autoCompleteCollection.Add(row["nombre_loc"].ToString());
+                }
+                cmb_loc.AutoCompleteCustomSource = autoCompleteCollection;
+            }
+            else
+            {
+                cmb_loc.DataSource = null;
+                cmb_loc.AutoCompleteCustomSource = null;
+            }
         }
     }
 }

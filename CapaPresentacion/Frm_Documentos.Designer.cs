@@ -207,7 +207,6 @@
             txt_tot.Size = new Size(161, 22);
             txt_tot.TabIndex = 7;
             txt_tot.TextAlign = HorizontalAlignment.Right;
-            txt_tot.TextChanged += txt_tot_TextChanged;
             txt_tot.KeyDown += txt_tot_KeyDown;
             // 
             // btn_gentik
@@ -478,6 +477,7 @@
             cmb_loc.Name = "cmb_loc";
             cmb_loc.Size = new Size(161, 24);
             cmb_loc.TabIndex = 3;
+            cmb_loc.TextChanged += cmb_loc_TextChanged;
             cmb_loc.Click += cmb_loc_Click;
             cmb_loc.Leave += cmb_loc_Leave;
             // 
@@ -626,7 +626,6 @@
             label19.Size = new Size(65, 16);
             label19.TabIndex = 31;
             label19.Text = "Dirección:";
-            label19.Click += label19_Click;
             // 
             // txt_dirT
             // 
@@ -637,7 +636,6 @@
             txt_dirT.ReadOnly = true;
             txt_dirT.Size = new Size(186, 22);
             txt_dirT.TabIndex = 32;
-            txt_dirT.TextChanged += textBox4_TextChanged;
             // 
             // label18
             // 
@@ -648,7 +646,6 @@
             label18.Size = new Size(58, 16);
             label18.TabIndex = 29;
             label18.Text = "Teléfono:";
-            label18.Click += label18_Click;
             // 
             // lbl_fechaproT
             // 
@@ -689,7 +686,6 @@
             txt_telfT.ReadOnly = true;
             txt_telfT.Size = new Size(186, 22);
             txt_telfT.TabIndex = 30;
-            txt_telfT.TextChanged += textBox3_TextChanged;
             // 
             // lbl_nregdocT
             // 
