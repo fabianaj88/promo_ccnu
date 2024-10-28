@@ -117,10 +117,10 @@ namespace CapaNegocio
 
                 if (dt_registro.Rows.Count == 1)
                 {
-                    //dt_registro.Rows[0]["num_Tic"] = registro.num_tic;
+                    dt_registro.Rows[0]["num_Tic"] = registro.num_tic;
                     dt_registro.Rows[0]["codigo_doc"] = codigoDoc;
                     dt_registro.Rows[0]["fecemi_tic"] = registro.fecemi_tic;
-                    dt_registro.Rows[0]["estado_tic"] = registro.estado_tic ? 1 : 0;
+                    dt_registro.Rows[0]["estado_tic"] = true;
                     dt_registro.Rows[0]["codigo_pro"] = registro.codigo_pro;
 
                     // Condición para grabar en la base de datos

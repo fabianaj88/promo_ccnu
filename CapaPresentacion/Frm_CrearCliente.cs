@@ -15,9 +15,10 @@ namespace CapaPresentacion
 {
     public partial class Frm_CrearCliente : Form
     {
-        public Frm_CrearCliente()
+        public Frm_CrearCliente(string codigoCliente)
         {
             InitializeComponent();
+            txt_codigo.Text = codigoCliente; // Asignar el valor al campo txt_codigo
         }
         public E_Clientes ClienteCreado { get; set; }  // Propiedad pública para devolver el cliente creado
         private void btn_Acepcli_Click(object sender, EventArgs e)

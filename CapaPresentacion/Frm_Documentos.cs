@@ -38,6 +38,8 @@ namespace CapaPresentacion
             lbl_codpro.Text = cod_pro.ToString();
 
 
+
+
         }
         private void btn_gentik_Click(object sender, EventArgs e)
         {
@@ -154,6 +156,15 @@ namespace CapaPresentacion
 
                         if (exito_reg)
                         {
+                            // Cambiar a la pestaña de impresión
+
+                            tabControl1.SelectedTab = tabControl1.TabPages[2];
+
+                            // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
+                            btn_impTicket_Click(sender, e);
+
+                            tabControl1.SelectedTab = tabControl1.TabPages[0];
+
                             MessageBox.Show("Tickets generados con éxito.");
                             LimpiarGenTicket();
                         }
@@ -303,24 +314,25 @@ namespace CapaPresentacion
 
         private void txt_cli_Leave(object sender, EventArgs e)
         {
-            if (txt_nomcli.Text == "")
+            if (txt_cli.Text != " ")
             {
-                Frm_CrearCliente frm = new Frm_CrearCliente();
+                string codigoCliente = txt_cli.Text;
+                Frm_CrearCliente frm = new Frm_CrearCliente(codigoCliente);
 
                 // Mostrar el formulario de cliente como modal
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     // Después de cerrar el formulario modal, puedes acceder al cliente creado
                     E_Clientes cliente = frm.ClienteCreado;
-                    string codigoCliente = txt_cli.Text;
+
                     object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
                     txt_nomcli.Text = codcli.ToString();
-                    //MessageBox.Show("Cliente agregado.");
                 }
+            }
+            else 
+            { 
 
             }
-            //txt_numf.Focus();
-
         }
 
         private void dtim_fec_Leave(object sender, EventArgs e)
@@ -426,20 +438,43 @@ namespace CapaPresentacion
             e.Graphics.DrawImage(bm, 0, 0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_impTicket_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.ShowDialog();
+            // Recorrer cada fila del DataGridView para generar y mostrar cada ticket
+            foreach (DataGridViewRow row in dgvRegisDoc.Rows)
+            {
+                if (row.Cells["num_Tic"].Value != null) // Asegurarse de que no esté vacío
+                {
+                    // Obtener el número de ticket de la fila actual
+                    string numeroTicket = row.Cells["num_tic"].Value.ToString();
+
+                    // Configurar el Label lblnregdocT con el número de ticket actual
+                    lbl_nregdocT.Text = numeroTicket;
+
+                    printPreviewDialog1.Document = printDocument1;
+                    printPreviewDialog1.ShowDialog();
+                }
+            }
+            //printPreviewDialog1.ShowDialog();
         }
 
         private void LlenarPanelImp()
         {
             lbl_numdT.Text = txt_num.Text;
-            lbl_proT.Text = lbl_promo.Text;
+            txt_proT.Text = lbl_promo.Text;
             object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            object fecproT = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro='" + lbl_codpro.Text + "'");
+            DateTime fecha = DateTime.Parse(fecproT.ToString());
+            lbl_fechaproT.Text = fecha.ToString("dd/MM/yyyy");
             txt_nomcliT.Text = txt_nomcli.Text;
             txt_telfT.Text = nomTcli.ToString();
             txt_dirT.Text = dirTcli.ToString();
+        }
+
+        private void txt_tot_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
