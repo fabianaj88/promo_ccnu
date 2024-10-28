@@ -30,8 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_usuarios));
             pictureBox4 = new PictureBox();
-            Locales = new TabControl();
+            page_datos = new TabControl();
             tabPage1 = new TabPage();
+            chk_reportes = new CheckBox();
+            chk_promo = new CheckBox();
+            chk_clientes = new CheckBox();
+            chk_documentos = new CheckBox();
+            chk_usuarios = new CheckBox();
+            label14 = new Label();
+            pictureBox5 = new PictureBox();
+            checkBox1 = new CheckBox();
+            txt_clave = new TextBox();
+            label10 = new Label();
             label11 = new Label();
             label7 = new Label();
             label3 = new Label();
@@ -50,31 +60,27 @@
             label1 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            btn_buscar = new Button();
-            btn_eliminar = new Button();
             btn_editar = new Button();
             btn_grabar = new Button();
             btn_nuevo = new Button();
             pictureBox1 = new PictureBox();
             tabPage2 = new TabPage();
-            btn_busca_cli = new Button();
+            btn_busca_usu = new Button();
             txt_dato_buscar = new TextBox();
-            grid_lista_clientes = new DataGridView();
+            grid_lista_usuarios = new DataGridView();
             seleccionar = new DataGridViewButtonColumn();
             panel1 = new Panel();
-            label10 = new Label();
-            txt_clave = new TextBox();
-            checkBox1 = new CheckBox();
             label12 = new Label();
             label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            Locales.SuspendLayout();
+            page_datos.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)grid_lista_clientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)grid_lista_usuarios).BeginInit();
             SuspendLayout();
             // 
             // pictureBox4
@@ -83,24 +89,31 @@
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(0, 0);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(649, 408);
+            pictureBox4.Size = new Size(649, 500);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 1;
             pictureBox4.TabStop = false;
             // 
-            // Locales
+            // page_datos
             // 
-            Locales.Controls.Add(tabPage1);
-            Locales.Controls.Add(tabPage2);
-            Locales.Location = new Point(12, 44);
-            Locales.Name = "Locales";
-            Locales.SelectedIndex = 0;
-            Locales.Size = new Size(625, 356);
-            Locales.TabIndex = 2;
+            page_datos.Controls.Add(tabPage1);
+            page_datos.Controls.Add(tabPage2);
+            page_datos.Location = new Point(12, 44);
+            page_datos.Name = "page_datos";
+            page_datos.SelectedIndex = 0;
+            page_datos.Size = new Size(625, 444);
+            page_datos.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(chk_reportes);
+            tabPage1.Controls.Add(chk_promo);
+            tabPage1.Controls.Add(chk_clientes);
+            tabPage1.Controls.Add(chk_documentos);
+            tabPage1.Controls.Add(chk_usuarios);
+            tabPage1.Controls.Add(label14);
+            tabPage1.Controls.Add(pictureBox5);
             tabPage1.Controls.Add(checkBox1);
             tabPage1.Controls.Add(txt_clave);
             tabPage1.Controls.Add(label10);
@@ -122,8 +135,6 @@
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(pictureBox3);
             tabPage1.Controls.Add(pictureBox2);
-            tabPage1.Controls.Add(btn_buscar);
-            tabPage1.Controls.Add(btn_eliminar);
             tabPage1.Controls.Add(btn_editar);
             tabPage1.Controls.Add(btn_grabar);
             tabPage1.Controls.Add(btn_nuevo);
@@ -131,9 +142,127 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(617, 328);
+            tabPage1.Size = new Size(617, 416);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
+            // 
+            // chk_reportes
+            // 
+            chk_reportes.AutoSize = true;
+            chk_reportes.BackColor = Color.Gainsboro;
+            chk_reportes.FlatStyle = FlatStyle.Popup;
+            chk_reportes.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_reportes.Location = new Point(47, 369);
+            chk_reportes.Name = "chk_reportes";
+            chk_reportes.Size = new Size(85, 21);
+            chk_reportes.TabIndex = 43;
+            chk_reportes.Text = "Reportes";
+            chk_reportes.UseVisualStyleBackColor = false;
+            // 
+            // chk_promo
+            // 
+            chk_promo.AutoSize = true;
+            chk_promo.BackColor = Color.Gainsboro;
+            chk_promo.FlatStyle = FlatStyle.Popup;
+            chk_promo.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_promo.Location = new Point(468, 337);
+            chk_promo.Name = "chk_promo";
+            chk_promo.Size = new Size(97, 21);
+            chk_promo.TabIndex = 42;
+            chk_promo.Text = "Campañas";
+            chk_promo.UseVisualStyleBackColor = false;
+            // 
+            // chk_clientes
+            // 
+            chk_clientes.AutoSize = true;
+            chk_clientes.BackColor = Color.Gainsboro;
+            chk_clientes.FlatStyle = FlatStyle.Popup;
+            chk_clientes.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_clientes.Location = new Point(331, 337);
+            chk_clientes.Name = "chk_clientes";
+            chk_clientes.Size = new Size(78, 21);
+            chk_clientes.TabIndex = 41;
+            chk_clientes.Text = "Clientes";
+            chk_clientes.UseVisualStyleBackColor = false;
+            // 
+            // chk_documentos
+            // 
+            chk_documentos.AutoSize = true;
+            chk_documentos.BackColor = Color.Gainsboro;
+            chk_documentos.FlatStyle = FlatStyle.Popup;
+            chk_documentos.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_documentos.Location = new Point(171, 336);
+            chk_documentos.Name = "chk_documentos";
+            chk_documentos.Size = new Size(109, 21);
+            chk_documentos.TabIndex = 40;
+            chk_documentos.Text = "Documentos";
+            chk_documentos.UseVisualStyleBackColor = false;
+            // 
+            // chk_usuarios
+            // 
+            chk_usuarios.AutoSize = true;
+            chk_usuarios.BackColor = Color.Gainsboro;
+            chk_usuarios.FlatStyle = FlatStyle.Popup;
+            chk_usuarios.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_usuarios.Location = new Point(47, 335);
+            chk_usuarios.Name = "chk_usuarios";
+            chk_usuarios.Size = new Size(83, 21);
+            chk_usuarios.TabIndex = 39;
+            chk_usuarios.Text = "Usuarios";
+            chk_usuarios.UseVisualStyleBackColor = false;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BackColor = Color.Gainsboro;
+            label14.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.Location = new Point(235, 290);
+            label14.Name = "label14";
+            label14.Size = new Size(112, 22);
+            label14.TabIndex = 38;
+            label14.Text = "PERMISOS";
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Gainsboro;
+            pictureBox5.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox5.Location = new Point(6, 280);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(605, 122);
+            pictureBox5.TabIndex = 37;
+            pictureBox5.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.BackColor = Color.Gainsboro;
+            checkBox1.FlatStyle = FlatStyle.Popup;
+            checkBox1.Location = new Point(371, 132);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(58, 19);
+            checkBox1.TabIndex = 36;
+            checkBox1.Text = "Activo";
+            checkBox1.UseVisualStyleBackColor = false;
+            // 
+            // txt_clave
+            // 
+            txt_clave.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_clave.Location = new Point(154, 203);
+            txt_clave.MaxLength = 15;
+            txt_clave.Name = "txt_clave";
+            txt_clave.Size = new Size(152, 23);
+            txt_clave.TabIndex = 35;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Gainsboro;
+            label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(58, 206);
+            label10.Name = "label10";
+            label10.Size = new Size(47, 16);
+            label10.TabIndex = 34;
+            label10.Text = "Clave:";
             // 
             // label11
             // 
@@ -191,12 +320,15 @@
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_cancelar.Location = new Point(254, 16);
+            btn_cancelar.Image = Properties.Resources.limpiar;
+            btn_cancelar.Location = new Point(304, 15);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(81, 39);
+            btn_cancelar.Size = new Size(101, 39);
             btn_cancelar.TabIndex = 24;
             btn_cancelar.Text = "Cancelar";
+            btn_cancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.Click += btn_cancelar_Click;
             // 
             // radioButton2
             // 
@@ -238,6 +370,7 @@
             // 
             txt_correo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txt_correo.Location = new Point(154, 243);
+            txt_correo.MaxLength = 30;
             txt_correo.Name = "txt_correo";
             txt_correo.Size = new Size(232, 23);
             txt_correo.TabIndex = 17;
@@ -276,6 +409,7 @@
             // 
             txt_nombre.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txt_nombre.Location = new Point(154, 168);
+            txt_nombre.MaxLength = 50;
             txt_nombre.Name = "txt_nombre";
             txt_nombre.Size = new Size(388, 23);
             txt_nombre.TabIndex = 10;
@@ -284,6 +418,7 @@
             // 
             txt_codigo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txt_codigo.Location = new Point(154, 132);
+            txt_codigo.MaxLength = 3;
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(152, 23);
             txt_codigo.TabIndex = 9;
@@ -304,7 +439,7 @@
             pictureBox3.BorderStyle = BorderStyle.FixedSingle;
             pictureBox3.Location = new Point(6, 111);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(605, 193);
+            pictureBox3.Size = new Size(605, 163);
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
             // 
@@ -318,55 +453,43 @@
             pictureBox2.TabIndex = 6;
             pictureBox2.TabStop = false;
             // 
-            // btn_buscar
-            // 
-            btn_buscar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_buscar.Location = new Point(418, 15);
-            btn_buscar.Name = "btn_buscar";
-            btn_buscar.Size = new Size(75, 39);
-            btn_buscar.TabIndex = 5;
-            btn_buscar.Text = "Buscar";
-            btn_buscar.UseVisualStyleBackColor = true;
-            // 
-            // btn_eliminar
-            // 
-            btn_eliminar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_eliminar.Location = new Point(339, 16);
-            btn_eliminar.Name = "btn_eliminar";
-            btn_eliminar.Size = new Size(75, 39);
-            btn_eliminar.TabIndex = 4;
-            btn_eliminar.Text = "Eliminar";
-            btn_eliminar.UseVisualStyleBackColor = true;
-            // 
             // btn_editar
             // 
             btn_editar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_editar.Location = new Point(176, 16);
+            btn_editar.Image = Properties.Resources.editar;
+            btn_editar.Location = new Point(211, 15);
             btn_editar.Name = "btn_editar";
-            btn_editar.Size = new Size(75, 39);
+            btn_editar.Size = new Size(85, 39);
             btn_editar.TabIndex = 3;
             btn_editar.Text = "Editar";
+            btn_editar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_editar.UseVisualStyleBackColor = true;
+            btn_editar.Click += btn_editar_Click;
             // 
             // btn_grabar
             // 
             btn_grabar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_grabar.Location = new Point(97, 15);
+            btn_grabar.Image = Properties.Resources.diskette;
+            btn_grabar.Location = new Point(111, 15);
             btn_grabar.Name = "btn_grabar";
-            btn_grabar.Size = new Size(75, 39);
+            btn_grabar.Size = new Size(94, 39);
             btn_grabar.TabIndex = 2;
             btn_grabar.Text = "Grabar";
+            btn_grabar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_grabar.UseVisualStyleBackColor = true;
+            btn_grabar.Click += btn_grabar_Click;
             // 
             // btn_nuevo
             // 
             btn_nuevo.BackColor = Color.Gainsboro;
             btn_nuevo.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_nuevo.Image = Properties.Resources.nuevo;
             btn_nuevo.Location = new Point(16, 15);
             btn_nuevo.Name = "btn_nuevo";
-            btn_nuevo.Size = new Size(75, 39);
+            btn_nuevo.Size = new Size(89, 39);
             btn_nuevo.TabIndex = 1;
             btn_nuevo.Text = "Nuevo";
+            btn_nuevo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_nuevo.UseVisualStyleBackColor = false;
             btn_nuevo.Click += btn_nuevo_Click;
             // 
@@ -381,26 +504,27 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(btn_busca_cli);
+            tabPage2.Controls.Add(btn_busca_usu);
             tabPage2.Controls.Add(txt_dato_buscar);
-            tabPage2.Controls.Add(grid_lista_clientes);
+            tabPage2.Controls.Add(grid_lista_usuarios);
             tabPage2.Controls.Add(panel1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(861, 424);
+            tabPage2.Size = new Size(617, 416);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btn_busca_cli
+            // btn_busca_usu
             // 
-            btn_busca_cli.Location = new Point(292, 21);
-            btn_busca_cli.Name = "btn_busca_cli";
-            btn_busca_cli.Size = new Size(75, 23);
-            btn_busca_cli.TabIndex = 2;
-            btn_busca_cli.Text = "Buscar";
-            btn_busca_cli.UseVisualStyleBackColor = true;
+            btn_busca_usu.Location = new Point(292, 21);
+            btn_busca_usu.Name = "btn_busca_usu";
+            btn_busca_usu.Size = new Size(75, 23);
+            btn_busca_usu.TabIndex = 2;
+            btn_busca_usu.Text = "Buscar";
+            btn_busca_usu.UseVisualStyleBackColor = true;
+            btn_busca_usu.Click += btn_busca_usu_Click;
             // 
             // txt_dato_buscar
             // 
@@ -409,28 +533,31 @@
             txt_dato_buscar.Size = new Size(230, 23);
             txt_dato_buscar.TabIndex = 1;
             // 
-            // grid_lista_clientes
+            // grid_lista_usuarios
             // 
-            grid_lista_clientes.AllowUserToAddRows = false;
-            grid_lista_clientes.AllowUserToDeleteRows = false;
-            grid_lista_clientes.BackgroundColor = Color.Gainsboro;
-            grid_lista_clientes.BorderStyle = BorderStyle.Fixed3D;
-            grid_lista_clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid_lista_clientes.Columns.AddRange(new DataGridViewColumn[] { seleccionar });
-            grid_lista_clientes.Location = new Point(6, 60);
-            grid_lista_clientes.Name = "grid_lista_clientes";
-            grid_lista_clientes.ReadOnly = true;
-            grid_lista_clientes.RowTemplate.Height = 25;
-            grid_lista_clientes.Size = new Size(849, 358);
-            grid_lista_clientes.TabIndex = 0;
+            grid_lista_usuarios.AllowUserToAddRows = false;
+            grid_lista_usuarios.AllowUserToDeleteRows = false;
+            grid_lista_usuarios.BackgroundColor = Color.Gainsboro;
+            grid_lista_usuarios.BorderStyle = BorderStyle.Fixed3D;
+            grid_lista_usuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid_lista_usuarios.Columns.AddRange(new DataGridViewColumn[] { seleccionar });
+            grid_lista_usuarios.Location = new Point(6, 60);
+            grid_lista_usuarios.Name = "grid_lista_usuarios";
+            grid_lista_usuarios.ReadOnly = true;
+            grid_lista_usuarios.RowTemplate.Height = 25;
+            grid_lista_usuarios.Size = new Size(610, 358);
+            grid_lista_usuarios.TabIndex = 0;
+            grid_lista_usuarios.CellContentClick += grid_lista_clientes_CellContentClick;
             // 
             // seleccionar
             // 
+            seleccionar.FlatStyle = FlatStyle.Popup;
             seleccionar.HeaderText = "#";
             seleccionar.Name = "seleccionar";
             seleccionar.ReadOnly = true;
             seleccionar.SortMode = DataGridViewColumnSortMode.Programmatic;
             seleccionar.Text = "Seleccionar";
+            seleccionar.ToolTipText = "Seleccionar fila";
             // 
             // panel1
             // 
@@ -439,35 +566,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(849, 43);
             panel1.TabIndex = 3;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.Gainsboro;
-            label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(58, 206);
-            label10.Name = "label10";
-            label10.Size = new Size(47, 16);
-            label10.TabIndex = 34;
-            label10.Text = "Clave:";
-            // 
-            // txt_clave
-            // 
-            txt_clave.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_clave.Location = new Point(154, 203);
-            txt_clave.Name = "txt_clave";
-            txt_clave.Size = new Size(152, 23);
-            txt_clave.TabIndex = 35;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(154, 277);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(60, 19);
-            checkBox1.TabIndex = 36;
-            checkBox1.Text = "Activo";
-            checkBox1.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -492,24 +590,25 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(649, 408);
+            ClientSize = new Size(649, 500);
             Controls.Add(label13);
             Controls.Add(label12);
-            Controls.Add(Locales);
+            Controls.Add(page_datos);
             Controls.Add(pictureBox4);
             Name = "Frm_usuarios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_usuarios";
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            Locales.ResumeLayout(false);
+            page_datos.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)grid_lista_clientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)grid_lista_usuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -517,7 +616,7 @@
         #endregion
 
         private PictureBox pictureBox4;
-        private TabControl Locales;
+        private TabControl page_datos;
         private TabPage tabPage1;
         private Label label11;
         private Label label7;
@@ -537,22 +636,27 @@
         private Label label1;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Button btn_buscar;
-        private Button btn_eliminar;
         private Button btn_editar;
         private Button btn_grabar;
         private Button btn_nuevo;
         private PictureBox pictureBox1;
         private TabPage tabPage2;
-        private Button btn_busca_cli;
+        private Button btn_busca_usu;
         private TextBox txt_dato_buscar;
-        private DataGridView grid_lista_clientes;
-        private DataGridViewButtonColumn seleccionar;
+        private DataGridView grid_lista_usuarios;
         private Panel panel1;
         private CheckBox checkBox1;
         private TextBox txt_clave;
         private Label label10;
         private Label label12;
         private Label label13;
+        private Label label14;
+        private PictureBox pictureBox5;
+        private CheckBox chk_promo;
+        private CheckBox chk_clientes;
+        private CheckBox chk_documentos;
+        private CheckBox chk_usuarios;
+        private CheckBox chk_reportes;
+        private DataGridViewButtonColumn seleccionar;
     }
 }
