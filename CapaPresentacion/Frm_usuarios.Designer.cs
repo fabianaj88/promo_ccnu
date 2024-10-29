@@ -320,7 +320,7 @@
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_cancelar.Image = Properties.Resources.borrar;
+            btn_cancelar.Image = (Image)resources.GetObject("btn_cancelar.Image");
             btn_cancelar.Location = new Point(304, 15);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(101, 39);
@@ -456,7 +456,7 @@
             // btn_editar
             // 
             btn_editar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_editar.Image = Properties.Resources.editar;
+            btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
             btn_editar.Location = new Point(211, 15);
             btn_editar.Name = "btn_editar";
             btn_editar.Size = new Size(85, 39);
@@ -469,7 +469,7 @@
             // btn_grabar
             // 
             btn_grabar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_grabar.Image = Properties.Resources.diskette;
+            btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
             btn_grabar.Location = new Point(111, 15);
             btn_grabar.Name = "btn_grabar";
             btn_grabar.Size = new Size(94, 39);
@@ -483,7 +483,7 @@
             // 
             btn_nuevo.BackColor = Color.Gainsboro;
             btn_nuevo.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_nuevo.Image = Properties.Resources.nuevo;
+            btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
             btn_nuevo.Location = new Point(16, 15);
             btn_nuevo.Name = "btn_nuevo";
             btn_nuevo.Size = new Size(89, 39);
