@@ -59,7 +59,7 @@ namespace CapaPresentacion
 
             btn_nuevo.Enabled = true;
             btn_grabar.Enabled = false;
-           // btn_eliminar.Enabled = false;
+            // btn_eliminar.Enabled = false;
             btn_editar.Enabled = false;
             //  btn_buscar.Enabled = false;
 
@@ -94,10 +94,10 @@ namespace CapaPresentacion
             carga_inicial();
             if (txt_codigo.Enabled == false)
             {
-               
+
                 busca_usuario(txt_codigo.Text);
             }
-            
+
 
         }
 
@@ -279,8 +279,10 @@ namespace CapaPresentacion
 
             btn_grabar.Enabled = true;
             btn_cancelar.Enabled = true;
-           // btn_eliminar.Enabled = false;
+            // btn_eliminar.Enabled = false;
             btn_nuevo.Enabled = false;
+
+
         }
     }
 }

@@ -320,7 +320,7 @@
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_cancelar.Image = Properties.Resources.limpiar;
+            btn_cancelar.Image = Properties.Resources.borrar;
             btn_cancelar.Location = new Point(304, 15);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(101, 39);
