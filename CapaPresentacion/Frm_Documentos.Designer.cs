@@ -477,8 +477,11 @@
             cmb_loc.Name = "cmb_loc";
             cmb_loc.Size = new Size(161, 24);
             cmb_loc.TabIndex = 3;
+            cmb_loc.SelectedIndexChanged += cmb_loc_SelectedIndexChanged;
+            cmb_loc.TextUpdate += cmb_loc_TextUpdate;
             cmb_loc.TextChanged += cmb_loc_TextChanged;
             cmb_loc.Click += cmb_loc_Click;
+            cmb_loc.Enter += cmb_loc_Enter;
             cmb_loc.Leave += cmb_loc_Leave;
             // 
             // btn_grabarTicket

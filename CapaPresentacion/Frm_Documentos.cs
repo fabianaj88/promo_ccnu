@@ -208,9 +208,11 @@ namespace CapaPresentacion
 
             if (dtLocales.Rows.Count > 0)
             {
+
                 cmb_loc.DataSource = dtLocales;
                 cmb_loc.DisplayMember = "nombre_loc";  // Nombre que se mostrará en el ComboBox
                 cmb_loc.ValueMember = "codigo_loc";    // Valor asociado 
+
             }
             else
             {
@@ -467,14 +469,23 @@ namespace CapaPresentacion
 
         private void FiltrarLocales(string textoBusqueda)
         {
+            // Almacena el texto ingresado por el usuario
+            string textoIngresado = cmb_loc.Text;
+
             // Llamar a la capa de negocio para obtener los locales filtrados por el texto ingresado
             DataTable dtLocales = ndocu.ObtenerLocalesFiltrados(textoBusqueda);
 
             if (dtLocales.Rows.Count > 0)
             {
+                // Desactivar el evento temporalmente para evitar cambios indeseados
+                cmb_loc.SelectedIndexChanged -= cmb_loc_SelectedIndexChanged;
+
+                // Actualizar el DataSource
                 cmb_loc.DataSource = dtLocales;
                 cmb_loc.DisplayMember = "nombre_loc";
                 cmb_loc.ValueMember = "codigo_loc";
+
+                
 
                 // Actualizar sugerencias para autocompletado
                 AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
@@ -483,12 +494,31 @@ namespace CapaPresentacion
                     autoCompleteCollection.Add(row["nombre_loc"].ToString());
                 }
                 cmb_loc.AutoCompleteCustomSource = autoCompleteCollection;
+
+                // Volver a activar el evento
+                cmb_loc.SelectedIndexChanged += cmb_loc_SelectedIndexChanged;
             }
             else
             {
+                // Limpiar el DataSource y sugerencias si no hay coincidencias
                 cmb_loc.DataSource = null;
                 cmb_loc.AutoCompleteCustomSource = null;
             }
+        }
+
+        private void cmb_loc_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_loc_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_loc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
