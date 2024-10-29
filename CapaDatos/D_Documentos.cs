@@ -33,12 +33,22 @@ namespace CapaDatos
             return dt;
         }
 
-            // Método para obtener todos los documentos
-            public DataTable ObtenerTodosLosDocumentos()
+        // Método para obtener promociones vigentes
+        public DataTable ObtenerPromociones()
+        {
+            // Definir la consulta SQL 
+            string query = "SELECT * FROM promociones where estado_pro = 1";
+
+            // Llamar a la función VisualizaS para obtener los datos de la tabla promociones
+            return Cls_funciones.VisualizaS(query);
+        }
+
+        // Método para obtener todos los documentos
+        public DataTable ObtenerTodosLosDocumentos()
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "c.nombre_cli, d.fecfac_doc, d.valfac_doc " +
+                               "d.codigo_loc_do as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +
@@ -56,7 +66,7 @@ namespace CapaDatos
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "c.nombre_cli, d.fecfac_doc, d.valfac_doc " +
+                               "d.codigo_loc_do as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +

@@ -12,7 +12,7 @@ namespace CapaNegocio
 {
     public class N_RegistroDoc
     {
-        public static (float , List<E_RegistroDoc>, bool) ProcesarSaldoCliente(int coddoc, string codigoCliente, float totalFactura, float montoTicket)
+        public static (float , List<E_RegistroDoc>, bool) ProcesarSaldoCliente(int coddoc, string codigoCliente, float totalFactura, float montoTicket, int codpro, bool dobleTic)
         {
             float salActcli = 0;
             // Obtener saldo actual del cliente
@@ -23,12 +23,15 @@ namespace CapaNegocio
             float nuevoSaldo = salActcli + totalFactura;
 
             // Calcular cuántos tickets se pueden generar
-            int cantidadTickets = (int)(nuevoSaldo / montoTicket);
-
-            // Obtener el código de la promoción activa
-            int codpro = 0;
-            object res_codpro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "codigo_pro", "N", "estado_pro = 1");
-            codpro = (int)Convert.ToInt64(res_codpro);
+            int cantidadTickets = 0;
+            if (dobleTic)
+            {
+                cantidadTickets = (int)((nuevoSaldo / montoTicket)*2);
+            }
+            else
+            {
+                cantidadTickets = (int)(nuevoSaldo / montoTicket);
+            }
 
             // Obtener el límite de tickets permitido por la promoción
             int limpro = 0;

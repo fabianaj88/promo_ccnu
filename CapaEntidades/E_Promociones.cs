@@ -12,7 +12,7 @@ namespace CapaEntidades
         public string nombre_pro;
         public DateTime fec_ini_pro;
         public DateTime fec_fin_pro;
-        public string estado_pro;
+        public bool estado_pro;
         public float monto_pro;
         public int limtick_pro;
     }
