@@ -38,6 +38,8 @@ namespace CapaPresentacion
             lbl_codpro.Text = cod_pro.ToString();
 
 
+
+
         }
         private void btn_gentik_Click(object sender, EventArgs e)
         {
@@ -154,6 +156,15 @@ namespace CapaPresentacion
 
                         if (exito_reg)
                         {
+                            // Cambiar a la pestaña de impresión
+
+                            tabControl1.SelectedTab = tabControl1.TabPages[2];
+
+                            // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
+                            btn_impTicket_Click(sender, e);
+
+                            tabControl1.SelectedTab = tabControl1.TabPages[0];
+
                             MessageBox.Show("Tickets generados con éxito.");
                             LimpiarGenTicket();
                         }
@@ -197,9 +208,11 @@ namespace CapaPresentacion
 
             if (dtLocales.Rows.Count > 0)
             {
+
                 cmb_loc.DataSource = dtLocales;
                 cmb_loc.DisplayMember = "nombre_loc";  // Nombre que se mostrará en el ComboBox
                 cmb_loc.ValueMember = "codigo_loc";    // Valor asociado 
+
             }
             else
             {
@@ -303,24 +316,29 @@ namespace CapaPresentacion
 
         private void txt_cli_Leave(object sender, EventArgs e)
         {
-            if (txt_nomcli.Text == "")
+            if (txt_cli.Text != "")
             {
-                Frm_CrearCliente frm = new Frm_CrearCliente();
-
-                // Mostrar el formulario de cliente como modal
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (txt_nomcli.Text == "")
                 {
-                    // Después de cerrar el formulario modal, puedes acceder al cliente creado
-                    E_Clientes cliente = frm.ClienteCreado;
                     string codigoCliente = txt_cli.Text;
-                    object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
-                    txt_nomcli.Text = codcli.ToString();
-                    //MessageBox.Show("Cliente agregado.");
+                    Frm_CrearCliente frm = new Frm_CrearCliente(codigoCliente);
+
+                    // Mostrar el formulario de cliente como modal
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Después de cerrar el formulario modal, puedes acceder al cliente creado
+                        E_Clientes cliente = frm.ClienteCreado;
+
+                        object codcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "CONCAT(LTRIM(RTRIM(nombre_cli)),' ', LTRIM(RTRIM(apellido_cli)))", "C", "codigo_cli='" + codigoCliente + "'");
+                        txt_nomcli.Text = codcli.ToString();
+                    }
                 }
-
             }
-            //txt_numf.Focus();
-
+            else
+            {
+                MessageBox.Show("Ingrese el código del cliente.");
+                return;
+            }
         }
 
         private void dtim_fec_Leave(object sender, EventArgs e)
@@ -378,7 +396,7 @@ namespace CapaPresentacion
             cmb_loc.Text = "";
             txt_cli.Text = "";
             txt_tot.Text = "";
-            txt_tot.Enabled = false;
+            //txt_tot.Enabled = false;
             //txt_obv.Text = "";
             txt_saldocli.Text = "";
             txt_saldocli.Visible = false;
@@ -401,24 +419,6 @@ namespace CapaPresentacion
 
         }
 
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void ImprimiTicket(object sender, PrintPageEventArgs e)
         {
             Bitmap bm = new Bitmap(panel_impTickets.Width, panel_impTickets.Height);
@@ -426,20 +426,99 @@ namespace CapaPresentacion
             e.Graphics.DrawImage(bm, 0, 0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_impTicket_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.ShowDialog();
+            // Recorrer cada fila del DataGridView para generar y mostrar cada ticket
+            foreach (DataGridViewRow row in dgvRegisDoc.Rows)
+            {
+                if (row.Cells["num_Tic"].Value != null) // Asegurarse de que no esté vacío
+                {
+                    // Obtener el número de ticket de la fila actual
+                    string numeroTicket = row.Cells["num_tic"].Value.ToString();
+
+                    // Configurar el Label lblnregdocT con el número de ticket actual
+                    lbl_nregdocT.Text = numeroTicket;
+
+                    printPreviewDialog1.Document = printDocument1;
+                    printPreviewDialog1.ShowDialog();
+                }
+            }
+            //printPreviewDialog1.ShowDialog();
         }
 
         private void LlenarPanelImp()
         {
             lbl_numdT.Text = txt_num.Text;
-            lbl_ndT.Text = txt_num.Text;
+            txt_proT.Text = lbl_promo.Text;
             object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            object fecproT = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro='" + lbl_codpro.Text + "'");
+            DateTime fecha = DateTime.Parse(fecproT.ToString());
+            lbl_fechaproT.Text = fecha.ToString("dd/MM/yyyy");
             txt_nomcliT.Text = txt_nomcli.Text;
             txt_telfT.Text = nomTcli.ToString();
             txt_dirT.Text = dirTcli.ToString();
+        }
+
+        private void cmb_loc_TextChanged(object sender, EventArgs e)
+        {
+            // Realizar búsqueda en base a lo que el usuario está escribiendo
+            string textoBusqueda = cmb_loc.Text;
+            FiltrarLocales(textoBusqueda);
+        }
+
+        private void FiltrarLocales(string textoBusqueda)
+        {
+            // Almacena el texto ingresado por el usuario
+            string textoIngresado = cmb_loc.Text;
+
+            // Llamar a la capa de negocio para obtener los locales filtrados por el texto ingresado
+            DataTable dtLocales = ndocu.ObtenerLocalesFiltrados(textoBusqueda);
+
+            if (dtLocales.Rows.Count > 0)
+            {
+                // Desactivar el evento temporalmente para evitar cambios indeseados
+                cmb_loc.SelectedIndexChanged -= cmb_loc_SelectedIndexChanged;
+
+                // Actualizar el DataSource
+                cmb_loc.DataSource = dtLocales;
+                cmb_loc.DisplayMember = "nombre_loc";
+                cmb_loc.ValueMember = "codigo_loc";
+
+                
+
+                // Actualizar sugerencias para autocompletado
+                AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+                foreach (DataRow row in dtLocales.Rows)
+                {
+                    autoCompleteCollection.Add(row["nombre_loc"].ToString());
+                }
+                cmb_loc.AutoCompleteCustomSource = autoCompleteCollection;
+
+                // Volver a activar el evento
+                cmb_loc.SelectedIndexChanged += cmb_loc_SelectedIndexChanged;
+            }
+            else
+            {
+                // Limpiar el DataSource y sugerencias si no hay coincidencias
+                cmb_loc.DataSource = null;
+                cmb_loc.AutoCompleteCustomSource = null;
+            }
+        }
+
+        private void cmb_loc_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_loc_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_loc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

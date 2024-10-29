@@ -46,6 +46,10 @@ namespace CapaNegocio
         {
             return docu.ObtenerLocales();
         }
+        public DataTable ObtenerLocalesFiltrados(string textoBusqueda)
+        {
+            return docu.ObtenerLocalesFiltrados(textoBusqueda);
+        }
 
         // Método para buscar documentos por un término de búsqueda
         public DataTable BuscarDocumentos(string busqueda)

@@ -52,9 +52,14 @@ namespace CapaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Frm_Usuarios frm = new Frm_Usuarios();
+            Frm_usuarios frm = new Frm_usuarios();
 
             frm.Show();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
