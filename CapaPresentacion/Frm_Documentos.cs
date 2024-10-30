@@ -44,11 +44,11 @@ namespace CapaPresentacion
         }
         private void cmb_loc_TextUpdate(object sender, EventArgs e)
         {
-            
+
         }
         private void cmb_loc_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void cmb_loc_Leave(object sender, EventArgs e)
         {
@@ -224,7 +224,7 @@ namespace CapaPresentacion
             {
                 // Ejecutar la lógica del botón 'Generar Ticket' al presionar Enter
                 btn_gentik_Click(sender, e);
-                LlenarPanelImp();
+                //LlenarPanelImp();
             }
         }
 
@@ -348,7 +348,9 @@ namespace CapaPresentacion
                     dgvRegisDoc.Columns.Clear();
                 }
 
+                LlenarPanelImp();
             }
+
         }
 
         private void btn_grabarTicket_Click(object sender, EventArgs e)
@@ -624,8 +626,16 @@ namespace CapaPresentacion
                     // Configurar el Label lblnregdocT con el número de ticket actual
                     lbl_nregdocT.Text = numeroTicket;
 
-                    printPreviewDialog1.Document = printDocument1;
-                    printPreviewDialog1.ShowDialog();
+                    //---imprimir con vista previa--------------
+                    //printPreviewDialog1.Document = printDocument1;
+                    //printPreviewDialog1.ShowDialog();
+                    //--------------------------------------------
+
+                    // Establecer el documento de impresión
+                    printDocument1.PrintPage += new PrintPageEventHandler(ImprimiTicket);
+
+                    // Enviar directamente a la impresora predeterminada sin vista previa
+                    printDocument1.Print();
                 }
             }
             //printPreviewDialog1.ShowDialog();
@@ -658,7 +668,12 @@ namespace CapaPresentacion
 
         }
 
-        
+        private void txt_dirT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
 

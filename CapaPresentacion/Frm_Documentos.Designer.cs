@@ -71,6 +71,7 @@
             btn_impTicket = new Button();
             panel_impTickets = new Panel();
             panel4 = new Panel();
+            label8 = new Label();
             lbl_numdT = new Label();
             label19 = new Label();
             txt_dirT = new TextBox();
@@ -613,12 +614,13 @@
             panel_impTickets.Controls.Add(panel4);
             panel_impTickets.Location = new Point(19, 57);
             panel_impTickets.Name = "panel_impTickets";
-            panel_impTickets.Size = new Size(828, 227);
+            panel_impTickets.Size = new Size(828, 202);
             panel_impTickets.TabIndex = 0;
             // 
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label8);
             panel4.Controls.Add(lbl_numdT);
             panel4.Controls.Add(label19);
             panel4.Controls.Add(txt_dirT);
@@ -632,16 +634,26 @@
             panel4.Controls.Add(txt_proT);
             panel4.Location = new Point(21, 9);
             panel4.Name = "panel4";
-            panel4.Size = new Size(287, 210);
+            panel4.Size = new Size(248, 185);
             panel4.TabIndex = 35;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(79, 156);
+            label8.Name = "label8";
+            label8.Size = new Size(90, 16);
+            label8.TabIndex = 36;
+            label8.Text = "Válido hasta:";
             // 
             // lbl_numdT
             // 
             lbl_numdT.AutoSize = true;
-            lbl_numdT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_numdT.Location = new Point(10, 7);
+            lbl_numdT.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_numdT.Location = new Point(3, 157);
             lbl_numdT.Name = "lbl_numdT";
-            lbl_numdT.Size = new Size(52, 16);
+            lbl_numdT.Size = new Size(48, 15);
             lbl_numdT.TabIndex = 24;
             lbl_numdT.Text = "Nº. Doc";
             // 
@@ -649,7 +661,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(10, 164);
+            label19.Location = new Point(10, 127);
             label19.Name = "label19";
             label19.Size = new Size(65, 16);
             label19.TabIndex = 31;
@@ -658,18 +670,20 @@
             // txt_dirT
             // 
             txt_dirT.BackColor = SystemColors.Window;
+            txt_dirT.BorderStyle = BorderStyle.None;
             txt_dirT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_dirT.Location = new Point(82, 161);
+            txt_dirT.Location = new Point(82, 127);
             txt_dirT.Name = "txt_dirT";
             txt_dirT.ReadOnly = true;
-            txt_dirT.Size = new Size(186, 22);
+            txt_dirT.Size = new Size(148, 15);
             txt_dirT.TabIndex = 32;
+            txt_dirT.TextChanged += txt_dirT_TextChanged;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label18.Location = new Point(10, 137);
+            label18.Location = new Point(10, 100);
             label18.Name = "label18";
             label18.Size = new Size(58, 16);
             label18.TabIndex = 29;
@@ -679,7 +693,7 @@
             // 
             lbl_fechaproT.AutoSize = true;
             lbl_fechaproT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_fechaproT.Location = new Point(82, 38);
+            lbl_fechaproT.Location = new Point(172, 155);
             lbl_fechaproT.Name = "lbl_fechaproT";
             lbl_fechaproT.Size = new Size(51, 16);
             lbl_fechaproT.TabIndex = 34;
@@ -689,7 +703,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(10, 109);
+            label17.Location = new Point(10, 72);
             label17.Name = "label17";
             label17.Size = new Size(56, 16);
             label17.TabIndex = 27;
@@ -699,40 +713,42 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(82, 71);
+            label14.Location = new Point(45, 37);
             label14.Name = "label14";
-            label14.Size = new Size(27, 19);
+            label14.Size = new Size(90, 19);
             label14.TabIndex = 26;
-            label14.Text = "Nº";
+            label14.Text = "TICKET Nº";
             // 
             // txt_telfT
             // 
             txt_telfT.BackColor = SystemColors.Window;
+            txt_telfT.BorderStyle = BorderStyle.None;
             txt_telfT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_telfT.Location = new Point(82, 134);
+            txt_telfT.Location = new Point(82, 101);
             txt_telfT.Name = "txt_telfT";
             txt_telfT.ReadOnly = true;
-            txt_telfT.Size = new Size(186, 22);
+            txt_telfT.Size = new Size(148, 15);
             txt_telfT.TabIndex = 30;
             // 
             // lbl_nregdocT
             // 
             lbl_nregdocT.AutoSize = true;
-            lbl_nregdocT.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_nregdocT.Location = new Point(110, 72);
+            lbl_nregdocT.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl_nregdocT.Location = new Point(135, 37);
             lbl_nregdocT.Name = "lbl_nregdocT";
-            lbl_nregdocT.Size = new Size(96, 18);
+            lbl_nregdocT.Size = new Size(104, 19);
             lbl_nregdocT.TabIndex = 25;
             lbl_nregdocT.Text = "Nº. Reg_doc";
             // 
             // txt_nomcliT
             // 
             txt_nomcliT.BackColor = SystemColors.Window;
+            txt_nomcliT.BorderStyle = BorderStyle.None;
             txt_nomcliT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_nomcliT.Location = new Point(82, 106);
+            txt_nomcliT.Location = new Point(82, 72);
             txt_nomcliT.Name = "txt_nomcliT";
             txt_nomcliT.ReadOnly = true;
-            txt_nomcliT.Size = new Size(186, 22);
+            txt_nomcliT.Size = new Size(148, 15);
             txt_nomcliT.TabIndex = 28;
             // 
             // txt_proT
@@ -740,10 +756,10 @@
             txt_proT.BackColor = SystemColors.Window;
             txt_proT.BorderStyle = BorderStyle.None;
             txt_proT.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_proT.Location = new Point(10, 12);
+            txt_proT.Location = new Point(3, 8);
             txt_proT.Name = "txt_proT";
             txt_proT.ReadOnly = true;
-            txt_proT.Size = new Size(263, 22);
+            txt_proT.Size = new Size(240, 22);
             txt_proT.TabIndex = 35;
             txt_proT.Text = "CAMPAÑA";
             txt_proT.TextAlign = HorizontalAlignment.Center;
@@ -878,5 +894,6 @@
         private CheckBox chk_dobleTi;
         private PictureBox pictureBox2;
         private PictureBox pib_dobleT;
+        private Label label8;
     }
 }
