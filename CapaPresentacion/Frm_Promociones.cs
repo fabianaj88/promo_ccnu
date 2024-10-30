@@ -83,14 +83,21 @@ namespace CapaPresentacion
                 }
             }
         }
-
+        private void btn_cancelarpro_Click(object sender, EventArgs e)
+        {
+            LimpiarPromocion();
+        }
         private void LimpiarPromocion()
         {
+            DateTime fechaActual = DateTime.Now;
             //txt_codigoloc.Text = "";
             txt_nompro.Text = "";
             txt_montpro.Text = "";
+            txt_limticket.Text = "";
+            dtp_fecinipro.Value = fechaActual;
+            dtp_fecfinpro.Value = fechaActual;
 
-
+            btn_grabpro.Enabled = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -102,6 +109,56 @@ namespace CapaPresentacion
         {
 
 
+        }
+
+        private void btn_nuevopromo_Click(object sender, EventArgs e)
+        {
+            NuevoPromo();
+        }
+
+        private void NuevoPromo()
+        {
+
+            txt_nompro.Enabled = true;
+            dtp_fecinipro.Enabled = true;
+            dtp_fecfinpro.Enabled = true;
+            txt_montpro.Enabled = true;
+            txt_limticket.Enabled = true;
+
+            btn_grabpro.Enabled = true;
+            btn_cancelarpro.Enabled = true;
+
+        }
+
+        private void btn_buspro_Click(object sender, EventArgs e)
+        {
+            string busqueda = txt_buscarpro.Text;
+            N_Documentos negocioDocumentos = new N_Documentos();
+            DataTable dt_regpro = negocioDocumentos.BuscarPromociones(busqueda);
+            dtg_lisPro.DataSource = dt_regpro;
+        }
+
+        private void dtg_lisPro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            N_Documentos negocioDocumentos = new N_Documentos();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = dtg_lisPro.Rows[e.RowIndex];
+
+                // Llenar los controles TextBox
+                txt_codpro.Text = filaSeleccionada.Cells["Codigo"].Value.ToString();
+                txt_nompro.Text = filaSeleccionada.Cells["Campaña"].Value.ToString();
+                dtp_fecinipro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Inicio"].Value);
+                dtp_fecfinpro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Fin"].Value);
+                txt_montpro.Text = filaSeleccionada.Cells["Monto"].Value.ToString();
+                txt_limticket.Text = filaSeleccionada.Cells["Limite"].Value.ToString();
+                chk_estpro.Checked = Convert.ToBoolean(filaSeleccionada.Cells["Activo"].Value);
+
+                // Redirigir al primer TabPage
+                
+
+                tabControl1.SelectedTab = tabControl1.TabPages[0];
+            }
         }
     }
 }

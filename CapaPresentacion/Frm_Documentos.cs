@@ -39,15 +39,17 @@ namespace CapaPresentacion
             {
                 LlenarComboBoxLocales();
             }
-            else
-            {
-                // Realizar búsqueda en base a lo que el usuario está escribiendo
-                string textoBusqueda = cmb_loc.Text;
-                FiltrarLocales(textoBusqueda);
-            }
+
 
         }
-
+        private void cmb_loc_TextUpdate(object sender, EventArgs e)
+        {
+            
+        }
+        private void cmb_loc_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
         private void cmb_loc_Leave(object sender, EventArgs e)
         {
 
@@ -57,7 +59,7 @@ namespace CapaPresentacion
                 FiltrarLocales(textoBusqueda);
             }
 
-            txt_cli.Focus();
+            //cmb_loc.Focus();
         }
 
         private void FiltrarLocales(string textoBusqueda)
@@ -345,7 +347,7 @@ namespace CapaPresentacion
                     dgvRegisDoc.DataSource = null;
                     dgvRegisDoc.Columns.Clear();
                 }
-                
+
             }
         }
 
@@ -474,7 +476,7 @@ namespace CapaPresentacion
             dgvRegisDoc.Columns.Clear();
             cmb_nompro.Enabled = false;
             cmb_nompro.Text = "";
-            
+
             chk_dobleTi.Visible = false;
             pib_dobleT.Visible = false;
         }
@@ -653,6 +655,12 @@ namespace CapaPresentacion
             txt_dirT.Text = dirTcli.ToString();
 
         }
+
+        
+
+
+
+
 
 
 

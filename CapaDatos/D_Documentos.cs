@@ -38,12 +38,42 @@ namespace CapaDatos
         {
             DateTime fechaActual = DateTime.Now;
             // Definir la consulta SQL 
-            string query = "SELECT * FROM promociones where Convert(date,fec_ini_pro) <= '" + fechaActual.ToString() + "' and Convert(date,fec_fin_pro) >= '" + fechaActual.ToString() + "'";
+            string query = "SELECT * FROM promociones where Convert(date,fec_ini_pro) <= '" + fechaActual.ToString() + "' and Convert(date,fec_fin_pro) >= '" + fechaActual.ToString() + "' and estado_pro = 1";
 
             // Llamar a la función VisualizaS para obtener los datos de la tabla promociones
             return Cls_funciones.VisualizaS(query);
         }
+        
+        // Método para obtener todos las promociones
+        public DataTable ObtenerTodasLasPromo()
+        {
 
+            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pr as Monto, limtick_pro as Limite, estado_pro as Activo"+
+                           "FROM promociones " +
+                           "ORDER BY fec_ini_pro";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+
+        // Método para buscar promociones según un criterio
+        public DataTable BuscarPromo(string busqueda)
+        {
+
+            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pr as Monto, limtick_pro as Limite, estado_pro as Activo" +
+                           "FROM promociones " +
+                           "WHERE codigo_pro LIKE '%" + busqueda + "%' OR " +
+                           "nombre_pro LIKE '%" + busqueda + "%'" +
+                           "ORDER BY fec_ini_pro";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+            return dt;
+
+        }
         // Método para obtener todos los documentos
         public DataTable ObtenerTodosLosDocumentos()
         {

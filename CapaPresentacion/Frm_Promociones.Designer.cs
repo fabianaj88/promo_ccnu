@@ -33,6 +33,7 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             panel2 = new Panel();
+            chk_estpro = new CheckBox();
             txt_limticket = new TextBox();
             dtp_fecinipro = new DateTimePicker();
             dtp_fecfinpro = new DateTimePicker();
@@ -46,16 +47,15 @@
             txt_nompro = new TextBox();
             txt_codpro = new TextBox();
             panel1 = new Panel();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
+            btn_cancelarpro = new Button();
+            btn_edipro = new Button();
             btn_grabpro = new Button();
-            button1 = new Button();
+            btn_nuevopromo = new Button();
             tabPage2 = new TabPage();
-            button2 = new Button();
-            textBox1 = new TextBox();
             dtg_lisPro = new DataGridView();
             panel3 = new Panel();
+            btn_buspro = new Button();
+            txt_buscarpro = new TextBox();
             label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
@@ -103,6 +103,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(chk_estpro);
             panel2.Controls.Add(txt_limticket);
             panel2.Controls.Add(dtp_fecinipro);
             panel2.Controls.Add(dtp_fecfinpro);
@@ -120,51 +121,69 @@
             panel2.Size = new Size(825, 363);
             panel2.TabIndex = 1;
             // 
+            // chk_estpro
+            // 
+            chk_estpro.AutoSize = true;
+            chk_estpro.BackColor = Color.Gainsboro;
+            chk_estpro.CheckAlign = ContentAlignment.MiddleRight;
+            chk_estpro.Enabled = false;
+            chk_estpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            chk_estpro.Location = new Point(534, 49);
+            chk_estpro.Name = "chk_estpro";
+            chk_estpro.Size = new Size(86, 20);
+            chk_estpro.TabIndex = 16;
+            chk_estpro.Text = "Desactivar";
+            chk_estpro.UseVisualStyleBackColor = false;
+            // 
             // txt_limticket
             // 
-            txt_limticket.Location = new Point(175, 259);
+            txt_limticket.Enabled = false;
+            txt_limticket.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_limticket.Location = new Point(175, 229);
             txt_limticket.Name = "txt_limticket";
             txt_limticket.ShortcutsEnabled = false;
-            txt_limticket.Size = new Size(159, 23);
+            txt_limticket.Size = new Size(159, 22);
             txt_limticket.TabIndex = 15;
             // 
             // dtp_fecinipro
             // 
-            dtp_fecinipro.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_fecinipro.Enabled = false;
+            dtp_fecinipro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_fecinipro.Format = DateTimePickerFormat.Short;
-            dtp_fecinipro.Location = new Point(175, 130);
+            dtp_fecinipro.Location = new Point(175, 120);
             dtp_fecinipro.Name = "dtp_fecinipro";
-            dtp_fecinipro.Size = new Size(159, 23);
+            dtp_fecinipro.Size = new Size(159, 22);
             dtp_fecinipro.TabIndex = 14;
             dtp_fecinipro.Value = new DateTime(2024, 10, 16, 12, 37, 55, 0);
             // 
             // dtp_fecfinpro
             // 
-            dtp_fecfinpro.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_fecfinpro.Enabled = false;
+            dtp_fecfinpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_fecfinpro.Format = DateTimePickerFormat.Short;
-            dtp_fecfinpro.Location = new Point(175, 170);
+            dtp_fecfinpro.Location = new Point(175, 157);
             dtp_fecfinpro.Name = "dtp_fecfinpro";
-            dtp_fecfinpro.Size = new Size(159, 23);
+            dtp_fecfinpro.Size = new Size(159, 22);
             dtp_fecfinpro.TabIndex = 13;
             dtp_fecfinpro.Value = new DateTime(2024, 10, 16, 12, 33, 25, 0);
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(41, 218);
+            label6.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(41, 193);
             label6.Name = "label6";
-            label6.Size = new Size(50, 16);
+            label6.Size = new Size(47, 16);
             label6.TabIndex = 11;
             label6.Text = "Monto:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(41, 261);
+            label5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(41, 231);
             label5.Name = "label5";
-            label5.Size = new Size(116, 16);
+            label5.Size = new Size(110, 16);
             label5.TabIndex = 10;
             label5.Text = "Limite de Tickets:";
             label5.Click += label5_Click;
@@ -172,128 +191,143 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(41, 175);
+            label4.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(41, 162);
             label4.Name = "label4";
-            label4.Size = new Size(70, 16);
+            label4.Size = new Size(64, 16);
             label4.TabIndex = 9;
             label4.Text = "Fecha fin:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(41, 130);
+            label3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(41, 120);
             label3.Name = "label3";
-            label3.Size = new Size(87, 16);
+            label3.Size = new Size(81, 16);
             label3.TabIndex = 8;
             label3.Text = "Fecha inicio:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(41, 85);
             label2.Name = "label2";
-            label2.Size = new Size(78, 16);
+            label2.Size = new Size(73, 16);
             label2.TabIndex = 7;
             label2.Text = "Promoción:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(41, 41);
+            label1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(41, 49);
             label1.Name = "label1";
-            label1.Size = new Size(56, 16);
+            label1.Size = new Size(51, 16);
             label1.TabIndex = 6;
             label1.Text = "Código:";
             // 
             // txt_montpro
             // 
-            txt_montpro.Location = new Point(175, 218);
+            txt_montpro.Enabled = false;
+            txt_montpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_montpro.Location = new Point(175, 193);
             txt_montpro.Name = "txt_montpro";
-            txt_montpro.Size = new Size(159, 23);
+            txt_montpro.Size = new Size(159, 22);
             txt_montpro.TabIndex = 5;
             // 
             // txt_nompro
             // 
+            txt_nompro.Enabled = false;
+            txt_nompro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_nompro.Location = new Point(175, 83);
             txt_nompro.Name = "txt_nompro";
-            txt_nompro.Size = new Size(276, 23);
+            txt_nompro.Size = new Size(276, 22);
             txt_nompro.TabIndex = 1;
             // 
             // txt_codpro
             // 
             txt_codpro.Enabled = false;
-            txt_codpro.Location = new Point(175, 39);
+            txt_codpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_codpro.Location = new Point(175, 47);
             txt_codpro.Name = "txt_codpro";
-            txt_codpro.Size = new Size(159, 23);
+            txt_codpro.Size = new Size(159, 22);
             txt_codpro.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.BackColor = Color.LightSteelBlue;
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(btn_cancelarpro);
+            panel1.Controls.Add(btn_edipro);
             panel1.Controls.Add(btn_grabpro);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btn_nuevopromo);
             panel1.Location = new Point(6, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(825, 52);
+            panel1.Size = new Size(825, 53);
             panel1.TabIndex = 0;
             // 
-            // button5
+            // btn_cancelarpro
             // 
-            button5.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(448, 9);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 35);
-            button5.TabIndex = 7;
-            button5.Text = "Buscar";
-            button5.UseVisualStyleBackColor = true;
+            btn_cancelarpro.BackColor = Color.LightGray;
+            btn_cancelarpro.Enabled = false;
+            btn_cancelarpro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_cancelarpro.Image = (Image)resources.GetObject("btn_cancelarpro.Image");
+            btn_cancelarpro.ImageAlign = ContentAlignment.MiddleRight;
+            btn_cancelarpro.Location = new Point(389, 9);
+            btn_cancelarpro.Name = "btn_cancelarpro";
+            btn_cancelarpro.Size = new Size(112, 35);
+            btn_cancelarpro.TabIndex = 6;
+            btn_cancelarpro.Text = "Cancelar";
+            btn_cancelarpro.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_cancelarpro.UseVisualStyleBackColor = false;
+            btn_cancelarpro.Click += btn_cancelarpro_Click;
             // 
-            // button4
+            // btn_edipro
             // 
-            button4.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(344, 9);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 35);
-            button4.TabIndex = 6;
-            button4.Text = "Eliminar";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(240, 9);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 35);
-            button3.TabIndex = 5;
-            button3.Text = "Editar";
-            button3.UseVisualStyleBackColor = true;
+            btn_edipro.BackColor = Color.LightGray;
+            btn_edipro.Enabled = false;
+            btn_edipro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_edipro.Image = (Image)resources.GetObject("btn_edipro.Image");
+            btn_edipro.ImageAlign = ContentAlignment.MiddleRight;
+            btn_edipro.Location = new Point(273, 9);
+            btn_edipro.Name = "btn_edipro";
+            btn_edipro.Size = new Size(112, 35);
+            btn_edipro.TabIndex = 5;
+            btn_edipro.Text = "Editar";
+            btn_edipro.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_edipro.UseVisualStyleBackColor = false;
             // 
             // btn_grabpro
             // 
-            btn_grabpro.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_grabpro.Location = new Point(138, 9);
+            btn_grabpro.BackColor = Color.LightGray;
+            btn_grabpro.Enabled = false;
+            btn_grabpro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_grabpro.Image = (Image)resources.GetObject("btn_grabpro.Image");
+            btn_grabpro.ImageAlign = ContentAlignment.MiddleRight;
+            btn_grabpro.Location = new Point(157, 9);
             btn_grabpro.Name = "btn_grabpro";
-            btn_grabpro.Size = new Size(75, 35);
+            btn_grabpro.Size = new Size(112, 35);
             btn_grabpro.TabIndex = 4;
             btn_grabpro.Text = "Grabar";
-            btn_grabpro.UseVisualStyleBackColor = true;
+            btn_grabpro.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_grabpro.UseVisualStyleBackColor = false;
             btn_grabpro.Click += btn_grabpro_Click;
             // 
-            // button1
+            // btn_nuevopromo
             // 
-            button1.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(41, 9);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 35);
-            button1.TabIndex = 3;
-            button1.Text = "Nuevo";
-            button1.UseVisualStyleBackColor = true;
+            btn_nuevopromo.BackColor = Color.LightGray;
+            btn_nuevopromo.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_nuevopromo.Image = (Image)resources.GetObject("btn_nuevopromo.Image");
+            btn_nuevopromo.ImageAlign = ContentAlignment.MiddleRight;
+            btn_nuevopromo.Location = new Point(41, 9);
+            btn_nuevopromo.Name = "btn_nuevopromo";
+            btn_nuevopromo.Size = new Size(112, 35);
+            btn_nuevopromo.TabIndex = 3;
+            btn_nuevopromo.Text = "Nuevo";
+            btn_nuevopromo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_nuevopromo.UseVisualStyleBackColor = false;
+            btn_nuevopromo.Click += btn_nuevopromo_Click;
             // 
             // tabPage2
             // 
@@ -307,23 +341,6 @@
             tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            button2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(326, 10);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Buscar";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(31, 10);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(264, 23);
-            textBox1.TabIndex = 1;
-            // 
             // dtg_lisPro
             // 
             dtg_lisPro.BackgroundColor = Color.Gainsboro;
@@ -334,17 +351,40 @@
             dtg_lisPro.RowTemplate.Height = 25;
             dtg_lisPro.Size = new Size(827, 368);
             dtg_lisPro.TabIndex = 0;
+            dtg_lisPro.CellClick += dtg_lisPro_CellClick;
             // 
             // panel3
             // 
             panel3.BackColor = Color.LightSteelBlue;
-            panel3.Controls.Add(button2);
-            panel3.Controls.Add(textBox1);
-            panel3.Location = new Point(4, 8);
+            panel3.Controls.Add(btn_buspro);
+            panel3.Controls.Add(txt_buscarpro);
+            panel3.Location = new Point(4, 5);
             panel3.Name = "panel3";
-            panel3.Size = new Size(827, 43);
+            panel3.Size = new Size(827, 47);
             panel3.TabIndex = 3;
             panel3.Paint += panel3_Paint;
+            // 
+            // btn_buspro
+            // 
+            btn_buspro.BackColor = Color.LightGray;
+            btn_buspro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_buspro.Image = (Image)resources.GetObject("btn_buspro.Image");
+            btn_buspro.ImageAlign = ContentAlignment.MiddleRight;
+            btn_buspro.Location = new Point(316, 6);
+            btn_buspro.Name = "btn_buspro";
+            btn_buspro.Size = new Size(112, 35);
+            btn_buspro.TabIndex = 8;
+            btn_buspro.Text = "Buscar";
+            btn_buspro.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_buspro.UseVisualStyleBackColor = false;
+            btn_buspro.Click += btn_buspro_Click;
+            // 
+            // txt_buscarpro
+            // 
+            txt_buscarpro.Location = new Point(32, 12);
+            txt_buscarpro.Name = "txt_buscarpro";
+            txt_buscarpro.Size = new Size(264, 23);
+            txt_buscarpro.TabIndex = 1;
             // 
             // label7
             // 
@@ -389,14 +429,13 @@
         private TabPage tabPage2;
         private Panel panel2;
         private Panel panel1;
-        private Button button1;
+        private Button btn_nuevopromo;
         private Button btn_grabpro;
-        private Button button3;
+        private Button btn_edipro;
         private TextBox txt_montpro;
         private TextBox txt_nompro;
         private TextBox txt_codpro;
-        private Button button5;
-        private Button button4;
+        private Button btn_cancelarpro;
         private Label label1;
         private Label label6;
         private Label label5;
@@ -408,8 +447,9 @@
         private Label label7;
         private TextBox txt_limticket;
         private Panel panel3;
-        private Button button2;
-        private TextBox textBox1;
+        private TextBox txt_buscarpro;
         private DataGridView dtg_lisPro;
+        private Button btn_buspro;
+        private CheckBox chk_estpro;
     }
 }

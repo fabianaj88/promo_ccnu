@@ -57,7 +57,20 @@ namespace CapaNegocio
         {
             return docu.ObtenerPromociones();
         }
-        
+        // Método para buscar documentos por un término de búsqueda
+        public DataTable BuscarPromociones(string busqueda)
+        {
+            D_Documentos datosPromo = new D_Documentos();
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                return datosPromo.ObtenerTodasLasPromo();
+            }
+            else
+            {
+                return datosPromo.BuscarPromo(busqueda);
+            }
+        }
+
         // Método para buscar documentos por un término de búsqueda
         public DataTable BuscarDocumentos(string busqueda)
         {

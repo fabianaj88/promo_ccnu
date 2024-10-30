@@ -71,6 +71,7 @@
             btn_impTicket = new Button();
             panel_impTickets = new Panel();
             panel4 = new Panel();
+            lbl_numdT = new Label();
             label19 = new Label();
             txt_dirT = new TextBox();
             label18 = new Label();
@@ -80,7 +81,6 @@
             txt_telfT = new TextBox();
             lbl_nregdocT = new Label();
             txt_nomcliT = new TextBox();
-            lbl_numdT = new Label();
             txt_proT = new TextBox();
             pictureBox1 = new PictureBox();
             label6 = new Label();
@@ -495,6 +495,8 @@
             cmb_loc.Name = "cmb_loc";
             cmb_loc.Size = new Size(161, 24);
             cmb_loc.TabIndex = 3;
+            cmb_loc.TextUpdate += cmb_loc_TextUpdate;
+            cmb_loc.TextChanged += cmb_loc_TextChanged;
             cmb_loc.Click += cmb_loc_Click;
             cmb_loc.Leave += cmb_loc_Leave;
             // 
@@ -633,6 +635,16 @@
             panel4.Size = new Size(287, 210);
             panel4.TabIndex = 35;
             // 
+            // lbl_numdT
+            // 
+            lbl_numdT.AutoSize = true;
+            lbl_numdT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_numdT.Location = new Point(10, 7);
+            lbl_numdT.Name = "lbl_numdT";
+            lbl_numdT.Size = new Size(52, 16);
+            lbl_numdT.TabIndex = 24;
+            lbl_numdT.Text = "Nº. Doc";
+            // 
             // label19
             // 
             label19.AutoSize = true;
@@ -722,16 +734,6 @@
             txt_nomcliT.ReadOnly = true;
             txt_nomcliT.Size = new Size(186, 22);
             txt_nomcliT.TabIndex = 28;
-            // 
-            // lbl_numdT
-            // 
-            lbl_numdT.AutoSize = true;
-            lbl_numdT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_numdT.Location = new Point(10, 7);
-            lbl_numdT.Name = "lbl_numdT";
-            lbl_numdT.Size = new Size(52, 16);
-            lbl_numdT.TabIndex = 24;
-            lbl_numdT.Text = "Nº. Doc";
             // 
             // txt_proT
             // 
