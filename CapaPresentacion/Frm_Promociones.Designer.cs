@@ -130,9 +130,9 @@
             chk_estpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             chk_estpro.Location = new Point(534, 49);
             chk_estpro.Name = "chk_estpro";
-            chk_estpro.Size = new Size(86, 20);
+            chk_estpro.Size = new Size(61, 20);
             chk_estpro.TabIndex = 16;
-            chk_estpro.Text = "Desactivar";
+            chk_estpro.Text = "Activo";
             chk_estpro.UseVisualStyleBackColor = false;
             // 
             // txt_limticket
@@ -144,6 +144,8 @@
             txt_limticket.ShortcutsEnabled = false;
             txt_limticket.Size = new Size(159, 22);
             txt_limticket.TabIndex = 15;
+            txt_limticket.TextChanged += txt_limticket_TextChanged;
+            txt_limticket.KeyPress += txt_limticket_KeyPress;
             // 
             // dtp_fecinipro
             // 
@@ -236,6 +238,8 @@
             txt_montpro.Name = "txt_montpro";
             txt_montpro.Size = new Size(159, 22);
             txt_montpro.TabIndex = 5;
+            txt_montpro.TextChanged += txt_montpro_TextChanged;
+            txt_montpro.KeyPress += txt_montpro_KeyPress;
             // 
             // txt_nompro
             // 
@@ -245,6 +249,7 @@
             txt_nompro.Name = "txt_nompro";
             txt_nompro.Size = new Size(276, 22);
             txt_nompro.TabIndex = 1;
+            txt_nompro.TextChanged += txt_nompro_TextChanged;
             // 
             // txt_codpro
             // 
@@ -297,6 +302,7 @@
             btn_edipro.Text = "Editar";
             btn_edipro.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_edipro.UseVisualStyleBackColor = false;
+            btn_edipro.Click += btn_edipro_Click;
             // 
             // btn_grabpro
             // 
@@ -348,6 +354,7 @@
             dtg_lisPro.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_lisPro.Location = new Point(4, 57);
             dtg_lisPro.Name = "dtg_lisPro";
+            dtg_lisPro.ReadOnly = true;
             dtg_lisPro.RowTemplate.Height = 25;
             dtg_lisPro.Size = new Size(827, 368);
             dtg_lisPro.TabIndex = 0;
@@ -390,11 +397,11 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arial", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(375, 30);
+            label7.Location = new Point(398, 34);
             label7.Name = "label7";
-            label7.Size = new Size(161, 24);
+            label7.Size = new Size(119, 24);
             label7.TabIndex = 15;
-            label7.Text = "PROMOCIONES";
+            label7.Text = "CAMPAÑAS";
             // 
             // Frm_Promociones
             // 

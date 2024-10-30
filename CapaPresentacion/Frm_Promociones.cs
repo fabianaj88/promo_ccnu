@@ -31,12 +31,12 @@ namespace CapaPresentacion
 
             if (txt_nompro.Text == "")
             {
-                MessageBox.Show("Ingrese el nombre de la promoción.");
+                MessageBox.Show("Ingrese el nombre de la campaña.");
                 return;
             }
             if (txt_montpro.Text == "")
             {
-                MessageBox.Show("Ingrese el monto de la promoción.");
+                MessageBox.Show("Ingrese el monto de la campaña.");
                 return;
             }
             if (txt_limticket.Text == "")
@@ -45,7 +45,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            var result = MessageBox.Show("¿Estás seguro de grabar los datos de la promoción?",
+            var result = MessageBox.Show("¿Estás seguro de grabar los datos de la campaña?",
                                     "Confirmación",
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
@@ -74,12 +74,12 @@ namespace CapaPresentacion
 
                 if (exito)
                 {
-                    MessageBox.Show("Promoción grabada con éxito.");
+                    MessageBox.Show("Campaña grabada con éxito.");
                     LimpiarPromocion();
                 }
                 else
                 {
-                    MessageBox.Show("Error al grabar la promoción.");
+                    MessageBox.Show("Error al grabar la campaña.");
                 }
             }
         }
@@ -90,14 +90,26 @@ namespace CapaPresentacion
         private void LimpiarPromocion()
         {
             DateTime fechaActual = DateTime.Now;
-            //txt_codigoloc.Text = "";
+            int cod_pro = 0;
+
+            object res_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "ISNULL(MAX(codigo_pro), 0) + 1", "N", "");
+            cod_pro = (int)Convert.ToInt64(res_pro);
+            txt_codpro.Text = cod_pro.ToString();
+
             txt_nompro.Text = "";
+            txt_nompro.Enabled = false;
             txt_montpro.Text = "";
+            txt_montpro.Enabled = false;
             txt_limticket.Text = "";
+            txt_limticket.Enabled = false;
             dtp_fecinipro.Value = fechaActual;
+            dtp_fecinipro.Enabled = false;
             dtp_fecfinpro.Value = fechaActual;
+            dtp_fecfinpro.Enabled = false;
 
             btn_grabpro.Enabled = false;
+            btn_nuevopromo.Enabled = true;
+            btn_edipro.Enabled = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -155,10 +167,107 @@ namespace CapaPresentacion
                 chk_estpro.Checked = Convert.ToBoolean(filaSeleccionada.Cells["Activo"].Value);
 
                 // Redirigir al primer TabPage
-                
+                txt_nompro.Enabled = true;
+                dtp_fecinipro.Enabled = true;
+                dtp_fecfinpro.Enabled = true;
+                txt_montpro.Enabled = true;
+                txt_limticket.Enabled = true;
+
+                btn_nuevopromo.Enabled = false;
+                btn_grabpro.Enabled = false;
+                btn_edipro.Enabled = true;
+                btn_cancelarpro.Enabled = true;
+
 
                 tabControl1.SelectedTab = tabControl1.TabPages[0];
             }
+        }
+
+        private void btn_edipro_Click(object sender, EventArgs e)
+        {
+            EditarPromo();
+        }
+
+        private void EditarPromo()
+        {
+            if (txt_nompro.Text == "")
+            {
+                MessageBox.Show("Ingrese el nombre de la promoción.");
+                return;
+            }
+            if (txt_montpro.Text == "")
+            {
+                MessageBox.Show("Ingrese el monto de la promoción.");
+                return;
+            }
+            if (txt_limticket.Text == "")
+            {
+                MessageBox.Show("Ingrese el límite de tickets.");
+                return;
+            }
+
+            bool respro = Cls_funciones.ModificaS("promociones", "nombre_pro ='" + txt_nompro.Text + "', fec_ini_pro ='" + dtp_fecinipro.Value + "', fec_fin_pro ='" + dtp_fecfinpro.Value + "', estado_pro ='" + chk_estpro.Checked + "', monto_pro =" + txt_montpro.Text + ", limtick_pro = " + txt_limticket.Text + "", "codigo_pro ='" + txt_codpro.Text + "'");
+
+            if (respro)
+            {
+                MessageBox.Show("Campaña editada con éxito.");
+                LimpiarPromocion();
+            }
+            else
+            {
+                MessageBox.Show("Error al editar la campaña.");
+
+            }
+        }
+
+        private void txt_montpro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo dígitos, una coma y controlar el retroceso
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Anula la entrada si no es un dígito o una coma/punto
+            }
+            // Si se presiona el punto, lo convierte automáticamente en coma
+            if (e.KeyChar == '.')
+            {
+                e.KeyChar = ','; // Convierte el punto en coma
+            }
+        }
+
+        private void txt_limticket_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si el carácter es un número o una tecla de control (como retroceso)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si no es un número ni una tecla de control, cancelar el evento
+                e.Handled = true;
+            }
+        }
+
+        private void txt_limticket_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_montpro_TextChanged(object sender, EventArgs e)
+        {
+            // Evita múltiples comas en el texto
+            int countComas = txt_montpro.Text.Count(c => c == ',');
+            if (countComas > 1)
+            {
+                MessageBox.Show("Solo se permite una coma en el número.");
+                txt_montpro.Text = txt_montpro.Text.Remove(txt_montpro.Text.LastIndexOf(',')); // Elimina la última coma ingresada
+                txt_montpro.SelectionStart = txt_montpro.Text.Length; // Mueve el cursor al final
+            }
+        }
+
+        private void txt_nompro_TextChanged(object sender, EventArgs e)
+        {
+            // Convertir el texto a mayúsculas
+            txt_nompro.Text = txt_nompro.Text.ToUpper();
+
+            // Mover el cursor al final del texto para evitar que se quede en una posición anterior
+            txt_nompro.SelectionStart = txt_nompro.Text.Length;
         }
     }
 }

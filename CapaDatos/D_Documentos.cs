@@ -48,7 +48,7 @@ namespace CapaDatos
         public DataTable ObtenerTodasLasPromo()
         {
 
-            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pr as Monto, limtick_pro as Limite, estado_pro as Activo"+
+            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pro as Monto, limtick_pro as Limite, estado_pro as Activo "+
                            "FROM promociones " +
                            "ORDER BY fec_ini_pro";
 
@@ -63,10 +63,10 @@ namespace CapaDatos
         public DataTable BuscarPromo(string busqueda)
         {
 
-            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pr as Monto, limtick_pro as Limite, estado_pro as Activo" +
+            string query = "SELECT codigo_pro as Codigo, nombre_pro as Campaña, fec_ini_pro as Fecha_Inicio, fec_fin_pro as Fecha_Fin, monto_pro as Monto, limtick_pro as Limite, estado_pro as Activo " +
                            "FROM promociones " +
                            "WHERE codigo_pro LIKE '%" + busqueda + "%' OR " +
-                           "nombre_pro LIKE '%" + busqueda + "%'" +
+                           "nombre_pro LIKE '%" + busqueda + "%' " +
                            "ORDER BY fec_ini_pro";
 
             DataTable dt = new DataTable();

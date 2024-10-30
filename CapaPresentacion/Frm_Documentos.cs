@@ -477,6 +477,7 @@ namespace CapaPresentacion
             cmb_nompro.Enabled = false;
             cmb_nompro.Text = "";
 
+            btn_anulartick.Enabled = false;
             chk_dobleTi.Visible = false;
             pib_dobleT.Visible = false;
         }
@@ -584,6 +585,7 @@ namespace CapaPresentacion
                 txt_nomcli.Enabled = false;
                 dtim_fec.Enabled = false;
                 txt_tot.Enabled = false;
+                cmb_nompro.Enabled = false;
                 chk_dobleTi.Visible = true;
                 chk_dobleTi.Enabled = false;
                 pib_dobleT.Visible = true;
