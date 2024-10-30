@@ -68,6 +68,7 @@
             // 
             txt_usuario.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             txt_usuario.Location = new Point(445, 319);
+            txt_usuario.MaxLength = 3;
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(138, 25);
             txt_usuario.TabIndex = 3;

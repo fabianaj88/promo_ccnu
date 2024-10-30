@@ -54,12 +54,20 @@
             btn_grabar_loc = new Button();
             pictureBox1 = new PictureBox();
             tabPage2 = new TabPage();
+            grid_lista_locales = new DataGridView();
+            panel1 = new Panel();
+            btn_busca_loc = new Button();
+            txt_dato_buscar = new TextBox();
+            tabPage3 = new TabPage();
             label3 = new Label();
             pictureBox2 = new PictureBox();
             Locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)grid_lista_locales).BeginInit();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -67,11 +75,12 @@
             // 
             Locales.Controls.Add(tabPage1);
             Locales.Controls.Add(tabPage2);
+            Locales.Controls.Add(tabPage3);
             Locales.Location = new Point(30, 66);
             Locales.Name = "Locales";
             Locales.SelectedIndex = 0;
             Locales.Size = new Size(860, 454);
-            Locales.TabIndex = 2;
+            Locales.TabIndex = 3;
             // 
             // tabPage1
             // 
@@ -110,6 +119,7 @@
             txt_coproact.Enabled = false;
             txt_coproact.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_coproact.Location = new Point(201, 317);
+            txt_coproact.MaxLength = 50;
             txt_coproact.Name = "txt_coproact";
             txt_coproact.Size = new Size(311, 22);
             txt_coproact.TabIndex = 24;
@@ -119,6 +129,7 @@
             txt_coproes.Enabled = false;
             txt_coproes.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_coproes.Location = new Point(201, 279);
+            txt_coproes.MaxLength = 50;
             txt_coproes.Name = "txt_coproes";
             txt_coproes.Size = new Size(311, 22);
             txt_coproes.TabIndex = 23;
@@ -158,13 +169,13 @@
             btn_nuevo_loc.Text = "Nuevo";
             btn_nuevo_loc.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_nuevo_loc.UseVisualStyleBackColor = false;
-            btn_nuevo_loc.Click += button1_Click;
             // 
             // txt_resloc
             // 
             txt_resloc.Enabled = false;
             txt_resloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_resloc.Location = new Point(201, 355);
+            txt_resloc.MaxLength = 50;
             txt_resloc.Name = "txt_resloc";
             txt_resloc.Size = new Size(311, 22);
             txt_resloc.TabIndex = 20;
@@ -196,6 +207,7 @@
             txt_telfloc.Enabled = false;
             txt_telfloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_telfloc.Location = new Point(201, 241);
+            txt_telfloc.MaxLength = 35;
             txt_telfloc.Name = "txt_telfloc";
             txt_telfloc.Size = new Size(203, 22);
             txt_telfloc.TabIndex = 17;
@@ -238,6 +250,7 @@
             txt_mail_loc.Enabled = false;
             txt_mail_loc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_mail_loc.Location = new Point(201, 203);
+            txt_mail_loc.MaxLength = 30;
             txt_mail_loc.Name = "txt_mail_loc";
             txt_mail_loc.Size = new Size(203, 22);
             txt_mail_loc.TabIndex = 12;
@@ -247,6 +260,7 @@
             txt_ubiloc.Enabled = false;
             txt_ubiloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_ubiloc.Location = new Point(201, 165);
+            txt_ubiloc.MaxLength = 30;
             txt_ubiloc.Name = "txt_ubiloc";
             txt_ubiloc.Size = new Size(203, 22);
             txt_ubiloc.TabIndex = 11;
@@ -256,6 +270,7 @@
             txt_nomloc.Enabled = false;
             txt_nomloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_nomloc.Location = new Point(201, 127);
+            txt_nomloc.MaxLength = 50;
             txt_nomloc.Name = "txt_nomloc";
             txt_nomloc.Size = new Size(311, 22);
             txt_nomloc.TabIndex = 10;
@@ -265,6 +280,7 @@
             txt_codigoloc.Enabled = false;
             txt_codigoloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             txt_codigoloc.Location = new Point(201, 90);
+            txt_codigoloc.MaxLength = 8;
             txt_codigoloc.Name = "txt_codigoloc";
             txt_codigoloc.Size = new Size(141, 22);
             txt_codigoloc.TabIndex = 9;
@@ -345,13 +361,66 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(grid_lista_locales);
+            tabPage2.Controls.Add(panel1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(852, 426);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Facturas por local";
+            tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // grid_lista_locales
+            // 
+            grid_lista_locales.AllowUserToAddRows = false;
+            grid_lista_locales.AllowUserToDeleteRows = false;
+            grid_lista_locales.BackgroundColor = Color.Gainsboro;
+            grid_lista_locales.BorderStyle = BorderStyle.Fixed3D;
+            grid_lista_locales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid_lista_locales.Location = new Point(6, 54);
+            grid_lista_locales.Name = "grid_lista_locales";
+            grid_lista_locales.ReadOnly = true;
+            grid_lista_locales.RowTemplate.Height = 25;
+            grid_lista_locales.Size = new Size(843, 368);
+            grid_lista_locales.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSteelBlue;
+            panel1.Controls.Add(btn_busca_loc);
+            panel1.Controls.Add(txt_dato_buscar);
+            panel1.Location = new Point(4, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(849, 43);
+            panel1.TabIndex = 4;
+            // 
+            // btn_busca_loc
+            // 
+            btn_busca_loc.Location = new Point(265, 8);
+            btn_busca_loc.Name = "btn_busca_loc";
+            btn_busca_loc.Size = new Size(75, 23);
+            btn_busca_loc.TabIndex = 3;
+            btn_busca_loc.Text = "Buscar";
+            btn_busca_loc.UseVisualStyleBackColor = true;
+            btn_busca_loc.Click += btn_busca_cli_Click;
+            // 
+            // txt_dato_buscar
+            // 
+            txt_dato_buscar.Location = new Point(18, 9);
+            txt_dato_buscar.Name = "txt_dato_buscar";
+            txt_dato_buscar.Size = new Size(230, 23);
+            txt_dato_buscar.TabIndex = 2;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(852, 426);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Facturas por local";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -391,6 +460,10 @@
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)grid_lista_locales).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -424,5 +497,10 @@
         private Label label9;
         private Label label8;
         private TextBox txt_coproact;
+        private TabPage tabPage3;
+        private Panel panel1;
+        private TextBox txt_dato_buscar;
+        private Button btn_busca_loc;
+        private DataGridView grid_lista_locales;
     }
 }

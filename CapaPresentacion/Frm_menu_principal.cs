@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,16 +20,36 @@ namespace CapaPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Frm_clientes frm = new Frm_clientes();
-
-            frm.Show();
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_cli", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu == true)
+            {
+                Frm_clientes frm = new Frm_clientes();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Frm_Documentos frm = new Frm_Documentos();
-
-            frm.Show();
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_doc", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu == true)
+            {
+                Frm_Documentos frm = new Frm_Documentos();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -38,23 +59,57 @@ namespace CapaPresentacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Frm_locales frm = new Frm_locales();
-
-            frm.Show();
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_loc", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu == true)
+            {
+                Frm_locales frm = new Frm_locales();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Frm_Promociones frm = new Frm_Promociones();
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_pro", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu == true)
+            {
+                Frm_Promociones frm = new Frm_Promociones();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }
+            //Frm_Promociones frm = new Frm_Promociones();
 
-            frm.Show();
+            //frm.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Frm_usuarios frm = new Frm_usuarios();
-
-            frm.Show();
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios","menu_usu","L","codigo_usu='"+ Cls_variables.xcodigo_usu+"'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu==true)
+            {
+                Frm_usuarios frm = new Frm_usuarios();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }         
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

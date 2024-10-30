@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_clientes));
-            Locales = new TabControl();
+            clientes = new TabControl();
             tabPage1 = new TabPage();
+            label18 = new Label();
+            txt_saldocli = new TextBox();
+            txt_celular = new TextBox();
+            label17 = new Label();
+            label16 = new Label();
+            txt_apellidos = new TextBox();
             label14 = new Label();
             label13 = new Label();
             label12 = new Label();
@@ -68,11 +74,10 @@
             btn_busca_cli = new Button();
             txt_dato_buscar = new TextBox();
             grid_lista_clientes = new DataGridView();
-            seleccionar = new DataGridViewButtonColumn();
             panel1 = new Panel();
             pictureBox4 = new PictureBox();
             label15 = new Label();
-            Locales.SuspendLayout();
+            clientes.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -82,19 +87,25 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
-            // Locales
+            // clientes
             // 
-            Locales.Controls.Add(tabPage1);
-            Locales.Controls.Add(tabPage2);
-            Locales.Location = new Point(28, 75);
-            Locales.Name = "Locales";
-            Locales.SelectedIndex = 0;
-            Locales.Size = new Size(869, 452);
-            Locales.TabIndex = 1;
+            clientes.Controls.Add(tabPage1);
+            clientes.Controls.Add(tabPage2);
+            clientes.Location = new Point(28, 75);
+            clientes.Name = "clientes";
+            clientes.SelectedIndex = 0;
+            clientes.Size = new Size(869, 452);
+            clientes.TabIndex = 1;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(label18);
+            tabPage1.Controls.Add(txt_saldocli);
+            tabPage1.Controls.Add(txt_celular);
+            tabPage1.Controls.Add(label17);
+            tabPage1.Controls.Add(label16);
+            tabPage1.Controls.Add(txt_apellidos);
             tabPage1.Controls.Add(label14);
             tabPage1.Controls.Add(label13);
             tabPage1.Controls.Add(label12);
@@ -135,12 +146,76 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
             // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.BackColor = Color.Gainsboro;
+            label18.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.Location = new Point(695, 137);
+            label18.Name = "label18";
+            label18.Size = new Size(47, 16);
+            label18.TabIndex = 42;
+            label18.Text = "Saldo:";
+            // 
+            // txt_saldocli
+            // 
+            txt_saldocli.Enabled = false;
+            txt_saldocli.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_saldocli.Location = new Point(749, 132);
+            txt_saldocli.MaxLength = 10;
+            txt_saldocli.Name = "txt_saldocli";
+            txt_saldocli.Size = new Size(84, 23);
+            txt_saldocli.TabIndex = 41;
+            // 
+            // txt_celular
+            // 
+            txt_celular.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_celular.Location = new Point(393, 266);
+            txt_celular.MaxLength = 10;
+            txt_celular.Name = "txt_celular";
+            txt_celular.Size = new Size(149, 23);
+            txt_celular.TabIndex = 40;
+            txt_celular.KeyDown += txt_celular_KeyDown;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = Color.Gainsboro;
+            label17.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.Location = new Point(324, 271);
+            label17.Name = "label17";
+            label17.Size = new Size(56, 16);
+            label17.TabIndex = 39;
+            label17.Text = "Celular:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.BackColor = Color.Gainsboro;
+            label16.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(54, 201);
+            label16.Name = "label16";
+            label16.Size = new Size(68, 16);
+            label16.TabIndex = 38;
+            label16.Text = "Apellidos:";
+            // 
+            // txt_apellidos
+            // 
+            txt_apellidos.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_apellidos.Location = new Point(154, 198);
+            txt_apellidos.MaxLength = 50;
+            txt_apellidos.Name = "txt_apellidos";
+            txt_apellidos.Size = new Size(388, 23);
+            txt_apellidos.TabIndex = 37;
+            txt_apellidos.TextChanged += txt_apellidos_TextChanged;
+            txt_apellidos.KeyDown += txt_apellidos_KeyDown;
+            // 
             // label14
             // 
             label14.AutoSize = true;
             label14.BackColor = Color.Gainsboro;
             label14.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(55, 354);
+            label14.Location = new Point(55, 378);
             label14.Name = "label14";
             label14.Size = new Size(82, 16);
             label14.TabIndex = 36;
@@ -151,7 +226,7 @@
             label13.AutoSize = true;
             label13.BackColor = Color.Gainsboro;
             label13.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(55, 314);
+            label13.Location = new Point(55, 345);
             label13.Name = "label13";
             label13.Size = new Size(59, 16);
             label13.TabIndex = 35;
@@ -162,7 +237,7 @@
             label12.AutoSize = true;
             label12.BackColor = Color.Gainsboro;
             label12.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(55, 241);
+            label12.Location = new Point(55, 272);
             label12.Name = "label12";
             label12.Size = new Size(65, 16);
             label12.TabIndex = 34;
@@ -173,7 +248,7 @@
             label11.AutoSize = true;
             label11.BackColor = Color.Gainsboro;
             label11.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(55, 277);
+            label11.Location = new Point(55, 309);
             label11.Name = "label11";
             label11.Size = new Size(55, 16);
             label11.TabIndex = 33;
@@ -184,7 +259,7 @@
             label10.AutoSize = true;
             label10.BackColor = Color.Gainsboro;
             label10.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(55, 207);
+            label10.Location = new Point(55, 237);
             label10.Name = "label10";
             label10.Size = new Size(70, 16);
             label10.TabIndex = 32;
@@ -195,11 +270,11 @@
             label7.AutoSize = true;
             label7.BackColor = Color.Gainsboro;
             label7.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(55, 171);
+            label7.Location = new Point(55, 168);
             label7.Name = "label7";
-            label7.Size = new Size(55, 16);
+            label7.Size = new Size(67, 16);
             label7.TabIndex = 31;
-            label7.Text = "Cliente:";
+            label7.Text = "Nombres:";
             // 
             // label3
             // 
@@ -208,9 +283,9 @@
             label3.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(55, 135);
             label3.Name = "label3";
-            label3.Size = new Size(56, 16);
+            label3.Size = new Size(96, 16);
             label3.TabIndex = 2;
-            label3.Text = "Código:";
+            label3.Text = "CI/RUC/PASS:";
             // 
             // label9
             // 
@@ -238,7 +313,7 @@
             dateTimePicker1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.ImeMode = ImeMode.NoControl;
-            dateTimePicker1.Location = new Point(154, 349);
+            dateTimePicker1.Location = new Point(154, 375);
             dateTimePicker1.MaxDate = new DateTime(2050, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
@@ -249,11 +324,13 @@
             // btn_cancelar
             // 
             btn_cancelar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_cancelar.Location = new Point(352, 15);
+            btn_cancelar.Image = (Image)resources.GetObject("btn_cancelar.Image");
+            btn_cancelar.Location = new Point(345, 15);
             btn_cancelar.Name = "btn_cancelar";
-            btn_cancelar.Size = new Size(81, 39);
+            btn_cancelar.Size = new Size(111, 39);
             btn_cancelar.TabIndex = 24;
             btn_cancelar.Text = "Cancelar";
+            btn_cancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_cancelar.UseVisualStyleBackColor = true;
             btn_cancelar.Click += btn_cancelar_Click;
             // 
@@ -262,11 +339,12 @@
             cmb_genero.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cmb_genero.FormattingEnabled = true;
             cmb_genero.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
-            cmb_genero.Location = new Point(154, 311);
+            cmb_genero.Location = new Point(154, 340);
             cmb_genero.Name = "cmb_genero";
             cmb_genero.Size = new Size(152, 24);
             cmb_genero.TabIndex = 23;
             cmb_genero.SelectedIndexChanged += cmb_genero_SelectedIndexChanged;
+            cmb_genero.TextChanged += cmb_genero_TextChanged;
             // 
             // radioButton3
             // 
@@ -318,11 +396,12 @@
             // txt_correo
             // 
             txt_correo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_correo.Location = new Point(154, 274);
+            txt_correo.Location = new Point(154, 303);
             txt_correo.Name = "txt_correo";
             txt_correo.Size = new Size(232, 23);
             txt_correo.TabIndex = 17;
             txt_correo.TextChanged += textBox4_TextChanged;
+            txt_correo.KeyDown += txt_correo_KeyDown;
             // 
             // label5
             // 
@@ -358,35 +437,45 @@
             // txt_telefono
             // 
             txt_telefono.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_telefono.Location = new Point(154, 238);
+            txt_telefono.Location = new Point(154, 268);
+            txt_telefono.MaxLength = 10;
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(152, 23);
             txt_telefono.TabIndex = 12;
+            txt_telefono.KeyDown += txt_telefono_KeyDown;
+            txt_telefono.KeyPress += txt_telefono_KeyPress;
             // 
             // txt_direccion
             // 
             txt_direccion.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_direccion.Location = new Point(154, 204);
+            txt_direccion.Location = new Point(154, 232);
+            txt_direccion.MaxLength = 50;
             txt_direccion.Name = "txt_direccion";
             txt_direccion.Size = new Size(388, 23);
             txt_direccion.TabIndex = 11;
+            txt_direccion.KeyDown += txt_direccion_KeyDown;
             // 
             // txt_nombre
             // 
             txt_nombre.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_nombre.Location = new Point(154, 168);
+            txt_nombre.Location = new Point(154, 164);
+            txt_nombre.MaxLength = 50;
             txt_nombre.Name = "txt_nombre";
             txt_nombre.Size = new Size(388, 23);
             txt_nombre.TabIndex = 10;
+            txt_nombre.KeyDown += txt_nombre_KeyDown;
             // 
             // txt_codigo
             // 
             txt_codigo.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txt_codigo.Location = new Point(154, 132);
+            txt_codigo.MaxLength = 15;
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(152, 23);
             txt_codigo.TabIndex = 9;
             txt_codigo.TextChanged += txt_codigo_TextChanged;
+            txt_codigo.KeyDown += txt_codigo_KeyDown;
+            txt_codigo.KeyPress += txt_codigo_KeyPress;
             // 
             // label1
             // 
@@ -421,42 +510,51 @@
             // btn_buscar
             // 
             btn_buscar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_buscar.Location = new Point(557, 15);
+            btn_buscar.Image = (Image)resources.GetObject("btn_buscar.Image");
+            btn_buscar.Location = new Point(564, 15);
             btn_buscar.Name = "btn_buscar";
-            btn_buscar.Size = new Size(75, 39);
+            btn_buscar.Size = new Size(88, 39);
             btn_buscar.TabIndex = 5;
             btn_buscar.Text = "Buscar";
+            btn_buscar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_buscar.UseVisualStyleBackColor = true;
             btn_buscar.Click += btn_buscar_Click;
             // 
             // btn_eliminar
             // 
             btn_eliminar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_eliminar.Location = new Point(458, 15);
+            btn_eliminar.Image = (Image)resources.GetObject("btn_eliminar.Image");
+            btn_eliminar.Location = new Point(463, 15);
             btn_eliminar.Name = "btn_eliminar";
-            btn_eliminar.Size = new Size(75, 39);
+            btn_eliminar.Size = new Size(96, 39);
             btn_eliminar.TabIndex = 4;
             btn_eliminar.Text = "Eliminar";
+            btn_eliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_eliminar.UseVisualStyleBackColor = true;
             // 
             // btn_editar
             // 
             btn_editar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
             btn_editar.Location = new Point(252, 15);
             btn_editar.Name = "btn_editar";
-            btn_editar.Size = new Size(75, 39);
+            btn_editar.Size = new Size(87, 39);
             btn_editar.TabIndex = 3;
             btn_editar.Text = "Editar";
+            btn_editar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_editar.UseVisualStyleBackColor = true;
+            btn_editar.Click += btn_editar_Click;
             // 
             // btn_grabar
             // 
             btn_grabar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
             btn_grabar.Location = new Point(154, 15);
             btn_grabar.Name = "btn_grabar";
-            btn_grabar.Size = new Size(75, 39);
+            btn_grabar.Size = new Size(92, 39);
             btn_grabar.TabIndex = 2;
             btn_grabar.Text = "Grabar";
+            btn_grabar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_grabar.UseVisualStyleBackColor = true;
             btn_grabar.Click += btn_grabar_Click;
             // 
@@ -464,11 +562,13 @@
             // 
             btn_nuevo.BackColor = Color.Gainsboro;
             btn_nuevo.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
             btn_nuevo.Location = new Point(55, 15);
             btn_nuevo.Name = "btn_nuevo";
-            btn_nuevo.Size = new Size(75, 39);
+            btn_nuevo.Size = new Size(93, 39);
             btn_nuevo.TabIndex = 1;
             btn_nuevo.Text = "Nuevo";
+            btn_nuevo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_nuevo.UseVisualStyleBackColor = false;
             btn_nuevo.Click += btn_nuevo_Click;
             // 
@@ -519,7 +619,6 @@
             grid_lista_clientes.BackgroundColor = Color.Gainsboro;
             grid_lista_clientes.BorderStyle = BorderStyle.Fixed3D;
             grid_lista_clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid_lista_clientes.Columns.AddRange(new DataGridViewColumn[] { seleccionar });
             grid_lista_clientes.Location = new Point(6, 60);
             grid_lista_clientes.Name = "grid_lista_clientes";
             grid_lista_clientes.ReadOnly = true;
@@ -527,14 +626,7 @@
             grid_lista_clientes.Size = new Size(849, 358);
             grid_lista_clientes.TabIndex = 0;
             grid_lista_clientes.CellContentClick += grid_lista_clientes_CellContentClick;
-            // 
-            // seleccionar
-            // 
-            seleccionar.HeaderText = "#";
-            seleccionar.Name = "seleccionar";
-            seleccionar.ReadOnly = true;
-            seleccionar.SortMode = DataGridViewColumnSortMode.Programmatic;
-            seleccionar.Text = "Seleccionar";
+            grid_lista_clientes.CellDoubleClick += grid_lista_clientes_CellDoubleClick;
             // 
             // panel1
             // 
@@ -572,13 +664,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
             Controls.Add(label15);
-            Controls.Add(Locales);
+            Controls.Add(clientes);
             Controls.Add(pictureBox4);
             Name = "Frm_clientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_clientes";
             Load += Frm_clientes_Load;
-            Locales.ResumeLayout(false);
+            clientes.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -593,12 +685,11 @@
         }
 
         #endregion
-        private TabControl Locales;
+        private TabControl clientes;
         private TabPage tabPage2;
         private Button btn_busca_cli;
         private TextBox txt_dato_buscar;
         private DataGridView grid_lista_clientes;
-        private DataGridViewButtonColumn seleccionar;
         private Label label10;
         private TextBox txt_saldo_cli;
         private TabPage tabPage1;
@@ -637,5 +728,11 @@
         private Label label11;
         private Label label15;
         private Panel panel1;
+        private Label label16;
+        private TextBox txt_apellidos;
+        private TextBox txt_celular;
+        private Label label17;
+        private TextBox txt_saldocli;
+        private Label label18;
     }
 }

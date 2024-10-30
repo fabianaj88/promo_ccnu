@@ -32,10 +32,12 @@ namespace CapaPresentacion
                 string xclave = txt_password.Text;
                 string xsentencia = "";
                 DataTable dt_usu = new DataTable();
-                xsentencia = "select * from usuarios where nombre_usu='" + xusuario.Trim() + "' and clave_usu='" + xclave.Trim() + "' ";
+                xsentencia = "select * from usuarios where codigo_usu='" + xusuario.Trim() + "' and clave_usu='" + xclave.Trim() + "' ";
                 dt_usu = Cls_funciones.VisualizaS(xsentencia);
                 if (dt_usu.Rows.Count > 0)
                 {
+                    Cls_variables.xcodigo_usu = dt_usu.Rows[0]["codigo_usu"].ToString();
+
                     Frm_Login frm1 = new Frm_Login();
                     frm1.Close();
                     Frm_menu_principal frm2 = new Frm_menu_principal();
