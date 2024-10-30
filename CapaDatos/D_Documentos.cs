@@ -36,8 +36,9 @@ namespace CapaDatos
         // Método para obtener promociones vigentes
         public DataTable ObtenerPromociones()
         {
+            DateTime fechaActual = DateTime.Now;
             // Definir la consulta SQL 
-            string query = "SELECT * FROM promociones where estado_pro = 1";
+            string query = "SELECT * FROM promociones where Convert(date,fec_ini_pro) <= '" + fechaActual.ToString() + "' and Convert(date,fec_fin_pro) >= '" + fechaActual.ToString() + "'";
 
             // Llamar a la función VisualizaS para obtener los datos de la tabla promociones
             return Cls_funciones.VisualizaS(query);
@@ -48,7 +49,7 @@ namespace CapaDatos
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "d.codigo_loc_do as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
+                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +
@@ -66,7 +67,7 @@ namespace CapaDatos
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "d.codigo_loc_do as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor " +
+                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +
