@@ -46,7 +46,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Gainsboro;
-            pictureBox1.Location = new Point(294, 60);
+            pictureBox1.Location = new Point(355, 146);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(341, 426);
             pictureBox1.TabIndex = 0;
@@ -57,8 +57,8 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Gainsboro;
-            label1.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(345, 326);
+            label1.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(406, 412);
             label1.Name = "label1";
             label1.Size = new Size(67, 18);
             label1.TabIndex = 2;
@@ -66,8 +66,8 @@
             // 
             // txt_usuario
             // 
-            txt_usuario.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_usuario.Location = new Point(445, 319);
+            txt_usuario.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            txt_usuario.Location = new Point(506, 405);
             txt_usuario.MaxLength = 3;
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(138, 25);
@@ -78,8 +78,8 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Gainsboro;
-            label2.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(345, 361);
+            label2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(406, 447);
             label2.Name = "label2";
             label2.Size = new Size(94, 18);
             label2.TabIndex = 4;
@@ -87,8 +87,8 @@
             // 
             // txt_password
             // 
-            txt_password.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_password.Location = new Point(445, 354);
+            txt_password.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            txt_password.Location = new Point(506, 440);
             txt_password.MaxLength = 10;
             txt_password.Name = "txt_password";
             txt_password.Size = new Size(138, 25);
@@ -98,7 +98,7 @@
             // btn_cancelar
             // 
             btn_cancelar.BackColor = SystemColors.ActiveCaption;
-            btn_cancelar.Location = new Point(474, 405);
+            btn_cancelar.Location = new Point(535, 491);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.RightToLeft = RightToLeft.No;
             btn_cancelar.Size = new Size(109, 33);
@@ -110,7 +110,7 @@
             // btn_aceptar
             // 
             btn_aceptar.BackColor = SystemColors.ActiveCaption;
-            btn_aceptar.Location = new Point(345, 405);
+            btn_aceptar.Location = new Point(406, 491);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.RightToLeft = RightToLeft.No;
             btn_aceptar.Size = new Size(102, 33);
@@ -123,7 +123,7 @@
             // 
             pictureBox2.BackColor = Color.Gainsboro;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(345, 107);
+            pictureBox2.Location = new Point(406, 191);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(238, 199);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -136,7 +136,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(0, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(923, 545);
+            pictureBox3.Size = new Size(1055, 727);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
@@ -145,7 +145,7 @@
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
             AutoSize = true;
-            ClientSize = new Size(923, 545);
+            ClientSize = new Size(1055, 727);
             Controls.Add(btn_aceptar);
             Controls.Add(btn_cancelar);
             Controls.Add(txt_password);

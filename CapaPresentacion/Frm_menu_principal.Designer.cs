@@ -49,8 +49,9 @@
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(923, 545);
+            pictureBox1.Size = new Size(1055, 727);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -61,9 +62,10 @@
             pictureBox2.BackColor = Color.WhiteSmoke;
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(31, 26);
+            pictureBox2.Location = new Point(35, 35);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(92, 82);
+            pictureBox2.Size = new Size(105, 109);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -71,11 +73,12 @@
             // button1
             // 
             button1.BackColor = Color.LightSteelBlue;
-            button1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(229, 435);
+            button1.Location = new Point(262, 580);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(155, 56);
+            button1.Size = new Size(177, 75);
             button1.TabIndex = 2;
             button1.Text = "Clientes";
             button1.UseVisualStyleBackColor = false;
@@ -84,11 +87,12 @@
             // button2
             // 
             button2.BackColor = Color.LightSteelBlue;
-            button2.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(396, 435);
+            button2.Location = new Point(453, 580);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(143, 56);
+            button2.Size = new Size(163, 75);
             button2.TabIndex = 3;
             button2.Text = "Documentos";
             button2.UseVisualStyleBackColor = false;
@@ -98,20 +102,21 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(249, 51);
+            label1.Location = new Point(285, 68);
             label1.Name = "label1";
-            label1.Size = new Size(394, 24);
+            label1.Size = new Size(523, 32);
             label1.TabIndex = 4;
             label1.Text = "SISTEMA DE GESTION DE FACTURAS ";
             // 
             // button3
             // 
             button3.BackColor = Color.LightSteelBlue;
-            button3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(554, 435);
+            button3.Location = new Point(633, 580);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(143, 56);
+            button3.Size = new Size(163, 75);
             button3.TabIndex = 5;
             button3.Text = "Locales";
             button3.UseVisualStyleBackColor = false;
@@ -120,11 +125,12 @@
             // button4
             // 
             button4.BackColor = Color.LightSteelBlue;
-            button4.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(711, 435);
+            button4.Location = new Point(813, 580);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(143, 56);
+            button4.Size = new Size(163, 75);
             button4.TabIndex = 6;
             button4.Text = "Campañas";
             button4.UseVisualStyleBackColor = false;
@@ -135,9 +141,10 @@
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.ErrorImage = null;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(266, 131);
+            pictureBox3.Location = new Point(304, 175);
+            pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(387, 256);
+            pictureBox3.Size = new Size(442, 341);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
@@ -146,11 +153,12 @@
             // button5
             // 
             button5.BackColor = Color.LightSteelBlue;
-            button5.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(60, 435);
+            button5.Location = new Point(69, 580);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(155, 56);
+            button5.Size = new Size(177, 75);
             button5.TabIndex = 8;
             button5.Text = "Usuarios";
             button5.UseVisualStyleBackColor = false;
@@ -158,9 +166,9 @@
             // 
             // Frm_menu_principal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(923, 545);
+            ClientSize = new Size(1055, 727);
             Controls.Add(button5);
             Controls.Add(pictureBox3);
             Controls.Add(button4);
@@ -170,6 +178,7 @@
             Controls.Add(button1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Frm_menu_principal";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;

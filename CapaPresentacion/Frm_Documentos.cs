@@ -476,12 +476,25 @@ namespace CapaPresentacion
             lbl_salcli.Visible = false;
             dgvRegisDoc.DataSource = null;
             dgvRegisDoc.Columns.Clear();
-            cmb_nompro.Enabled = false;
             cmb_nompro.Text = "";
 
             btn_anulartick.Enabled = false;
             chk_dobleTi.Visible = false;
             pib_dobleT.Visible = false;
+
+            txt_num.Enabled = false;
+            txt_numf.Enabled = false;
+            cmb_loc.Enabled = false;
+            txt_cli.Enabled = false;
+            txt_nomcli.Enabled = false;
+            txt_tot.Enabled = false;
+            dtim_fec.Enabled = false;
+            cmb_nompro.Enabled = false;
+            chk_dobleTi.Enabled = false;
+
+            btn_grabarTicket.Enabled = false;
+            btn_limpiar.Enabled = false;
+            btn_gentik.Enabled = false;
         }
 
         private void btn_nuevoDoc_Click(object sender, EventArgs e)
@@ -500,6 +513,7 @@ namespace CapaPresentacion
             txt_tot.Enabled = true;
             dtim_fec.Enabled = true;
             cmb_nompro.Enabled = true;
+            chk_dobleTi.Enabled = true;
 
             btn_grabarTicket.Enabled = true;
             btn_limpiar.Enabled = true;
@@ -573,11 +587,24 @@ namespace CapaPresentacion
                 // Llenar el segundo DataGridView
                 string codigoDoc = filaSeleccionada.Cells["Codigo"].Value.ToString();
                 DataTable dt_registroDoc = negocioDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
-                int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
-                object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
-                cmb_nompro.Text = nompro.ToString();
+                
+                //int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
+                if (dt_registroDoc.Rows.Count == 0)
+                {
 
-                dgvRegisDoc.DataSource = dt_registroDoc;
+                    cmb_nompro.Text = "";
+
+                    dgvRegisDoc.DataSource = null;
+                }
+                else
+                {
+                    int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
+                    object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
+                    cmb_nompro.Text = nompro.ToString();
+
+                    dgvRegisDoc.DataSource = dt_registroDoc;
+                }
+                
 
                 // Redirigir al primer TabPage
                 txt_num.Enabled = false;

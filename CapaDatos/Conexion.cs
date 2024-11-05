@@ -12,7 +12,7 @@ namespace CapaDatos
 {
     public class Conexion
     {
-        private SqlConnection Con = new SqlConnection("Server=DESKTOP-QDFSRUE;Database=ccnu;User Id=sa;Password=alf;");
+        private SqlConnection Con = new SqlConnection("Server=FABIANA;Database=ccnu;User Id=sa;Password=alf;");
 
         public SqlConnection AbrirConexion()
         {

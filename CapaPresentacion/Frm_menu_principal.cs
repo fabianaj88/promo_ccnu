@@ -37,19 +37,19 @@ namespace CapaPresentacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            object xpermiso = "";
-            Boolean xpermiso_usu = false;
-            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_doc", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
-            xpermiso_usu = Convert.ToBoolean(xpermiso);
-            if (xpermiso_usu == true)
-            {
+            //object xpermiso = "";
+            //Boolean xpermiso_usu = false;
+            //xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_doc", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            //xpermiso_usu = Convert.ToBoolean(xpermiso);
+            //if (xpermiso_usu == true)
+            //{
                 Frm_Documentos frm = new Frm_Documentos();
                 frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Acceso Denegado");
-            }            
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Acceso Denegado");
+            //}            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
