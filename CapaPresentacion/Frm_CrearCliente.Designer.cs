@@ -33,6 +33,7 @@
             label1 = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            txt_ape = new TextBox();
             label14 = new Label();
             label13 = new Label();
             label12 = new Label();
@@ -41,7 +42,7 @@
             label7 = new Label();
             label3 = new Label();
             dtp_fecnac = new DateTimePicker();
-            cmb_genero = new ComboBox();
+            cmb_generoc = new ComboBox();
             txt_correo = new TextBox();
             txt_telefono = new TextBox();
             txt_direccion = new TextBox();
@@ -49,7 +50,6 @@
             txt_codigo = new TextBox();
             btn_cancli = new Button();
             btn_Acepcli = new Button();
-            txt_ape = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -105,7 +105,7 @@
             panel3.Controls.Add(label7);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(dtp_fecnac);
-            panel3.Controls.Add(cmb_genero);
+            panel3.Controls.Add(cmb_generoc);
             panel3.Controls.Add(txt_correo);
             panel3.Controls.Add(txt_telefono);
             panel3.Controls.Add(txt_direccion);
@@ -117,6 +117,16 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(540, 259);
             panel3.TabIndex = 0;
+            // 
+            // txt_ape
+            // 
+            txt_ape.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_ape.Location = new Point(266, 39);
+            txt_ape.Name = "txt_ape";
+            txt_ape.PlaceholderText = "Apellido";
+            txt_ape.Size = new Size(133, 21);
+            txt_ape.TabIndex = 51;
+            txt_ape.KeyPress += txt_ape_KeyPress;
             // 
             // label14
             // 
@@ -209,15 +219,15 @@
             dtp_fecnac.TabIndex = 44;
             dtp_fecnac.Value = new DateTime(2024, 10, 23, 0, 0, 0, 0);
             // 
-            // cmb_genero
+            // cmb_generoc
             // 
-            cmb_genero.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            cmb_genero.FormattingEnabled = true;
-            cmb_genero.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
-            cmb_genero.Location = new Point(127, 150);
-            cmb_genero.Name = "cmb_genero";
-            cmb_genero.Size = new Size(152, 23);
-            cmb_genero.TabIndex = 43;
+            cmb_generoc.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cmb_generoc.FormattingEnabled = true;
+            cmb_generoc.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
+            cmb_generoc.Location = new Point(127, 150);
+            cmb_generoc.Name = "cmb_generoc";
+            cmb_generoc.Size = new Size(152, 23);
+            cmb_generoc.TabIndex = 43;
             // 
             // txt_correo
             // 
@@ -226,6 +236,8 @@
             txt_correo.Name = "txt_correo";
             txt_correo.Size = new Size(201, 21);
             txt_correo.TabIndex = 42;
+            txt_correo.KeyPress += txt_correo_KeyPress;
+            txt_correo.Validating += txt_correo_Validating;
             // 
             // txt_telefono
             // 
@@ -251,12 +263,15 @@
             txt_nombre.PlaceholderText = "Nombre";
             txt_nombre.Size = new Size(133, 21);
             txt_nombre.TabIndex = 39;
+            txt_nombre.KeyPress += txt_nombre_KeyPress;
             // 
             // txt_codigo
             // 
+            txt_codigo.Enabled = false;
             txt_codigo.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txt_codigo.Location = new Point(127, 11);
             txt_codigo.Name = "txt_codigo";
+            txt_codigo.ReadOnly = true;
             txt_codigo.Size = new Size(133, 21);
             txt_codigo.TabIndex = 38;
             // 
@@ -283,15 +298,6 @@
             btn_Acepcli.Text = "Aceptar";
             btn_Acepcli.UseVisualStyleBackColor = false;
             btn_Acepcli.Click += btn_Acepcli_Click;
-            // 
-            // txt_ape
-            // 
-            txt_ape.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_ape.Location = new Point(266, 39);
-            txt_ape.Name = "txt_ape";
-            txt_ape.PlaceholderText = "Apellido";
-            txt_ape.Size = new Size(133, 21);
-            txt_ape.TabIndex = 51;
             // 
             // Frm_CrearCliente
             // 
@@ -336,5 +342,6 @@
         private TextBox txt_nombre;
         private TextBox txt_codigo;
         private TextBox txt_ape;
+        private ComboBox cmb_generoc;
     }
 }

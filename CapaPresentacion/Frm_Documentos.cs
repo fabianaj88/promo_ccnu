@@ -29,6 +29,7 @@ namespace CapaPresentacion
             cod_doc = (int)Convert.ToInt64(res_doc);
             txt_num.Text = cod_doc.ToString();
 
+            cmb_loc.Focus();
         }
 
 
@@ -57,11 +58,18 @@ namespace CapaPresentacion
             {
                 string textoBusqueda = cmb_loc.Text;
                 FiltrarLocales(textoBusqueda);
+                //cmb_loc.Focus();
             }
 
-            //cmb_loc.Focus();
+            //
         }
-
+        private void cmb_loc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_cli.Focus();
+            }
+        }
         private void FiltrarLocales(string textoBusqueda)
         {
             // Almacena el texto ingresado por el usuario
@@ -155,6 +163,13 @@ namespace CapaPresentacion
         {
             txt_numf.Focus();
         }
+        private void txt_cli_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmb_nompro.Focus();
+            }
+        }
         //---------------------------------------------------------------
 
         //------DOCUMENTO------------------------------------------------
@@ -217,6 +232,14 @@ namespace CapaPresentacion
                 e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
             }
         }
+        private void txt_numf_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                dtim_fec.Focus();
+            }
+
+        }
 
         private void txt_tot_KeyDown(object sender, KeyEventArgs e)
         {
@@ -258,6 +281,13 @@ namespace CapaPresentacion
         {
             txt_tot.Focus();
         }
+        private void dtim_fec_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_tot.Focus();
+            }
+        }
         //-----------------------------------------------------------------
 
         //------------PROMOCIONES------------------------------------------
@@ -289,6 +319,13 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("No se encontraron promociones vigentes.");
+            }
+        }
+        private void cmb_nompro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_numf.Focus();
             }
         }
 
@@ -361,10 +398,10 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    LimpiarGenTicket();
+                    //LimpiarGenTicket();
                     MessageBox.Show("El número de la factura ya fue registrada para la promoción.");
                 }
-                
+
                 LlenarPanelImp();
             }
         }
@@ -478,7 +515,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    LimpiarGenTicket();
+                    //LimpiarGenTicket();
                     MessageBox.Show("El número de la factura ya fue registrada para la promoción.");
                 }
             }
@@ -525,6 +562,7 @@ namespace CapaPresentacion
             cmb_nompro.Enabled = false;
             chk_dobleTi.Enabled = false;
 
+            btn_nuevoDoc.Enabled = true;
             btn_grabarTicket.Enabled = false;
             btn_limpiar.Enabled = false;
             btn_gentik.Enabled = false;
@@ -534,10 +572,50 @@ namespace CapaPresentacion
         {
             NuevoGenTicket();
         }
+        private void btn_anulartick_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("¿Estás seguro de anular el documento?",
+                                    "Confirmación",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                AnularTicket();
+            }
 
+        }
+        private void AnularTicket()
+        {
+            string xcoddoc = txt_num.Text;
+            //int xcoddoc = int.Parse(txt_num.Text);
+            int tipusu = 0;
+
+            string xcodusu = Cls_variables.xcodigo_usu;
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt64(codadmin);
+
+            if (tipusu == 1)
+            {
+                Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
+                LimpiarGenTicket();
+                MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                LimpiarGenTicket();
+                MessageBox.Show("No tienes permisos para anular este documento. Solo los administradores pueden borrar.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            }
+        }
         private void NuevoGenTicket()
         {
-
+            cmb_loc.Focus();
             txt_num.Enabled = true;
             txt_numf.Enabled = true;
             cmb_loc.Enabled = true;
@@ -600,7 +678,7 @@ namespace CapaPresentacion
             dtg_lisDoc.DataSource = dt_registro;
         }
 
-        private void dtg_lisDoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dtg_lisDoc_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             N_Documentos negocioDocumentos = new N_Documentos();
             if (e.RowIndex >= 0)
@@ -620,7 +698,7 @@ namespace CapaPresentacion
                 // Llenar el segundo DataGridView
                 string codigoDoc = filaSeleccionada.Cells["Codigo"].Value.ToString();
                 DataTable dt_registroDoc = negocioDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
-                
+
                 //int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
                 if (dt_registroDoc.Rows.Count == 0)
                 {
@@ -637,7 +715,7 @@ namespace CapaPresentacion
 
                     dgvRegisDoc.DataSource = dt_registroDoc;
                 }
-                
+
 
                 // Redirigir al primer TabPage
                 txt_num.Enabled = false;
@@ -661,8 +739,8 @@ namespace CapaPresentacion
 
                 tabControl1.SelectedTab = tabControl1.TabPages[0];
             }
-
         }
+
         //--------------------------------------------------------------------
 
         //----------IMPRIMIR-----------------------------------------------------
@@ -732,6 +810,20 @@ namespace CapaPresentacion
         {
 
         }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

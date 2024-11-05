@@ -359,6 +359,7 @@
             dtg_lisPro.Size = new Size(827, 368);
             dtg_lisPro.TabIndex = 0;
             dtg_lisPro.CellClick += dtg_lisPro_CellClick;
+            dtg_lisPro.CellDoubleClick += dtg_lisPro_CellDoubleClick;
             // 
             // panel3
             // 

@@ -152,35 +152,7 @@ namespace CapaPresentacion
 
         private void dtg_lisPro_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            N_Documentos negocioDocumentos = new N_Documentos();
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow filaSeleccionada = dtg_lisPro.Rows[e.RowIndex];
-
-                // Llenar los controles TextBox
-                txt_codpro.Text = filaSeleccionada.Cells["Codigo"].Value.ToString();
-                txt_nompro.Text = filaSeleccionada.Cells["Campaña"].Value.ToString();
-                dtp_fecinipro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Inicio"].Value);
-                dtp_fecfinpro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Fin"].Value);
-                txt_montpro.Text = filaSeleccionada.Cells["Monto"].Value.ToString();
-                txt_limticket.Text = filaSeleccionada.Cells["Limite"].Value.ToString();
-                chk_estpro.Checked = Convert.ToBoolean(filaSeleccionada.Cells["Activo"].Value);
-
-                // Redirigir al primer TabPage
-                txt_nompro.Enabled = true;
-                dtp_fecinipro.Enabled = true;
-                dtp_fecfinpro.Enabled = true;
-                txt_montpro.Enabled = true;
-                txt_limticket.Enabled = true;
-
-                btn_nuevopromo.Enabled = false;
-                btn_grabpro.Enabled = false;
-                btn_edipro.Enabled = true;
-                btn_cancelarpro.Enabled = true;
-
-
-                tabControl1.SelectedTab = tabControl1.TabPages[0];
-            }
+            
         }
 
         private void btn_edipro_Click(object sender, EventArgs e)
@@ -268,6 +240,39 @@ namespace CapaPresentacion
 
             // Mover el cursor al final del texto para evitar que se quede en una posición anterior
             txt_nompro.SelectionStart = txt_nompro.Text.Length;
+        }
+
+        private void dtg_lisPro_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            N_Documentos negocioDocumentos = new N_Documentos();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = dtg_lisPro.Rows[e.RowIndex];
+
+                // Llenar los controles TextBox
+                txt_codpro.Text = filaSeleccionada.Cells["Codigo"].Value.ToString();
+                txt_nompro.Text = filaSeleccionada.Cells["Campaña"].Value.ToString();
+                dtp_fecinipro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Inicio"].Value);
+                dtp_fecfinpro.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha_Fin"].Value);
+                txt_montpro.Text = filaSeleccionada.Cells["Monto"].Value.ToString();
+                txt_limticket.Text = filaSeleccionada.Cells["Limite"].Value.ToString();
+                chk_estpro.Checked = Convert.ToBoolean(filaSeleccionada.Cells["Activo"].Value);
+
+                // Redirigir al primer TabPage
+                txt_nompro.Enabled = true;
+                dtp_fecinipro.Enabled = true;
+                dtp_fecfinpro.Enabled = true;
+                txt_montpro.Enabled = true;
+                txt_limticket.Enabled = true;
+
+                btn_nuevopromo.Enabled = false;
+                btn_grabpro.Enabled = false;
+                btn_edipro.Enabled = true;
+                btn_cancelarpro.Enabled = true;
+
+
+                tabControl1.SelectedTab = tabControl1.TabPages[0];
+            }
         }
     }
 }

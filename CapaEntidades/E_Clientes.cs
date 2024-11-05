@@ -19,5 +19,8 @@ namespace CapaEntidades
         public string telefono_cli { get; set; }
         public string direccion_cli { get; set; }
         public float saldo_cli { get; set; }
+        public string correo_cli { get; set; }
+        public int estado_cli { get; set; }
+
     }
 }
