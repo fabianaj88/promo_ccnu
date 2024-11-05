@@ -299,154 +299,187 @@ namespace CapaPresentacion
         {
             if (ControlVacio())
             {
+                string xnumf = txt_numf.Text;
+                string xcodloc = cmb_loc.SelectedValue.ToString();
+                string xcodcli = txt_cli.Text;
                 int codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
-                DateTime fechaFactura = dtim_fec.Value;
 
-                object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
-                object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
-
-                // Convertir las fechas obtenidas a DateTime
-                DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro);
-                DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro);
-
-                // Verificar si la fecha de la factura está dentro del rango de la promoción
-                if (fechaFactura >= fechaInicioPromocion && fechaFactura <= fechaFinPromocion)
+                DataTable dtfacloccam = new DataTable();
+                string xsentencia = "";
+                xsentencia = "select d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro from documentos d inner join registro_doc r on d.codigo_doc = r.codigo_doc where d.numfac_doc = '" + xnumf + "' and d.codigo_loc_doc = '" + xcodloc + "' and d.codigo_cli_doc = '" + xcodcli + "' and r.codigo_pro = " + codpro + " group by d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro";
+                dtfacloccam = Cls_funciones.VisualizaS(xsentencia);
+                if (dtfacloccam.Rows.Count == 0)
                 {
-                    float montpro = 0;
-                    int coddoc = int.Parse(txt_num.Text);
-                    float totalFactura = float.Parse(txt_tot.Text);
-                    string codigoCliente = txt_cli.Text;
+                    //Cls_variables.xcodigo_usu = dt_usu.Rows[0]["codigo_usu"].ToString();
+                    DateTime fechaFactura = dtim_fec.Value;
 
-                    bool dobleTic = chk_dobleTi.Checked;
+                    object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
+                    object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
 
-                    object monto_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "monto_pro", "N", "codigo_pro=" + codpro + "");
-                    montpro = (float)Convert.ToDouble(monto_pro);
+                    // Convertir las fechas obtenidas a DateTime
+                    DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro);
+                    DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro);
 
-                    // Aquí llamas a la capa de negocio para procesar saldo y tickets
-                    (float nuevoSaldo, List<E_RegistroDoc> registros, bool limiteAlcanzado) = N_RegistroDoc.ProcesarSaldoCliente(coddoc, codigoCliente, totalFactura, montpro, codpro, dobleTic);
-
-                    // Si el límite se alcanzó, mostrar el mensaje
-                    if (limiteAlcanzado)
+                    // Verificar si la fecha de la factura está dentro del rango de la promoción
+                    if (fechaFactura >= fechaInicioPromocion && fechaFactura <= fechaFinPromocion)
                     {
-                        LimpiarGenTicket();
-                        MessageBox.Show("El cliente ha alcanzado el límite de tickets para esta promoción. No se generarán más tickets.", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return; // Salir para no seguir procesando tickets
+                        float montpro = 0;
+                        int coddoc = int.Parse(txt_num.Text);
+                        float totalFactura = float.Parse(txt_tot.Text);
+                        string codigoCliente = txt_cli.Text;
+
+                        bool dobleTic = chk_dobleTi.Checked;
+
+                        object monto_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "monto_pro", "N", "codigo_pro=" + codpro + "");
+                        montpro = (float)Convert.ToDouble(monto_pro);
+
+                        // Aquí llamas a la capa de negocio para procesar saldo y tickets
+                        (float nuevoSaldo, List<E_RegistroDoc> registros, bool limiteAlcanzado) = N_RegistroDoc.ProcesarSaldoCliente(coddoc, codigoCliente, totalFactura, montpro, codpro, dobleTic);
+
+                        // Si el límite se alcanzó, mostrar el mensaje
+                        if (limiteAlcanzado)
+                        {
+                            LimpiarGenTicket();
+                            MessageBox.Show("El cliente ha alcanzado el límite de tickets para esta promoción. No se generarán más tickets.", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return; // Salir para no seguir procesando tickets
+                        }
+
+                        // Mostrar el nuevo saldo o saldo restante en el TextBox 'txt_saldocli'
+                        lbl_salcli.Visible = true;
+                        txt_saldocli.Visible = true;
+                        txt_saldocli.Text = nuevoSaldo.ToString("0.00");
+
+                        // Mostrar los registros generados en el DataGridView
+                        dgvRegisDoc.DataSource = registros;
                     }
-
-                    // Mostrar el nuevo saldo o saldo restante en el TextBox 'txt_saldocli'
-                    lbl_salcli.Visible = true;
-                    txt_saldocli.Visible = true;
-                    txt_saldocli.Text = nuevoSaldo.ToString("0.00");
-
-                    // Mostrar los registros generados en el DataGridView
-                    dgvRegisDoc.DataSource = registros;
+                    else
+                    {
+                        MessageBox.Show("La fecha de la factura no es válida para la promoción.");
+                        dgvRegisDoc.DataSource = null;
+                        dgvRegisDoc.Columns.Clear();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("La fecha de la factura no es válida para la promoción.");
-                    dgvRegisDoc.DataSource = null;
-                    dgvRegisDoc.Columns.Clear();
+                    LimpiarGenTicket();
+                    MessageBox.Show("El número de la factura ya fue registrada para la promoción.");
                 }
-
+                
                 LlenarPanelImp();
             }
-
         }
 
         private void btn_grabarTicket_Click(object sender, EventArgs e)
         {
             if (ControlVacio())
             {
-                //MessageBox.Show("Grabar e imprimir tickets");
+                string xnumf = txt_numf.Text;
+                string xcodloc = cmb_loc.SelectedValue.ToString();
+                string xcodcli = txt_cli.Text;
                 int codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
-                DateTime fechaFactura = dtim_fec.Value;
 
-                object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
-                object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
-
-                // Convertir las fechas obtenidas a DateTime
-                DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro);
-                DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro);
-
-                // Verificar si la fecha de la factura está dentro del rango de la promoción
-                if (fechaFactura >= fechaInicioPromocion && fechaFactura <= fechaFinPromocion)
+                DataTable dtfacloccam = new DataTable();
+                string xsentencia = "";
+                xsentencia = "select d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro from documentos d inner join registro_doc r on d.codigo_doc = r.codigo_doc where d.numfac_doc = '" + xnumf + "' and d.codigo_loc_doc = '" + xcodloc + "' and d.codigo_cli_doc = '" + xcodcli + "' and r.codigo_pro = " + codpro + " group by d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro";
+                dtfacloccam = Cls_funciones.VisualizaS(xsentencia);
+                if (dtfacloccam.Rows.Count == 0)
                 {
-                    // Crear un objeto de la entidad Documento
-                    E_Documentos documento = new E_Documentos
-                    {
-                        codigo_doc = int.Parse(txt_num.Text),
-                        numfac_doc = txt_numf.Text,
-                        codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
-                        codigo_cli_doc = txt_cli.Text,
-                        fecfac_doc = dtim_fec.Value,
-                        valfac_doc = float.Parse(txt_tot.Text),
-                        //obv_doc = txt_obv.Text // Opcional
-                        doble_tick = bool.Parse(chk_dobleTi.Checked.ToString()),
-                    };
+                    //MessageBox.Show("Grabar e imprimir tickets");
+                    //int codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
+                    DateTime fechaFactura = dtim_fec.Value;
 
-                    if (dgvRegisDoc.Columns.Count > 0)
-                    {
-                        // Llamar a la capa de negocio para grabar los datos
-                        N_Documentos negocio = new N_Documentos();
-                        bool exito = negocio.GrabarDocumento(documento);
+                    object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
+                    object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
 
-                        if (exito)
+                    // Convertir las fechas obtenidas a DateTime
+                    DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro);
+                    DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro);
+
+                    // Verificar si la fecha de la factura está dentro del rango de la promoción
+                    if (fechaFactura >= fechaInicioPromocion && fechaFactura <= fechaFinPromocion)
+                    {
+                        // Crear un objeto de la entidad Documento
+                        E_Documentos documento = new E_Documentos
                         {
-                            //MessageBox.Show("Documento grabado con éxito.");
-                            //Obtener datos para guardar 
-                            int coddoc = int.Parse(txt_num.Text);
-                            string codigoCliente = txt_cli.Text;
-                            float saldocliente = (float)Convert.ToDouble(txt_saldocli.Text);
+                            codigo_doc = int.Parse(txt_num.Text),
+                            numfac_doc = txt_numf.Text,
+                            codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
+                            codigo_cli_doc = txt_cli.Text,
+                            fecfac_doc = dtim_fec.Value,
+                            valfac_doc = float.Parse(txt_tot.Text),
+                            //obv_doc = txt_obv.Text // Opcional
+                            doble_tick = bool.Parse(chk_dobleTi.Checked.ToString()),
+                        };
 
-                            // Obtener los registros actuales que están en el DataGridView
-                            List<E_RegistroDoc> regdoc = (List<E_RegistroDoc>)dgvRegisDoc.DataSource;
+                        if (dgvRegisDoc.Columns.Count > 0)
+                        {
+                            // Llamar a la capa de negocio para grabar los datos
+                            N_Documentos negocio = new N_Documentos();
+                            bool exito = negocio.GrabarDocumento(documento);
 
-                            if (regdoc.Count > 0)
+                            if (exito)
                             {
-                                // Llamar a la capa de negocios para guardar los registros en la base de datos
-                                bool exito_reg = N_RegistroDoc.GrabarRegdoc(regdoc, coddoc, codigoCliente, saldocliente);
+                                //MessageBox.Show("Documento grabado con éxito.");
+                                //Obtener datos para guardar 
+                                int coddoc = int.Parse(txt_num.Text);
+                                string codigoCliente = txt_cli.Text;
+                                float saldocliente = (float)Convert.ToDouble(txt_saldocli.Text);
 
-                                if (exito_reg)
+                                // Obtener los registros actuales que están en el DataGridView
+                                List<E_RegistroDoc> regdoc = (List<E_RegistroDoc>)dgvRegisDoc.DataSource;
+
+                                if (regdoc.Count > 0)
                                 {
-                                    // Cambiar a la pestaña de impresión
+                                    // Llamar a la capa de negocios para guardar los registros en la base de datos
+                                    bool exito_reg = N_RegistroDoc.GrabarRegdoc(regdoc, coddoc, codigoCliente, saldocliente);
 
-                                    tabControl1.SelectedTab = tabControl1.TabPages[2];
+                                    if (exito_reg)
+                                    {
+                                        // Cambiar a la pestaña de impresión
 
-                                    // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
-                                    btn_impTicket_Click(sender, e);
+                                        tabControl1.SelectedTab = tabControl1.TabPages[2];
 
-                                    tabControl1.SelectedTab = tabControl1.TabPages[0];
+                                        // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
+                                        btn_impTicket_Click(sender, e);
+
+                                        tabControl1.SelectedTab = tabControl1.TabPages[0];
+
+                                        MessageBox.Show("Tickets generados con éxito.");
+                                        LimpiarGenTicket();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al generar tickets.");
+                                    }
+                                }
+                                else
+                                {
+                                    //Actualizar saldo del cliente
+                                    Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
 
                                     MessageBox.Show("Tickets generados con éxito.");
                                     LimpiarGenTicket();
                                 }
-                                else
-                                {
-                                    MessageBox.Show("Error al generar tickets.");
-                                }
                             }
                             else
                             {
-                                //Actualizar saldo del cliente
-                                Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
-
-                                MessageBox.Show("Tickets generados con éxito.");
-                                LimpiarGenTicket();
+                                MessageBox.Show("Error al generar tickets.");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Error al generar tickets.");
+                            MessageBox.Show("Genere los tickets para grabar.");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Genere los tickets para grabar.");
+                        MessageBox.Show("La fecha de la factura no es válida para la promoción.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La fecha de la factura no es válida para la promoción.");
+                    LimpiarGenTicket();
+                    MessageBox.Show("El número de la factura ya fue registrada para la promoción.");
                 }
             }
         }
