@@ -62,6 +62,7 @@ namespace CapaPresentacion
                     nombre_pro = txt_nompro.Text,
                     fec_ini_pro = dtp_fecinipro.Value,
                     fec_fin_pro = dtp_fecfinpro.Value,
+                    estado_pro = chk_estpro.Checked,
                     monto_pro = float.Parse(txt_montpro.Text),
                     limtick_pro = int.Parse(txt_limticket.Text)
 
@@ -106,6 +107,8 @@ namespace CapaPresentacion
             dtp_fecinipro.Enabled = false;
             dtp_fecfinpro.Value = fechaActual;
             dtp_fecfinpro.Enabled = false;
+            chk_estpro.Enabled = false;
+            chk_estpro.Checked = true;
 
             btn_grabpro.Enabled = false;
             btn_nuevopromo.Enabled = true;
@@ -136,6 +139,7 @@ namespace CapaPresentacion
             dtp_fecfinpro.Enabled = true;
             txt_montpro.Enabled = true;
             txt_limticket.Enabled = true;
+            chk_estpro.Enabled = true;
 
             btn_grabpro.Enabled = true;
             btn_cancelarpro.Enabled = true;
@@ -264,6 +268,7 @@ namespace CapaPresentacion
                 dtp_fecfinpro.Enabled = true;
                 txt_montpro.Enabled = true;
                 txt_limticket.Enabled = true;
+                chk_estpro.Enabled = true;
 
                 btn_nuevopromo.Enabled = false;
                 btn_grabpro.Enabled = false;
@@ -273,6 +278,41 @@ namespace CapaPresentacion
 
                 tabControl1.SelectedTab = tabControl1.TabPages[0];
             }
+        }
+
+        private void chk_estpro_CheckedChanged(object sender, EventArgs e)
+        {
+            //EditarEstadoPro();
+        }
+        private void EditarEstadoPro()
+        {
+            string xcodpro = txt_codpro.Text;
+            //int xcoddoc = int.Parse(txt_num.Text);
+            int tipusu = 0;
+
+            string xcodusu = Cls_variables.xcodigo_usu;
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt64(codadmin);
+
+            if (tipusu == 1)
+            {
+                Cls_funciones.ModificaS("promociones", "estado_pro ='" + chk_estpro.Checked + "'", "codigo_pro =" + xcodpro + "");
+                //LimpiarPromocion();
+                MessageBox.Show("Promocion desactivada con éxito.", "Desactivación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                //LimpiarPromocion();
+                MessageBox.Show("No tienes permisos para desactivar esta promocion. Solo los administradores pueden desactivar.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            }
+        }
+
+        private void chk_estpro_Click(object sender, EventArgs e)
+        {
+            EditarEstadoPro();
         }
     }
 }

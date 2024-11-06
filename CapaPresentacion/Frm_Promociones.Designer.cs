@@ -127,6 +127,8 @@
             chk_estpro.AutoSize = true;
             chk_estpro.BackColor = Color.Gainsboro;
             chk_estpro.CheckAlign = ContentAlignment.MiddleRight;
+            chk_estpro.Checked = true;
+            chk_estpro.CheckState = CheckState.Checked;
             chk_estpro.Enabled = false;
             chk_estpro.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             chk_estpro.Location = new Point(534, 49);
@@ -135,6 +137,8 @@
             chk_estpro.TabIndex = 16;
             chk_estpro.Text = "Activo";
             chk_estpro.UseVisualStyleBackColor = false;
+            chk_estpro.CheckedChanged += chk_estpro_CheckedChanged;
+            chk_estpro.Click += chk_estpro_Click;
             // 
             // txt_limticket
             // 

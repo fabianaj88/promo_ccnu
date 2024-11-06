@@ -25,29 +25,29 @@ namespace CapaPresentacion
             VerificarTipoDocumento();
 
             //Agregar opciones al ComboBox
-            cmb_generoc.Items.Add("MASCULINOQ");
-            cmb_generoc.Items.Add("FEMENINO");
-            cmb_generoc.Items.Add("OTROS");
+            //cmb_genero.Items.Add("MASCULINOQ");
+            //cmb_genero.Items.Add("FEMENINO");
+            //cmb_genero.Items.Add("OTROS");
 
             // Establecer estilo para solo selección (DropDownList)
-            cmb_generoc.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cmb_genero.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         // Método para verificar el tipo de documento
         private void VerificarTipoDocumento()
         {
             string codigo = txt_codigo.Text;
-            
+
             // Verifica si es un RUC (13 dígitos numéricos)
             if (codigo.Length == 13 && codigo.All(char.IsDigit))
             {
                 xtipdoc = "2";
-                MessageBox.Show("Es un RUC.");
+                //MessageBox.Show("Es un RUC.");
             }
             // Verifica si es una cédula (10 dígitos numéricos)
             else if (codigo.Length == 10 && codigo.All(char.IsDigit))
             {
                 xtipdoc = "1";
-                MessageBox.Show("Es una cédula.");
+                //MessageBox.Show("Es una cédula.");
             }
             //// Verifica si puede ser un pasaporte (alfanumérico, 6-10 caracteres)
             //else if (codigo.Length >= 6 && codigo.Length <= 10 && codigo.All(char.IsLetterOrDigit))
@@ -57,7 +57,7 @@ namespace CapaPresentacion
             else
             {
                 xtipdoc = "3";
-                MessageBox.Show("Es un pasaporte.");
+                //MessageBox.Show("Es un pasaporte.");
             }
         }
         public E_Clientes ClienteCreado { get; set; }  // Propiedad pública para devolver el cliente creado
@@ -118,9 +118,10 @@ namespace CapaPresentacion
                     tipo_doc_cli = xtipdoc,
                     num_doc_cli = txt_codigo.Text,
                     fecha_nac_cli = dtp_fecnac.Value,
-                    genero_cli = cmb_generoc.Text,
+                    genero_cli = cmb_genero.Text,
                     celular_cli = txt_telefono.Text,
                     direccion_cli = txt_direccion.Text,
+                    correo_cli = txt_correo.Text,
 
                 };
 

@@ -29,7 +29,7 @@ namespace CapaPresentacion
             cod_doc = (int)Convert.ToInt64(res_doc);
             txt_num.Text = cod_doc.ToString();
 
-            cmb_loc.Focus();
+            //cmb_loc.Focus();
         }
 
 
@@ -811,7 +811,7 @@ namespace CapaPresentacion
 
         }
 
-        
+
 
 
 

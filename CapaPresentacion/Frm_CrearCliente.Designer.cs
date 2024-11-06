@@ -42,7 +42,7 @@
             label7 = new Label();
             label3 = new Label();
             dtp_fecnac = new DateTimePicker();
-            cmb_generoc = new ComboBox();
+            cmb_genero = new ComboBox();
             txt_correo = new TextBox();
             txt_telefono = new TextBox();
             txt_direccion = new TextBox();
@@ -105,7 +105,7 @@
             panel3.Controls.Add(label7);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(dtp_fecnac);
-            panel3.Controls.Add(cmb_generoc);
+            panel3.Controls.Add(cmb_genero);
             panel3.Controls.Add(txt_correo);
             panel3.Controls.Add(txt_telefono);
             panel3.Controls.Add(txt_direccion);
@@ -219,15 +219,15 @@
             dtp_fecnac.TabIndex = 44;
             dtp_fecnac.Value = new DateTime(2024, 10, 23, 0, 0, 0, 0);
             // 
-            // cmb_generoc
+            // cmb_genero
             // 
-            cmb_generoc.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            cmb_generoc.FormattingEnabled = true;
-            cmb_generoc.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
-            cmb_generoc.Location = new Point(127, 150);
-            cmb_generoc.Name = "cmb_generoc";
-            cmb_generoc.Size = new Size(152, 23);
-            cmb_generoc.TabIndex = 43;
+            cmb_genero.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cmb_genero.FormattingEnabled = true;
+            cmb_genero.Items.AddRange(new object[] { "MASCULINO", "FEMENINO", "OTROS" });
+            cmb_genero.Location = new Point(127, 150);
+            cmb_genero.Name = "cmb_genero";
+            cmb_genero.Size = new Size(152, 23);
+            cmb_genero.TabIndex = 43;
             // 
             // txt_correo
             // 

@@ -25,7 +25,7 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["codigo_cli"] = cliente.codigo_cli;
                 dtDatos.Rows[0]["nombre_cli"] = cliente.nombre_cli;
                 dtDatos.Rows[0]["apellido_cli"] = cliente.apellido_cli;
-                dtDatos.Rows[0]["tipo_doc_cli"] = "CEDULA";
+                dtDatos.Rows[0]["tipo_doc_cli"] = cliente.tipo_doc_cli;
                 dtDatos.Rows[0]["num_doc_cli"] = cliente.num_doc_cli;
                 dtDatos.Rows[0]["fecha_nac_cli"] = cliente.fecha_nac_cli;
                 dtDatos.Rows[0]["genero_cli"] = cliente.genero_cli;
@@ -33,6 +33,9 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["telefono_cli"] = cliente.telefono_cli;
                 dtDatos.Rows[0]["direccion_cli"] = cliente.direccion_cli;
                 dtDatos.Rows[0]["saldo_cli"] = 0;
+                dtDatos.Rows[0]["correo_cli"] = cliente.correo_cli;
+                dtDatos.Rows[0]["estado_cli"] = 0;
+                
 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);
