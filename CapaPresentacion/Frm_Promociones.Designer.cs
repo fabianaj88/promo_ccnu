@@ -82,6 +82,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.Location = new Point(39, 61);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -92,10 +93,10 @@
             // 
             tabPage1.Controls.Add(panel2);
             tabPage1.Controls.Add(panel1);
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 25);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(837, 431);
+            tabPage1.Size = new Size(837, 430);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
             tabPage1.UseVisualStyleBackColor = true;
@@ -276,10 +277,10 @@
             // 
             btn_cancelarpro.BackColor = Color.LightGray;
             btn_cancelarpro.Enabled = false;
-            btn_cancelarpro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_cancelarpro.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_cancelarpro.Image = (Image)resources.GetObject("btn_cancelarpro.Image");
             btn_cancelarpro.ImageAlign = ContentAlignment.MiddleRight;
-            btn_cancelarpro.Location = new Point(389, 9);
+            btn_cancelarpro.Location = new Point(415, 9);
             btn_cancelarpro.Name = "btn_cancelarpro";
             btn_cancelarpro.Size = new Size(112, 35);
             btn_cancelarpro.TabIndex = 6;
@@ -292,10 +293,10 @@
             // 
             btn_edipro.BackColor = Color.LightGray;
             btn_edipro.Enabled = false;
-            btn_edipro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_edipro.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_edipro.Image = (Image)resources.GetObject("btn_edipro.Image");
             btn_edipro.ImageAlign = ContentAlignment.MiddleRight;
-            btn_edipro.Location = new Point(273, 9);
+            btn_edipro.Location = new Point(290, 9);
             btn_edipro.Name = "btn_edipro";
             btn_edipro.Size = new Size(112, 35);
             btn_edipro.TabIndex = 5;
@@ -308,10 +309,10 @@
             // 
             btn_grabpro.BackColor = Color.LightGray;
             btn_grabpro.Enabled = false;
-            btn_grabpro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_grabpro.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_grabpro.Image = (Image)resources.GetObject("btn_grabpro.Image");
             btn_grabpro.ImageAlign = ContentAlignment.MiddleRight;
-            btn_grabpro.Location = new Point(157, 9);
+            btn_grabpro.Location = new Point(165, 9);
             btn_grabpro.Name = "btn_grabpro";
             btn_grabpro.Size = new Size(112, 35);
             btn_grabpro.TabIndex = 4;
@@ -323,7 +324,7 @@
             // btn_nuevopromo
             // 
             btn_nuevopromo.BackColor = Color.LightGray;
-            btn_nuevopromo.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_nuevopromo.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_nuevopromo.Image = (Image)resources.GetObject("btn_nuevopromo.Image");
             btn_nuevopromo.ImageAlign = ContentAlignment.MiddleRight;
             btn_nuevopromo.Location = new Point(41, 9);
@@ -339,10 +340,10 @@
             // 
             tabPage2.Controls.Add(dtg_lisPro);
             tabPage2.Controls.Add(panel3);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 25);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(837, 431);
+            tabPage2.Size = new Size(837, 430);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
@@ -375,7 +376,7 @@
             // btn_buspro
             // 
             btn_buspro.BackColor = Color.LightGray;
-            btn_buspro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_buspro.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_buspro.Image = (Image)resources.GetObject("btn_buspro.Image");
             btn_buspro.ImageAlign = ContentAlignment.MiddleRight;
             btn_buspro.Location = new Point(316, 6);
@@ -391,7 +392,7 @@
             // 
             txt_buscarpro.Location = new Point(32, 12);
             txt_buscarpro.Name = "txt_buscarpro";
-            txt_buscarpro.Size = new Size(264, 23);
+            txt_buscarpro.Size = new Size(264, 22);
             txt_buscarpro.TabIndex = 1;
             // 
             // label7

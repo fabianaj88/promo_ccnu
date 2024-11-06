@@ -152,7 +152,7 @@ namespace CapaPresentacion
 
         private void dtg_lisPro_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void btn_edipro_Click(object sender, EventArgs e)
