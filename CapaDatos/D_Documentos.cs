@@ -79,7 +79,7 @@ namespace CapaDatos
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
+                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket, d.anular_doc as Anulado " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +
@@ -97,7 +97,7 @@ namespace CapaDatos
         {
             
                 string query = "SELECT d.codigo_doc as Codigo, d.numfac_doc as Factura, l.nombre_loc as Local, " +
-                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket " +
+                               "d.codigo_cli_doc as Ced_Ruc_Pas, c.nombre_cli as Cliente, d.fecfac_doc as Fecha, d.valfac_doc as Valor, d.doble_tick as DobleTicket, d.anular_doc as Anulado " +
                                "FROM documentos d " +
                                "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
                                "INNER JOIN clientes c ON c.codigo_cli = d.codigo_cli_doc " +

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Login));
-            pictureBox1 = new PictureBox();
             label1 = new Label();
             txt_usuario = new TextBox();
             label2 = new Label();
@@ -38,27 +38,28 @@
             btn_aceptar = new Button();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btn_conf = new Button();
+            toolTip1 = new ToolTip(components);
+            pan_conf = new Panel();
+            btn_canconf = new Button();
+            btn_guardarconf = new Button();
+            txt_bd = new TextBox();
+            txt_serv = new TextBox();
+            label4 = new Label();
+            label3 = new Label();
+            pan_ini = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            pan_conf.SuspendLayout();
+            pan_ini.SuspendLayout();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Gainsboro;
-            pictureBox1.Location = new Point(292, 60);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(341, 426);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Gainsboro;
             label1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(343, 326);
+            label1.Location = new Point(53, 269);
             label1.Name = "label1";
             label1.Size = new Size(59, 16);
             label1.TabIndex = 2;
@@ -67,19 +68,18 @@
             // txt_usuario
             // 
             txt_usuario.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_usuario.Location = new Point(443, 319);
+            txt_usuario.Location = new Point(153, 262);
             txt_usuario.MaxLength = 3;
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(138, 22);
             txt_usuario.TabIndex = 3;
-            txt_usuario.TextChanged += txt_usuario_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Gainsboro;
             label2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(343, 361);
+            label2.Location = new Point(53, 304);
             label2.Name = "label2";
             label2.Size = new Size(83, 16);
             label2.TabIndex = 4;
@@ -88,7 +88,7 @@
             // txt_password
             // 
             txt_password.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            txt_password.Location = new Point(443, 354);
+            txt_password.Location = new Point(153, 297);
             txt_password.MaxLength = 10;
             txt_password.Name = "txt_password";
             txt_password.Size = new Size(138, 22);
@@ -99,7 +99,7 @@
             // 
             btn_cancelar.BackColor = SystemColors.ActiveCaption;
             btn_cancelar.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_cancelar.Location = new Point(472, 405);
+            btn_cancelar.Location = new Point(182, 348);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.RightToLeft = RightToLeft.No;
             btn_cancelar.Size = new Size(109, 33);
@@ -112,12 +112,12 @@
             // 
             btn_aceptar.BackColor = SystemColors.ActiveCaption;
             btn_aceptar.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_aceptar.Location = new Point(343, 405);
+            btn_aceptar.Location = new Point(53, 348);
             btn_aceptar.Name = "btn_aceptar";
             btn_aceptar.RightToLeft = RightToLeft.No;
             btn_aceptar.Size = new Size(102, 33);
             btn_aceptar.TabIndex = 7;
-            btn_aceptar.Text = "Aceptar";
+            btn_aceptar.Text = "Inicio";
             btn_aceptar.UseVisualStyleBackColor = false;
             btn_aceptar.Click += btn_aceptar_Click;
             // 
@@ -125,7 +125,7 @@
             // 
             pictureBox2.BackColor = Color.Gainsboro;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(343, 105);
+            pictureBox2.Location = new Point(53, 41);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(238, 199);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -143,19 +143,116 @@
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
+            // btn_conf
+            // 
+            btn_conf.BackColor = Color.Gainsboro;
+            btn_conf.Image = (Image)resources.GetObject("btn_conf.Image");
+            btn_conf.Location = new Point(12, 498);
+            btn_conf.Name = "btn_conf";
+            btn_conf.Size = new Size(37, 35);
+            btn_conf.TabIndex = 9;
+            toolTip1.SetToolTip(btn_conf, "Configuración");
+            btn_conf.UseVisualStyleBackColor = false;
+            btn_conf.Click += btn_conf_Click;
+            // 
+            // pan_conf
+            // 
+            pan_conf.BackColor = Color.Gainsboro;
+            pan_conf.Controls.Add(btn_canconf);
+            pan_conf.Controls.Add(btn_guardarconf);
+            pan_conf.Controls.Add(txt_bd);
+            pan_conf.Controls.Add(txt_serv);
+            pan_conf.Controls.Add(label4);
+            pan_conf.Controls.Add(label3);
+            pan_conf.Location = new Point(282, 170);
+            pan_conf.Name = "pan_conf";
+            pan_conf.Size = new Size(374, 181);
+            pan_conf.TabIndex = 10;
+            pan_conf.Visible = false;
+            // 
+            // btn_canconf
+            // 
+            btn_canconf.BackColor = Color.LightSteelBlue;
+            btn_canconf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_canconf.Location = new Point(181, 121);
+            btn_canconf.Name = "btn_canconf";
+            btn_canconf.Size = new Size(75, 32);
+            btn_canconf.TabIndex = 5;
+            btn_canconf.Text = "Cancelar";
+            btn_canconf.UseVisualStyleBackColor = false;
+            btn_canconf.Click += btn_canconf_Click;
+            // 
+            // btn_guardarconf
+            // 
+            btn_guardarconf.BackColor = Color.LightSteelBlue;
+            btn_guardarconf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_guardarconf.Location = new Point(70, 121);
+            btn_guardarconf.Name = "btn_guardarconf";
+            btn_guardarconf.Size = new Size(75, 32);
+            btn_guardarconf.TabIndex = 4;
+            btn_guardarconf.Text = "Guardar";
+            btn_guardarconf.UseVisualStyleBackColor = false;
+            btn_guardarconf.Click += btn_guardarconf_Click;
+            // 
+            // txt_bd
+            // 
+            txt_bd.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_bd.Location = new Point(151, 77);
+            txt_bd.Name = "txt_bd";
+            txt_bd.Size = new Size(141, 22);
+            txt_bd.TabIndex = 3;
+            // 
+            // txt_serv
+            // 
+            txt_serv.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_serv.Location = new Point(151, 39);
+            txt_serv.Name = "txt_serv";
+            txt_serv.Size = new Size(141, 22);
+            txt_serv.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(36, 79);
+            label4.Name = "label4";
+            label4.Size = new Size(101, 16);
+            label4.TabIndex = 1;
+            label4.Text = "Base de Datos:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(36, 41);
+            label3.Name = "label3";
+            label3.Size = new Size(65, 16);
+            label3.TabIndex = 0;
+            label3.Text = "Servidor:";
+            // 
+            // pan_ini
+            // 
+            pan_ini.BackColor = Color.Gainsboro;
+            pan_ini.Controls.Add(pictureBox2);
+            pan_ini.Controls.Add(txt_usuario);
+            pan_ini.Controls.Add(label1);
+            pan_ini.Controls.Add(btn_aceptar);
+            pan_ini.Controls.Add(label2);
+            pan_ini.Controls.Add(btn_cancelar);
+            pan_ini.Controls.Add(txt_password);
+            pan_ini.Location = new Point(299, 60);
+            pan_ini.Name = "pan_ini";
+            pan_ini.Size = new Size(341, 426);
+            pan_ini.TabIndex = 11;
+            // 
             // Frm_Login
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
             AutoSize = true;
             ClientSize = new Size(923, 545);
-            Controls.Add(btn_aceptar);
-            Controls.Add(btn_cancelar);
-            Controls.Add(txt_password);
-            Controls.Add(label2);
-            Controls.Add(txt_usuario);
-            Controls.Add(label1);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
+            Controls.Add(pan_ini);
+            Controls.Add(pan_conf);
+            Controls.Add(btn_conf);
             Controls.Add(pictureBox3);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_Login";
@@ -163,16 +260,16 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_Login";
             Load += Frm_Login_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            pan_conf.ResumeLayout(false);
+            pan_conf.PerformLayout();
+            pan_ini.ResumeLayout(false);
+            pan_ini.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private PictureBox pictureBox1;
         private Label label1;
         private TextBox txt_usuario;
         private Label label2;
@@ -181,5 +278,15 @@
         private Button btn_aceptar;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private Button btn_conf;
+        private ToolTip toolTip1;
+        private Panel pan_conf;
+        private Label label4;
+        private Label label3;
+        private TextBox txt_bd;
+        private TextBox txt_serv;
+        private Button btn_canconf;
+        private Button btn_guardarconf;
+        private Panel pan_ini;
     }
 }

@@ -619,6 +619,7 @@ namespace CapaPresentacion
             btn_grabarTicket.Enabled = false;
             btn_limpiar.Enabled = false;
             btn_gentik.Enabled = false;
+            btn_impdoc.Visible = false;
         }
 
         private void btn_nuevoDoc_Click(object sender, EventArgs e)
@@ -650,13 +651,21 @@ namespace CapaPresentacion
             string xcodusu = Cls_variables.xcodigo_usu;
             object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
             tipusu = (int)Convert.ToInt64(codadmin);
+            object docanul = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "anular_doc", "L", "codigo_doc=" + xcoddoc + "");
+            bool docanula = (bool)Convert.ToBoolean(docanul);
 
             if (tipusu == 1)
             {
-                Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
-                LimpiarGenTicket();
-                MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                if (docanula == false)
+                {
+                    Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
+                    LimpiarGenTicket();
+                    MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("El documento ya esta anulado... No puede volver a anular.");
+                }
             }
             else
             {
@@ -760,7 +769,7 @@ namespace CapaPresentacion
                 //int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
                 if (dt_registroDoc.Rows.Count == 0)
                 {
-
+                    cmb_nompro.SelectedValue = null;
                     cmb_nompro.Text = "";
 
                     dgvRegisDoc.DataSource = null;
@@ -769,6 +778,7 @@ namespace CapaPresentacion
                 {
                     int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
                     object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
+                    //cmb_nompro.ValueMember = codigoPro.ToString();
                     cmb_nompro.Text = nompro.ToString();
 
                     dgvRegisDoc.DataSource = dt_registroDoc;
@@ -794,6 +804,7 @@ namespace CapaPresentacion
                 btn_limpiar.Enabled = true;
                 btn_anulartick.Enabled = true;
                 btn_nuevoDoc.Enabled = false;
+                btn_impdoc.Visible = true;
 
                 tabControl1.SelectedTab = tabControl1.TabPages[0];
             }
@@ -836,12 +847,52 @@ namespace CapaPresentacion
             }
             //printPreviewDialog1.ShowDialog();
         }
+        private void btn_impdoc_Click(object sender, EventArgs e)
+        {
+            int tipusu = 0;
+            string xcoddoc = txt_num.Text;
 
+            string xcodusu = Cls_variables.xcodigo_usu;
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt64(codadmin);
+            object docanul = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "anular_doc", "L", "codigo_doc=" + xcoddoc + "");
+            bool docanula = (bool)Convert.ToBoolean(docanul);
+
+            if (tipusu == 1)
+            {
+                if (docanula == false)
+                {
+                    LlenarPanelImp();
+
+                    // Cambiar a la pestaña de impresión
+
+                    tabControl1.SelectedTab = tabControl1.TabPages[2];
+
+                    // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
+                    btn_impTicket_Click(sender, e);
+
+                    tabControl1.SelectedTab = tabControl1.TabPages[0];
+
+                    MessageBox.Show("Tickets generados con éxito.");
+                    LimpiarGenTicket();
+                }
+                else
+                {
+                    MessageBox.Show("No puede reimprimir un documento anulado.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para reimprimir tickets. Solo los administradores pueden reimprimir.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
         private void LlenarPanelImp()
         {
 
             lbl_numdT.Text = txt_num.Text;
             txt_proT.Text = cmb_nompro.Text;
+            txt_cedtik.Text = txt_cli.Text;
             object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
             int codpro = 0;
@@ -852,7 +903,17 @@ namespace CapaPresentacion
             }
             else
             {
-                codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
+                if (cmb_nompro.SelectedValue == null)
+                {
+                    N_Documentos negocioDocumentos = new N_Documentos();
+                    string codigoDoc = txt_num.Text;
+                    DataTable dt_registroDoc = negocioDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
+                    codpro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
+                }
+                else
+                {
+                    codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
+                }
             }
 
             object fecproT = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
@@ -864,34 +925,10 @@ namespace CapaPresentacion
 
         }
 
-        private void txt_dirT_TextChanged(object sender, EventArgs e)
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //------------------------------------------------------------------------

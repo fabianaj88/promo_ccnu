@@ -44,6 +44,7 @@
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             panel1 = new Panel();
+            btn_impdoc = new Button();
             chk_dobleTi = new CheckBox();
             cmb_nompro = new ComboBox();
             btn_anulartick = new Button();
@@ -90,6 +91,8 @@
             toolTip = new ToolTip(components);
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
+            label10 = new Label();
+            txt_cedtik = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -285,6 +288,7 @@
             // 
             panel1.BackColor = Color.LightSteelBlue;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btn_impdoc);
             panel1.Controls.Add(chk_dobleTi);
             panel1.Controls.Add(cmb_nompro);
             panel1.Controls.Add(btn_anulartick);
@@ -309,6 +313,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(856, 145);
             panel1.TabIndex = 16;
+            // 
+            // btn_impdoc
+            // 
+            btn_impdoc.BackColor = Color.Silver;
+            btn_impdoc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_impdoc.Image = (Image)resources.GetObject("btn_impdoc.Image");
+            btn_impdoc.Location = new Point(527, 102);
+            btn_impdoc.Margin = new Padding(3, 2, 3, 2);
+            btn_impdoc.Name = "btn_impdoc";
+            btn_impdoc.Size = new Size(51, 38);
+            btn_impdoc.TabIndex = 28;
+            toolTip.SetToolTip(btn_impdoc, "Reimprimir tickets");
+            btn_impdoc.UseVisualStyleBackColor = false;
+            btn_impdoc.Visible = false;
+            btn_impdoc.Click += btn_impdoc_Click;
             // 
             // chk_dobleTi
             // 
@@ -626,13 +645,13 @@
             panel_impTickets.Controls.Add(panel4);
             panel_impTickets.Location = new Point(19, 57);
             panel_impTickets.Name = "panel_impTickets";
-            panel_impTickets.Size = new Size(828, 257);
+            panel_impTickets.Size = new Size(828, 273);
             panel_impTickets.TabIndex = 0;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(21, 233);
+            label9.Location = new Point(21, 243);
             label9.Name = "label9";
             label9.Size = new Size(11, 16);
             label9.TabIndex = 36;
@@ -641,6 +660,8 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(txt_cedtik);
+            panel4.Controls.Add(label10);
             panel4.Controls.Add(pictureBox3);
             panel4.Controls.Add(label8);
             panel4.Controls.Add(lbl_numdT);
@@ -656,8 +677,9 @@
             panel4.Controls.Add(txt_proT);
             panel4.Location = new Point(21, 9);
             panel4.Name = "panel4";
-            panel4.Size = new Size(248, 211);
+            panel4.Size = new Size(248, 231);
             panel4.TabIndex = 35;
+            panel4.Paint += panel4_Paint;
             // 
             // pictureBox3
             // 
@@ -673,7 +695,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(79, 188);
+            label8.Location = new Point(79, 208);
             label8.Name = "label8";
             label8.Size = new Size(90, 16);
             label8.TabIndex = 36;
@@ -683,7 +705,7 @@
             // 
             lbl_numdT.AutoSize = true;
             lbl_numdT.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_numdT.Location = new Point(3, 189);
+            lbl_numdT.Location = new Point(3, 209);
             lbl_numdT.Name = "lbl_numdT";
             lbl_numdT.Size = new Size(48, 15);
             lbl_numdT.TabIndex = 24;
@@ -693,7 +715,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(10, 157);
+            label19.Location = new Point(10, 183);
             label19.Name = "label19";
             label19.Size = new Size(65, 16);
             label19.TabIndex = 31;
@@ -704,18 +726,17 @@
             txt_dirT.BackColor = SystemColors.Window;
             txt_dirT.BorderStyle = BorderStyle.None;
             txt_dirT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_dirT.Location = new Point(82, 158);
+            txt_dirT.Location = new Point(82, 184);
             txt_dirT.Name = "txt_dirT";
             txt_dirT.ReadOnly = true;
             txt_dirT.Size = new Size(148, 15);
             txt_dirT.TabIndex = 32;
-            txt_dirT.TextChanged += txt_dirT_TextChanged;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label18.Location = new Point(10, 131);
+            label18.Location = new Point(10, 157);
             label18.Name = "label18";
             label18.Size = new Size(58, 16);
             label18.TabIndex = 29;
@@ -725,7 +746,7 @@
             // 
             lbl_fechaproT.AutoSize = true;
             lbl_fechaproT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_fechaproT.Location = new Point(172, 187);
+            lbl_fechaproT.Location = new Point(172, 207);
             lbl_fechaproT.Name = "lbl_fechaproT";
             lbl_fechaproT.Size = new Size(51, 16);
             lbl_fechaproT.TabIndex = 34;
@@ -735,7 +756,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(10, 105);
+            label17.Location = new Point(10, 131);
             label17.Name = "label17";
             label17.Size = new Size(56, 16);
             label17.TabIndex = 27;
@@ -756,7 +777,7 @@
             txt_telfT.BackColor = SystemColors.Window;
             txt_telfT.BorderStyle = BorderStyle.None;
             txt_telfT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_telfT.Location = new Point(82, 132);
+            txt_telfT.Location = new Point(82, 158);
             txt_telfT.Name = "txt_telfT";
             txt_telfT.ReadOnly = true;
             txt_telfT.Size = new Size(148, 15);
@@ -777,7 +798,7 @@
             txt_nomcliT.BackColor = SystemColors.Window;
             txt_nomcliT.BorderStyle = BorderStyle.None;
             txt_nomcliT.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_nomcliT.Location = new Point(82, 106);
+            txt_nomcliT.Location = new Point(82, 132);
             txt_nomcliT.Name = "txt_nomcliT";
             txt_nomcliT.ReadOnly = true;
             txt_nomcliT.Size = new Size(148, 15);
@@ -833,6 +854,23 @@
             printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(10, 104);
+            label10.Name = "label10";
+            label10.Size = new Size(51, 16);
+            label10.TabIndex = 38;
+            label10.Text = "Cédula:";
+            // 
+            // txt_cedtik
+            // 
+            txt_cedtik.BorderStyle = BorderStyle.None;
+            txt_cedtik.Location = new Point(82, 101);
+            txt_cedtik.Name = "txt_cedtik";
+            txt_cedtik.Size = new Size(148, 15);
+            txt_cedtik.TabIndex = 39;
             // 
             // Frm_Documentos
             // 
@@ -932,5 +970,8 @@
         private Label label8;
         private PictureBox pictureBox3;
         private Label label9;
+        private Button btn_impdoc;
+        private Label label10;
+        private TextBox txt_cedtik;
     }
 }
