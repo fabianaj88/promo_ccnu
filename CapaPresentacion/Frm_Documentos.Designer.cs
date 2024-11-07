@@ -73,6 +73,8 @@
             panel_impTickets = new Panel();
             label9 = new Label();
             panel4 = new Panel();
+            txt_cedtik = new TextBox();
+            label10 = new Label();
             pictureBox3 = new PictureBox();
             label8 = new Label();
             lbl_numdT = new Label();
@@ -91,8 +93,6 @@
             toolTip = new ToolTip(components);
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
-            label10 = new Label();
-            txt_cedtik = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -358,6 +358,7 @@
             cmb_nompro.Name = "cmb_nompro";
             cmb_nompro.Size = new Size(161, 24);
             cmb_nompro.TabIndex = 25;
+            cmb_nompro.SelectedIndexChanged += cmb_nompro_SelectedIndexChanged;
             cmb_nompro.Click += cmb_nompro_Click;
             cmb_nompro.KeyDown += cmb_nompro_KeyDown;
             // 
@@ -681,6 +682,23 @@
             panel4.TabIndex = 35;
             panel4.Paint += panel4_Paint;
             // 
+            // txt_cedtik
+            // 
+            txt_cedtik.BorderStyle = BorderStyle.None;
+            txt_cedtik.Location = new Point(82, 101);
+            txt_cedtik.Name = "txt_cedtik";
+            txt_cedtik.Size = new Size(148, 15);
+            txt_cedtik.TabIndex = 39;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(10, 104);
+            label10.Name = "label10";
+            label10.Size = new Size(51, 16);
+            label10.TabIndex = 38;
+            label10.Text = "Cédula:";
+            // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
@@ -854,23 +872,6 @@
             printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(10, 104);
-            label10.Name = "label10";
-            label10.Size = new Size(51, 16);
-            label10.TabIndex = 38;
-            label10.Text = "Cédula:";
-            // 
-            // txt_cedtik
-            // 
-            txt_cedtik.BorderStyle = BorderStyle.None;
-            txt_cedtik.Location = new Point(82, 101);
-            txt_cedtik.Name = "txt_cedtik";
-            txt_cedtik.Size = new Size(148, 15);
-            txt_cedtik.TabIndex = 39;
             // 
             // Frm_Documentos
             // 

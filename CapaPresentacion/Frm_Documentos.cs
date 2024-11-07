@@ -360,6 +360,7 @@ namespace CapaPresentacion
         {
             // Llamar a la capa de negocio para obtener los locales
             DataTable dtPromo = ndocu.ObtenerPromociones();
+            
 
             if (dtPromo.Rows.Count > 0)
             {
@@ -378,6 +379,8 @@ namespace CapaPresentacion
         {
             if (e.KeyCode == Keys.Enter)
             {
+                DateTime fechaActual = DateTime.Now;
+                MessageBox.Show("fecha actual maquina:" + fechaActual + "");
                 txt_numf.Focus();
             }
         }
@@ -926,6 +929,11 @@ namespace CapaPresentacion
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmb_nompro_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
