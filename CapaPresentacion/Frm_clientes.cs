@@ -214,6 +214,7 @@ namespace CapaPresentacion
                     dt_datos.Rows[0]["genero_cli"] = cmb_genero.Text;
                     dt_datos.Rows[0]["fecha_nac_cli"] = dateTimePicker1.Value;
                     dt_datos.Rows[0]["celular_cli"] = txt_celular.Text;
+                    dt_datos.Rows[0]["correo_cli"] = txt_correo.Text;
                     dt_datos.Rows[0]["saldo_cli"] = txt_saldocli.Text;
 
                     xcondicion_cli = Cls_funciones.Condicion_grabar(dt_datos, false);
