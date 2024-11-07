@@ -452,6 +452,7 @@
             Controls.Add(label3);
             Controls.Add(Locales);
             Controls.Add(pictureBox2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_locales";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_locales";

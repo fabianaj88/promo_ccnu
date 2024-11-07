@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_CrearCliente));
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             label1 = new Label();
@@ -306,6 +307,7 @@
             ClientSize = new Size(559, 328);
             Controls.Add(panel2);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_CrearCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_CrearCliente";

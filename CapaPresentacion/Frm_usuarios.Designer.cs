@@ -65,11 +65,11 @@
             btn_nuevo = new Button();
             pictureBox1 = new PictureBox();
             tabPage2 = new TabPage();
-            btn_busca_usu = new Button();
-            txt_dato_buscar = new TextBox();
             grid_lista_usuarios = new DataGridView();
             seleccionar = new DataGridViewButtonColumn();
             panel1 = new Panel();
+            btn_busca_usu = new Button();
+            txt_dato_buscar = new TextBox();
             label12 = new Label();
             label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -516,27 +516,6 @@
             tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btn_busca_usu
-            // 
-            btn_busca_usu.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_busca_usu.Image = (Image)resources.GetObject("btn_busca_usu.Image");
-            btn_busca_usu.ImageAlign = ContentAlignment.MiddleRight;
-            btn_busca_usu.Location = new Point(328, 6);
-            btn_busca_usu.Name = "btn_busca_usu";
-            btn_busca_usu.Size = new Size(112, 35);
-            btn_busca_usu.TabIndex = 2;
-            btn_busca_usu.Text = "Buscar";
-            btn_busca_usu.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_busca_usu.UseVisualStyleBackColor = true;
-            btn_busca_usu.Click += btn_busca_usu_Click;
-            // 
-            // txt_dato_buscar
-            // 
-            txt_dato_buscar.Location = new Point(42, 12);
-            txt_dato_buscar.Name = "txt_dato_buscar";
-            txt_dato_buscar.Size = new Size(264, 22);
-            txt_dato_buscar.TabIndex = 1;
-            // 
             // grid_lista_usuarios
             // 
             grid_lista_usuarios.AllowUserToAddRows = false;
@@ -573,6 +552,27 @@
             panel1.Size = new Size(827, 47);
             panel1.TabIndex = 3;
             // 
+            // btn_busca_usu
+            // 
+            btn_busca_usu.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_busca_usu.Image = (Image)resources.GetObject("btn_busca_usu.Image");
+            btn_busca_usu.ImageAlign = ContentAlignment.MiddleRight;
+            btn_busca_usu.Location = new Point(328, 6);
+            btn_busca_usu.Name = "btn_busca_usu";
+            btn_busca_usu.Size = new Size(112, 35);
+            btn_busca_usu.TabIndex = 2;
+            btn_busca_usu.Text = "Buscar";
+            btn_busca_usu.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_busca_usu.UseVisualStyleBackColor = true;
+            btn_busca_usu.Click += btn_busca_usu_Click;
+            // 
+            // txt_dato_buscar
+            // 
+            txt_dato_buscar.Location = new Point(42, 12);
+            txt_dato_buscar.Name = "txt_dato_buscar";
+            txt_dato_buscar.Size = new Size(264, 22);
+            txt_dato_buscar.TabIndex = 1;
+            // 
             // label12
             // 
             label12.AutoSize = true;
@@ -601,6 +601,7 @@
             Controls.Add(page_datos);
             Controls.Add(pictureBox4);
             Controls.Add(label12);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_usuarios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_usuarios";

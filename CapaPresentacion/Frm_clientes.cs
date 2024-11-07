@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaDatos;
+using CapaEntidades;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -46,7 +47,7 @@ namespace CapaPresentacion
         {
             btn_nuevo.Enabled = false;
             btn_editar.Enabled = false;
-            btn_buscar.Enabled = false;
+            //btn_buscar.Enabled = false;
             btn_eliminar.Enabled = false;
             btn_grabar.Enabled = true;
             btn_cancelar.Enabled = true;
@@ -85,7 +86,7 @@ namespace CapaPresentacion
         {
             btn_nuevo.Enabled = true;
             btn_editar.Enabled = true;
-            btn_buscar.Enabled = true;
+            //btn_buscar.Enabled = true;
             btn_eliminar.Enabled = true;
             btn_grabar.Enabled = false;
             btn_cancelar.Enabled = false;
@@ -346,10 +347,10 @@ namespace CapaPresentacion
 
         private void txt_codigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
-            }
+            //if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            //{
+            //    e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
+            //}
         }
 
         private void txt_telefono_KeyPress(object sender, KeyPressEventArgs e)
@@ -371,7 +372,7 @@ namespace CapaPresentacion
 
                 btn_nuevo.Enabled = false;
                 btn_editar.Enabled = false;
-                btn_buscar.Enabled = false;
+                //btn_buscar.Enabled = false;
                 btn_eliminar.Enabled = false;
 
                 //
@@ -514,39 +515,107 @@ namespace CapaPresentacion
             }
         }
 
+        private void txt_codigo_Leave(object sender, EventArgs e)
+        {
+            string codigoCliente = txt_codigo.Text;
 
+            // Validaciones para cédula, RUC y pasaporte
+            if (codigoCliente != "")
+            {
+                if (IsValidCedula(codigoCliente))
+                {
+                    // Número de cédula válido
+                    //MessageBox.Show("Cédula válida.");
+                }
+                else if (IsValidRuc(codigoCliente))
+                {
+                    // RUC válido
+                    //MessageBox.Show("RUC válido.");
+                }
+                else if (IsValidPassport(codigoCliente))
+                {
+                    // Pasaporte válido
+                    //MessageBox.Show("Pasaporte válido.");
+                }
+                else
+                {
 
-        //public static void ExportarDataGridViewAExcel(DataGridView dataGridView)
-        //{
-        //    Excel.Application excelApp = new Excel.Application();
-        //    excelApp.Workbooks.Add();
+                    MessageBox.Show("El código ingresado no es un número de cédula, RUC o pasaporte válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_codigo.Focus();
+                    return; // Termina aquí si la validación no es correcta
+                }
 
-        //    Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese el código del cliente.");
+            }
+        }
+        // Método para validar la cédula 
+        private bool IsValidCedula(string cedula)
+        {
+            if (cedula.Length != 10 || !cedula.All(char.IsDigit)) return false;
 
-        //    // Exportar encabezados
-        //    for (int i = 0; i < dataGridView.Columns.Count; i++)
-        //    {
-        //        worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
-        //    }
+            int total = 0;
+            int[] coefficients = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+            for (int i = 0; i < cedula.Length - 1; i++)
+            {
+                int digit = int.Parse(cedula[i].ToString()) * coefficients[i];
+                total += digit > 9 ? digit - 9 : digit;
+            }
+            int verifierDigit = int.Parse(cedula[cedula.Length - 1].ToString());
+            int checkDigit = 10 - (total % 10);
+            if (checkDigit == 10) checkDigit = 0;
 
-        //    // Exportar filas
-        //    for (int i = 0; i < dataGridView.Rows.Count; i++)
-        //    {
-        //        for (int j = 0; j < dataGridView.Columns.Count; j++)
-        //        {
-        //            worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
-        //        }
-        //    }
+            return verifierDigit == checkDigit;
+        }
 
-        //    // Ajustar columnas automáticamente
-        //    worksheet.Columns.AutoFit();
+        // Método para validar RUC
+        private bool IsValidRuc(string ruc)
+        {
+            return ruc.Length == 13 && ruc.All(char.IsDigit);
+        }
 
-        //    // Hacer visible Excel
-        //    excelApp.Visible = true;
-
-        //    // Limpiar recursos
-        //    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
-        //    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-        //}
+        // Método para validar el pasaporte (alfanumérico y longitud de 5)
+        private bool IsValidPassport(string passport)
+        {
+            return passport.Length == 5 && passport.All(char.IsLetterOrDigit);
+        }
     }
+
+
+
+    //public static void ExportarDataGridViewAExcel(DataGridView dataGridView)
+    //{
+    //    Excel.Application excelApp = new Excel.Application();
+    //    excelApp.Workbooks.Add();
+
+    //    Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
+
+    //    // Exportar encabezados
+    //    for (int i = 0; i < dataGridView.Columns.Count; i++)
+    //    {
+    //        worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+    //    }
+
+    //    // Exportar filas
+    //    for (int i = 0; i < dataGridView.Rows.Count; i++)
+    //    {
+    //        for (int j = 0; j < dataGridView.Columns.Count; j++)
+    //        {
+    //            worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
+    //        }
+    //    }
+
+    //    // Ajustar columnas automáticamente
+    //    worksheet.Columns.AutoFit();
+
+    //    // Hacer visible Excel
+    //    excelApp.Visible = true;
+
+    //    // Limpiar recursos
+    //    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+    //    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+    //}
+
 }

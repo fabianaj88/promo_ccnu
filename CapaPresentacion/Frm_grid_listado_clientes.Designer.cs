@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_grid_listado_clientes));
             grid_clientes = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)grid_clientes).BeginInit();
             SuspendLayout();
@@ -51,6 +52,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(grid_clientes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_grid_listado_clientes";
             Text = "Frm_grid_listado_clientes";
             ((System.ComponentModel.ISupportInitialize)grid_clientes).EndInit();

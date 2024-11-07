@@ -157,11 +157,11 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_Login";
-            ShowIcon = false;
-            ShowInTaskbar = false;
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "Frm_Login";
             Load += Frm_Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

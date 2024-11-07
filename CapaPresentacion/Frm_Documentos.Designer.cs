@@ -70,6 +70,7 @@
             Tickets = new TabPage();
             btn_impTicket = new Button();
             panel_impTickets = new Panel();
+            label9 = new Label();
             panel4 = new Panel();
             pictureBox3 = new PictureBox();
             label8 = new Label();
@@ -89,7 +90,6 @@
             toolTip = new ToolTip(components);
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
-            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvRegisDoc).BeginInit();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -258,7 +258,7 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(Tickets);
-            tabControl1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tabControl1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.ImeMode = ImeMode.NoControl;
             tabControl1.Location = new Point(24, 61);
             tabControl1.Margin = new Padding(3, 3, 3, 2);
@@ -272,12 +272,12 @@
             tabPage2.BackColor = Color.White;
             tabPage2.Controls.Add(dgvRegisDoc);
             tabPage2.Controls.Add(panel1);
-            tabPage2.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            tabPage2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage2.ForeColor = Color.Black;
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 25);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(867, 425);
+            tabPage2.Size = new Size(867, 424);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Registro";
             // 
@@ -327,6 +327,7 @@
             toolTip.SetToolTip(chk_dobleTi, "Doble Ticket");
             chk_dobleTi.UseVisualStyleBackColor = false;
             chk_dobleTi.Visible = false;
+            chk_dobleTi.CheckedChanged += chk_dobleTi_CheckedChanged;
             // 
             // cmb_nompro
             // 
@@ -338,7 +339,6 @@
             cmb_nompro.Name = "cmb_nompro";
             cmb_nompro.Size = new Size(161, 24);
             cmb_nompro.TabIndex = 25;
-            cmb_nompro.SelectedIndexChanged += cmb_nompro_SelectedIndexChanged;
             cmb_nompro.Click += cmb_nompro_Click;
             cmb_nompro.KeyDown += cmb_nompro_KeyDown;
             // 
@@ -541,10 +541,10 @@
             // 
             tabPage1.Controls.Add(dtg_lisDoc);
             tabPage1.Controls.Add(panel3);
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 25);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(867, 425);
+            tabPage1.Size = new Size(867, 424);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Listado";
             tabPage1.UseVisualStyleBackColor = true;
@@ -600,10 +600,10 @@
             // 
             Tickets.Controls.Add(btn_impTicket);
             Tickets.Controls.Add(panel_impTickets);
-            Tickets.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            Tickets.Location = new Point(4, 24);
+            Tickets.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Tickets.Location = new Point(4, 25);
             Tickets.Name = "Tickets";
-            Tickets.Size = new Size(867, 425);
+            Tickets.Size = new Size(867, 424);
             Tickets.TabIndex = 2;
             Tickets.Text = "Tickets";
             Tickets.UseVisualStyleBackColor = true;
@@ -628,6 +628,15 @@
             panel_impTickets.Name = "panel_impTickets";
             panel_impTickets.Size = new Size(828, 257);
             panel_impTickets.TabIndex = 0;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(21, 233);
+            label9.Name = "label9";
+            label9.Size = new Size(11, 16);
+            label9.TabIndex = 36;
+            label9.Text = ".";
             // 
             // panel4
             // 
@@ -825,15 +834,6 @@
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(21, 233);
-            label9.Name = "label9";
-            label9.Size = new Size(10, 15);
-            label9.TabIndex = 36;
-            label9.Text = ".";
-            // 
             // Frm_Documentos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -842,6 +842,7 @@
             Controls.Add(label6);
             Controls.Add(tabControl1);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "Frm_Documentos";
             StartPosition = FormStartPosition.CenterScreen;

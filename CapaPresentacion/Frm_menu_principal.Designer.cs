@@ -266,7 +266,7 @@
             pictureBox2.BackColor = SystemColors.Control;
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(354, 283);
+            pictureBox2.Location = new Point(353, 283);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(222, 113);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -410,8 +410,8 @@
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_menu_principal";
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_menu_principal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

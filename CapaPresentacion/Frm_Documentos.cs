@@ -131,14 +131,39 @@ namespace CapaPresentacion
             txt_nomcli.Text = codcli.ToString();
 
         }
-
         private void txt_cli_Leave(object sender, EventArgs e)
         {
-            if (txt_cli.Text != "")
+            string codigoCliente = txt_cli.Text;
+
+            // Validaciones para cédula, RUC y pasaporte
+            if (codigoCliente != "")
             {
+                if (IsValidCedula(codigoCliente))
+                {
+                    // Número de cédula válido
+                    //MessageBox.Show("Cédula válida.");
+                }
+                else if (IsValidRuc(codigoCliente))
+                {
+                    // RUC válido
+                    //MessageBox.Show("RUC válido.");
+                }
+                else if (IsValidPassport(codigoCliente))
+                {
+                    // Pasaporte válido
+                    //MessageBox.Show("Pasaporte válido.");
+                }
+                else
+                {
+
+                    MessageBox.Show("El código ingresado no es un número de cédula, RUC o pasaporte válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_cli.Focus();
+                    return; // Termina aquí si la validación no es correcta
+                }
+
+                // Si el código es válido, se verifica si el cliente existe
                 if (txt_nomcli.Text == "")
                 {
-                    string codigoCliente = txt_cli.Text;
                     Frm_CrearCliente frm = new Frm_CrearCliente(codigoCliente);
 
                     // Mostrar el formulario de cliente como modal
@@ -155,9 +180,9 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("Ingrese el código del cliente.");
-                return;
             }
         }
+
 
         private void txt_nomcli_Leave(object sender, EventArgs e)
         {
@@ -169,6 +194,37 @@ namespace CapaPresentacion
             {
                 cmb_nompro.Focus();
             }
+        }
+
+        // Método para validar la cédula 
+        private bool IsValidCedula(string cedula)
+        {
+            if (cedula.Length != 10 || !cedula.All(char.IsDigit)) return false;
+
+            int total = 0;
+            int[] coefficients = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+            for (int i = 0; i < cedula.Length - 1; i++)
+            {
+                int digit = int.Parse(cedula[i].ToString()) * coefficients[i];
+                total += digit > 9 ? digit - 9 : digit;
+            }
+            int verifierDigit = int.Parse(cedula[cedula.Length - 1].ToString());
+            int checkDigit = 10 - (total % 10);
+            if (checkDigit == 10) checkDigit = 0;
+
+            return verifierDigit == checkDigit;
+        }
+
+        // Método para validar RUC
+        private bool IsValidRuc(string ruc)
+        {
+            return ruc.Length == 13 && ruc.All(char.IsDigit);
+        }
+
+        // Método para validar el pasaporte (alfanumérico y longitud de 5)
+        private bool IsValidPassport(string passport)
+        {
+            return passport.Length == 5 && passport.All(char.IsLetterOrDigit);
         }
         //---------------------------------------------------------------
 
@@ -291,10 +347,7 @@ namespace CapaPresentacion
         //-----------------------------------------------------------------
 
         //------------PROMOCIONES------------------------------------------
-        private void cmb_nompro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LlenarComboBoxPromociones();
-        }
+
 
         private void cmb_nompro_Click(object sender, EventArgs e)
         {
@@ -667,6 +720,11 @@ namespace CapaPresentacion
 
             return true;
         }
+        private void chk_dobleTi_CheckedChanged(object sender, EventArgs e)
+        {
+            dgvRegisDoc.DataSource = null;
+            dgvRegisDoc.Columns.Clear();
+        }
         //-------------------------------------------------------------------
 
         //-----------BUSCAR--------------------------------------------------
@@ -810,6 +868,8 @@ namespace CapaPresentacion
         {
 
         }
+
+
 
 
 

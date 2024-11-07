@@ -417,6 +417,7 @@
             Controls.Add(label7);
             Controls.Add(tabControl1);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_Promociones";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_Promociones";
