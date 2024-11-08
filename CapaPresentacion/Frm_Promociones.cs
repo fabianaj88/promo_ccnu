@@ -248,7 +248,7 @@ namespace CapaPresentacion
 
         private void dtg_lisPro_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            N_Documentos negocioDocumentos = new N_Documentos();
+            //N_Documentos negocioDocumentos = new N_Documentos();
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow filaSeleccionada = dtg_lisPro.Rows[e.RowIndex];

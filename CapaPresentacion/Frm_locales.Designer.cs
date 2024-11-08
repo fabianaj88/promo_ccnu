@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_locales));
-            Locales = new TabControl();
+            tab_locales = new TabControl();
             tabPage1 = new TabPage();
+            chc_actloc = new CheckBox();
             txt_coproact = new TextBox();
             txt_coproes = new TextBox();
             label9 = new Label();
@@ -58,10 +59,9 @@
             panel1 = new Panel();
             btn_busca_loc = new Button();
             txt_dato_buscar = new TextBox();
-            tabPage3 = new TabPage();
             label3 = new Label();
             pictureBox2 = new PictureBox();
-            Locales.SuspendLayout();
+            tab_locales.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -71,20 +71,21 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
-            // Locales
+            // tab_locales
             // 
-            Locales.Controls.Add(tabPage1);
-            Locales.Controls.Add(tabPage2);
-            Locales.Controls.Add(tabPage3);
-            Locales.Location = new Point(30, 66);
-            Locales.Name = "Locales";
-            Locales.SelectedIndex = 0;
-            Locales.Size = new Size(860, 454);
-            Locales.TabIndex = 3;
+            tab_locales.Controls.Add(tabPage1);
+            tab_locales.Controls.Add(tabPage2);
+            tab_locales.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            tab_locales.Location = new Point(30, 66);
+            tab_locales.Name = "tab_locales";
+            tab_locales.SelectedIndex = 0;
+            tab_locales.Size = new Size(860, 454);
+            tab_locales.TabIndex = 3;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(chc_actloc);
             tabPage1.Controls.Add(txt_coproact);
             tabPage1.Controls.Add(txt_coproes);
             tabPage1.Controls.Add(label9);
@@ -107,12 +108,25 @@
             tabPage1.Controls.Add(btn_editar_loc);
             tabPage1.Controls.Add(btn_grabar_loc);
             tabPage1.Controls.Add(pictureBox1);
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 25);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(852, 426);
+            tabPage1.Size = new Size(852, 425);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
+            // 
+            // chc_actloc
+            // 
+            chc_actloc.AutoSize = true;
+            chc_actloc.BackColor = Color.Gainsboro;
+            chc_actloc.Enabled = false;
+            chc_actloc.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            chc_actloc.Location = new Point(597, 89);
+            chc_actloc.Name = "chc_actloc";
+            chc_actloc.Size = new Size(61, 20);
+            chc_actloc.TabIndex = 15;
+            chc_actloc.Text = "Activo";
+            chc_actloc.UseVisualStyleBackColor = false;
             // 
             // txt_coproact
             // 
@@ -169,6 +183,7 @@
             btn_nuevo_loc.Text = "Nuevo";
             btn_nuevo_loc.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_nuevo_loc.UseVisualStyleBackColor = false;
+            btn_nuevo_loc.Click += btn_nuevo_loc_Click;
             // 
             // txt_resloc
             // 
@@ -254,6 +269,8 @@
             txt_mail_loc.Name = "txt_mail_loc";
             txt_mail_loc.Size = new Size(203, 22);
             txt_mail_loc.TabIndex = 12;
+            txt_mail_loc.KeyPress += txt_mail_loc_KeyPress;
+            txt_mail_loc.Validating += txt_mail_loc_Validating;
             // 
             // txt_ubiloc
             // 
@@ -309,38 +326,43 @@
             // btn_eliminar_loc
             // 
             btn_eliminar_loc.BackColor = Color.LightGray;
+            btn_eliminar_loc.Enabled = false;
             btn_eliminar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_eliminar_loc.Image = (Image)resources.GetObject("btn_eliminar_loc.Image");
             btn_eliminar_loc.ImageAlign = ContentAlignment.MiddleRight;
-            btn_eliminar_loc.Location = new Point(400, 11);
+            btn_eliminar_loc.Location = new Point(443, 11);
             btn_eliminar_loc.Name = "btn_eliminar_loc";
             btn_eliminar_loc.Size = new Size(112, 35);
             btn_eliminar_loc.TabIndex = 4;
-            btn_eliminar_loc.Text = "Eliminar";
+            btn_eliminar_loc.Text = "Cancelar";
             btn_eliminar_loc.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_eliminar_loc.UseVisualStyleBackColor = false;
+            btn_eliminar_loc.Click += btn_eliminar_loc_Click;
             // 
             // btn_editar_loc
             // 
             btn_editar_loc.BackColor = Color.LightGray;
+            btn_editar_loc.Enabled = false;
             btn_editar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_editar_loc.Image = (Image)resources.GetObject("btn_editar_loc.Image");
             btn_editar_loc.ImageAlign = ContentAlignment.MiddleRight;
-            btn_editar_loc.Location = new Point(282, 11);
+            btn_editar_loc.Location = new Point(311, 11);
             btn_editar_loc.Name = "btn_editar_loc";
             btn_editar_loc.Size = new Size(112, 35);
             btn_editar_loc.TabIndex = 3;
             btn_editar_loc.Text = "Editar";
             btn_editar_loc.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_editar_loc.UseVisualStyleBackColor = false;
+            btn_editar_loc.Click += btn_editar_loc_Click;
             // 
             // btn_grabar_loc
             // 
             btn_grabar_loc.BackColor = Color.LightGray;
+            btn_grabar_loc.Enabled = false;
             btn_grabar_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btn_grabar_loc.Image = (Image)resources.GetObject("btn_grabar_loc.Image");
             btn_grabar_loc.ImageAlign = ContentAlignment.MiddleRight;
-            btn_grabar_loc.Location = new Point(164, 11);
+            btn_grabar_loc.Location = new Point(178, 11);
             btn_grabar_loc.Name = "btn_grabar_loc";
             btn_grabar_loc.Size = new Size(112, 35);
             btn_grabar_loc.TabIndex = 2;
@@ -384,6 +406,7 @@
             grid_lista_locales.RowTemplate.Height = 25;
             grid_lista_locales.Size = new Size(843, 368);
             grid_lista_locales.TabIndex = 5;
+            grid_lista_locales.CellDoubleClick += grid_lista_locales_CellDoubleClick;
             // 
             // panel1
             // 
@@ -409,18 +432,8 @@
             // 
             txt_dato_buscar.Location = new Point(18, 9);
             txt_dato_buscar.Name = "txt_dato_buscar";
-            txt_dato_buscar.Size = new Size(230, 23);
+            txt_dato_buscar.Size = new Size(230, 22);
             txt_dato_buscar.TabIndex = 2;
-            // 
-            // tabPage3
-            // 
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(852, 426);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Facturas por local";
-            tabPage3.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -450,13 +463,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
             Controls.Add(label3);
-            Controls.Add(Locales);
+            Controls.Add(tab_locales);
             Controls.Add(pictureBox2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_locales";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frm_locales";
-            Locales.ResumeLayout(false);
+            tab_locales.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -471,7 +484,7 @@
 
         #endregion
 
-        private TabControl Locales;
+        private TabControl tab_locales;
         private TabPage tabPage1;
         private Label label6;
         private TextBox txt_telfloc;
@@ -498,10 +511,10 @@
         private Label label9;
         private Label label8;
         private TextBox txt_coproact;
-        private TabPage tabPage3;
         private Panel panel1;
         private TextBox txt_dato_buscar;
         private Button btn_busca_loc;
         private DataGridView grid_lista_locales;
+        private CheckBox chc_actloc;
     }
 }

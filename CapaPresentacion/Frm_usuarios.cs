@@ -90,7 +90,7 @@ namespace CapaPresentacion
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            //limpiar_campos();
+            limpiar_campos();
             carga_inicial();
             if (txt_codigo.Enabled == false)
             {

@@ -71,13 +71,58 @@ namespace CapaPresentacion
         {
 
         }
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            txt_claveconf.Text = "";
+            pan_clavconf.Enabled = false;
+            pan_clavconf.Visible = false;
+            pan_conf.Enabled = false;
+            pan_conf.Visible = false;
+            pan_ini.Enabled = true;
+            pan_ini.Visible = true;
+        }
+        private void txt_claveconf_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string clave_conf = "AdminGiga923";
 
+                if (txt_claveconf.Text == clave_conf)
+                {
+                    txt_claveconf.Text = "";
+                    pan_clavconf.Enabled = false;
+                    pan_clavconf.Visible = false;
+                    pan_conf.Enabled = true;
+                    pan_conf.Visible = true;
+                    pan_ini.Enabled = false;
+                    pan_ini.Visible = false;
+                }
+                else
+                {
+                    txt_claveconf.Text = "";
+
+                    MessageBox.Show("Clave Incorrecta");
+
+                    pan_clavconf.Enabled = false;
+                    pan_clavconf.Visible = false;
+                    pan_conf.Enabled = false;
+                    pan_conf.Visible = false;
+                    pan_ini.Enabled = true;
+                    pan_ini.Visible = true;
+
+
+                }
+            }
+        }
         private void btn_conf_Click(object sender, EventArgs e)
         {
-            pan_conf.Enabled = true;
-            pan_conf.Visible = true;
+            pan_clavconf.Enabled = true;
+            pan_clavconf.Visible = true;
+            pan_conf.Enabled = false;
+            pan_conf.Visible = false;
             pan_ini.Enabled = false;
             pan_ini.Visible = false;
+
         }
         private void btn_guardarconf_Click(object sender, EventArgs e)
         {
@@ -90,7 +135,7 @@ namespace CapaPresentacion
             datos_conexion();
             pan_conf.Enabled = false;
             pan_conf.Visible = false;
-            pan_ini.Enabled= true;
+            pan_ini.Enabled = true;
             pan_ini.Visible = true;
 
         }
@@ -171,5 +216,12 @@ namespace CapaPresentacion
 
 
         }
+
+        private void txt_password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

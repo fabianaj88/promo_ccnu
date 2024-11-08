@@ -26,7 +26,7 @@ namespace CapaPresentacion
             int cod_doc = 0;
 
             object res_doc = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "ISNULL(MAX(codigo_doc), 0) + 1", "N", "");
-            cod_doc = (int)Convert.ToInt64(res_doc);
+            cod_doc = (int)Convert.ToInt32(res_doc);
             txt_num.Text = cod_doc.ToString();
 
             //cmb_loc.Focus();
@@ -379,8 +379,8 @@ namespace CapaPresentacion
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DateTime fechaActual = DateTime.Now;
-                MessageBox.Show("fecha actual maquina:" + fechaActual + "");
+                //DateTime fechaActual = DateTime.Now;
+                //MessageBox.Show("fecha actual maquina:" + fechaActual + "");
                 txt_numf.Focus();
             }
         }
@@ -404,14 +404,14 @@ namespace CapaPresentacion
                 if (dtfacloccam.Rows.Count == 0)
                 {
                     //Cls_variables.xcodigo_usu = dt_usu.Rows[0]["codigo_usu"].ToString();
-                    DateTime fechaFactura = dtim_fec.Value;
+                    DateTime fechaFactura = dtim_fec.Value.Date;
 
                     object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
                     object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
 
                     // Convertir las fechas obtenidas a DateTime
-                    DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro);
-                    DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro);
+                    DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro).Date;
+                    DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro).Date;
 
                     // Verificar si la fecha de la factura está dentro del rango de la promoción
                     if (fechaFactura >= fechaInicioPromocion && fechaFactura <= fechaFinPromocion)
@@ -433,7 +433,7 @@ namespace CapaPresentacion
                         if (limiteAlcanzado)
                         {
                             LimpiarGenTicket();
-                            MessageBox.Show("El cliente ha alcanzado el límite de tickets para esta promoción. No se generarán más tickets.", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El cliente ha alcanzado el límite de tickets para esta campaña. No se generarán más tickets.", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return; // Salir para no seguir procesando tickets
                         }
 
@@ -444,10 +444,17 @@ namespace CapaPresentacion
 
                         // Mostrar los registros generados en el DataGridView
                         dgvRegisDoc.DataSource = registros;
+
+                        // Personalizar los encabezados de las columnas en el DataGridView
+                        dgvRegisDoc.Columns["num_tic"].HeaderText = "Ticket N°";
+                        dgvRegisDoc.Columns["codigo_doc"].HeaderText = "Registro N°";
+                        dgvRegisDoc.Columns["fecemi_tic"].HeaderText = "Fecha Emisión";
+                        dgvRegisDoc.Columns["estado_tic"].HeaderText = "Ticket Impreso";
+                        dgvRegisDoc.Columns["codigo_pro"].HeaderText = "Código Campaña";
                     }
                     else
                     {
-                        MessageBox.Show("La fecha de la factura no es válida para la promoción.");
+                        MessageBox.Show("La fecha de la factura no es válida para la campaña.");
                         dgvRegisDoc.DataSource = null;
                         dgvRegisDoc.Columns.Clear();
                     }
@@ -455,7 +462,7 @@ namespace CapaPresentacion
                 else
                 {
                     //LimpiarGenTicket();
-                    MessageBox.Show("El número de la factura ya fue registrada para la promoción.");
+                    MessageBox.Show("El número de la factura ya fue registrada para la campaña.");
                 }
 
                 LlenarPanelImp();
@@ -785,6 +792,15 @@ namespace CapaPresentacion
                     cmb_nompro.Text = nompro.ToString();
 
                     dgvRegisDoc.DataSource = dt_registroDoc;
+
+                    // Personalizar los encabezados de las columnas en el DataGridView
+                    dgvRegisDoc.Columns["num_tic"].HeaderText = "Ticket N°";
+                    dgvRegisDoc.Columns["codigo_doc"].HeaderText = "Registro N°";
+                    dgvRegisDoc.Columns["fecemi_tic"].HeaderText = "Fecha Emisión";
+                    dgvRegisDoc.Columns["estado_tic"].HeaderText = "Ticket Impreso";
+                    dgvRegisDoc.Columns["codigo_pro"].HeaderText = "Código Campaña";
+
+                    
                 }
 
 

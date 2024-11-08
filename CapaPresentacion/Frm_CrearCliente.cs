@@ -191,5 +191,27 @@ namespace CapaPresentacion
                 e.Cancel = true; // Evita que se pierda el foco del control hasta que el usuario corrija el texto
             }
         }
+        // Evento KeyPress para permitir solo números
+
+        private void txt_telefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si el carácter ingresado no es un dígito y no es la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloquear el carácter
+            }
+        }
+
+        private void txt_telefono_TextChanged(object sender, EventArgs e)
+        {
+            // Si el texto es mayor a 10 caracteres, recortarlo
+            if (txt_correo.Text.Length > 10)
+            {
+                txt_telefono.Text = txt_telefono.Text.Substring(0, 10);
+                txt_telefono.SelectionStart = txt_telefono.Text.Length; // Mover el cursor al final
+            }
+        }
+
+        
     }
 }

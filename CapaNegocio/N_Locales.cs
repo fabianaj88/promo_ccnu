@@ -14,6 +14,7 @@ namespace CapaNegocio
 {
     public class N_Locales
     {
+        private D_Locales dloc = new D_Locales();
         public  bool GrabarLocales(E_Locales local)
         {
             // Leer los campos de la tabla
@@ -32,6 +33,7 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["copro_escri_loc"] = local.copro_escri_loc;
                 dtDatos.Rows[0]["copro_act_loc"] = local.copro_act_loc;
                 dtDatos.Rows[0]["arrend_loc"] = local.arrend_loc;
+                dtDatos.Rows[0]["estado_loc"] = local.estado_loc;
                 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);
@@ -41,6 +43,21 @@ namespace CapaNegocio
             }
 
             return false;
+        }
+
+        
+        // Método para buscar locales por un término de búsqueda
+        public DataTable BuscarLocales(string busqueda)
+        {
+            
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                return dloc.ObtenerTodosLosLocales();
+            }
+            else
+            {
+                return dloc.BuscarLocal(busqueda);
+            }
         }
     }
 }

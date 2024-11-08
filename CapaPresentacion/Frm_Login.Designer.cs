@@ -40,6 +40,7 @@
             pictureBox3 = new PictureBox();
             btn_conf = new Button();
             toolTip1 = new ToolTip(components);
+            btn_close = new Button();
             pan_conf = new Panel();
             btn_canconf = new Button();
             btn_guardarconf = new Button();
@@ -48,10 +49,17 @@
             label4 = new Label();
             label3 = new Label();
             pan_ini = new Panel();
+            pan_clavconf = new Panel();
+            label6 = new Label();
+            pictureBox1 = new PictureBox();
+            txt_claveconf = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             pan_conf.SuspendLayout();
             pan_ini.SuspendLayout();
+            pan_clavconf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -94,6 +102,7 @@
             txt_password.Size = new Size(138, 22);
             txt_password.TabIndex = 5;
             txt_password.UseSystemPasswordChar = true;
+            txt_password.TextChanged += txt_password_TextChanged;
             // 
             // btn_cancelar
             // 
@@ -154,6 +163,18 @@
             toolTip1.SetToolTip(btn_conf, "Configuración");
             btn_conf.UseVisualStyleBackColor = false;
             btn_conf.Click += btn_conf_Click;
+            // 
+            // btn_close
+            // 
+            btn_close.BackColor = Color.Silver;
+            btn_close.Image = (Image)resources.GetObject("btn_close.Image");
+            btn_close.Location = new Point(356, 3);
+            btn_close.Name = "btn_close";
+            btn_close.Size = new Size(30, 26);
+            btn_close.TabIndex = 4;
+            toolTip1.SetToolTip(btn_close, "Salir");
+            btn_close.UseVisualStyleBackColor = false;
+            btn_close.Click += btn_close_Click;
             // 
             // pan_conf
             // 
@@ -245,11 +266,67 @@
             pan_ini.Size = new Size(341, 426);
             pan_ini.TabIndex = 11;
             // 
+            // pan_clavconf
+            // 
+            pan_clavconf.BackColor = Color.Gainsboro;
+            pan_clavconf.Controls.Add(btn_close);
+            pan_clavconf.Controls.Add(label6);
+            pan_clavconf.Controls.Add(pictureBox1);
+            pan_clavconf.Controls.Add(txt_claveconf);
+            pan_clavconf.Controls.Add(label5);
+            pan_clavconf.Enabled = false;
+            pan_clavconf.Location = new Point(277, 209);
+            pan_clavconf.Name = "pan_clavconf";
+            pan_clavconf.Size = new Size(389, 152);
+            pan_clavconf.TabIndex = 12;
+            pan_clavconf.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(93, 84);
+            label6.Name = "label6";
+            label6.Size = new Size(194, 16);
+            label6.TabIndex = 3;
+            label6.Text = "Ingrese la clave de configuración";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(161, 16);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(64, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // txt_claveconf
+            // 
+            txt_claveconf.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_claveconf.Location = new Point(151, 109);
+            txt_claveconf.Name = "txt_claveconf";
+            txt_claveconf.Size = new Size(131, 22);
+            txt_claveconf.TabIndex = 1;
+            txt_claveconf.UseSystemPasswordChar = true;
+            txt_claveconf.KeyDown += txt_claveconf_KeyDown;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(92, 115);
+            label5.Name = "label5";
+            label5.Size = new Size(47, 16);
+            label5.TabIndex = 0;
+            label5.Text = "Clave:";
+            // 
             // Frm_Login
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
             AutoSize = true;
             ClientSize = new Size(923, 545);
+            Controls.Add(pan_clavconf);
             Controls.Add(pan_ini);
             Controls.Add(pan_conf);
             Controls.Add(btn_conf);
@@ -266,6 +343,9 @@
             pan_conf.PerformLayout();
             pan_ini.ResumeLayout(false);
             pan_ini.PerformLayout();
+            pan_clavconf.ResumeLayout(false);
+            pan_clavconf.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -288,5 +368,11 @@
         private Button btn_canconf;
         private Button btn_guardarconf;
         private Panel pan_ini;
+        private Panel pan_clavconf;
+        private TextBox txt_claveconf;
+        private Label label5;
+        private PictureBox pictureBox1;
+        private Label label6;
+        private Button btn_close;
     }
 }

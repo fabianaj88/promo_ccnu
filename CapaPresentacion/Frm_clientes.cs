@@ -68,6 +68,7 @@ namespace CapaPresentacion
             //
             txt_codigo.Text = "";
             txt_nombre.Text = "";
+            txt_apellidos.Text = "";
             txt_direccion.Text = "";
             txt_direccion.Text = "";
             txt_telefono.Text = "";
@@ -178,7 +179,7 @@ namespace CapaPresentacion
                 try
                 {
                     xcampos = "nombre_cli='" + txt_nombre.Text + "',apellido_cli='" + txt_apellidos.Text + "',direccion_cli='" + txt_direccion.Text + "',telefono_cli='" + txt_telefono.Text + "',celular_cli='" + txt_celular.Text + "',genero_cli='" + cmb_genero.Text + "',fecha_nac_cli='" + dateTimePicker1.Value + "',correo_cli='" + txt_correo.Text + "'";
-                    Cls_funciones.ModificaS("Clientes", xcampos, "codigo_cli='" + txt_codigo.Text + "'");
+                    Cls_funciones.ModificaS("clientes", xcampos, "codigo_cli='" + txt_codigo.Text + "'");
                     xgraba = 1;
                 }
                 catch

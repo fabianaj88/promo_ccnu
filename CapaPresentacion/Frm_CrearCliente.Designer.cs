@@ -247,6 +247,8 @@
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(133, 21);
             txt_telefono.TabIndex = 41;
+            txt_telefono.TextChanged += txt_telefono_TextChanged;
+            txt_telefono.KeyPress += txt_telefono_KeyPress;
             // 
             // txt_direccion
             // 
