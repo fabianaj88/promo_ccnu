@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using CapaDatos;
 using CapaEntidades;
+using System.Globalization;
 
 namespace CapaNegocio
 {
@@ -104,8 +105,12 @@ namespace CapaNegocio
 
         public static bool GrabarRegdoc(List<E_RegistroDoc> registros, int codigoDoc, string codigoCliente ,float saldocliente)
         {
+            // Convertir el saldo del cliente a una cadena con punto como separador decimal
+            string saldoClienteFormateado = saldocliente.ToString(CultureInfo.InvariantCulture);
+
             //Actualizar saldo del cliente
-            Cls_funciones.ModificaS("clientes","saldo_cli ="+saldocliente+"","codigo_cli ='"+codigoCliente+"'");
+            Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldoClienteFormateado + "", "codigo_cli ='" + codigoCliente + "'");
+                
 
             // Obtener los campos de la tabla registro_doc
             string campos = Cls_funciones.leer_Campos_tabla("registro_doc");
