@@ -583,6 +583,11 @@ namespace CapaPresentacion
         {
             return passport.Length == 5 && passport.All(char.IsLetterOrDigit);
         }
+
+        private void txt_telefono_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

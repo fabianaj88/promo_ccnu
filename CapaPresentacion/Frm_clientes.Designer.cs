@@ -442,6 +442,7 @@
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(152, 22);
             txt_telefono.TabIndex = 12;
+            txt_telefono.TextChanged += txt_telefono_TextChanged;
             txt_telefono.KeyDown += txt_telefono_KeyDown;
             txt_telefono.KeyPress += txt_telefono_KeyPress;
             // 

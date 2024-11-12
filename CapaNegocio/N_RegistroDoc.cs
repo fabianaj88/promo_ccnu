@@ -40,7 +40,7 @@ namespace CapaNegocio
             limpro = (int)Convert.ToInt64(res_limpro);
 
             // Obtener el número de tickets actuales del cliente
-            object res_ticketsActuales = Cls_funciones.LeerRegistrosEnTablaSql("registro_doc r inner join documentos d on d.codigo_doc = r.codigo_doc", "COUNT(r.num_tic)", "N", "d.codigo_cli_doc='" + codigoCliente + "' AND codigo_pro=" + codpro + "");
+            object res_ticketsActuales = Cls_funciones.LeerRegistrosEnTablaSql("registro_doc r inner join documentos d on d.codigo_doc = r.codigo_doc", "COUNT(r.num_tic)", "N", "d.codigo_cli_doc='" + codigoCliente + "' AND d.anular_doc='False' AND r.codigo_pro=" + codpro + "");
             int ticketsActuales = (int)Convert.ToInt64(res_ticketsActuales);
 
             // Verificar si el cliente ya alcanzó el límite de tickets para la promoción

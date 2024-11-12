@@ -244,6 +244,7 @@
             // 
             txt_telefono.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txt_telefono.Location = new Point(127, 94);
+            txt_telefono.MaxLength = 10;
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(133, 21);
             txt_telefono.TabIndex = 41;

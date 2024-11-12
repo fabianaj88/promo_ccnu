@@ -14,6 +14,7 @@ using System.Drawing.Text;
 using CapaEntidades;
 using Microsoft.Win32;
 using System.Drawing.Printing;
+using System.Globalization;
 
 namespace CapaPresentacion
 {
@@ -555,7 +556,10 @@ namespace CapaPresentacion
                                 else
                                 {
                                     //Actualizar saldo del cliente
-                                    Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldocliente + "", "codigo_cli ='" + codigoCliente + "'");
+                                    // Convertir el saldo del cliente a una cadena con punto como separador decimal
+                                    string saldoClienteFormateado = saldocliente.ToString(CultureInfo.InvariantCulture);
+
+                                    Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldoClienteFormateado + "", "codigo_cli ='" + codigoCliente + "'");
 
                                     MessageBox.Show("Tickets generados con éxito.");
                                     LimpiarGenTicket();
