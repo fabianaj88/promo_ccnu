@@ -18,7 +18,7 @@ namespace CapaDatos
         public DataTable ObtenerLocales()
         {
             // Definir la consulta SQL para obtener los nombres de los locales
-            string query = "SELECT * FROM locales";  
+            string query = "SELECT * FROM locales where estado_loc = 1";  
 
             // Llamar a la función VisualizaS para obtener los datos de la tabla locales
             return Cls_funciones.VisualizaS(query);
@@ -26,7 +26,7 @@ namespace CapaDatos
 
         public DataTable ObtenerLocalesFiltrados(string textoBusqueda)
         {
-            string query = "SELECT codigo_loc, nombre_loc FROM locales WHERE nombre_loc like '%" + textoBusqueda + "%'";
+            string query = "SELECT codigo_loc, nombre_loc FROM locales WHERE nombre_loc like '%" + textoBusqueda + "%' and estado_loc = 1";
 
             DataTable dt = new DataTable();
             dt = Cls_funciones.VisualizaS(query);

@@ -481,7 +481,7 @@ namespace CapaPresentacion
 
                 DataTable dtfacloccam = new DataTable();
                 string xsentencia = "";
-                xsentencia = "select d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro from documentos d inner join registro_doc r on d.codigo_doc = r.codigo_doc where d.numfac_doc = '" + xnumf + "' and d.codigo_loc_doc = '" + xcodloc + "' and d.codigo_cli_doc = '" + xcodcli + "' and r.codigo_pro = " + codpro + " group by d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro";
+                xsentencia = "select d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro from documentos d inner join registro_doc r on d.codigo_doc = r.codigo_doc where d.numfac_doc = '" + xnumf + "' and d.codigo_loc_doc = '" + xcodloc + "' and d.codigo_cli_doc = '" + xcodcli + "' and r.codigo_pro = " + codpro + "and anular_doc = 'False' group by d.codigo_doc, d.numfac_doc, d.codigo_loc_doc, d.codigo_cli_doc, r.codigo_pro";
                 dtfacloccam = Cls_funciones.VisualizaS(xsentencia);
                 if (dtfacloccam.Rows.Count == 0)
                 {
@@ -659,12 +659,24 @@ namespace CapaPresentacion
         private void AnularTicket()
         {
             string xcoddoc = txt_num.Text;
-            //int xcoddoc = int.Parse(txt_num.Text);
+            string xcodcli = txt_cli.Text;
             int tipusu = 0;
+            float xsumval = 0;
+            float xval = 0;
 
             string xcodusu = Cls_variables.xcodigo_usu;
             object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
-            tipusu = (int)Convert.ToInt64(codadmin);
+            tipusu = (int)Convert.ToInt32(codadmin);
+
+            object sumval = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "sum(valfac_doc)", "N", "codigo_cli_doc=" + xcodcli + " and anular_doc = 'False'");
+            xsumval = (float)Convert.ToDouble(sumval);
+            object val = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "valfac_doc", "N", "codigo_doc=" + xcoddoc + " and anular_doc = 'False'");
+            xval = (float)Convert.ToDouble(val);
+            float respanusalcli = xsumval - xval;
+            respanusalcli = (float)Math.Round(respanusalcli, 2);
+            // Convertir el saldo del cliente a una cadena con punto como separador decimal
+            string respanusalcliFor = respanusalcli.ToString(CultureInfo.InvariantCulture);
+
             object docanul = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "anular_doc", "L", "codigo_doc=" + xcoddoc + "");
             bool docanula = (bool)Convert.ToBoolean(docanul);
 
@@ -672,6 +684,7 @@ namespace CapaPresentacion
             {
                 if (docanula == false)
                 {
+                    Cls_funciones.ModificaS("clientes", "saldo_cli =" + respanusalcliFor + "", "codigo_cli ='" + xcodcli + "'");
                     Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
                     LimpiarGenTicket();
                     MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);

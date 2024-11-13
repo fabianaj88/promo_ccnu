@@ -385,10 +385,10 @@
             // 
             tabPage2.Controls.Add(grid_lista_locales);
             tabPage2.Controls.Add(panel1);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 25);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(852, 426);
+            tabPage2.Size = new Size(852, 425);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Listado";
             tabPage2.UseVisualStyleBackColor = true;
@@ -420,12 +420,17 @@
             // 
             // btn_busca_loc
             // 
-            btn_busca_loc.Location = new Point(265, 8);
+            btn_busca_loc.BackColor = Color.LightGray;
+            btn_busca_loc.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_busca_loc.Image = (Image)resources.GetObject("btn_busca_loc.Image");
+            btn_busca_loc.ImageAlign = ContentAlignment.MiddleRight;
+            btn_busca_loc.Location = new Point(265, 4);
             btn_busca_loc.Name = "btn_busca_loc";
-            btn_busca_loc.Size = new Size(75, 23);
+            btn_busca_loc.Size = new Size(112, 35);
             btn_busca_loc.TabIndex = 3;
             btn_busca_loc.Text = "Buscar";
-            btn_busca_loc.UseVisualStyleBackColor = true;
+            btn_busca_loc.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_busca_loc.UseVisualStyleBackColor = false;
             btn_busca_loc.Click += btn_busca_cli_Click;
             // 
             // txt_dato_buscar
@@ -516,5 +521,6 @@
         private Button btn_busca_loc;
         private DataGridView grid_lista_locales;
         private CheckBox chc_actloc;
+        private Button button1;
     }
 }
