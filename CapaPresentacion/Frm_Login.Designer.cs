@@ -309,6 +309,7 @@
             txt_claveconf.Size = new Size(131, 22);
             txt_claveconf.TabIndex = 1;
             txt_claveconf.UseSystemPasswordChar = true;
+            txt_claveconf.TextChanged += txt_claveconf_TextChanged;
             txt_claveconf.KeyDown += txt_claveconf_KeyDown;
             // 
             // label5

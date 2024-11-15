@@ -23,30 +23,6 @@ namespace CapaPresentacion
             carga_inicial();
         }
 
-        private void btn_nuevo_Click(object sender, EventArgs e)
-        {
-            txt_codigo.Enabled = true;
-            txt_correo.Enabled = true;
-            txt_nombre.Enabled = true;
-            txt_clave.Enabled = true;
-            radioButton1.Enabled = true;
-            radioButton2.Enabled = true;
-            checkBox1.Enabled = true;
-
-            chk_clientes.Enabled = true;
-            chk_documentos.Enabled = true;
-            chk_promo.Enabled = true;
-            chk_reportes.Enabled = true;
-            chk_usuarios.Enabled = true;
-
-            limpiar_campos();
-            btn_grabar.Enabled = true;
-            btn_cancelar.Enabled = true;
-            //btn_eliminar.Enabled = false;
-            btn_editar.Enabled = false;
-            //btn_busca_usu.Enabled = false;
-
-        }
         private void carga_inicial()
         {
             txt_codigo.Enabled = false;
@@ -69,8 +45,33 @@ namespace CapaPresentacion
             chk_reportes.Enabled = false;
             chk_usuarios.Enabled = false;
 
+        }
+        private void btn_nuevo_Click(object sender, EventArgs e)
+        {
+            txt_codigo.Enabled = true;
+            txt_correo.Enabled = true;
+            txt_nombre.Enabled = true;
+            txt_clave.Enabled = true;
+            radioButton1.Enabled = true;
+            radioButton2.Enabled = true;
+            checkBox1.Enabled = true;
+            checkBox1.Checked = true;
+
+            chk_clientes.Enabled = true;
+            chk_documentos.Enabled = true;
+            chk_promo.Enabled = true;
+            chk_reportes.Enabled = true;
+            chk_usuarios.Enabled = true;
+
+            limpiar_campos();
+            btn_grabar.Enabled = true;
+            btn_cancelar.Enabled = true;
+            //btn_eliminar.Enabled = false;
+            btn_editar.Enabled = false;
+            //btn_busca_usu.Enabled = false;
 
         }
+        
         private void limpiar_campos()
         {
             txt_codigo.Text = "";
@@ -283,6 +284,21 @@ namespace CapaPresentacion
             btn_nuevo.Enabled = false;
 
 
+        }
+
+        private void txt_correo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Convertir la tecla a minúscula si es una letra
+            e.KeyChar = char.ToLower(e.KeyChar);
+        }
+
+        private void txt_correo_Validating(object sender, CancelEventArgs e)
+        {
+            if (!txt_correo.Text.Contains("@"))
+            {
+                MessageBox.Show("El correo debe contener el símbolo '@'.", "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true; // Evita que se pierda el foco del control hasta que el usuario corrija el texto
+            }
         }
     }
 }

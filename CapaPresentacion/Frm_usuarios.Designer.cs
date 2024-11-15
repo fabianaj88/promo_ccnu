@@ -376,6 +376,8 @@
             txt_correo.Name = "txt_correo";
             txt_correo.Size = new Size(232, 22);
             txt_correo.TabIndex = 17;
+            txt_correo.KeyPress += txt_correo_KeyPress;
+            txt_correo.Validating += txt_correo_Validating;
             // 
             // label5
             // 

@@ -159,7 +159,7 @@ namespace CapaPresentacion
             try
             {
                 Conexion.ConeccionBD();
-                MessageBox.Show("Conexión guardada y establecida correctamente.");
+                MessageBox.Show("Conexión guardada correctamente.");
             }
             catch (Exception ex)
             {
@@ -222,6 +222,9 @@ namespace CapaPresentacion
 
         }
 
-       
+        private void txt_claveconf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
