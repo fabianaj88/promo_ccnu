@@ -111,6 +111,22 @@ namespace CapaPresentacion
                 MessageBox.Show("Acceso Denegado");
             }
         }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            object xpermiso = "";
+            Boolean xpermiso_usu = false;
+            xpermiso = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "menu_rep", "L", "codigo_usu='" + Cls_variables.xcodigo_usu + "'");
+            xpermiso_usu = Convert.ToBoolean(xpermiso);
+            if (xpermiso_usu == true)
+            {
+                Frm_reportes frm = new Frm_reportes();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Acceso Denegado");
+            }
+        }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -133,5 +149,7 @@ namespace CapaPresentacion
             panel3.Visible = false;
             panel4.Visible = true;
         }
+
+
     }
 }

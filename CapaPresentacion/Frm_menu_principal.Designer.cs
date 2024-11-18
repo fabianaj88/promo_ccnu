@@ -39,6 +39,7 @@
             pictureBox3 = new PictureBox();
             button5 = new Button();
             panel1 = new Panel();
+            button13 = new Button();
             panel2 = new Panel();
             button6 = new Button();
             panel3 = new Panel();
@@ -54,6 +55,7 @@
             label2 = new Label();
             pictureBox5 = new PictureBox();
             toolTip1 = new ToolTip(components);
+            button14 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel1.SuspendLayout();
@@ -184,6 +186,7 @@
             // panel1
             // 
             panel1.BackColor = Color.LightSteelBlue;
+            panel1.Controls.Add(button13);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button4);
@@ -194,6 +197,22 @@
             panel1.Size = new Size(335, 386);
             panel1.TabIndex = 9;
             panel1.Paint += panel1_Paint;
+            // 
+            // button13
+            // 
+            button13.BackColor = Color.LightSteelBlue;
+            button13.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button13.Image = (Image)resources.GetObject("button13.Image");
+            button13.ImageAlign = ContentAlignment.MiddleLeft;
+            button13.Location = new Point(13, 297);
+            button13.Name = "button13";
+            button13.Padding = new Padding(5);
+            button13.Size = new Size(310, 56);
+            button13.TabIndex = 9;
+            button13.Text = " Reportes";
+            button13.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button13.UseVisualStyleBackColor = false;
+            button13.Click += button13_Click;
             // 
             // panel2
             // 
@@ -246,6 +265,7 @@
             // panel5
             // 
             panel5.BackColor = Color.LightSteelBlue;
+            panel5.Controls.Add(button14);
             panel5.Controls.Add(button7);
             panel5.Controls.Add(button8);
             panel5.Controls.Add(button9);
@@ -372,6 +392,20 @@
             pictureBox5.TabIndex = 7;
             pictureBox5.TabStop = false;
             // 
+            // button14
+            // 
+            button14.BackColor = Color.LightSteelBlue;
+            button14.Enabled = false;
+            button14.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button14.Image = (Image)resources.GetObject("button14.Image");
+            button14.Location = new Point(13, 300);
+            button14.Name = "button14";
+            button14.Padding = new Padding(5);
+            button14.Size = new Size(63, 56);
+            button14.TabIndex = 9;
+            button14.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button14.UseVisualStyleBackColor = false;
+            // 
             // Frm_menu_principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -424,5 +458,7 @@
         private Label label2;
         private PictureBox pictureBox5;
         private ToolTip toolTip1;
+        private Button button13;
+        private Button button14;
     }
 }

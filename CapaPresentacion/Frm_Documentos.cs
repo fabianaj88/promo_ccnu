@@ -870,8 +870,8 @@ namespace CapaPresentacion
                     lbl_nregdocT.Text = numeroTicket;
 
                     //---imprimir con vista previa--------------
-                    //printPreviewDialog1.Document = printDocument1;
-                    //printPreviewDialog1.ShowDialog();
+                    printPreviewDialog1.Document = printDocument1;
+                    printPreviewDialog1.ShowDialog();
                     //--------------------------------------------
 
                     // Establecer el documento de impresión
