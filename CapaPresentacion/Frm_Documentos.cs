@@ -16,7 +16,7 @@ using Microsoft.Win32;
 using System.Drawing.Printing;
 using System.Globalization;
 
-namespace CapaPresentacion
+namespace CapaPresentacion//
 {
     public partial class Frm_Documentos : Form
     {
