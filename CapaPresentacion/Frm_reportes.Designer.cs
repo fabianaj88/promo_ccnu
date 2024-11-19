@@ -32,14 +32,19 @@
             pictureBox1 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            panel1 = new Panel();
+            btn_acprep1 = new Button();
+            panel_rep1 = new Panel();
+            label1 = new Label();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
-            panel1 = new Panel();
             panel2 = new Panel();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            panel1.SuspendLayout();
+            panel_rep1.SuspendLayout();
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,6 +89,46 @@
             tabPage1.Text = "Ventas por almacén";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Gainsboro;
+            panel1.Controls.Add(btn_acprep1);
+            panel1.Controls.Add(panel_rep1);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(626, 409);
+            panel1.TabIndex = 0;
+            // 
+            // btn_acprep1
+            // 
+            btn_acprep1.BackColor = Color.Silver;
+            btn_acprep1.Location = new Point(72, 24);
+            btn_acprep1.Name = "btn_acprep1";
+            btn_acprep1.Size = new Size(75, 23);
+            btn_acprep1.TabIndex = 1;
+            btn_acprep1.Text = "Aceptar";
+            btn_acprep1.UseVisualStyleBackColor = false;
+            btn_acprep1.Click += btn_acprep1_Click;
+            // 
+            // panel_rep1
+            // 
+            panel_rep1.BackColor = SystemColors.Window;
+            panel_rep1.Controls.Add(label1);
+            panel_rep1.Location = new Point(95, 91);
+            panel_rep1.Name = "panel_rep1";
+            panel_rep1.Size = new Size(337, 202);
+            panel_rep1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(153, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(35, 16);
+            label1.TabIndex = 0;
+            label1.Text = "hola";
+            // 
             // tabPage2
             // 
             tabPage2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -106,15 +151,6 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Ventas por edad";
             tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Gainsboro;
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(626, 409);
-            panel1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -149,6 +185,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel_rep1.ResumeLayout(false);
+            panel_rep1.PerformLayout();
             tabPage3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -163,5 +202,8 @@
         private Panel panel1;
         private Panel panel2;
         private Label label3;
+        private Panel panel_rep1;
+        private Label label1;
+        private Button btn_acprep1;
     }
 }

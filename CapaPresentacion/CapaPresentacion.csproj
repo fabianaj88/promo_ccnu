@@ -28,6 +28,8 @@
   <ItemGroup>
     <PackageReference Include="BoldReports.JavaScript" Version="6.2.42" />
     <PackageReference Include="BootstrapBlazor" Version="8.10.1" />
+    <PackageReference Include="itext7" Version="9.0.0" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="9.0.0" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
