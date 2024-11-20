@@ -232,7 +232,7 @@ namespace CapaPresentacion
                         table.AddHeaderCell(new Cell().Add(new Paragraph(column.HeaderText).SimulateBold().SetFontSize(8)));
                     }
 
-                    // Agregar las filas
+                    // Agregar las filas//
                     //foreach (DataGridViewRow row in dgv.Rows)
                     //{
                     //    if (!row.IsNewRow)
