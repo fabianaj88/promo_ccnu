@@ -61,8 +61,6 @@ namespace CapaPresentacion//
                 FiltrarLocales(textoBusqueda);
                 //cmb_loc.Focus();
             }
-
-            //
         }
         private void cmb_loc_KeyDown(object sender, KeyEventArgs e)
         {
@@ -410,7 +408,7 @@ namespace CapaPresentacion//
                     object fecini_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_ini_pro", "D", "codigo_pro=" + codpro + "");
                     object fecfin_pro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
 
-                    // Convertir las fechas obtenidas a DateTime
+                    // Convertir las fechas obtenidas a Date
                     DateTime fechaInicioPromocion = Convert.ToDateTime(fecini_pro).Date;
                     DateTime fechaFinPromocion = Convert.ToDateTime(fecfin_pro).Date;
 

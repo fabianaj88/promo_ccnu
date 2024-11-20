@@ -92,6 +92,38 @@ namespace CapaNegocio
             return datosDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
         }
 
+        // Método para obtener registros de reporte1
+        public DataTable Reporte1Doc(string repbusloc, DateTime fechaDesdeRep1, DateTime fechaHastaRep1)
+        {
+            DateTime fechades = Convert.ToDateTime(fechaDesdeRep1).Date;
+            DateTime fechahast = Convert.ToDateTime(fechaHastaRep1).Date;
+
+            D_Documentos datosDocumentos = new D_Documentos();
+            if (string.IsNullOrEmpty(repbusloc))
+            {
+                if (fechades == new DateTime(1999, 01, 01) && fechahast == new DateTime(1999, 01, 01))
+                {
+                    return datosDocumentos.ObtenerTodosLosDocRep1();
+                }
+                else
+                {
+                    return datosDocumentos.ObtenerFechasDocRep1(fechades, fechahast);
+                }
+                
+            }
+            else
+            {
+                if (fechades == new DateTime(1999, 01, 01) && fechahast == new DateTime(1999, 01, 01))
+                {
+                    return datosDocumentos.ObtenerLocDocRep1(repbusloc);
+                }
+                else
+                {
+                    return datosDocumentos.ObtenerFechasLocDocRep1(repbusloc, fechades, fechahast);
+                }
+               
+            }
+        }
 
     }
 }

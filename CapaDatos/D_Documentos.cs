@@ -124,6 +124,94 @@ namespace CapaDatos
                 return dt;
             
         }
+        //Metodos para reporte 1
+        public DataTable ObtenerTodosLosDocRep1()
+        {
 
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "l.nombre_loc AS Local,COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, " +
+                           "COUNT(d.numfac_doc) AS CantidadFacturas,Round(SUM(d.valfac_doc),2) AS ValorTotal,ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "GROUP BY d.codigo_loc_doc, l.nombre_loc " +
+                           "ORDER BY l.nombre_loc";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        public DataTable ObtenerFechasDocRep1(DateTime fechades, DateTime fechahast)
+        {
+            DateTime fechadesd = Convert.ToDateTime(fechades).Date;
+            DateTime fechahastd = Convert.ToDateTime(fechahast).Date;
+
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "l.nombre_loc AS Local,COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, " +
+                           "COUNT(d.numfac_doc) AS CantidadFacturas,Round(SUM(d.valfac_doc),2) AS ValorTotal,ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "and convert(date,d.fecfac_doc) between '" + fechadesd + "' and '" + fechahastd + "' " +
+                           "GROUP BY d.codigo_loc_doc, l.nombre_loc " +
+                           "ORDER BY l.nombre_loc";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        public DataTable ObtenerLocDocRep1(string repbusloc)
+        {
+    
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "l.nombre_loc AS Local,COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, " +
+                           "COUNT(d.numfac_doc) AS CantidadFacturas,Round(SUM(d.valfac_doc),2) AS ValorTotal,ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "and d.codigo_loc_doc = '" + repbusloc + "' " +
+                           "GROUP BY d.codigo_loc_doc, l.nombre_loc " +
+                           "ORDER BY l.nombre_loc";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        public DataTable ObtenerFechasLocDocRep1(string repbusloc, DateTime fechades, DateTime fechahast)
+        {
+            DateTime fechadesd = Convert.ToDateTime(fechades).Date;
+            DateTime fechahastd = Convert.ToDateTime(fechahast).Date;
+
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "l.nombre_loc AS Local,COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, " +
+                           "COUNT(d.numfac_doc) AS CantidadFacturas,Round(SUM(d.valfac_doc),2) AS ValorTotal,ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN locales l ON l.codigo_loc = d.codigo_loc_doc " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "and convert(date,d.fecfac_doc) between '" + fechadesd + "' and '" + fechahastd + "' " +
+                           "and d.codigo_loc_doc = '" + repbusloc + "' " +
+                           "GROUP BY d.codigo_loc_doc, l.nombre_loc " +
+                           "ORDER BY l.nombre_loc";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
     }
 }
