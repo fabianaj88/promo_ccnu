@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_reportes));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -82,6 +83,7 @@
             panel8 = new Panel();
             btn_aceprep3 = new Button();
             label3 = new Label();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -173,13 +175,15 @@
             // 
             // btn_pdfrep1
             // 
+            btn_pdfrep1.BackColor = Color.Silver;
             btn_pdfrep1.Enabled = false;
-            btn_pdfrep1.Location = new Point(551, 25);
+            btn_pdfrep1.Image = (Image)resources.GetObject("btn_pdfrep1.Image");
+            btn_pdfrep1.Location = new Point(575, 19);
             btn_pdfrep1.Name = "btn_pdfrep1";
-            btn_pdfrep1.Size = new Size(82, 27);
+            btn_pdfrep1.Size = new Size(51, 38);
             btn_pdfrep1.TabIndex = 8;
-            btn_pdfrep1.Text = "PDF";
-            btn_pdfrep1.UseVisualStyleBackColor = true;
+            toolTip1.SetToolTip(btn_pdfrep1, "Generar PDF");
+            btn_pdfrep1.UseVisualStyleBackColor = false;
             btn_pdfrep1.Click += btn_pdfrep1_Click;
             // 
             // label5
@@ -255,10 +259,10 @@
             // 
             // btn_acprep1
             // 
-            btn_acprep1.BackColor = Color.Silver;
-            btn_acprep1.Location = new Point(385, 20);
+            btn_acprep1.BackColor = Color.LightGray;
+            btn_acprep1.Location = new Point(391, 19);
             btn_acprep1.Name = "btn_acprep1";
-            btn_acprep1.Size = new Size(86, 27);
+            btn_acprep1.Size = new Size(79, 30);
             btn_acprep1.TabIndex = 1;
             btn_acprep1.Text = "Aceptar";
             btn_acprep1.UseVisualStyleBackColor = false;
@@ -287,34 +291,34 @@
             // 
             dgv_rep1.BackgroundColor = SystemColors.Window;
             dgv_rep1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_rep1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgv_rep1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgv_rep1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgv_rep1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dgv_rep1.DefaultCellStyle = dataGridViewCellStyle11;
             dgv_rep1.Location = new Point(7, 41);
             dgv_rep1.Name = "dgv_rep1";
             dgv_rep1.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgv_rep1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgv_rep1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgv_rep1.RowTemplate.Height = 25;
             dgv_rep1.Size = new Size(684, 283);
             dgv_rep1.TabIndex = 1;
@@ -356,33 +360,33 @@
             // dgv_rep2
             // 
             dgv_rep2.BackgroundColor = SystemColors.Window;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgv_rep2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgv_rep2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgv_rep2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgv_rep2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgv_rep2.DefaultCellStyle = dataGridViewCellStyle14;
             dgv_rep2.Location = new Point(6, 37);
             dgv_rep2.Name = "dgv_rep2";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgv_rep2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgv_rep2.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dgv_rep2.RowTemplate.Height = 25;
             dgv_rep2.Size = new Size(685, 279);
             dgv_rep2.TabIndex = 4;
@@ -413,13 +417,15 @@
             // 
             // btn_pdfrep2
             // 
+            btn_pdfrep2.BackColor = Color.Silver;
             btn_pdfrep2.Enabled = false;
-            btn_pdfrep2.Location = new Point(557, 23);
+            btn_pdfrep2.Image = (Image)resources.GetObject("btn_pdfrep2.Image");
+            btn_pdfrep2.Location = new Point(574, 19);
             btn_pdfrep2.Name = "btn_pdfrep2";
-            btn_pdfrep2.Size = new Size(75, 30);
+            btn_pdfrep2.Size = new Size(51, 38);
             btn_pdfrep2.TabIndex = 13;
-            btn_pdfrep2.Text = "PDF";
-            btn_pdfrep2.UseVisualStyleBackColor = true;
+            toolTip1.SetToolTip(btn_pdfrep2, "Generar PDF");
+            btn_pdfrep2.UseVisualStyleBackColor = false;
             btn_pdfrep2.Click += btn_pdfrep2_Click;
             // 
             // label6
@@ -473,12 +479,13 @@
             // 
             // btn_aceprep2
             // 
-            btn_aceprep2.Location = new Point(392, 15);
+            btn_aceprep2.BackColor = Color.LightGray;
+            btn_aceprep2.Location = new Point(388, 16);
             btn_aceprep2.Name = "btn_aceprep2";
-            btn_aceprep2.Size = new Size(75, 30);
+            btn_aceprep2.Size = new Size(79, 30);
             btn_aceprep2.TabIndex = 0;
             btn_aceprep2.Text = "Aceptar";
-            btn_aceprep2.UseVisualStyleBackColor = true;
+            btn_aceprep2.UseVisualStyleBackColor = false;
             btn_aceprep2.Click += btn_aceprep2_Click;
             // 
             // tabPage3
@@ -517,33 +524,33 @@
             // dgv_rep3
             // 
             dgv_rep3.BackgroundColor = SystemColors.Window;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgv_rep3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Control;
+            dataGridViewCellStyle16.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dgv_rep3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dgv_rep3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgv_rep3.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = SystemColors.Window;
+            dataGridViewCellStyle17.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dgv_rep3.DefaultCellStyle = dataGridViewCellStyle17;
             dgv_rep3.Location = new Point(6, 37);
             dgv_rep3.Name = "dgv_rep3";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgv_rep3.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = SystemColors.Control;
+            dataGridViewCellStyle18.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dgv_rep3.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             dgv_rep3.RowTemplate.Height = 25;
             dgv_rep3.Size = new Size(685, 279);
             dgv_rep3.TabIndex = 4;
@@ -574,13 +581,15 @@
             // 
             // btn_pdfrep3
             // 
+            btn_pdfrep3.BackColor = Color.Silver;
             btn_pdfrep3.Enabled = false;
-            btn_pdfrep3.Location = new Point(557, 23);
+            btn_pdfrep3.Image = (Image)resources.GetObject("btn_pdfrep3.Image");
+            btn_pdfrep3.Location = new Point(566, 19);
             btn_pdfrep3.Name = "btn_pdfrep3";
-            btn_pdfrep3.Size = new Size(75, 30);
+            btn_pdfrep3.Size = new Size(51, 38);
             btn_pdfrep3.TabIndex = 13;
-            btn_pdfrep3.Text = "PDF";
-            btn_pdfrep3.UseVisualStyleBackColor = true;
+            toolTip1.SetToolTip(btn_pdfrep3, "Generar PDF");
+            btn_pdfrep3.UseVisualStyleBackColor = false;
             btn_pdfrep3.Click += btn_pdfrep3_Click;
             // 
             // label9
@@ -634,12 +643,13 @@
             // 
             // btn_aceprep3
             // 
-            btn_aceprep3.Location = new Point(392, 15);
+            btn_aceprep3.BackColor = Color.LightGray;
+            btn_aceprep3.Location = new Point(389, 15);
             btn_aceprep3.Name = "btn_aceprep3";
-            btn_aceprep3.Size = new Size(75, 30);
+            btn_aceprep3.Size = new Size(79, 30);
             btn_aceprep3.TabIndex = 0;
             btn_aceprep3.Text = "Aceptar";
-            btn_aceprep3.UseVisualStyleBackColor = true;
+            btn_aceprep3.UseVisualStyleBackColor = false;
             btn_aceprep3.Click += btn_aceprep3_Click;
             // 
             // label3
@@ -739,5 +749,6 @@
         private DateTimePicker dtp_hastarep3;
         private Panel panel8;
         private Button btn_aceprep3;
+        private ToolTip toolTip1;
     }
 }

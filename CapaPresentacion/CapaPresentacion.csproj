@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>imagenes\logo_alfticketf.ico</ApplicationIcon>
+    <ApplicationIcon>imagenes\entrada-de-cine.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="imagenes\logo_alfticketf.ico" />
+    <Content Include="imagenes\entrada-de-cine.ico" />
   </ItemGroup>
 
   <ItemGroup>
