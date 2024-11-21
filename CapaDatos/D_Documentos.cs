@@ -219,6 +219,7 @@ namespace CapaDatos
 
             string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
                            "c.genero_cli AS Genero, COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "Round(SUM(d.valfac_doc),2) AS ValorTotal, " +
                            "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
                            "FROM documentos d " +
                            "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
@@ -241,7 +242,8 @@ namespace CapaDatos
             DateTime fechahastd = Convert.ToDateTime(fechahast).Date;
 
             string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
-                           "c.genero_cli AS Genero, COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas,, " +
+                           "c.genero_cli AS Genero, COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "Round(SUM(d.valfac_doc),2) AS ValorTotal, " +
                            "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
                            "FROM documentos d " +
                            "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
@@ -271,6 +273,7 @@ namespace CapaDatos
                            "ELSE 'Mayores de 55 años' " +
                            "END AS RangoEdad, " +
                            "COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "Round(SUM(d.valfac_doc),2) AS ValorTotal, " +
                            "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
                            "FROM documentos d " +
                            "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
@@ -304,6 +307,7 @@ namespace CapaDatos
                            "ELSE 'Mayores de 55 años' " +
                            "END AS RangoEdad, " +
                            "COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "Round(SUM(d.valfac_doc),2) AS ValorTotal, " +
                            "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
                            "FROM documentos d " +
                            "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +

@@ -45,6 +45,7 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
+            button14 = new Button();
             button7 = new Button();
             button8 = new Button();
             button9 = new Button();
@@ -55,7 +56,6 @@
             label2 = new Label();
             pictureBox5 = new PictureBox();
             toolTip1 = new ToolTip(components);
-            button14 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel1.SuspendLayout();
@@ -276,6 +276,20 @@
             panel5.Size = new Size(89, 383);
             panel5.TabIndex = 9;
             // 
+            // button14
+            // 
+            button14.BackColor = Color.LightSteelBlue;
+            button14.Enabled = false;
+            button14.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button14.Image = (Image)resources.GetObject("button14.Image");
+            button14.Location = new Point(13, 300);
+            button14.Name = "button14";
+            button14.Padding = new Padding(5);
+            button14.Size = new Size(63, 56);
+            button14.TabIndex = 9;
+            button14.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button14.UseVisualStyleBackColor = false;
+            // 
             // button7
             // 
             button7.BackColor = Color.LightSteelBlue;
@@ -392,27 +406,13 @@
             pictureBox5.TabIndex = 7;
             pictureBox5.TabStop = false;
             // 
-            // button14
-            // 
-            button14.BackColor = Color.LightSteelBlue;
-            button14.Enabled = false;
-            button14.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button14.Image = (Image)resources.GetObject("button14.Image");
-            button14.Location = new Point(13, 300);
-            button14.Name = "button14";
-            button14.Padding = new Padding(5);
-            button14.Size = new Size(63, 56);
-            button14.TabIndex = 9;
-            button14.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button14.UseVisualStyleBackColor = false;
-            // 
             // Frm_menu_principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(923, 545);
-            Controls.Add(panel4);
             Controls.Add(panel3);
+            Controls.Add(panel4);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Frm_menu_principal";

@@ -141,6 +141,15 @@ namespace CapaPresentacion
             // Calcular los totales
             AgregarFilaTotales(dt_rep1);
 
+            // Personalizar los encabezados de las columnas en el DataGridView
+            dgv_rep1.Columns["FechaPrimeraFactura"].HeaderText = "Primera Factura";
+            dgv_rep1.Columns["FechaUltimaFactura"].HeaderText = "Última Factura";
+            dgv_rep1.Columns["Local"].HeaderText = "Local";
+            dgv_rep1.Columns["Clientes"].HeaderText = "Clientes";
+            dgv_rep1.Columns["CantidadFacturas"].HeaderText = "Cant. Facturas";
+            dgv_rep1.Columns["ValorTotal"].HeaderText = "Valor Total";
+            dgv_rep1.Columns["TotalTickets"].HeaderText = "Total Tickets";
+
             //Limpiar elementos
             cmb_locrep1.SelectedValue = "";
             //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
@@ -156,7 +165,7 @@ namespace CapaPresentacion
             if (dt.Rows.Count > 0)
             {
                 // Calcular los totales
-               // object numcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes c inner join documentos d on c.codigo_cli = d.codigo_cli_doc ", "count(DISTINCT (c.codigo_cli)) ", "N","");
+                // object numcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes c inner join documentos d on c.codigo_cli = d.codigo_cli_doc ", "count(DISTINCT (c.codigo_cli)) ", "N","");
                 //int totalClientes = (int)Convert.ToInt32(numcli);
 
                 int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
@@ -296,10 +305,14 @@ namespace CapaPresentacion
             // Calcular los totales
             AgregarFilaTotalesrep2(dt_rep2);
 
-            ////Limpiar elementos
-            //cmb_locrep1.SelectedValue = "";
-            //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
-            //dtp_hastarep1.Value = new DateTime(1999, 01, 01);
+            // Personalizar los encabezados de las columnas en el DataGridView
+            dgv_rep2.Columns["FechaPrimeraFactura"].HeaderText = "Primera Factura.";
+            dgv_rep2.Columns["FechaUltimaFactura"].HeaderText = "Última Factura";
+            dgv_rep2.Columns["Genero"].HeaderText = "Género";
+            dgv_rep2.Columns["Clientes"].HeaderText = "Clientes";
+            dgv_rep2.Columns["CantidadFacturas"].HeaderText = "Cant. Facturas";
+            dgv_rep2.Columns["ValorTotal"].HeaderText = "Valor Total";
+            dgv_rep2.Columns["TotalTickets"].HeaderText = "Total Tickets";
 
             //Habilitar boton para descargar pdf
             btn_pdfrep2.Enabled = true;
@@ -312,6 +325,7 @@ namespace CapaPresentacion
                 // Calcular los totales
                 int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
                 int cantidadFacturas = dt.AsEnumerable().Sum(r => r.Field<int>("CantidadFacturas"));
+                double valorTotal = Math.Round(dt.AsEnumerable().Sum(r => r.Field<double>("ValorTotal")), 2);
                 int totalTickets = dt.AsEnumerable().Sum(r => r.Field<int>("TotalTickets"));
 
                 // Crear una nueva fila para los totales
@@ -319,6 +333,7 @@ namespace CapaPresentacion
                 filaTotales["Genero"] = "Totales ==>";
                 filaTotales["Clientes"] = totalClientes;
                 filaTotales["CantidadFacturas"] = cantidadFacturas;
+                filaTotales["ValorTotal"] = valorTotal;
                 filaTotales["TotalTickets"] = totalTickets;
 
                 // Agregar la fila al DataTable
@@ -443,10 +458,14 @@ namespace CapaPresentacion
             // Calcular los totales
             AgregarFilaTotalesrep3(dt_rep3);
 
-            ////Limpiar elementos
-            //cmb_locrep1.SelectedValue = "";
-            //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
-            //dtp_hastarep1.Value = new DateTime(1999, 01, 01);
+            // Personalizar los encabezados de las columnas en el DataGridView
+            dgv_rep3.Columns["FechaPrimeraFactura"].HeaderText = "Primera Factura";
+            dgv_rep3.Columns["FechaUltimaFactura"].HeaderText = "Última Factura";
+            dgv_rep3.Columns["RangoEdad"].HeaderText = "Rango Edad";
+            dgv_rep3.Columns["Clientes"].HeaderText = "Clientes";
+            dgv_rep3.Columns["CantidadFacturas"].HeaderText = "Cant. Facturas";
+            dgv_rep3.Columns["ValorTotal"].HeaderText = "Valor Total";
+            dgv_rep3.Columns["TotalTickets"].HeaderText = "Total Tickets";
 
             //Habilitar boton para descargar pdf
             btn_pdfrep3.Enabled = true;
@@ -459,6 +478,7 @@ namespace CapaPresentacion
                 // Calcular los totales
                 int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
                 int cantidadFacturas = dt.AsEnumerable().Sum(r => r.Field<int>("CantidadFacturas"));
+                double valorTotal = Math.Round(dt.AsEnumerable().Sum(r => r.Field<double>("ValorTotal")), 2);
                 int totalTickets = dt.AsEnumerable().Sum(r => r.Field<int>("TotalTickets"));
 
                 // Crear una nueva fila para los totales
@@ -466,6 +486,7 @@ namespace CapaPresentacion
                 filaTotales["RangoEdad"] = "Totales ==>";
                 filaTotales["Clientes"] = totalClientes;
                 filaTotales["CantidadFacturas"] = cantidadFacturas;
+                filaTotales["ValorTotal"] = valorTotal;
                 filaTotales["TotalTickets"] = totalTickets;
 
                 // Agregar la fila al DataTable
