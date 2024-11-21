@@ -29,9 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_reportes));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -50,8 +56,31 @@
             label1 = new Label();
             dgv_rep1 = new DataGridView();
             tabPage2 = new TabPage();
+            panel5 = new Panel();
+            panel_rep2 = new Panel();
+            dgv_rep2 = new DataGridView();
+            label8 = new Label();
+            panel6 = new Panel();
+            btn_pdfrep2 = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            dtp_desderep2 = new DateTimePicker();
+            dtp_hastarep2 = new DateTimePicker();
+            panel7 = new Panel();
+            btn_aceprep2 = new Button();
             tabPage3 = new TabPage();
             panel2 = new Panel();
+            panel10 = new Panel();
+            dgv_rep3 = new DataGridView();
+            label11 = new Label();
+            panel9 = new Panel();
+            btn_pdfrep3 = new Button();
+            label9 = new Label();
+            label10 = new Label();
+            dtp_desderep3 = new DateTimePicker();
+            dtp_hastarep3 = new DateTimePicker();
+            panel8 = new Panel();
+            btn_aceprep3 = new Button();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
@@ -61,7 +90,18 @@
             panel4.SuspendLayout();
             panel_rep1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_rep1).BeginInit();
+            tabPage2.SuspendLayout();
+            panel5.SuspendLayout();
+            panel_rep2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_rep2).BeginInit();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
             tabPage3.SuspendLayout();
+            panel2.SuspendLayout();
+            panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_rep3).BeginInit();
+            panel9.SuspendLayout();
+            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -134,9 +174,9 @@
             // btn_pdfrep1
             // 
             btn_pdfrep1.Enabled = false;
-            btn_pdfrep1.Location = new Point(572, 42);
+            btn_pdfrep1.Location = new Point(551, 25);
             btn_pdfrep1.Name = "btn_pdfrep1";
-            btn_pdfrep1.Size = new Size(47, 27);
+            btn_pdfrep1.Size = new Size(82, 27);
             btn_pdfrep1.TabIndex = 8;
             btn_pdfrep1.Text = "PDF";
             btn_pdfrep1.UseVisualStyleBackColor = true;
@@ -216,9 +256,9 @@
             // btn_acprep1
             // 
             btn_acprep1.BackColor = Color.Silver;
-            btn_acprep1.Location = new Point(384, 34);
+            btn_acprep1.Location = new Point(385, 20);
             btn_acprep1.Name = "btn_acprep1";
-            btn_acprep1.Size = new Size(86, 28);
+            btn_acprep1.Size = new Size(86, 27);
             btn_acprep1.TabIndex = 1;
             btn_acprep1.Text = "Aceptar";
             btn_acprep1.UseVisualStyleBackColor = false;
@@ -247,34 +287,34 @@
             // 
             dgv_rep1.BackgroundColor = SystemColors.Window;
             dgv_rep1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_rep1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgv_rep1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgv_rep1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgv_rep1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dgv_rep1.DefaultCellStyle = dataGridViewCellStyle11;
             dgv_rep1.Location = new Point(7, 41);
             dgv_rep1.Name = "dgv_rep1";
             dgv_rep1.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgv_rep1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgv_rep1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgv_rep1.RowTemplate.Height = 25;
             dgv_rep1.Size = new Size(684, 283);
             dgv_rep1.TabIndex = 1;
@@ -282,6 +322,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(panel5);
             tabPage2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             tabPage2.Location = new Point(154, 4);
             tabPage2.Name = "tabPage2";
@@ -290,6 +331,155 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Ventas por género";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.Gainsboro;
+            panel5.Controls.Add(panel_rep2);
+            panel5.Controls.Add(panel6);
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(3, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(705, 419);
+            panel5.TabIndex = 0;
+            // 
+            // panel_rep2
+            // 
+            panel_rep2.BackColor = SystemColors.Window;
+            panel_rep2.Controls.Add(dgv_rep2);
+            panel_rep2.Controls.Add(label8);
+            panel_rep2.Location = new Point(4, 89);
+            panel_rep2.Name = "panel_rep2";
+            panel_rep2.Size = new Size(697, 324);
+            panel_rep2.TabIndex = 1;
+            // 
+            // dgv_rep2
+            // 
+            dgv_rep2.BackgroundColor = SystemColors.Window;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgv_rep2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dgv_rep2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgv_rep2.DefaultCellStyle = dataGridViewCellStyle14;
+            dgv_rep2.Location = new Point(6, 37);
+            dgv_rep2.Name = "dgv_rep2";
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgv_rep2.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dgv_rep2.RowTemplate.Height = 25;
+            dgv_rep2.Size = new Size(685, 279);
+            dgv_rep2.TabIndex = 4;
+            dgv_rep2.RowPrePaint += dgv_rep2_RowPrePaint;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(243, 13);
+            label8.Name = "label8";
+            label8.Size = new Size(213, 16);
+            label8.TabIndex = 3;
+            label8.Text = "REPORTE VENTAS POR GENERO";
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.LightSteelBlue;
+            panel6.Controls.Add(btn_pdfrep2);
+            panel6.Controls.Add(label6);
+            panel6.Controls.Add(label7);
+            panel6.Controls.Add(dtp_desderep2);
+            panel6.Controls.Add(dtp_hastarep2);
+            panel6.Controls.Add(panel7);
+            panel6.Location = new Point(4, 4);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(697, 79);
+            panel6.TabIndex = 0;
+            // 
+            // btn_pdfrep2
+            // 
+            btn_pdfrep2.Enabled = false;
+            btn_pdfrep2.Location = new Point(557, 23);
+            btn_pdfrep2.Name = "btn_pdfrep2";
+            btn_pdfrep2.Size = new Size(75, 30);
+            btn_pdfrep2.TabIndex = 13;
+            btn_pdfrep2.Text = "PDF";
+            btn_pdfrep2.UseVisualStyleBackColor = true;
+            btn_pdfrep2.Click += btn_pdfrep2_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(198, 34);
+            label6.Name = "label6";
+            label6.Size = new Size(45, 16);
+            label6.TabIndex = 11;
+            label6.Text = "Hasta:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(13, 34);
+            label7.Name = "label7";
+            label7.Size = new Size(48, 16);
+            label7.TabIndex = 10;
+            label7.Text = "Desde:";
+            // 
+            // dtp_desderep2
+            // 
+            dtp_desderep2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_desderep2.Format = DateTimePickerFormat.Short;
+            dtp_desderep2.Location = new Point(67, 29);
+            dtp_desderep2.Name = "dtp_desderep2";
+            dtp_desderep2.Size = new Size(117, 22);
+            dtp_desderep2.TabIndex = 8;
+            dtp_desderep2.Value = new DateTime(1999, 1, 1, 12, 59, 0, 0);
+            // 
+            // dtp_hastarep2
+            // 
+            dtp_hastarep2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_hastarep2.Format = DateTimePickerFormat.Short;
+            dtp_hastarep2.Location = new Point(249, 29);
+            dtp_hastarep2.Name = "dtp_hastarep2";
+            dtp_hastarep2.Size = new Size(117, 22);
+            dtp_hastarep2.TabIndex = 9;
+            dtp_hastarep2.Value = new DateTime(1999, 1, 1, 12, 59, 0, 0);
+            // 
+            // panel7
+            // 
+            panel7.BorderStyle = BorderStyle.Fixed3D;
+            panel7.Controls.Add(btn_aceprep2);
+            panel7.Location = new Point(6, 6);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(486, 67);
+            panel7.TabIndex = 12;
+            // 
+            // btn_aceprep2
+            // 
+            btn_aceprep2.Location = new Point(392, 15);
+            btn_aceprep2.Name = "btn_aceprep2";
+            btn_aceprep2.Size = new Size(75, 30);
+            btn_aceprep2.TabIndex = 0;
+            btn_aceprep2.Text = "Aceptar";
+            btn_aceprep2.UseVisualStyleBackColor = true;
+            btn_aceprep2.Click += btn_aceprep2_Click;
             // 
             // tabPage3
             // 
@@ -306,11 +496,151 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(panel10);
+            panel2.Controls.Add(panel9);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(705, 419);
             panel2.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = SystemColors.Window;
+            panel10.Controls.Add(dgv_rep3);
+            panel10.Controls.Add(label11);
+            panel10.Location = new Point(4, 89);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(697, 324);
+            panel10.TabIndex = 2;
+            // 
+            // dgv_rep3
+            // 
+            dgv_rep3.BackgroundColor = SystemColors.Window;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Control;
+            dataGridViewCellStyle16.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dgv_rep3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dgv_rep3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = SystemColors.Window;
+            dataGridViewCellStyle17.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dgv_rep3.DefaultCellStyle = dataGridViewCellStyle17;
+            dgv_rep3.Location = new Point(6, 37);
+            dgv_rep3.Name = "dgv_rep3";
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = SystemColors.Control;
+            dataGridViewCellStyle18.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dgv_rep3.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dgv_rep3.RowTemplate.Height = 25;
+            dgv_rep3.Size = new Size(685, 279);
+            dgv_rep3.TabIndex = 4;
+            dgv_rep3.RowPrePaint += dgv_rep3_RowPrePaint;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(243, 13);
+            label11.Name = "label11";
+            label11.Size = new Size(194, 16);
+            label11.TabIndex = 3;
+            label11.Text = "REPORTE VENTAS POR EDAD";
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.LightSteelBlue;
+            panel9.Controls.Add(btn_pdfrep3);
+            panel9.Controls.Add(label9);
+            panel9.Controls.Add(label10);
+            panel9.Controls.Add(dtp_desderep3);
+            panel9.Controls.Add(dtp_hastarep3);
+            panel9.Controls.Add(panel8);
+            panel9.Location = new Point(4, 5);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(697, 79);
+            panel9.TabIndex = 1;
+            // 
+            // btn_pdfrep3
+            // 
+            btn_pdfrep3.Enabled = false;
+            btn_pdfrep3.Location = new Point(557, 23);
+            btn_pdfrep3.Name = "btn_pdfrep3";
+            btn_pdfrep3.Size = new Size(75, 30);
+            btn_pdfrep3.TabIndex = 13;
+            btn_pdfrep3.Text = "PDF";
+            btn_pdfrep3.UseVisualStyleBackColor = true;
+            btn_pdfrep3.Click += btn_pdfrep3_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(198, 34);
+            label9.Name = "label9";
+            label9.Size = new Size(45, 16);
+            label9.TabIndex = 11;
+            label9.Text = "Hasta:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(13, 34);
+            label10.Name = "label10";
+            label10.Size = new Size(48, 16);
+            label10.TabIndex = 10;
+            label10.Text = "Desde:";
+            // 
+            // dtp_desderep3
+            // 
+            dtp_desderep3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_desderep3.Format = DateTimePickerFormat.Short;
+            dtp_desderep3.Location = new Point(67, 29);
+            dtp_desderep3.Name = "dtp_desderep3";
+            dtp_desderep3.Size = new Size(117, 22);
+            dtp_desderep3.TabIndex = 8;
+            dtp_desderep3.Value = new DateTime(1999, 1, 1, 12, 59, 0, 0);
+            // 
+            // dtp_hastarep3
+            // 
+            dtp_hastarep3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dtp_hastarep3.Format = DateTimePickerFormat.Short;
+            dtp_hastarep3.Location = new Point(249, 29);
+            dtp_hastarep3.Name = "dtp_hastarep3";
+            dtp_hastarep3.Size = new Size(117, 22);
+            dtp_hastarep3.TabIndex = 9;
+            dtp_hastarep3.Value = new DateTime(1999, 1, 1, 12, 59, 0, 0);
+            // 
+            // panel8
+            // 
+            panel8.BorderStyle = BorderStyle.Fixed3D;
+            panel8.Controls.Add(btn_aceprep3);
+            panel8.Location = new Point(6, 6);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(486, 67);
+            panel8.TabIndex = 12;
+            // 
+            // btn_aceprep3
+            // 
+            btn_aceprep3.Location = new Point(392, 15);
+            btn_aceprep3.Name = "btn_aceprep3";
+            btn_aceprep3.Size = new Size(75, 30);
+            btn_aceprep3.TabIndex = 0;
+            btn_aceprep3.Text = "Aceptar";
+            btn_aceprep3.UseVisualStyleBackColor = true;
+            btn_aceprep3.Click += btn_aceprep3_Click;
             // 
             // label3
             // 
@@ -343,7 +673,22 @@
             panel_rep1.ResumeLayout(false);
             panel_rep1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_rep1).EndInit();
+            tabPage2.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel_rep2.ResumeLayout(false);
+            panel_rep2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_rep2).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel7.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_rep3).EndInit();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel8.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -370,5 +715,28 @@
         private Label label1;
         private Button btn_pdfrep1;
         private Panel panel4;
+        private Panel panel5;
+        private Panel panel_rep2;
+        private Panel panel6;
+        private Label label6;
+        private Label label7;
+        private DateTimePicker dtp_desderep2;
+        private DateTimePicker dtp_hastarep2;
+        private Panel panel7;
+        private Button btn_pdfrep2;
+        private Button btn_aceprep2;
+        private Label label8;
+        private DataGridView dgv_rep2;
+        private Panel panel10;
+        private DataGridView dgv_rep3;
+        private Label label11;
+        private Panel panel9;
+        private Button btn_pdfrep3;
+        private Label label9;
+        private Label label10;
+        private DateTimePicker dtp_desderep3;
+        private DateTimePicker dtp_hastarep3;
+        private Panel panel8;
+        private Button btn_aceprep3;
     }
 }

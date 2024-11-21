@@ -213,5 +213,117 @@ namespace CapaDatos
             return dt;
 
         }
+        //Metodos para reporte 2
+        public DataTable ObtenerTodosGenDocRep2()
+        {
+
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "c.genero_cli AS Genero, COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets " +
+                           "FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "where d.anular_doc = 0 " +
+                           "GROUP BY c.genero_cli " +
+                           "ORDER BY Genero";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        public DataTable ObtenerFecGenDocRep2(DateTime fechades, DateTime fechahast)
+        {
+            DateTime fechadesd = Convert.ToDateTime(fechades).Date;
+            DateTime fechahastd = Convert.ToDateTime(fechahast).Date;
+
+            string query = "SELECT convert(date,MIN(d.fecfac_doc)) AS FechaPrimeraFactura,convert(date,MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "c.genero_cli AS Genero, COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas,, " +
+                           "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets " +
+                           "FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "where d.anular_doc = 0 " +
+                           "and convert(date,d.fecfac_doc) between '" + fechadesd + "' and '" + fechahastd + "' " +
+                           "GROUP BY c.genero_cli " +
+                           "ORDER BY Genero";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        //Metodos para reporte 3
+        public DataTable ObtenerTodosEdDocRep3()
+        {
+
+            string query = "SELECT CONVERT(date, MIN(d.fecfac_doc)) AS FechaPrimeraFactura,CONVERT(date, MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "CASE WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) < 25 THEN ' Menores de 25 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 25 AND 35 THEN 'De 25 a 35 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 36 AND 45 THEN 'De 36 a 45 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 46 AND 55 THEN 'De 46 a 55 años' " +
+                           "ELSE 'Mayores de 55 años' " +
+                           "END AS RangoEdad, " +
+                           "COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets " +
+                           "FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "GROUP BY CASE WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) < 25 THEN ' Menores de 25 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 25 AND 35 THEN 'De 25 a 35 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 36 AND 45 THEN 'De 36 a 45 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 46 AND 55 THEN 'De 46 a 55 años' " +
+                           "ELSE 'Mayores de 55 años' END " +
+                           "ORDER BY RangoEdad ";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
+        public DataTable ObtenerFecEdDocRep3(DateTime fechades, DateTime fechahast)
+        {
+            DateTime fechadesd = Convert.ToDateTime(fechades).Date;
+            DateTime fechahastd = Convert.ToDateTime(fechahast).Date;
+
+            string query = "SELECT CONVERT(date, MIN(d.fecfac_doc)) AS FechaPrimeraFactura,CONVERT(date, MAX(d.fecfac_doc)) AS FechaUltimaFactura, " +
+                           "CASE WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) < 25 THEN ' Menores de 25 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 25 AND 35 THEN 'De 25 a 35 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 36 AND 45 THEN 'De 36 a 45 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 46 AND 55 THEN 'De 46 a 55 años' " +
+                           "ELSE 'Mayores de 55 años' " +
+                           "END AS RangoEdad, " +
+                           "COUNT(DISTINCT d.codigo_cli_doc) AS Clientes, COUNT(d.numfac_doc) AS CantidadFacturas, " +
+                           "ISNULL(SUM(rd.CantidadTickets), 0) AS TotalTickets " +
+                           "FROM documentos d " +
+                           "INNER JOIN clientes c ON d.codigo_cli_doc = c.codigo_cli " +
+                           "LEFT JOIN (SELECT codigo_doc, COUNT(*) AS CantidadTickets " +
+                           "FROM registro_doc " +
+                           "GROUP BY codigo_doc) rd ON d.codigo_doc = rd.codigo_doc " +
+                           "WHERE d.anular_doc = 0 " +
+                           "and convert(date,d.fecfac_doc) between '" + fechadesd + "' and '" + fechahastd + "' " +
+                           "GROUP BY CASE WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) < 25 THEN ' Menores de 25 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 25 AND 35 THEN 'De 25 a 35 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 36 AND 45 THEN 'De 36 a 45 años' " +
+                           "WHEN DATEDIFF(YEAR, c.fecha_nac_cli, GETDATE()) BETWEEN 46 AND 55 THEN 'De 46 a 55 años' " +
+                           "ELSE 'Mayores de 55 años' END " +
+                           "ORDER BY RangoEdad ";
+
+            DataTable dt = new DataTable();
+            dt = Cls_funciones.VisualizaS(query);
+
+            return dt;
+
+        }
     }
 }

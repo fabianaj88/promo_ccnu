@@ -888,7 +888,7 @@ namespace CapaPresentacion//
 
             string xcodusu = Cls_variables.xcodigo_usu;
             object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
-            tipusu = (int)Convert.ToInt64(codadmin);
+            tipusu = (int)Convert.ToInt32(codadmin);
             object docanul = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "anular_doc", "L", "codigo_doc=" + xcoddoc + "");
             bool docanula = (bool)Convert.ToBoolean(docanul);
 

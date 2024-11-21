@@ -125,5 +125,41 @@ namespace CapaNegocio
             }
         }
 
+        // Método para obtener registros de reporte2
+        public DataTable Reporte2Doc(DateTime fechaDesdeRep2, DateTime fechaHastaRep2)
+        {
+            DateTime fechades = Convert.ToDateTime(fechaDesdeRep2).Date;
+            DateTime fechahast = Convert.ToDateTime(fechaHastaRep2).Date;
+
+            D_Documentos datosDocumentos = new D_Documentos();
+            if (fechades == new DateTime(1999, 01, 01) && fechahast == new DateTime(1999, 01, 01))
+            {
+                return datosDocumentos.ObtenerTodosGenDocRep2();
+            }
+            else
+            {
+               
+                return datosDocumentos.ObtenerFecGenDocRep2(fechaDesdeRep2, fechaHastaRep2);
+
+            }
+        }
+        // Método para obtener registros de reporte3
+        public DataTable Reporte3Doc(DateTime fechaDesdeRep3, DateTime fechaHastaRep3)
+        {
+            DateTime fechades = Convert.ToDateTime(fechaDesdeRep3).Date;
+            DateTime fechahast = Convert.ToDateTime(fechaHastaRep3).Date;
+
+            D_Documentos datosDocumentos = new D_Documentos();
+            if (fechades == new DateTime(1999, 01, 01) && fechahast == new DateTime(1999, 01, 01))
+            {
+                return datosDocumentos.ObtenerTodosEdDocRep3();
+            }
+            else
+            {
+
+                return datosDocumentos.ObtenerFecEdDocRep3(fechaDesdeRep3, fechaHastaRep3);
+
+            }
+        }
     }
 }

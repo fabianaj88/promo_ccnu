@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Drawing;
 using CapaNegocio;
 using System.Data.Common;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -27,7 +28,7 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
+        //--------Poner los nombres de las tabPages en Horizotal---------------------
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabControl tabControl = sender as TabControl;
@@ -56,7 +57,8 @@ namespace CapaPresentacion
             // Dibujar el texto en horizontal
             g.DrawString(tabPage.Text, tabControl.Font, textBrush, tabBounds, stringFormat);
         }
-        //----------LLENAR PANEL--------------------------------------------------------
+        //------------------------------------------------------------------
+        //----------Proceso Reporte 1----------------------------------------
         private void cmb_locrep1_Click(object sender, EventArgs e)
         {
             if (cmb_locrep1.Text == "")
@@ -123,8 +125,6 @@ namespace CapaPresentacion
                 cmb_locrep1.Text = "";
             }
         }
-        //------------------------------------------------------------------------------
-
         private void btn_acprep1_Click(object sender, EventArgs e)
         {
             // Asignar un valor predeterminado si el ComboBox está vacío o no tiene selección
@@ -141,8 +141,8 @@ namespace CapaPresentacion
             // Calcular los totales
             AgregarFilaTotales(dt_rep1);
 
-            ////Limpiar elementos
-            //cmb_locrep1.SelectedValue = "";
+            //Limpiar elementos
+            cmb_locrep1.SelectedValue = "";
             //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
             //dtp_hastarep1.Value = new DateTime(1999, 01, 01);
 
@@ -156,6 +156,8 @@ namespace CapaPresentacion
             if (dt.Rows.Count > 0)
             {
                 // Calcular los totales
+               // object numcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes c inner join documentos d on c.codigo_cli = d.codigo_cli_doc ", "count(DISTINCT (c.codigo_cli)) ", "N","");
+                //int totalClientes = (int)Convert.ToInt32(numcli);
 
                 int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
                 int cantidadFacturas = dt.AsEnumerable().Sum(r => r.Field<int>("CantidadFacturas"));
@@ -207,7 +209,7 @@ namespace CapaPresentacion
                     Document document = new Document(pdf);
 
                     // Agregar la titulo al documento
-                    document.Add(new Paragraph("REPORTE VENTAS POR ALMACÉN")
+                    document.Add(new Paragraph("REPORTE VENTAS POR ALMACEN")
                         .SimulateBold()
                         .SetFontSize(12)
                         .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
@@ -233,17 +235,303 @@ namespace CapaPresentacion
                     }
 
                     // Agregar las filas//
-                    //foreach (DataGridViewRow row in dgv.Rows)
-                    //{
-                    //    if (!row.IsNewRow)
-                    //    {
-                    //        foreach (DataGridViewCell cell in row.Cells)
-                    //        {
 
-                    //            table.AddCell(new Cell().Add(new Paragraph(cell.Value?.ToString() ?? "").SetFontSize(8)));
-                    //        }
-                    //    }
-                    //}
+                    for (int i = 0; i < dgv.Rows.Count; i++)
+                    {
+                        DataGridViewRow row = dgv.Rows[i];
+
+                        if (!row.IsNewRow)
+                        {
+                            for (int j = 0; j < row.Cells.Count; j++)
+                            {
+                                var cell = row.Cells[j];
+                                string cellValue = cell.Value?.ToString() ?? "";
+
+                                // Formatear la columna FechaPrimeraFactura
+                                if (dgv.Columns[j].Name == "FechaPrimeraFactura" && DateTime.TryParse(cellValue, out DateTime dateValue))
+                                {
+                                    cellValue = dateValue.ToString("yyyy-MM-dd");
+                                }
+                                // Formatear la columna FechaPrimeraFactura
+                                else if (dgv.Columns[j].Name == "FechaUltimaFactura" && DateTime.TryParse(cellValue, out dateValue))
+                                {
+                                    cellValue = dateValue.ToString("yyyy-MM-dd");
+                                }
+
+                                // Última fila en negritas
+                                if (i == dgv.Rows.Count - 2)
+                                {
+                                    table.AddCell(new Cell().Add(new Paragraph(cellValue).SimulateBold().SetFontSize(8)));
+                                }
+                                else
+                                {
+                                    table.AddCell(new Cell().Add(new Paragraph(cellValue).SetFontSize(8)));
+                                }
+                            }
+                        }
+                    }
+
+                    // Agregar la tabla al documento
+                    document.Add(table);
+                }
+            }
+
+            // Abrir el PDF generado
+            Process.Start(new ProcessStartInfo(nombreArchivo) { UseShellExecute = true });
+        }
+
+
+        //---------------------------------------------------------------------------------
+        //---------Proceso Reporte 2-------------------------------------------------
+        private void btn_aceprep2_Click(object sender, EventArgs e)
+        {
+            DateTime fechaDesdeRep2 = Convert.ToDateTime(dtp_desderep2.Value).Date;
+            DateTime fechaHastaRep2 = Convert.ToDateTime(dtp_hastarep2.Value).Date;
+
+            N_Documentos nRep = new N_Documentos();
+            DataTable dt_rep2 = nRep.Reporte2Doc(fechaDesdeRep2, fechaHastaRep2);
+
+            dgv_rep2.DataSource = dt_rep2;
+
+            // Calcular los totales
+            AgregarFilaTotalesrep2(dt_rep2);
+
+            ////Limpiar elementos
+            //cmb_locrep1.SelectedValue = "";
+            //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
+            //dtp_hastarep1.Value = new DateTime(1999, 01, 01);
+
+            //Habilitar boton para descargar pdf
+            btn_pdfrep2.Enabled = true;
+        }
+        // Método para agregar una fila de totales al DataGridView
+        private void AgregarFilaTotalesrep2(DataTable dt)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                // Calcular los totales
+                int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
+                int cantidadFacturas = dt.AsEnumerable().Sum(r => r.Field<int>("CantidadFacturas"));
+                int totalTickets = dt.AsEnumerable().Sum(r => r.Field<int>("TotalTickets"));
+
+                // Crear una nueva fila para los totales
+                DataRow filaTotales = dt.NewRow();
+                filaTotales["Genero"] = "Totales ==>";
+                filaTotales["Clientes"] = totalClientes;
+                filaTotales["CantidadFacturas"] = cantidadFacturas;
+                filaTotales["TotalTickets"] = totalTickets;
+
+                // Agregar la fila al DataTable
+                dt.Rows.Add(filaTotales);
+
+                // Actualizar el DataGridView
+                dgv_rep2.DataSource = dt;
+
+
+                dgv_rep2.RowPrePaint += dgv_rep2_RowPrePaint;
+            }
+        }
+        private void dgv_rep2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            int lastRowIndex = dgv_rep2.Rows.Count - 2; // Índice de la última fila
+            if (e.RowIndex == lastRowIndex)
+            {
+                dgv_rep2.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(dgv_rep2.Font, FontStyle.Bold); // Negritas
+                dgv_rep2.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black; // Color del texto
+                dgv_rep2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray; // Fondo opcional
+            }
+        }
+        private void btn_pdfrep2_Click(object sender, EventArgs e)
+        {
+            // Llamar a la función que genera el PDF desde el DataGridView
+            GenerarPDF_DataGridViewRep2(dgv_rep2, "ReporteVentasPorGenero.pdf");
+        }
+        private void GenerarPDF_DataGridViewRep2(DataGridView dgv, string nombreArchivo)
+        {
+            DateTime fechaDesdeRep2 = Convert.ToDateTime(dtp_desderep2.Value).Date;
+            DateTime fechaHastaRep2 = Convert.ToDateTime(dtp_hastarep2.Value).Date;
+            // Crear el archivo PDF
+            using (PdfWriter writer = new PdfWriter(nombreArchivo))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+                    // Agregar la titulo al documento
+                    document.Add(new Paragraph("REPORTE VENTAS POR GENERO")
+                        .SimulateBold()
+                        .SetFontSize(12)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+                    // Agregar un subtítulo con las fechas
+                    if (fechaDesdeRep2 != new DateTime(1999, 01, 01) && fechaHastaRep2 != new DateTime(1999, 01, 01))
+                    {
+                        document.Add(new Paragraph($"Desde: {dtp_desderep2.Value:dd/MM/yyyy}   Hasta: {dtp_hastarep2.Value:dd/MM/yyyy}")
+                            .SimulateBold()
+                            .SetFontSize(12)
+                            .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    }
+
+
+                    // Crear una tabla con el número de columnas del DataGridView
+                    Table table = new Table(dgv.Columns.Count);
+                    table.SetWidth(UnitValue.CreatePercentValue(100)); // Usar todo el ancho de la página
+
+                    // Establecer ancho de columnas
+                    foreach (DataGridViewColumn column in dgv.Columns)
+                    {
+                        table.AddHeaderCell(new Cell().Add(new Paragraph(column.HeaderText).SimulateBold().SetFontSize(8)));
+                    }
+
+                    // Agregar las filas//
+
+                    for (int i = 0; i < dgv.Rows.Count; i++)
+                    {
+                        DataGridViewRow row = dgv.Rows[i];
+
+                        if (!row.IsNewRow)
+                        {
+                            for (int j = 0; j < row.Cells.Count; j++)
+                            {
+                                var cell = row.Cells[j];
+                                string cellValue = cell.Value?.ToString() ?? "";
+
+                                // Formatear la columna FechaPrimeraFactura
+                                if (dgv.Columns[j].Name == "FechaPrimeraFactura" && DateTime.TryParse(cellValue, out DateTime dateValue))
+                                {
+                                    cellValue = dateValue.ToString("yyyy-MM-dd");
+                                }
+                                // Formatear la columna FechaPrimeraFactura
+                                else if (dgv.Columns[j].Name == "FechaUltimaFactura" && DateTime.TryParse(cellValue, out dateValue))
+                                {
+                                    cellValue = dateValue.ToString("yyyy-MM-dd");
+                                }
+
+                                // Última fila en negritas
+                                if (i == dgv.Rows.Count - 2)
+                                {
+                                    table.AddCell(new Cell().Add(new Paragraph(cellValue).SimulateBold().SetFontSize(8)));
+                                }
+                                else
+                                {
+                                    table.AddCell(new Cell().Add(new Paragraph(cellValue).SetFontSize(8)));
+                                }
+                            }
+                        }
+                    }
+
+                    // Agregar la tabla al documento
+                    document.Add(table);
+                }
+            }
+
+            // Abrir el PDF generado
+            Process.Start(new ProcessStartInfo(nombreArchivo) { UseShellExecute = true });
+        }
+        //---------------------------------------------------------------------------
+        //---------Proceso Reporte 3-------------------------------------------------
+        private void btn_aceprep3_Click(object sender, EventArgs e)
+        {
+            DateTime fechaDesdeRep3 = Convert.ToDateTime(dtp_desderep3.Value).Date;
+            DateTime fechaHastaRep3 = Convert.ToDateTime(dtp_hastarep3.Value).Date;
+
+            N_Documentos nRep = new N_Documentos();
+            DataTable dt_rep3 = nRep.Reporte3Doc(fechaDesdeRep3, fechaHastaRep3);
+
+            dgv_rep3.DataSource = dt_rep3;
+
+            // Calcular los totales
+            AgregarFilaTotalesrep3(dt_rep3);
+
+            ////Limpiar elementos
+            //cmb_locrep1.SelectedValue = "";
+            //dtp_desdrep1.Value = new DateTime(1999, 01, 01);
+            //dtp_hastarep1.Value = new DateTime(1999, 01, 01);
+
+            //Habilitar boton para descargar pdf
+            btn_pdfrep3.Enabled = true;
+        }
+        // Método para agregar una fila de totales al DataGridView
+        private void AgregarFilaTotalesrep3(DataTable dt)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                // Calcular los totales
+                int totalClientes = dt.AsEnumerable().Sum(r => r.Field<int>("Clientes"));
+                int cantidadFacturas = dt.AsEnumerable().Sum(r => r.Field<int>("CantidadFacturas"));
+                int totalTickets = dt.AsEnumerable().Sum(r => r.Field<int>("TotalTickets"));
+
+                // Crear una nueva fila para los totales
+                DataRow filaTotales = dt.NewRow();
+                filaTotales["RangoEdad"] = "Totales ==>";
+                filaTotales["Clientes"] = totalClientes;
+                filaTotales["CantidadFacturas"] = cantidadFacturas;
+                filaTotales["TotalTickets"] = totalTickets;
+
+                // Agregar la fila al DataTable
+                dt.Rows.Add(filaTotales);
+
+                // Actualizar el DataGridView
+                dgv_rep3.DataSource = dt;
+
+
+                dgv_rep3.RowPrePaint += dgv_rep3_RowPrePaint;
+            }
+        }
+        private void dgv_rep3_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            int lastRowIndex = dgv_rep3.Rows.Count - 2; // Índice de la última fila
+            if (e.RowIndex == lastRowIndex)
+            {
+                dgv_rep3.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(dgv_rep3.Font, FontStyle.Bold); // Negritas
+                dgv_rep3.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black; // Color del texto
+                dgv_rep3.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray; // Fondo opcional
+            }
+        }
+        private void btn_pdfrep3_Click(object sender, EventArgs e)
+        {
+            // Llamar a la función que genera el PDF desde el DataGridView
+            GenerarPDF_DataGridViewRep3(dgv_rep3, "ReporteVentasPorEdad.pdf");
+        }
+        private void GenerarPDF_DataGridViewRep3(DataGridView dgv, string nombreArchivo)
+        {
+            DateTime fechaDesdeRep3 = Convert.ToDateTime(dtp_desderep3.Value).Date;
+            DateTime fechaHastaRep3 = Convert.ToDateTime(dtp_hastarep3.Value).Date;
+            // Crear el archivo PDF
+            using (PdfWriter writer = new PdfWriter(nombreArchivo))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+                    // Agregar la titulo al documento
+                    document.Add(new Paragraph("REPORTE VENTAS POR EDAD")
+                        .SimulateBold()
+                        .SetFontSize(12)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+                    // Agregar un subtítulo con las fechas
+                    if (fechaDesdeRep3 != new DateTime(1999, 01, 01) && fechaHastaRep3 != new DateTime(1999, 01, 01))
+                    {
+                        document.Add(new Paragraph($"Desde: {dtp_desderep3.Value:dd/MM/yyyy}   Hasta: {dtp_hastarep3.Value:dd/MM/yyyy}")
+                            .SimulateBold()
+                            .SetFontSize(12)
+                            .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    }
+
+
+                    // Crear una tabla con el número de columnas del DataGridView
+                    Table table = new Table(dgv.Columns.Count);
+                    table.SetWidth(UnitValue.CreatePercentValue(100)); // Usar todo el ancho de la página
+
+                    // Establecer ancho de columnas
+                    foreach (DataGridViewColumn column in dgv.Columns)
+                    {
+                        table.AddHeaderCell(new Cell().Add(new Paragraph(column.HeaderText).SimulateBold().SetFontSize(8)));
+                    }
+
+                    // Agregar las filas//
+
                     for (int i = 0; i < dgv.Rows.Count; i++)
                     {
                         DataGridViewRow row = dgv.Rows[i];
@@ -291,41 +579,7 @@ namespace CapaPresentacion
 
 
 
-
-
-        //private void GenerarPDF_Panel(Panel panel, string nombreArchivo)
-        //{
-        //    // Crear un Bitmap del contenido del panel
-        //    Bitmap bm = new Bitmap(panel.Width, panel.Height);
-        //    panel.DrawToBitmap(bm, new Rectangle(0, 0, panel.Width, panel.Height));
-
-        //    // Crear el archivo PDF
-        //    using (PdfWriter writer = new PdfWriter(nombreArchivo))
-        //    {
-        //        using (PdfDocument pdf = new PdfDocument(writer))
-        //        {
-        //            Document document = new Document(pdf);
-
-        //            // Convertir el Bitmap a una imagen compatible con iText
-        //            using (var stream = new System.IO.MemoryStream())
-        //            {
-        //                bm.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-        //                iText.IO.Image.ImageData imageData = iText.IO.Image.ImageDataFactory.Create(stream.ToArray());
-        //                iText.Layout.Element.Image pdfImage = new iText.Layout.Element.Image(imageData);
-
-        //                // Escalar la imagen para ajustarla al tamaño de la página PDF
-        //                pdfImage.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
-        //                pdfImage.ScaleToFit(pdf.GetDefaultPageSize().GetWidth() - 40, pdf.GetDefaultPageSize().GetHeight() - 40);
-
-        //                // Agregar la imagen al documento
-        //                document.Add(pdfImage);
-        //            }
-        //        }
-        //    }
-
-        //    // Abrir el PDF generado
-        //    Process.Start(new ProcessStartInfo(nombreArchivo) { UseShellExecute = true });
-        //}
+        //---------------------------------------------------------------------------
 
 
     }
