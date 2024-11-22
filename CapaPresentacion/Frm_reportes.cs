@@ -18,6 +18,7 @@ using System.Drawing;
 using CapaNegocio;
 using System.Data.Common;
 using CapaDatos;
+using System.Windows.Forms.DataVisualization.Charting;//(K)
 
 namespace CapaPresentacion
 {
@@ -27,6 +28,161 @@ namespace CapaPresentacion
         public Frm_reportes()
         {
             InitializeComponent();
+        }
+       
+        // Generacion del Grafico de Barras 
+        // Crea las variables de Genero y Cantidad
+        private List<(string Genero, int Cantidad)> ObtenerDatosDesdeBase(DataGridView dgv)
+        {
+            List<(string Genero, int Cantidad)> datos = new List<(string Genero, int Cantidad)>();
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (!row.IsNewRow) // Evita las filas vacías
+                {
+                    // Verifica que no sea la fila de totales
+                    if (row.Cells["Genero"].Value?.ToString() == "Totales ==>")
+                        continue;
+                    //Genera las Variables
+                    string genero = row.Cells["Genero"].Value.ToString();
+                    int cantidad = Convert.ToInt32(row.Cells["Clientes"].Value);
+                    datos.Add((genero, cantidad));
+                }
+            }
+            return datos;
+        }
+        //Actualiza Grafico con los datos de genero y cantidad
+        private void ActualizarGraficoDesdeTabla(Chart chart, DataGridView dgv)
+        {
+            var datos = ObtenerDatosDesdeBase(dgv);
+            chart.Series[0].Points.Clear(); // Limpia los puntos del gráfico existente
+
+            foreach (var dato in datos)
+            {
+                DataPoint punto = new DataPoint
+                {
+                    AxisLabel = dato.Genero,
+                    YValues = new double[] { dato.Cantidad },
+                    Label = dato.Cantidad.ToString()
+                };
+                chart.Series[0].Points.Add(punto);
+            }
+        }
+       //Obtiene los Datos correspondientes
+        private List<(string Rango, int Clientes)> ObtenerDatosDesdeBaseEdad(DataGridView dgv)
+        {
+            List<(string Rango, int Clientes)> datos = new List<(string Rango, int Clientes)>();
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (!row.IsNewRow) // Evita filas vacías
+                {
+                    // Verifica que no sea la fila de totales (Si no se incluye genera una cuarta barra con el total)
+                    if (row.Cells["RangoEdad"].Value?.ToString() == "Totales ==>")
+                        continue;
+
+                    string rango = row.Cells["RangoEdad"].Value.ToString();
+                    int cliente = Convert.ToInt32(row.Cells["Clientes"].Value);
+                    datos.Add((rango, cliente));
+                }
+            }
+            return datos;
+        }
+       //Actualiza los Graficos y Limpia los Datos
+       //Obtiene los Datos que se utilizaran Rango y Clientes
+        private void ActualizarGraficoDesdeTablaEdad(Chart chart, DataGridView dgv)
+        {
+            var datos = ObtenerDatosDesdeBaseEdad(dgv);
+            chart.Series[0].Points.Clear(); // Limpia los puntos del gráfico existente
+
+            foreach (var dato in datos)
+            {
+                DataPoint punto = new DataPoint
+                {
+                    AxisLabel = dato.Rango,
+                    YValues = new double[] { dato.Clientes },
+                    Label = dato.Clientes.ToString()
+                };
+                chart.Series[0].Points.Add(punto);
+            }
+        }
+        //Crea el Grafico de Columnas
+        private Chart CrearGrafico(List<(string Genero, int Cantidad)> datos)
+        {
+            Chart chart = new Chart();
+            ChartArea chartArea = new ChartArea();
+            chart.ChartAreas.Add(chartArea);
+
+            Series series = new Series
+            {
+                ChartType = SeriesChartType.Column, //Aqui gracias a la Libreria se puede seleccionar que tipo de grafico se desea (CUIDADO: La mayoria de graficos se configuran diferentes)
+                IsValueShownAsLabel = true, // Mostrar valores en las barras
+                LabelForeColor = Color.Black, // Color de los números
+            };
+
+            foreach (var dato in datos)
+            {
+                DataPoint punto = new DataPoint();
+                punto.AxisLabel = dato.Genero; // Etiqueta del eje X
+                punto.YValues = new double[] { dato.Cantidad }; // Valor Y
+                punto.Label = dato.Cantidad.ToString(); // Mostrar número
+                punto.LabelFormat = "C"; // Formato de número
+                punto.LabelForeColor = Color.Black;//Color de las etiquetas en X y Y
+                punto.Font = new Font("Arial", 10); // Fuente
+                series.Points.Add(punto);
+
+            }
+
+            chart.Series.Add(series);
+
+            chartArea.AxisX.Title = "Género";
+            chartArea.AxisY.Title = "Estadistica";
+            chartArea.AxisX.Interval = -1;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisX.LabelStyle.Font = new Font("Arial", 5);
+            chartArea.AxisX.LabelStyle.ForeColor = Color.Black; ;
+
+
+            return chart;
+        }
+        //Creacion Grafico de Pie
+        private Chart CrearGraficoPie(List<(string RangoEdad, int Clientes)> datos)
+        {
+            Chart chart = new Chart();
+            ChartArea chartArea = new ChartArea();
+            chart.ChartAreas.Add(chartArea);
+
+            Series series = new Series
+            {
+                ChartType = SeriesChartType.Pie, // Tipo de gráfico pie (CUIDADO: La mayoria de graficos se configuran diferentes)
+                IsValueShownAsLabel = true // Mostrar valores en las secciones del gráfico
+            };
+
+            foreach (var dato in datos)
+            {
+                DataPoint punto = new DataPoint
+                {
+                    AxisLabel = dato.RangoEdad, // Etiqueta del gráfico (Rango de Edad)
+                    YValues = new double[] { dato.Clientes }, // Valor de la sección
+                    Label = $"{dato.RangoEdad}: {dato.Clientes}" // Etiqueta en el gráfico
+                };
+
+                // Configurar estilos opcionales para cada sección
+                punto.LabelForeColor = Color.Black; // Color del texto
+                punto.Font = new Font("Arial", 10, FontStyle.Bold);
+                series.Points.Add(punto);
+            }
+
+            chart.Series.Add(series);
+
+            // Configurar el área del gráfico
+            chartArea.BackColor = Color.Transparent; // Fondo transparente
+            chartArea.Area3DStyle.Enable3D = false; // Habilitar efecto 3D (opcional)
+
+            // Configurar el tamaño del gráfico
+            chart.Width = 500;
+            chart.Height = 500;
+
+            return chart;
         }
         //--------Poner los nombres de las tabPages en Horizotal---------------------
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
@@ -57,6 +213,8 @@ namespace CapaPresentacion
             // Dibujar el texto en horizontal
             g.DrawString(tabPage.Text, tabControl.Font, textBrush, tabBounds, stringFormat);
         }
+
+       
         //------------------------------------------------------------------
         //----------Proceso Reporte 1----------------------------------------
         private void cmb_locrep1_Click(object sender, EventArgs e)
@@ -363,8 +521,17 @@ namespace CapaPresentacion
         }
         private void GenerarPDF_DataGridViewRep2(DataGridView dgv, string nombreArchivo)
         {
+            //Obtener Datos de la base de Datos
+            var datos = ObtenerDatosDesdeBase(dgv);
+            //Crear grafico
+            Chart grafico = CrearGrafico(datos);
+            //Guardar la imagen
+            string imagenPath = "grafico.png"; //Nombre del grafico 
+            grafico.SaveImage(imagenPath, ChartImageFormat.Png); //Ruta donde se genera
+
             DateTime fechaDesdeRep2 = Convert.ToDateTime(dtp_desderep2.Value).Date;
             DateTime fechaHastaRep2 = Convert.ToDateTime(dtp_hastarep2.Value).Date;
+          
             // Crear el archivo PDF
             using (PdfWriter writer = new PdfWriter(nombreArchivo))
             {
@@ -437,6 +604,21 @@ namespace CapaPresentacion
 
                     // Agregar la tabla al documento
                     document.Add(table);
+                    //Titulo del Grafico reporte ventas por genero
+                    document.Add(new Paragraph("\nGRAFICO REPORTE VENTAS POR GENERO")
+                        .SimulateBold()
+                        .SetFontSize(12)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+
+                    // Insertar la imagen del gráfico
+                    iText.IO.Image.ImageData imageData = iText.IO.Image.ImageDataFactory.Create(imagenPath);
+                    iText.Layout.Element.Image pdfImage = new iText.Layout.Element.Image(imageData);
+                    //Formato de la imagen 
+                    pdfImage.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    pdfImage.ScaleToFit(pdf.GetDefaultPageSize().GetWidth() - 40, pdf.GetDefaultPageSize().GetHeight() - 40); //Scala a la hora de imprimir el Pdf
+
+                    document.Add(pdfImage);
                 }
             }
 
@@ -457,6 +639,30 @@ namespace CapaPresentacion
             // Calcular los totales
             AgregarFilaTotalesrep3(dt_rep3);
 
+            // Preparar los datos para el gráfico de pie (Obtiene todos los datos necesarios y los incorpora dentro del grafico) Es una de las distintas formas de configurarlo
+            List<(string RangoEdad, int Clientes)> datos = dt_rep3.AsEnumerable()
+                .Where(row => row["RangoEdad"].ToString() != "Totales ==>") // Excluir fila de totales
+                .Select(row => (row.Field<string>("RangoEdad"), row.Field<int>("Clientes")))
+                .ToList();
+
+            // Generar el gráfico de pie
+            Chart graficoPie = CrearGraficoPie(datos);
+
+            // Configurar la posición del gráfico debajo de la tabla
+            graficoPie.Left = dgv_rep3.Left;
+            graficoPie.Top = dgv_rep3.Bottom + 10;
+
+            // Eliminar gráficos anteriores si los hubiera
+            var controlesPrevios = this.Controls.OfType<Chart>().ToList();
+            foreach (var chart in controlesPrevios)
+            {
+                this.Controls.Remove(chart);
+            }
+
+            // Agregar el gráfico al formulario
+            this.Controls.Add(graficoPie);
+
+
             // Personalizar los encabezados de las columnas en el DataGridView
             dgv_rep3.Columns["FechaPrimeraFactura"].HeaderText = "Primera Factura";
             dgv_rep3.Columns["FechaUltimaFactura"].HeaderText = "Última Factura";
@@ -466,6 +672,7 @@ namespace CapaPresentacion
             dgv_rep3.Columns["ValorTotal"].HeaderText = "Valor Total";
             dgv_rep3.Columns["TotalTickets"].HeaderText = "Total Tickets";
 
+      
             //Habilitar boton para descargar pdf
             btn_pdfrep3.Enabled = true;
         }
@@ -515,6 +722,14 @@ namespace CapaPresentacion
         }
         private void GenerarPDF_DataGridViewRep3(DataGridView dgv, string nombreArchivo)
         {
+            //Obtener Datos de la base de Datos
+            var datos = ObtenerDatosDesdeBaseEdad(dgv);
+            //Crear grafico
+            Chart grafico = CrearGraficoPie(datos);
+            //Guardar la imagen
+            string imagenPath = "graficopie.png";//Nombre del Archivo
+            grafico.SaveImage(imagenPath, ChartImageFormat.Png); //Ruta del Archivo
+
             DateTime fechaDesdeRep3 = Convert.ToDateTime(dtp_desderep3.Value).Date;
             DateTime fechaHastaRep3 = Convert.ToDateTime(dtp_hastarep3.Value).Date;
             // Crear el archivo PDF
@@ -589,6 +804,25 @@ namespace CapaPresentacion
 
                     // Agregar la tabla al documento
                     document.Add(table);
+
+                    //Agregar el Titulo de Grafico reporte ventas por edad
+                    document.Add(new Paragraph("\nGRAFICO REPORTE VENTAS POR EDAD")
+                        .SimulateBold()
+                        .SetFontSize(12)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+                    //Insertar al Pdf
+                    iText.IO.Image.ImageData imageData = iText.IO.Image.ImageDataFactory.Create(imagenPath);
+                    iText.Layout.Element.Image pdfImage = new iText.Layout.Element.Image(imageData);
+
+                    //Formato de como se vera en el Pdf
+                    pdfImage.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    pdfImage.ScaleToFit(pdf.GetDefaultPageSize().GetWidth() - 40, pdf.GetDefaultPageSize().GetHeight() /3 );
+
+                    document.Add(pdfImage);
+
+
+
                 }
             }
 
