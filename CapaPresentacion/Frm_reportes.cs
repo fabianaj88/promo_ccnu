@@ -454,7 +454,6 @@ namespace CapaPresentacion
             DataTable dt_rep3 = nRep.Reporte3Doc(fechaDesdeRep3, fechaHastaRep3);
 
             dgv_rep3.DataSource = dt_rep3;
-
             // Calcular los totales
             AgregarFilaTotalesrep3(dt_rep3);
 
