@@ -25,7 +25,20 @@ namespace CapaPresentacion
 
         private void Frm_clientes_Load(object sender, EventArgs e)
         {
+            // Obtener el tipo de usuario actualmente logueado
+            int tipusu = 0;
+            string xcodusu = Cls_variables.xcodigo_usu;
 
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N",
+                "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt32(codadmin);
+
+            // Ocultar el botón si no es administrador
+            if (tipusu != 1)
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -588,41 +601,126 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Obtener el tipo de usuario actualmente logueado
+            int tipusu = 0;
+            string xcodusu = Cls_variables.xcodigo_usu;
+
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N",
+                "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt32(codadmin);
+
+            // Verificar si es administrador (tipo 1)
+            if (tipusu == 1)
+            {
+                try
+                {
+                    // Actualizar los valores en la base de datos usando ModificaS
+                    string campos = "saldo_ant = saldo_cli, saldo_cli = 0";
+                    bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Saldos actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudieron actualizar los saldos. Revisa la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al actualizar los saldos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Si no es administrador, mostrar mensaje de acceso denegado
+                MessageBox.Show("No tienes permisos para realizar esta acción. Solo los administradores pueden actualizar saldos.",
+                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Verificar el tipo de usuario
+            int tipusu = 0;
+            string xcodusu = Cls_variables.xcodigo_usu;
+
+            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N",
+                "codigo_usu='" + xcodusu + "'");
+            tipusu = (int)Convert.ToInt32(codadmin);
+
+            // Verificar si es administrador
+            if (tipusu == 1)
+            {
+                try
+                {
+                    // Definir los campos y ejecutar la actualización para recuperar saldos
+                    string campos = "saldo_cli = saldo_ant, saldo_ant = 0";
+                    bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Saldos recuperados correctamente. saldo_cli restaurado y saldo_ant reiniciado.",
+                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudieron recuperar los saldos. Revisa la información.",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al recuperar los saldos: " + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Mostrar mensaje si no es administrador
+                MessageBox.Show("No tienes permisos para realizar esta acción. Solo los administradores pueden recuperar saldos.",
+                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+        //public static void ExportarDataGridViewAExcel(DataGridView dataGridView)
+        //{
+        //    Excel.Application excelApp = new Excel.Application();
+        //    excelApp.Workbooks.Add();
+
+        //    Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
+
+        //    // Exportar encabezados
+        //    for (int i = 0; i < dataGridView.Columns.Count; i++)
+        //    {
+        //        worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+        //    }
+
+        //    // Exportar filas
+        //    for (int i = 0; i < dataGridView.Rows.Count; i++)
+        //    {
+        //        for (int j = 0; j < dataGridView.Columns.Count; j++)
+        //        {
+        //            worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
+        //        }
+        //    }
+
+        //    // Ajustar columnas automáticamente
+        //    worksheet.Columns.AutoFit();
+
+        //    // Hacer visible Excel
+        //    excelApp.Visible = true;
+
+        //    // Limpiar recursos
+        //    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+        //    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+        //}
+
     }
-
-
-
-    //public static void ExportarDataGridViewAExcel(DataGridView dataGridView)
-    //{
-    //    Excel.Application excelApp = new Excel.Application();
-    //    excelApp.Workbooks.Add();
-
-    //    Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
-
-    //    // Exportar encabezados
-    //    for (int i = 0; i < dataGridView.Columns.Count; i++)
-    //    {
-    //        worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
-    //    }
-
-    //    // Exportar filas
-    //    for (int i = 0; i < dataGridView.Rows.Count; i++)
-    //    {
-    //        for (int j = 0; j < dataGridView.Columns.Count; j++)
-    //        {
-    //            worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
-    //        }
-    //    }
-
-    //    // Ajustar columnas automáticamente
-    //    worksheet.Columns.AutoFit();
-
-    //    // Hacer visible Excel
-    //    excelApp.Visible = true;
-
-    //    // Limpiar recursos
-    //    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
-    //    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-    //}
-
 }
