@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_clientes));
             clientes = new TabControl();
             tabPage1 = new TabPage();
+            button1 = new Button();
             label18 = new Label();
             txt_saldocli = new TextBox();
             txt_celular = new TextBox();
@@ -76,6 +77,7 @@
             txt_dato_buscar = new TextBox();
             pictureBox4 = new PictureBox();
             label15 = new Label();
+            button2 = new Button();
             clientes.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -101,6 +103,8 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
+            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(label18);
             tabPage1.Controls.Add(txt_saldocli);
             tabPage1.Controls.Add(txt_celular);
@@ -145,6 +149,16 @@
             tabPage1.Size = new Size(828, 423);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(633, 319);
+            button1.Name = "button1";
+            button1.Size = new Size(129, 29);
+            button1.TabIndex = 43;
+            button1.Text = "Limpiar Saldos";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label18
             // 
@@ -653,6 +667,16 @@
             label15.TabIndex = 2;
             label15.Text = "CLIENTES";
             // 
+            // button2
+            // 
+            button2.Location = new Point(633, 363);
+            button2.Name = "button2";
+            button2.Size = new Size(129, 23);
+            button2.TabIndex = 44;
+            button2.Text = "Recuperar Saldos";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Frm_clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -730,5 +754,7 @@
         private Label label17;
         private TextBox txt_saldocli;
         private Label label18;
+        private Button button1;
+        private Button button2;
     }
 }
