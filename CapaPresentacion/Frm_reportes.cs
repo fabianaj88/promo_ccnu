@@ -20,6 +20,9 @@ using System.Data.Common;
 using CapaDatos;
 using System.Windows.Forms.DataVisualization.Charting;//(K)
 
+using ClosedXML.Excel;
+using DataTable = System.Data.DataTable;
+
 namespace CapaPresentacion
 {
     public partial class Frm_reportes : Form
@@ -28,8 +31,9 @@ namespace CapaPresentacion
         public Frm_reportes()
         {
             InitializeComponent();
+            button1.Enabled = false;
         }
-       
+      
         // Generacion del Grafico de Barras 
         // Crea las variables de Genero y Cantidad
         private List<(string Genero, int Cantidad)> ObtenerDatosDesdeBase(DataGridView dgv)
@@ -67,7 +71,7 @@ namespace CapaPresentacion
                 chart.Series[0].Points.Add(punto);
             }
         }
-       //Obtiene los Datos correspondientes
+        //Obtiene los Datos correspondientes
         private List<(string Rango, int Clientes)> ObtenerDatosDesdeBaseEdad(DataGridView dgv)
         {
             List<(string Rango, int Clientes)> datos = new List<(string Rango, int Clientes)>();
@@ -86,8 +90,8 @@ namespace CapaPresentacion
             }
             return datos;
         }
-       //Actualiza los Graficos y Limpia los Datos
-       //Obtiene los Datos que se utilizaran Rango y Clientes
+        //Actualiza los Graficos y Limpia los Datos
+        //Obtiene los Datos que se utilizaran Rango y Clientes
         private void ActualizarGraficoDesdeTablaEdad(Chart chart, DataGridView dgv)
         {
             var datos = ObtenerDatosDesdeBaseEdad(dgv);
@@ -214,7 +218,7 @@ namespace CapaPresentacion
             g.DrawString(tabPage.Text, tabControl.Font, textBrush, tabBounds, stringFormat);
         }
 
-       
+
         //------------------------------------------------------------------
         //----------Proceso Reporte 1----------------------------------------
         private void cmb_locrep1_Click(object sender, EventArgs e)
@@ -315,6 +319,7 @@ namespace CapaPresentacion
 
             //Habilitar boton para descargar pdf
             btn_pdfrep1.Enabled = true;
+            button1.Enabled = true;
         }
 
         // Método para agregar una fila de totales al DataGridView
@@ -531,7 +536,7 @@ namespace CapaPresentacion
 
             DateTime fechaDesdeRep2 = Convert.ToDateTime(dtp_desderep2.Value).Date;
             DateTime fechaHastaRep2 = Convert.ToDateTime(dtp_hastarep2.Value).Date;
-          
+
             // Crear el archivo PDF
             using (PdfWriter writer = new PdfWriter(nombreArchivo))
             {
@@ -672,7 +677,7 @@ namespace CapaPresentacion
             dgv_rep3.Columns["ValorTotal"].HeaderText = "Valor Total";
             dgv_rep3.Columns["TotalTickets"].HeaderText = "Total Tickets";
 
-      
+
             //Habilitar boton para descargar pdf
             btn_pdfrep3.Enabled = true;
         }
@@ -817,7 +822,7 @@ namespace CapaPresentacion
 
                     //Formato de como se vera en el Pdf
                     pdfImage.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
-                    pdfImage.ScaleToFit(pdf.GetDefaultPageSize().GetWidth() - 40, pdf.GetDefaultPageSize().GetHeight() /3 );
+                    pdfImage.ScaleToFit(pdf.GetDefaultPageSize().GetWidth() - 40, pdf.GetDefaultPageSize().GetHeight() / 3);
 
                     document.Add(pdfImage);
 
@@ -830,6 +835,97 @@ namespace CapaPresentacion
             Process.Start(new ProcessStartInfo(nombreArchivo) { UseShellExecute = true });
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Código existente para llenar el DataGridView
+            string repbusloc = cmb_locrep1.SelectedValue != null ? cmb_locrep1.SelectedValue.ToString() : "";
+            DateTime fechaDesdeRep1 = Convert.ToDateTime(dtp_desdrep1.Value).Date;
+            DateTime fechaHastaRep1 = Convert.ToDateTime(dtp_hastarep1.Value).Date;
+
+            N_Documentos nRep = new N_Documentos();
+            DataTable dt_rep1 = nRep.Reporte1Doc(repbusloc, fechaDesdeRep1, fechaHastaRep1);
+            dgv_rep1.DataSource = dt_rep1;
+
+            // Agregar fila de totales
+            AgregarFilaTotales(dt_rep1);
+
+            // Mostrar cuadro de diálogo para guardar el archivo Excel
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Archivos Excel (.xlsx)|.xlsx",
+                Title = "Guardar archivo Excel"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportarAExcel(dgv_rep1, saveFileDialog.FileName);
+            }
+        }
+        private void ExportarAExcel(DataGridView gridView, string nombreArchivo)
+        {
+            try
+            {
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Reporte");
+
+                    // Formatear encabezados
+                    for (int col = 0; col < gridView.Columns.Count; col++)
+                    {
+                        var cell = worksheet.Cell(1, col + 1);
+                        cell.Value = gridView.Columns[col].HeaderText;
+                        cell.Style.Font.Bold = true; // Negrita
+                        cell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; // Centrar
+                        cell.Style.Fill.BackgroundColor = XLColor.LightGray; // Fondo gris claro
+                        cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin; // Bordes
+                    }
+
+                    // Formatear datos
+                    for (int row = 0; row < gridView.Rows.Count; row++)
+                    {
+                        for (int col = 0; col < gridView.Columns.Count; col++)
+                        {
+                            var cell = worksheet.Cell(row + 2, col + 1);
+                            var cellValue = gridView.Rows[row].Cells[col].Value;
+
+                            // Asignar valor
+                            cell.Value = cellValue?.ToString() ?? "";
+
+                            // Detectar formato
+                            if (gridView.Columns[col].Name.Contains("Fecha") && DateTime.TryParse(cellValue?.ToString(), out DateTime dateValue))
+                            {
+                                cell.Value = dateValue;
+                                cell.Style.DateFormat.Format = "yyyy-MM-dd"; // Formato de fecha
+                            }
+                            else if (gridView.Columns[col].Name.Contains("Valor") && double.TryParse(cellValue?.ToString(), out double doubleValue))
+                            {
+                                cell.Value = doubleValue;
+                                cell.Style.NumberFormat.Format = "$#,##0.00"; // Formato de moneda
+                            }
+
+                            // Estilo adicional para totales (última fila)
+                            if (row == gridView.Rows.Count - 2)
+                            {
+                                cell.Style.Font.Bold = true;
+                                cell.Style.Fill.BackgroundColor = XLColor.LightGray;
+                            }
+                        }
+                    }
+
+                    // Ajustar ancho de columnas automáticamente
+                    worksheet.Columns().AdjustToContents();
+
+                    // Guardar archivo
+                    workbook.SaveAs(nombreArchivo);
+                }
+
+                MessageBox.Show("Archivo Excel creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al exportar a Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 
