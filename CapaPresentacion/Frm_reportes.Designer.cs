@@ -44,7 +44,7 @@
             tabPage1 = new TabPage();
             panel1 = new Panel();
             panel3 = new Panel();
-            button1 = new Button();
+            btn_excel_repo_1 = new Button();
             btn_pdfrep1 = new Button();
             label5 = new Label();
             label4 = new Label();
@@ -63,6 +63,7 @@
             dgv_rep2 = new DataGridView();
             label8 = new Label();
             panel6 = new Panel();
+            btn_excel_repo_2 = new Button();
             btn_pdfrep2 = new Button();
             label6 = new Label();
             label7 = new Label();
@@ -76,6 +77,7 @@
             dgv_rep3 = new DataGridView();
             label11 = new Label();
             panel9 = new Panel();
+            btn_excelrep3 = new Button();
             btn_pdfrep3 = new Button();
             label9 = new Label();
             label10 = new Label();
@@ -162,7 +164,7 @@
             // panel3
             // 
             panel3.BackColor = Color.LightSteelBlue;
-            panel3.Controls.Add(button1);
+            panel3.Controls.Add(btn_excel_repo_1);
             panel3.Controls.Add(btn_pdfrep1);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label4);
@@ -175,16 +177,17 @@
             panel3.Size = new Size(699, 78);
             panel3.TabIndex = 2;
             // 
-            // button1
+            // btn_excel_repo_1
             // 
-            button1.BackColor = Color.Silver;
-            button1.Location = new Point(582, 20);
-            button1.Name = "button1";
-            button1.Size = new Size(89, 38);
-            button1.TabIndex = 10;
-            button1.Text = "EXCEL";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btn_excel_repo_1.BackColor = Color.Silver;
+            btn_excel_repo_1.Enabled = false;
+            btn_excel_repo_1.Location = new Point(582, 20);
+            btn_excel_repo_1.Name = "btn_excel_repo_1";
+            btn_excel_repo_1.Size = new Size(89, 38);
+            btn_excel_repo_1.TabIndex = 10;
+            btn_excel_repo_1.Text = "EXCEL";
+            btn_excel_repo_1.UseVisualStyleBackColor = false;
+            btn_excel_repo_1.Click += btn_excelrep1_Click;
             // 
             // btn_pdfrep1
             // 
@@ -417,6 +420,7 @@
             // panel6
             // 
             panel6.BackColor = Color.LightSteelBlue;
+            panel6.Controls.Add(btn_excel_repo_2);
             panel6.Controls.Add(btn_pdfrep2);
             panel6.Controls.Add(label6);
             panel6.Controls.Add(label7);
@@ -428,12 +432,25 @@
             panel6.Size = new Size(697, 79);
             panel6.TabIndex = 0;
             // 
+            // btn_excel_repo_2
+            // 
+            btn_excel_repo_2.AllowDrop = true;
+            btn_excel_repo_2.BackColor = Color.Silver;
+            btn_excel_repo_2.Enabled = false;
+            btn_excel_repo_2.Location = new Point(578, 20);
+            btn_excel_repo_2.Name = "btn_excel_repo_2";
+            btn_excel_repo_2.Size = new Size(92, 38);
+            btn_excel_repo_2.TabIndex = 14;
+            btn_excel_repo_2.Text = "EXCEL";
+            btn_excel_repo_2.UseVisualStyleBackColor = false;
+            btn_excel_repo_2.Click += btn_excelrep2_Click;
+            // 
             // btn_pdfrep2
             // 
             btn_pdfrep2.BackColor = Color.Silver;
             btn_pdfrep2.Enabled = false;
             btn_pdfrep2.Image = (Image)resources.GetObject("btn_pdfrep2.Image");
-            btn_pdfrep2.Location = new Point(574, 19);
+            btn_pdfrep2.Location = new Point(513, 20);
             btn_pdfrep2.Name = "btn_pdfrep2";
             btn_pdfrep2.Size = new Size(51, 38);
             btn_pdfrep2.TabIndex = 13;
@@ -581,6 +598,7 @@
             // panel9
             // 
             panel9.BackColor = Color.LightSteelBlue;
+            panel9.Controls.Add(btn_excelrep3);
             panel9.Controls.Add(btn_pdfrep3);
             panel9.Controls.Add(label9);
             panel9.Controls.Add(label10);
@@ -592,12 +610,24 @@
             panel9.Size = new Size(697, 79);
             panel9.TabIndex = 1;
             // 
+            // btn_excelrep3
+            // 
+            btn_excelrep3.BackColor = Color.Silver;
+            btn_excelrep3.Enabled = false;
+            btn_excelrep3.Location = new Point(582, 19);
+            btn_excelrep3.Name = "btn_excelrep3";
+            btn_excelrep3.Size = new Size(93, 38);
+            btn_excelrep3.TabIndex = 14;
+            btn_excelrep3.Text = "EXCEL";
+            btn_excelrep3.UseVisualStyleBackColor = false;
+            btn_excelrep3.Click += btn_excelrep3_Click;
+            // 
             // btn_pdfrep3
             // 
             btn_pdfrep3.BackColor = Color.Silver;
             btn_pdfrep3.Enabled = false;
             btn_pdfrep3.Image = (Image)resources.GetObject("btn_pdfrep3.Image");
-            btn_pdfrep3.Location = new Point(566, 19);
+            btn_pdfrep3.Location = new Point(512, 19);
             btn_pdfrep3.Name = "btn_pdfrep3";
             btn_pdfrep3.Size = new Size(51, 38);
             btn_pdfrep3.TabIndex = 13;
@@ -763,6 +793,8 @@
         private Panel panel8;
         private Button btn_aceprep3;
         private ToolTip toolTip1;
-        private Button button1;
+        private Button btn_excel_repo_1;
+        private Button btn_excel_repo_2;
+        private Button btn_excelrep3;
     }
 }
