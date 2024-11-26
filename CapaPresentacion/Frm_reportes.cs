@@ -31,7 +31,7 @@ namespace CapaPresentacion
         public Frm_reportes()
         {
             InitializeComponent();
-            button1.Enabled = false;
+
         }
 
         // Generacion del Grafico de Barras 
@@ -319,7 +319,7 @@ namespace CapaPresentacion
 
             //Habilitar boton para descargar pdf
             btn_pdfrep1.Enabled = true;
-            button1.Enabled = true;
+            btn_excel_repo_1.Enabled = true;
         }
 
         // Método para agregar una fila de totales al DataGridView
@@ -479,6 +479,7 @@ namespace CapaPresentacion
 
             //Habilitar boton para descargar pdf
             btn_pdfrep2.Enabled = true;
+            btn_excel_repo_2.Enabled = true;
         }
         // Método para agregar una fila de totales al DataGridView
         private void AgregarFilaTotalesrep2(DataTable dt)
@@ -680,6 +681,7 @@ namespace CapaPresentacion
 
             //Habilitar boton para descargar pdf
             btn_pdfrep3.Enabled = true;
+            btn_excelrep3.Enabled = true;
         }
         // Método para agregar una fila de totales al DataGridView
         private void AgregarFilaTotalesrep3(DataTable dt)
@@ -834,33 +836,48 @@ namespace CapaPresentacion
             // Abrir el PDF generado
             Process.Start(new ProcessStartInfo(nombreArchivo) { UseShellExecute = true });
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        //Boton para Crear Excel Reporte 1
+        private void btn_excelrep1_Click(object sender, EventArgs e)
         {
-            // Código existente para llenar el DataGridView
-            string repbusloc = cmb_locrep1.SelectedValue != null ? cmb_locrep1.SelectedValue.ToString() : "";
-            DateTime fechaDesdeRep1 = Convert.ToDateTime(dtp_desdrep1.Value).Date;
-            DateTime fechaHastaRep1 = Convert.ToDateTime(dtp_hastarep1.Value).Date;
-
-            N_Documentos nRep = new N_Documentos();
-            DataTable dt_rep1 = nRep.Reporte1Doc(repbusloc, fechaDesdeRep1, fechaHastaRep1);
-            dgv_rep1.DataSource = dt_rep1;
-
-            // Agregar fila de totales
-            AgregarFilaTotales(dt_rep1);
-
-            // Mostrar cuadro de diálogo para guardar el archivo Excel
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                Filter = "Archivos Excel (.xlsx)|.xlsx",
+                Filter = "Archivos Excel (.xlsx)|*.xlsx",
                 Title = "Guardar archivo Excel"
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ExportarAExcel(dgv_rep1, saveFileDialog.FileName);
+                ExportarAExcel(dgv_rep1, saveFileDialog.FileName); // Exporta directamente sin recargar datos
             }
         }
+        private void btn_excelrep2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Archivos Excel (.xlsx)|*.xlsx",
+                Title = "Guardar archivo Excel"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportarAExcel(dgv_rep2, saveFileDialog.FileName); // Exporta directamente sin recargar datos
+            }
+        }
+        private void btn_excelrep3_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Archivos Excel (.xlsx)|*.xlsx",
+                Title = "Guardar archivo Excel"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportarAExcel(dgv_rep3, saveFileDialog.FileName); // Exporta directamente sin recargar datos
+            }
+        }
+
+        //Formato del Excel 
         private void ExportarAExcel(DataGridView gridView, string nombreArchivo)
         {
             try
@@ -926,6 +943,7 @@ namespace CapaPresentacion
                 MessageBox.Show($"Error al exportar a Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
