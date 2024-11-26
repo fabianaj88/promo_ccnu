@@ -33,7 +33,7 @@ namespace CapaPresentacion
             InitializeComponent();
             button1.Enabled = false;
         }
-      
+
         // Generacion del Grafico de Barras 
         // Crea las variables de Genero y Cantidad
         private List<(string Genero, int Cantidad)> ObtenerDatosDesdeBase(DataGridView dgv)

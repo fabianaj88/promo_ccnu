@@ -178,12 +178,14 @@
             // button1
             // 
             button1.BackColor = Color.Silver;
-            button1.Location = new Point(582, 20);
+            button1.Enabled = false;
+            button1.Location = new Point(629, 20);
             button1.Name = "button1";
-            button1.Size = new Size(89, 38);
+            button1.Size = new Size(42, 38);
             button1.TabIndex = 10;
             button1.Text = "EXCEL";
             button1.UseVisualStyleBackColor = false;
+            button1.Visible = false;
             button1.Click += button1_Click;
             // 
             // btn_pdfrep1
@@ -191,7 +193,7 @@
             btn_pdfrep1.BackColor = Color.Silver;
             btn_pdfrep1.Enabled = false;
             btn_pdfrep1.Image = (Image)resources.GetObject("btn_pdfrep1.Image");
-            btn_pdfrep1.Location = new Point(512, 20);
+            btn_pdfrep1.Location = new Point(563, 20);
             btn_pdfrep1.Name = "btn_pdfrep1";
             btn_pdfrep1.Size = new Size(51, 38);
             btn_pdfrep1.TabIndex = 8;
