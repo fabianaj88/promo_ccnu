@@ -35,7 +35,8 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["saldo_cli"] = 0;
                 dtDatos.Rows[0]["correo_cli"] = cliente.correo_cli;
                 dtDatos.Rows[0]["estado_cli"] = 0;
-                
+                dtDatos.Rows[0]["saldo_ant"] = 0;
+
 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);

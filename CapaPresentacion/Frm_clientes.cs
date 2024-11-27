@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaDatos;
 using CapaEntidades;
+using CapaNegocio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -17,6 +18,7 @@ namespace CapaPresentacion
 {
     public partial class Frm_clientes : Form
     {
+        private string xtipdoc = ""; // Campo de clase para almacenar el tipo de documento
         public Frm_clientes()
         {
             InitializeComponent();
@@ -36,24 +38,232 @@ namespace CapaPresentacion
             // Ocultar el botón si no es administrador
             if (tipusu != 1)
             {
-                button1.Enabled = false;
-                button2.Enabled = false;
+                btn_limpsaldo.Enabled = false;
+                //btn_recuperarsald.Enabled = false;
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void txt_codigo_Leave(object sender, EventArgs e)
         {
+            string codigoCliente = txt_codigo.Text;
 
+            // Validaciones para cédula, RUC y pasaporte
+            if (codigoCliente != "")
+            {
+                if (radioButton1.Checked)
+                {
+                    if (IsValidCedula(codigoCliente))
+                    {
+                        xtipdoc = "1";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de cédula válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+                else if (radioButton2.Checked)
+                {
+                    if (IsValidRuc(codigoCliente))
+                    {
+                        xtipdoc = "2";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de RUC válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+                else if (radioButton3.Checked)
+                {
+                    if (IsValidPassport(codigoCliente))
+                    {
+                        xtipdoc = "3";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de Pasaporte válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ingrese el código del cliente.");
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void btn_grabar_Click(object sender, EventArgs e)
         {
+            string codigoCliente = txt_codigo.Text;
+
+            // Validaciones para cédula, RUC y pasaporte
+            if (codigoCliente != "")
+            {
+                if (radioButton1.Checked)
+                {
+                    if (IsValidCedula(codigoCliente))
+                    {
+                        xtipdoc = "1";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de cédula válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+                else if (radioButton2.Checked)
+                {
+                    if (IsValidRuc(codigoCliente))
+                    {
+                        xtipdoc = "2";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de RUC válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+                else if (radioButton3.Checked)
+                {
+                    if (IsValidPassport(codigoCliente))
+                    {
+                        xtipdoc = "3";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código ingresado no es un número de Pasaporte válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_codigo.Focus();
+                        return; // Termina aquí si la validación no es correcta
+                    }
+                }
+            }
+
+            if (ControlVacio())
+            {
+                var result = MessageBox.Show("¿Estás seguro de grabar los datos del cliente?",
+                                        "Confirmación",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    // Crear un objeto de la entidad Clientes
+                    E_Clientes cliente = new E_Clientes
+                    {
+                        codigo_cli = txt_codigo.Text,
+                        nombre_cli = txt_nombre.Text,
+                        apellido_cli = txt_apellidos.Text,
+                        tipo_doc_cli = xtipdoc,
+                        num_doc_cli = txt_codigo.Text,
+                        fecha_nac_cli = dateTimePicker1.Value,
+                        genero_cli = cmb_genero.Text,
+                        telefono_cli = txt_telefono.Text,
+                        celular_cli = txt_celular.Text,
+                        direccion_cli = txt_direccion.Text,
+                        correo_cli = txt_correo.Text,
+
+                    };
+                    // Llamar a la capa de negocio para grabar los datos
+                    N_Clientes ncli = new N_Clientes();
+                    bool exito = ncli.GrabarClientes(cliente);
+
+                    if (exito)
+                    {
+
+                        MessageBox.Show("Cliente grabado con éxito.");
+                        carga_inicial();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al grabar el cliente.");
+                    }
+                }
+            }
 
         }
-
-        private void txt_codigo_TextChanged(object sender, EventArgs e)
+        private void btn_editar_Click(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("¿Estás seguro de editar los datos del cliente?",
+                                   "Confirmación",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                string xcampos = "";
+                int xgraba = 0;
+                try
+                {
+                    xcampos = "nombre_cli='" + txt_nombre.Text + "',apellido_cli='" + txt_apellidos.Text + "',direccion_cli='" + txt_direccion.Text + "',telefono_cli='" + txt_telefono.Text + "',celular_cli='" + txt_celular.Text + "',genero_cli='" + cmb_genero.Text + "',fecha_nac_cli='" + dateTimePicker1.Value + "',correo_cli='" + txt_correo.Text + "'";
+                    Cls_funciones.ModificaS("clientes", xcampos, "codigo_cli='" + txt_codigo.Text + "'");
+                    xgraba = 1;
+                }
+                catch
+                {
+                    xgraba = 0;
+                }
 
+                if (xgraba == 1)
+                {
+                    MessageBox.Show("Cliente editado con éxito.");
+                    carga_inicial();
+                }
+                else
+                {
+                    MessageBox.Show("Error al editar el cliente");
+                }
+            }
+        }
+
+        private void carga_inicial()
+        {
+            btn_nuevo.Enabled = true;
+            btn_editar.Enabled = false;
+            //btn_buscar.Enabled = true;
+            btn_eliminar.Enabled = false;
+            btn_grabar.Enabled = false;
+            btn_cancelar.Enabled = false;
+            //
+            txt_codigo.Enabled = false;
+            txt_nombre.Enabled = false;
+            txt_apellidos.Enabled = false;
+            txt_direccion.Enabled = false;
+            txt_direccion.Enabled = false;
+            txt_telefono.Enabled = false;
+            txt_celular.Enabled = false;
+            txt_correo.Enabled = false;
+            cmb_genero.Enabled = false;
+            dateTimePicker1.Enabled = false;
+            radioButton1.Enabled = false;
+            radioButton2.Enabled = false;
+            radioButton3.Enabled = false;
+
+            //-----------------------------
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+
+            txt_codigo.Text = "";
+            txt_nombre.Text = "";
+            txt_apellidos.Text = "";
+            txt_direccion.Text = "";
+            txt_telefono.Text = "";
+            txt_celular.Text = "";
+            txt_correo.Text = "";
+            cmb_genero.Text = "";
+            txt_saldocli.Text = "";
         }
 
         private void btn_nuevo_Click(object sender, EventArgs e)
@@ -95,32 +305,9 @@ namespace CapaPresentacion
             radioButton2.Checked = false;
             radioButton3.Checked = false;
         }
-
-        private void carga_inicial()
+        private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            btn_nuevo.Enabled = true;
-            btn_editar.Enabled = true;
-            //btn_buscar.Enabled = true;
-            btn_eliminar.Enabled = true;
-            btn_grabar.Enabled = false;
-            btn_cancelar.Enabled = false;
-            //
-            txt_codigo.Enabled = false;
-            txt_nombre.Enabled = false;
-            txt_apellidos.Enabled = false;
-            txt_direccion.Enabled = false;
-            txt_direccion.Enabled = false;
-            txt_telefono.Enabled = false;
-            txt_celular.Enabled = false;
-            txt_correo.Enabled = false;
-            cmb_genero.Enabled = false;
-            dateTimePicker1.Enabled = false;
-            radioButton1.Enabled = false;
-            radioButton2.Enabled = false;
-            radioButton3.Enabled = false;
-
-
-
+            carga_inicial();
         }
         private void cargar_registros(string xcodigo_cli = "")
         {
@@ -142,125 +329,50 @@ namespace CapaPresentacion
             }
 
         }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_grabar_Click(object sender, EventArgs e)
+        private bool ControlVacio()
         {
             if (txt_codigo.Text == "")
             {
-                MessageBox.Show("Ingrese código del cliente .");
-                return;
+                MessageBox.Show("Ingrese el código del cliente.");
+                return false;
             }
             if (txt_nombre.Text == "")
             {
-                MessageBox.Show("Ingrese nombre del cliente .");
-                return;
+                MessageBox.Show("Ingrese el nombre del cliente.");
+                return false;
             }
+            if (txt_apellidos.Text == "")
+            {
+                MessageBox.Show("Ingrese el apellido del cliente.");
+                return false;
+            }
+            if (txt_direccion.Text == "")
+            {
+                MessageBox.Show("Ingrese la dirección del cliente.");
+                return false;
+            }
+            //if (txt_telefono.Text == "")
+            //{
+            //    MessageBox.Show("Ingrese el número de teléfono del cliente.");
+            //    return false;
+            //}
+            if (txt_celular.Text == "")
+            {
+                MessageBox.Show("Ingrese el número de celular del cliente.");
+                return false;
+            }
+            //if (txt_correo.Text == "")
+            //{
+            //    MessageBox.Show("Ingrese el correo del cliente.");
+            //    return false;
+            //}
             if (cmb_genero.Text == "")
             {
-                MessageBox.Show("Ingrese genero del cliente .");
-                return;
-            }
-            var result = MessageBox.Show("¿Estás seguro de grabar los datos del cliente?",
-                                    "Confirmación",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-            else
-            {
-                grabar_datos_clientes();
+                MessageBox.Show("Ingrese el género del cliente.");
+                return false;
             }
 
-
-        }
-        private void grabar_datos_clientes()
-        {
-
-            DataTable dt_datos = new DataTable();
-            string xcondicion_cli = "";
-            string xcampos = "";
-            int xgraba = 0;
-            if (txt_codigo.Enabled == false)
-            {
-                try
-                {
-                    xcampos = "nombre_cli='" + txt_nombre.Text + "',apellido_cli='" + txt_apellidos.Text + "',direccion_cli='" + txt_direccion.Text + "',telefono_cli='" + txt_telefono.Text + "',celular_cli='" + txt_celular.Text + "',genero_cli='" + cmb_genero.Text + "',fecha_nac_cli='" + dateTimePicker1.Value + "',correo_cli='" + txt_correo.Text + "'";
-                    Cls_funciones.ModificaS("clientes", xcampos, "codigo_cli='" + txt_codigo.Text + "'");
-                    xgraba = 1;
-                }
-                catch
-                {
-                    xgraba = 0;
-                }
-
-                if (xgraba == 1)
-                {
-                    MessageBox.Show("Datos procesados con exito..");
-                    carga_inicial();
-                }
-                else
-                {
-                    MessageBox.Show("Existe error en los datos..");
-                }
-
-
-
-            }
-            else
-            {
-                xcampos = Cls_funciones.leer_Campos_tabla("clientes");
-                dt_datos = Cls_funciones.Inserta_Datos_tabla_tmp("clientes", "codigo_cli", "C");
-                if (dt_datos.Rows.Count == 1)
-                {
-                    dt_datos.Rows[0]["codigo_cli"] = txt_codigo.Text;
-                    dt_datos.Rows[0]["nombre_cli"] = txt_nombre.Text;
-                    dt_datos.Rows[0]["apellido_cli"] = txt_apellidos.Text;
-                    dt_datos.Rows[0]["direccion_cli"] = txt_direccion.Text;
-                    dt_datos.Rows[0]["telefono_cli"] = txt_telefono.Text;
-                    dt_datos.Rows[0]["celular_cli"] = txt_celular.Text;
-                    dt_datos.Rows[0]["genero_cli"] = cmb_genero.Text;
-                    dt_datos.Rows[0]["fecha_nac_cli"] = dateTimePicker1.Value;
-                    dt_datos.Rows[0]["celular_cli"] = txt_celular.Text;
-                    dt_datos.Rows[0]["correo_cli"] = txt_correo.Text;
-                    dt_datos.Rows[0]["saldo_cli"] = txt_saldocli.Text;
-
-                    xcondicion_cli = Cls_funciones.Condicion_grabar(dt_datos, false);
-                    if (Cls_funciones.Grabar_Datos_DB("clientes", xcampos, xcondicion_cli) == true)
-                    {
-                        MessageBox.Show("Datos procesados con exito..");
-                        carga_inicial();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Existe error en los datos..");
-                    }
-                }
-            }
-
-
-        }
-
-        private void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            carga_inicial();
-        }
-
-        private void btn_buscar_Click(object sender, EventArgs e)
-        {
-            //panel1_Paint.Visible = true;
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            return true;
         }
 
         private void btn_busca_cli_Click(object sender, EventArgs e)
@@ -277,17 +389,6 @@ namespace CapaPresentacion
             }
             dt_clientes = Cls_funciones.VisualizaS(xsentencia);
             grid_lista_clientes.DataSource = dt_clientes;
-
-
-
-
-        }
-
-        private void grid_lista_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // MessageBox.Show(e.RowIndex); ;
-
-
         }
         private void busca_cliente(String dato)
         {
@@ -329,86 +430,31 @@ namespace CapaPresentacion
                     }
 
                 }
+                radioButton1.Enabled = false;
+                radioButton2.Enabled = false;
+                radioButton3.Enabled = false;
+
+                btn_nuevo.Enabled = false;
+                btn_grabar.Enabled = false;
                 btn_editar.Enabled = true;
-                //txt_codigo.Enabled = false;
-                // btn
-                //btn_eliminar.Enabled = true;
+                btn_cancelar.Enabled = true;
+
+                txt_codigo.Enabled = false;
+                txt_saldocli.Enabled = false;
+                txt_nombre.Enabled = true;
+                txt_apellidos.Enabled = true;
+                txt_direccion.Enabled = true;
+                txt_telefono.Enabled = true;
+                txt_celular.Enabled = true;
+                txt_correo.Enabled = true;
+                cmb_genero.Enabled = true;
+                dateTimePicker1.Enabled = true;
 
                 clientes.SelectedTab = clientes.TabPages[0];
 
             }
 
         }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmb_genero_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_codigo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            //{
-            //    e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
-            //}
-        }
-
-        private void txt_telefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
-            }
-        }
-
-        private void btn_editar_Click(object sender, EventArgs e)
-        {
-            if (txt_codigo.Text != "")
-            {
-                txt_codigo.Enabled = false;
-                btn_grabar.Enabled = true;
-                btn_nuevo.Enabled = false;
-                btn_cancelar.Enabled = true;
-
-                btn_nuevo.Enabled = false;
-                btn_editar.Enabled = false;
-                //btn_buscar.Enabled = false;
-                btn_eliminar.Enabled = false;
-
-                //
-
-                txt_nombre.Enabled = true;
-                txt_apellidos.Enabled = true;
-                txt_direccion.Enabled = true;
-                txt_direccion.Enabled = true;
-                txt_telefono.Enabled = true;
-                txt_celular.Enabled = true;
-                txt_correo.Enabled = true;
-                cmb_genero.Enabled = true;
-
-                dateTimePicker1.Enabled = true;
-                radioButton1.Enabled = true;
-                radioButton2.Enabled = true;
-                radioButton3.Enabled = true;
-
-            }
-        }
-
         private void grid_lista_clientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // Ignorar la cabecera
@@ -428,6 +474,13 @@ namespace CapaPresentacion
             }
         }
 
+        private void txt_telefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
+            }
+        }
         private void txt_codigo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -459,12 +512,18 @@ namespace CapaPresentacion
                 txt_apellidos.Focus();
             }
         }
-
-        private void txt_apellidos_TextChanged(object sender, EventArgs e)
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            // Permitir solo letras y convertirlas a mayúsculas
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == ' ')
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar); // Convertir a mayúscula
+            }
+            else
+            {
+                e.Handled = true; // Bloquear cualquier otro carácter
+            }
         }
-
         private void txt_apellidos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -472,7 +531,18 @@ namespace CapaPresentacion
                 txt_direccion.Focus();
             }
         }
-
+        private void txt_apellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras y convertirlas a mayúsculas
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == ' ')
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar); // Convertir a mayúscula
+            }
+            else
+            {
+                e.Handled = true; // Bloquear cualquier otro carácter
+            }
+        }
         private void txt_direccion_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -480,7 +550,6 @@ namespace CapaPresentacion
                 txt_telefono.Focus();
             }
         }
-
         private void txt_telefono_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -488,7 +557,6 @@ namespace CapaPresentacion
                 txt_celular.Focus();
             }
         }
-
         private void txt_celular_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -496,7 +564,13 @@ namespace CapaPresentacion
                 txt_correo.Focus();
             }
         }
-
+        private void txt_celular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar cualquier otra tecla que no sea número o retroceso
+            }
+        }
         private void txt_correo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -504,7 +578,19 @@ namespace CapaPresentacion
                 cmb_genero.Focus();
             }
         }
-
+        private void txt_correo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Convertir la tecla a minúscula si es una letra
+            e.KeyChar = char.ToLower(e.KeyChar);
+        }
+        private void txt_correo_Validating(object sender, CancelEventArgs e)
+        {
+            if (!txt_correo.Text.Contains("@"))
+            {
+                MessageBox.Show("El correo debe contener el símbolo '@'.", "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true; // Evita que se pierda el foco del control hasta que el usuario corrija el texto
+            }
+        }
         private void cmb_genero_TextChanged(object sender, EventArgs e)
         {
             string searchText = cmb_genero.Text;
@@ -529,43 +615,12 @@ namespace CapaPresentacion
                 cmb_genero.SelectionStart = searchText.Length; // Mantiene el cursor al final del texto
             }
         }
-
-        private void txt_codigo_Leave(object sender, EventArgs e)
+        private void cmb_genero_Click(object sender, EventArgs e)
         {
-            string codigoCliente = txt_codigo.Text;
 
-            // Validaciones para cédula, RUC y pasaporte
-            if (codigoCliente != "")
-            {
-                if (IsValidCedula(codigoCliente))
-                {
-                    // Número de cédula válido
-                    //MessageBox.Show("Cédula válida.");
-                }
-                else if (IsValidRuc(codigoCliente))
-                {
-                    // RUC válido
-                    //MessageBox.Show("RUC válido.");
-                }
-                else if (IsValidPassport(codigoCliente))
-                {
-                    // Pasaporte válido
-                    //MessageBox.Show("Pasaporte válido.");
-                }
-                else
-                {
-
-                    MessageBox.Show("El código ingresado no es un número de cédula, RUC o pasaporte válido.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txt_codigo.Focus();
-                    return; // Termina aquí si la validación no es correcta
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Ingrese el código del cliente.");
-            }
         }
+
+
         // Método para validar la cédula 
         private bool IsValidCedula(string cedula)
         {
@@ -597,12 +652,9 @@ namespace CapaPresentacion
             return passport.Length == 5 && passport.All(char.IsLetterOrDigit);
         }
 
-        private void txt_telefono_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_limpsaldo_Click(object sender, EventArgs e)
         {
             // Obtener el tipo de usuario actualmente logueado
             int tipusu = 0;
@@ -617,18 +669,56 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    // Actualizar los valores en la base de datos usando ModificaS
-                    string campos = "saldo_ant = saldo_cli, saldo_cli = 0";
-                    bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
+                    // Verificar si todos los saldos ya están en cero
+                    object saldoCount = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "COUNT(*)", "N", "saldo_cli <> 0");
+                    int registrosConSaldo = Convert.ToInt32(saldoCount);
 
-                    if (resultado)
+                    if (registrosConSaldo == 0)
                     {
-                        MessageBox.Show("Saldos actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No puede limpiar los saldos, todos están en cero.",
+                            "Operación no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    var result = MessageBox.Show("¿Estás seguro de limpiar los saldos de los clientes?",
+                                    "Confirmación",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+                    if (result == DialogResult.No)
+                    {
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("No se pudieron actualizar los saldos. Revisa la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Actualizar los valores en la base de datos usando ModificaS
+                        string campos = "saldo_ant = saldo_cli, saldo_cli = 0";
+                        bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
+                        if (resultado)
+                        {
+                            MessageBox.Show("Saldos actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizar promociones cuya fecha de fin ya pasó
+                            string condicionPromocion = "fec_fin_pro < GETDATE()";
+                            string camposPromocion = "estado_pro = 0"; // False en SQL Server
+                            bool resultadoPromociones = Cls_funciones.ModificaS("promociones", camposPromocion, condicionPromocion);
+
+                            if (resultadoPromociones)
+                            {
+                                MessageBox.Show("Promociones finalizadas desactivadas correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudieron desactivar las promociones. Revisa la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron actualizar los saldos. Revisa la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -643,49 +733,65 @@ namespace CapaPresentacion
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Verificar el tipo de usuario
-            int tipusu = 0;
-            string xcodusu = Cls_variables.xcodigo_usu;
+       
 
-            object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N",
-                "codigo_usu='" + xcodusu + "'");
-            tipusu = (int)Convert.ToInt32(codadmin);
 
-            // Verificar si es administrador
-            if (tipusu == 1)
-            {
-                try
-                {
-                    // Definir los campos y ejecutar la actualización para recuperar saldos
-                    string campos = "saldo_cli = saldo_ant, saldo_ant = 0";
-                    bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
 
-                    if (resultado)
-                    {
-                        MessageBox.Show("Saldos recuperados correctamente. saldo_cli restaurado y saldo_ant reiniciado.",
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron recuperar los saldos. Revisa la información.",
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error al recuperar los saldos: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                // Mostrar mensaje si no es administrador
-                MessageBox.Show("No tienes permisos para realizar esta acción. Solo los administradores pueden recuperar saldos.",
-                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+
+
+
+
+
+
+
+
+
+
+        //private void btn_recuperarsald_Click(object sender, EventArgs e)
+        //{
+        //    // Verificar el tipo de usuario
+        //    int tipusu = 0;
+        //    string xcodusu = Cls_variables.xcodigo_usu;
+
+        //    object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N",
+        //        "codigo_usu='" + xcodusu + "'");
+        //    tipusu = (int)Convert.ToInt32(codadmin);
+
+        //    // Verificar si es administrador
+        //    if (tipusu == 1)
+        //    {
+        //        try
+        //        {
+        //            // Definir los campos y ejecutar la actualización para recuperar saldos
+        //            string campos = "saldo_cli = saldo_ant, saldo_ant = 0";
+        //            bool resultado = Cls_funciones.ModificaS("clientes", campos, "");
+
+        //            if (resultado)
+        //            {
+        //                MessageBox.Show("Saldos recuperados correctamente.",
+        //                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                btn_limpsaldo.Visible = true;
+        //                btn_recuperarsald.Visible = false;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("No se pudieron recuperar los saldos. Revisa la información.",
+        //                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Ocurrió un error al recuperar los saldos: " + ex.Message,
+        //                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Mostrar mensaje si no es administrador
+        //        MessageBox.Show("No tienes permisos para realizar esta acción. Solo los administradores pueden recuperar saldos.",
+        //            "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
 
 
 

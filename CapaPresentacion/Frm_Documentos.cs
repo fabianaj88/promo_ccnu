@@ -508,6 +508,8 @@ namespace CapaPresentacion//
                             valfac_doc = float.Parse(txt_tot.Text),
                             //obv_doc = txt_obv.Text // Opcional
                             doble_tick = bool.Parse(chk_dobleTi.Checked.ToString()),
+                            codigo_pro = int.Parse(cmb_nompro.SelectedValue.ToString()),
+
                         };
 
                         if (dgvRegisDoc.Columns.Count > 0)
@@ -640,18 +642,9 @@ namespace CapaPresentacion//
         }
         private void btn_anulartick_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("¿Estás seguro de anular el documento?",
-                                    "Confirmación",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-            else
-            {
-                AnularTicket();
-            }
+           
+            AnularTicket();
+            
 
         }
         private void AnularTicket()
@@ -666,9 +659,9 @@ namespace CapaPresentacion//
             object codadmin = Cls_funciones.LeerRegistrosEnTablaSql("usuarios", "tipo_usu", "N", "codigo_usu='" + xcodusu + "'");
             tipusu = (int)Convert.ToInt32(codadmin);
 
-            object sumval = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "sum(valfac_doc)", "N", "codigo_cli_doc=" + xcodcli + " and anular_doc = 'False'");
+            object sumval = Cls_funciones.LeerRegistrosEnTablaSql("documentos d inner join promociones p on p.codigo_pro = d.codigo_pro and p.estado_pro = 1", "sum(d.valfac_doc)", "N", "d.codigo_cli_doc=" + xcodcli + " and d.anular_doc = 0");
             xsumval = (float)Convert.ToDouble(sumval);
-            object val = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "valfac_doc", "N", "codigo_doc=" + xcoddoc + " and anular_doc = 'False'");
+            object val = Cls_funciones.LeerRegistrosEnTablaSql("documentos d inner join promociones p on p.codigo_pro = d.codigo_pro and p.estado_pro = 1", "d.valfac_doc", "N", "d.codigo_doc=" + xcoddoc + " and d.anular_doc = 0");
             xval = (float)Convert.ToDouble(val);
             float respanusalcli = xsumval - xval;
             respanusalcli = (float)Math.Round(respanusalcli, 2);
@@ -682,22 +675,39 @@ namespace CapaPresentacion//
             {
                 if (docanula == false)
                 {
-                    Cls_funciones.ModificaS("clientes", "saldo_cli =" + respanusalcliFor + "", "codigo_cli ='" + xcodcli + "'");
-                    Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
-                    LimpiarGenTicket();
-                    MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    if (xval == 0)
+                    {
+                        MessageBox.Show("El documento pertenece a una campaña finalizada.", "Operación no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        var result = MessageBox.Show("¿Estás seguro de anular el documento?",
+                                    "Confirmación",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                        else
+                        { 
+                            Cls_funciones.ModificaS("clientes", "saldo_cli =" + respanusalcliFor + "", "codigo_cli ='" + xcodcli + "'");
+                            Cls_funciones.ModificaS("documentos", "anular_doc =" + 1 + "", "codigo_doc =" + xcoddoc + "");
+                            LimpiarGenTicket();
+                            MessageBox.Show("Documento anulado con éxito.", "Anulación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                }   }
                 else
                 {
-                    MessageBox.Show("El documento ya esta anulado... No puede volver a anular.");
+                    MessageBox.Show("El documento ya esta anulado. No puede volver a anular.", "Operación no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 }
             }
             else
             {
                 LimpiarGenTicket();
                 MessageBox.Show("No tienes permisos para anular este documento. Solo los administradores pueden borrar.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-
             }
         }
         private void NuevoGenTicket()
@@ -786,6 +796,11 @@ namespace CapaPresentacion//
                 dtim_fec.Value = Convert.ToDateTime(filaSeleccionada.Cells["Fecha"].Value);
                 txt_tot.Text = filaSeleccionada.Cells["Valor"].Value.ToString();
                 chk_dobleTi.Checked = Convert.ToBoolean(filaSeleccionada.Cells["DobleTicket"].Value);
+                
+
+                int codigoPro = int.Parse(filaSeleccionada.Cells["Campaña"].Value.ToString());
+                object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
+                cmb_nompro.Text = nompro.ToString();
 
                 // Llenar el segundo DataGridView
                 string codigoDoc = filaSeleccionada.Cells["Codigo"].Value.ToString();
@@ -794,17 +809,17 @@ namespace CapaPresentacion//
                 //int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
                 if (dt_registroDoc.Rows.Count == 0)
                 {
-                    cmb_nompro.SelectedValue = null;
-                    cmb_nompro.Text = "";
+                    //cmb_nompro.SelectedValue = null;
+                    //cmb_nompro.Text = "";
 
                     dgvRegisDoc.DataSource = null;
                 }
                 else
                 {
-                    int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
-                    object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
+                    //int codigoPro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
+                    //object nompro = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "nombre_pro", "C", "codigo_pro=" + codigoPro + "");
                     //cmb_nompro.ValueMember = codigoPro.ToString();
-                    cmb_nompro.Text = nompro.ToString();
+                    //cmb_nompro.Text = nompro.ToString();
 
                     dgvRegisDoc.DataSource = dt_registroDoc;
 

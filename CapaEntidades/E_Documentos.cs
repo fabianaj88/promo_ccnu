@@ -18,6 +18,6 @@ namespace CapaEntidades
         public float valfac_doc { get; set; }
         public string obv_doc { get; set; }
         public bool doble_tick { get; set; }
-
+        public int codigo_pro { get; set; }
     }
 }

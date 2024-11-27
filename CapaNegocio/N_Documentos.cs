@@ -32,6 +32,7 @@ namespace CapaNegocio
                 dtDatos.Rows[0]["valfac_doc"] = documento.valfac_doc;
                 dtDatos.Rows[0]["obv_doc"] = documento.obv_doc; // Opcional
                 dtDatos.Rows[0]["doble_tick"] = documento.doble_tick; 
+                dtDatos.Rows[0]["codigo_pro"] = documento.codigo_pro; 
 
                 string condicion = Cls_funciones.Condicion_grabar(dtDatos, false);
 

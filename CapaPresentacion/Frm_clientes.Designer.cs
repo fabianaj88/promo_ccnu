@@ -31,7 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_clientes));
             clientes = new TabControl();
             tabPage1 = new TabPage();
-            button1 = new Button();
+            panel2 = new Panel();
+            btn_limpsaldo = new Button();
+            btn_eliminar = new Button();
             label18 = new Label();
             txt_saldocli = new TextBox();
             txt_celular = new TextBox();
@@ -65,7 +67,6 @@
             label1 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            btn_eliminar = new Button();
             btn_editar = new Button();
             btn_grabar = new Button();
             btn_nuevo = new Button();
@@ -77,9 +78,9 @@
             txt_dato_buscar = new TextBox();
             pictureBox4 = new PictureBox();
             label15 = new Label();
-            button2 = new Button();
             clientes.SuspendLayout();
             tabPage1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -103,8 +104,7 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.WhiteSmoke;
-            tabPage1.Controls.Add(button2);
-            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(panel2);
             tabPage1.Controls.Add(label18);
             tabPage1.Controls.Add(txt_saldocli);
             tabPage1.Controls.Add(txt_celular);
@@ -138,7 +138,6 @@
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(pictureBox3);
             tabPage1.Controls.Add(pictureBox2);
-            tabPage1.Controls.Add(btn_eliminar);
             tabPage1.Controls.Add(btn_editar);
             tabPage1.Controls.Add(btn_grabar);
             tabPage1.Controls.Add(btn_nuevo);
@@ -150,15 +149,42 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Registro";
             // 
-            // button1
+            // panel2
             // 
-            button1.Location = new Point(633, 319);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 29);
-            button1.TabIndex = 43;
-            button1.Text = "Limpiar Saldos";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            panel2.BackColor = Color.LightSteelBlue;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(btn_limpsaldo);
+            panel2.Controls.Add(btn_eliminar);
+            panel2.Location = new Point(552, 10);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(253, 46);
+            panel2.TabIndex = 44;
+            // 
+            // btn_limpsaldo
+            // 
+            btn_limpsaldo.BackColor = Color.LightGray;
+            btn_limpsaldo.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_limpsaldo.Image = (Image)resources.GetObject("btn_limpsaldo.Image");
+            btn_limpsaldo.Location = new Point(40, 3);
+            btn_limpsaldo.Name = "btn_limpsaldo";
+            btn_limpsaldo.Size = new Size(168, 35);
+            btn_limpsaldo.TabIndex = 43;
+            btn_limpsaldo.Text = "Limpiar Saldos";
+            btn_limpsaldo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_limpsaldo.UseVisualStyleBackColor = false;
+            btn_limpsaldo.Click += btn_limpsaldo_Click;
+            // 
+            // btn_eliminar
+            // 
+            btn_eliminar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_eliminar.Image = (Image)resources.GetObject("btn_eliminar.Image");
+            btn_eliminar.Location = new Point(208, 3);
+            btn_eliminar.Name = "btn_eliminar";
+            btn_eliminar.Size = new Size(38, 35);
+            btn_eliminar.TabIndex = 4;
+            btn_eliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_eliminar.UseVisualStyleBackColor = true;
+            btn_eliminar.Visible = false;
             // 
             // label18
             // 
@@ -190,6 +216,7 @@
             txt_celular.Size = new Size(149, 22);
             txt_celular.TabIndex = 40;
             txt_celular.KeyDown += txt_celular_KeyDown;
+            txt_celular.KeyPress += txt_celular_KeyPress;
             // 
             // label17
             // 
@@ -221,8 +248,8 @@
             txt_apellidos.Name = "txt_apellidos";
             txt_apellidos.Size = new Size(388, 22);
             txt_apellidos.TabIndex = 37;
-            txt_apellidos.TextChanged += txt_apellidos_TextChanged;
             txt_apellidos.KeyDown += txt_apellidos_KeyDown;
+            txt_apellidos.KeyPress += txt_apellidos_KeyPress;
             // 
             // label14
             // 
@@ -337,15 +364,16 @@
             // 
             // btn_cancelar
             // 
-            btn_cancelar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_cancelar.BackColor = Color.LightGray;
+            btn_cancelar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_cancelar.Image = (Image)resources.GetObject("btn_cancelar.Image");
-            btn_cancelar.Location = new Point(440, 15);
+            btn_cancelar.Location = new Point(426, 15);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(112, 35);
             btn_cancelar.TabIndex = 24;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.UseVisualStyleBackColor = false;
             btn_cancelar.Click += btn_cancelar_Click;
             // 
             // cmb_genero
@@ -357,8 +385,8 @@
             cmb_genero.Name = "cmb_genero";
             cmb_genero.Size = new Size(152, 24);
             cmb_genero.TabIndex = 23;
-            cmb_genero.SelectedIndexChanged += cmb_genero_SelectedIndexChanged;
             cmb_genero.TextChanged += cmb_genero_TextChanged;
+            cmb_genero.Click += cmb_genero_Click;
             // 
             // radioButton3
             // 
@@ -414,8 +442,9 @@
             txt_correo.Name = "txt_correo";
             txt_correo.Size = new Size(232, 22);
             txt_correo.TabIndex = 17;
-            txt_correo.TextChanged += textBox4_TextChanged;
             txt_correo.KeyDown += txt_correo_KeyDown;
+            txt_correo.KeyPress += txt_correo_KeyPress;
+            txt_correo.Validating += txt_correo_Validating;
             // 
             // label5
             // 
@@ -446,7 +475,6 @@
             label2.Name = "label2";
             label2.Size = new Size(0, 16);
             label2.TabIndex = 13;
-            label2.Click += label2_Click;
             // 
             // txt_telefono
             // 
@@ -456,7 +484,6 @@
             txt_telefono.Name = "txt_telefono";
             txt_telefono.Size = new Size(152, 22);
             txt_telefono.TabIndex = 12;
-            txt_telefono.TextChanged += txt_telefono_TextChanged;
             txt_telefono.KeyDown += txt_telefono_KeyDown;
             txt_telefono.KeyPress += txt_telefono_KeyPress;
             // 
@@ -479,6 +506,7 @@
             txt_nombre.Size = new Size(388, 22);
             txt_nombre.TabIndex = 10;
             txt_nombre.KeyDown += txt_nombre_KeyDown;
+            txt_nombre.KeyPress += txt_nombre_KeyPress;
             // 
             // txt_codigo
             // 
@@ -488,9 +516,7 @@
             txt_codigo.Name = "txt_codigo";
             txt_codigo.Size = new Size(152, 22);
             txt_codigo.TabIndex = 9;
-            txt_codigo.TextChanged += txt_codigo_TextChanged;
             txt_codigo.KeyDown += txt_codigo_KeyDown;
-            txt_codigo.KeyPress += txt_codigo_KeyPress;
             txt_codigo.Leave += txt_codigo_Leave;
             // 
             // label1
@@ -507,9 +533,9 @@
             // 
             pictureBox3.BackColor = Color.Gainsboro;
             pictureBox3.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox3.Location = new Point(6, 107);
+            pictureBox3.Location = new Point(6, 108);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(817, 310);
+            pictureBox3.Size = new Size(815, 310);
             pictureBox3.TabIndex = 7;
             pictureBox3.TabStop = false;
             // 
@@ -519,52 +545,41 @@
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Location = new Point(6, 65);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(817, 38);
+            pictureBox2.Size = new Size(816, 38);
             pictureBox2.TabIndex = 6;
             pictureBox2.TabStop = false;
             // 
-            // btn_eliminar
-            // 
-            btn_eliminar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_eliminar.Image = (Image)resources.GetObject("btn_eliminar.Image");
-            btn_eliminar.Location = new Point(569, 15);
-            btn_eliminar.Name = "btn_eliminar";
-            btn_eliminar.Size = new Size(112, 35);
-            btn_eliminar.TabIndex = 4;
-            btn_eliminar.Text = "Eliminar";
-            btn_eliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_eliminar.UseVisualStyleBackColor = true;
-            btn_eliminar.Visible = false;
-            // 
             // btn_editar
             // 
-            btn_editar.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_editar.BackColor = Color.LightGray;
+            btn_editar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_editar.Image = (Image)resources.GetObject("btn_editar.Image");
-            btn_editar.Location = new Point(312, 15);
+            btn_editar.Location = new Point(302, 15);
             btn_editar.Name = "btn_editar";
             btn_editar.Size = new Size(112, 35);
             btn_editar.TabIndex = 3;
             btn_editar.Text = "Editar";
             btn_editar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_editar.UseVisualStyleBackColor = true;
+            btn_editar.UseVisualStyleBackColor = false;
             btn_editar.Click += btn_editar_Click;
             // 
             // btn_grabar
             // 
+            btn_grabar.BackColor = Color.LightGray;
             btn_grabar.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_grabar.Image = (Image)resources.GetObject("btn_grabar.Image");
-            btn_grabar.Location = new Point(183, 15);
+            btn_grabar.Location = new Point(178, 15);
             btn_grabar.Name = "btn_grabar";
             btn_grabar.Size = new Size(112, 35);
             btn_grabar.TabIndex = 2;
             btn_grabar.Text = "Grabar";
             btn_grabar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_grabar.UseVisualStyleBackColor = true;
+            btn_grabar.UseVisualStyleBackColor = false;
             btn_grabar.Click += btn_grabar_Click;
             // 
             // btn_nuevo
             // 
-            btn_nuevo.BackColor = Color.Gainsboro;
+            btn_nuevo.BackColor = Color.LightGray;
             btn_nuevo.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_nuevo.Image = (Image)resources.GetObject("btn_nuevo.Image");
             btn_nuevo.Location = new Point(54, 15);
@@ -581,7 +596,7 @@
             pictureBox1.BackColor = Color.LightSteelBlue;
             pictureBox1.Location = new Point(6, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(817, 56);
+            pictureBox1.Size = new Size(816, 56);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -610,7 +625,6 @@
             grid_lista_clientes.RowTemplate.Height = 25;
             grid_lista_clientes.Size = new Size(814, 360);
             grid_lista_clientes.TabIndex = 0;
-            grid_lista_clientes.CellContentClick += grid_lista_clientes_CellContentClick;
             grid_lista_clientes.CellDoubleClick += grid_lista_clientes_CellDoubleClick;
             // 
             // panel1
@@ -655,7 +669,6 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click_1;
             // 
             // label15
             // 
@@ -666,16 +679,6 @@
             label15.Size = new Size(107, 24);
             label15.TabIndex = 2;
             label15.Text = "CLIENTES";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(633, 363);
-            button2.Name = "button2";
-            button2.Size = new Size(129, 23);
-            button2.TabIndex = 44;
-            button2.Text = "Recuperar Saldos";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // Frm_clientes
             // 
@@ -693,6 +696,7 @@
             clientes.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -754,7 +758,8 @@
         private Label label17;
         private TextBox txt_saldocli;
         private Label label18;
-        private Button button1;
-        private Button button2;
+        private Button btn_limpsaldo;
+        private Button btn_recuperarsald;
+        private Panel panel2;
     }
 }

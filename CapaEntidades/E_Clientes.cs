@@ -21,6 +21,7 @@ namespace CapaEntidades
         public float saldo_cli { get; set; }
         public string correo_cli { get; set; }
         public int estado_cli { get; set; }
+        public float saldo_ant { get; set; }
 
     }
 }

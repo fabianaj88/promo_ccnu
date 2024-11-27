@@ -226,12 +226,12 @@ namespace CapaPresentacion
 
             if (xgraba == 1)
             {
-                MessageBox.Show("Local editado con exito.");
+                MessageBox.Show("Local editado con éxito.");
                 LimpiarLocal();
             }
             else
             {
-                MessageBox.Show("Error al editar el local");
+                MessageBox.Show("Error al editar el local.");
             }
         }
 
