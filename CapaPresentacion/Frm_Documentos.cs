@@ -476,6 +476,10 @@ namespace CapaPresentacion//
                 string xcodloc = cmb_loc.SelectedValue.ToString();
                 string xcodcli = txt_cli.Text;
                 int codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
+                int ycod_doc = 0;
+                object res_doc = Cls_funciones.LeerRegistrosEnTablaSql("documentos", "ISNULL(MAX(codigo_doc), 0) + 1", "N", "");
+                ycod_doc = (int)Convert.ToInt32(res_doc);
+               // txt_num.Text = cod_doc.ToString();
 
                 DataTable dtfacloccam = new DataTable();
                 string xsentencia = "";
@@ -500,7 +504,8 @@ namespace CapaPresentacion//
                         // Crear un objeto de la entidad Documento
                         E_Documentos documento = new E_Documentos
                         {
-                            codigo_doc = int.Parse(txt_num.Text),
+                            //codigo_doc = int.Parse(txt_num.Text),
+                            codigo_doc = ycod_doc,
                             numfac_doc = txt_numf.Text,
                             codigo_loc_doc = cmb_loc.SelectedValue.ToString(),
                             codigo_cli_doc = txt_cli.Text,
@@ -522,7 +527,8 @@ namespace CapaPresentacion//
                             {
                                 //MessageBox.Show("Documento grabado con éxito.");
                                 //Obtener datos para guardar 
-                                int coddoc = int.Parse(txt_num.Text);
+                                //int coddoc = int.Parse(txt_num.Text);
+                                int coddoc = ycod_doc;
                                 string codigoCliente = txt_cli.Text;
                                 float saldocliente = (float)Convert.ToDouble(txt_saldocli.Text);
 
