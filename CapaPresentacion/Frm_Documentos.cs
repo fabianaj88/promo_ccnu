@@ -15,6 +15,7 @@ using CapaEntidades;
 using Microsoft.Win32;
 using System.Drawing.Printing;
 using System.Globalization;
+using System.Xml.Linq;
 
 namespace CapaPresentacion//
 {
@@ -464,7 +465,7 @@ namespace CapaPresentacion//
                     MessageBox.Show("El número de la factura ya fue registrada para la campaña.");
                 }
 
-                LlenarPanelImp();
+                //LlenarPanelImp();
             }
         }
 
@@ -542,12 +543,15 @@ namespace CapaPresentacion//
 
                                     if (exito_reg)
                                     {
+
                                         // Cambiar a la pestaña de impresión
 
                                         tabControl1.SelectedTab = tabControl1.TabPages[2];
 
                                         // Ejecutar la lógica del botón 'Imprimir' al grabar Ticket
-                                        btn_impTicket_Click(sender, e);
+                                        LlenarPanelImp1(coddoc);
+                                        ImprimirTicketsPorCodigoDoc(coddoc);
+                                        //btn_impTicket_Click(sender, e);
 
                                         tabControl1.SelectedTab = tabControl1.TabPages[0];
 
@@ -568,6 +572,7 @@ namespace CapaPresentacion//
                                     Cls_funciones.ModificaS("clientes", "saldo_cli =" + saldoClienteFormateado + "", "codigo_cli ='" + codigoCliente + "'");
 
                                     MessageBox.Show("Tickets generados con éxito.");
+
                                     LimpiarGenTicket();
                                 }
                             }
@@ -874,10 +879,49 @@ namespace CapaPresentacion//
             panel_impTickets.DrawToBitmap(bm, new Rectangle(0, 0, panel_impTickets.Width, panel_impTickets.Height));
             e.Graphics.DrawImage(bm, 0, 0);
         }
+        private void ImprimirTicketsPorCodigoDoc(int cod_doc)
+        {
+            // Obtener los números de ticket para el código de documento proporcionado
+            DataTable dtnumtick = new DataTable();
+            string xsentenciaimp = "select num_tic from registro_doc where codigo_doc = " + cod_doc;
+            dtnumtick = Cls_funciones.VisualizaS(xsentenciaimp);
+
+            // Verificar que haya registros
+            if (dtnumtick.Rows.Count > 0)
+            {
+                foreach (DataRow row in dtnumtick.Rows)
+                {
+                    if (row["num_tic"] != DBNull.Value) // Validar que no sea nulo
+                    {
+                        string numeroTicket = row["num_tic"].ToString();
+
+                        // Configurar el Label lbl_nregdocT con el número del ticket actual
+                        lbl_nregdocT.Text = numeroTicket;
+
+                        // ---imprimir con vista previa---
+                        printPreviewDialog1.Document = printDocument1;
+                        printPreviewDialog1.ShowDialog();
+                        // -------------------------------
+
+                        // Establecer el documento de impresión
+                        printDocument1.PrintPage += new PrintPageEventHandler(ImprimiTicket);
+
+                        // Enviar a la impresora
+                        printDocument1.Print();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron tickets para el documento especificado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         private void btn_impTicket_Click(object sender, EventArgs e)
         {
+            
             // Recorrer cada fila del DataGridView para generar y mostrar cada ticket
+
             foreach (DataGridViewRow row in dgvRegisDoc.Rows)
             {
                 if (row.Cells["num_Tic"].Value != null) // Asegurarse de que no esté vacío
@@ -889,8 +933,8 @@ namespace CapaPresentacion//
                     lbl_nregdocT.Text = numeroTicket;
 
                     //---imprimir con vista previa--------------
-                    //printPreviewDialog1.Document = printDocument1;
-                    //printPreviewDialog1.ShowDialog();
+                    printPreviewDialog1.Document = printDocument1;
+                    printPreviewDialog1.ShowDialog();
                     //--------------------------------------------
 
                     // Establecer el documento de impresión
@@ -942,7 +986,42 @@ namespace CapaPresentacion//
             }
 
         }
-        private void LlenarPanelImp()
+        private void LlenarPanelImp1(int cod_doc)
+        {
+            lbl_numdT.Text = txt_num.Text;
+            txt_proT.Text = cmb_nompro.Text;
+            txt_cedtik.Text = txt_cli.Text;
+            object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            object dirTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "direccion_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
+            int codpro = 0;
+
+            if (cmb_nompro.Text == "")
+            {
+                codpro = 0;
+            }
+            else
+            {
+                if (cmb_nompro.SelectedValue == null)
+                {
+                    N_Documentos negocioDocumentos = new N_Documentos();
+                    string codigoDoc = Convert.ToString(cod_doc);
+                    DataTable dt_registroDoc = negocioDocumentos.ObtenerRegistrosPorDocumento(codigoDoc);
+                    codpro = int.Parse(dt_registroDoc.Rows[0]["codigo_pro"].ToString());
+                }
+                else
+                {
+                    codpro = int.Parse(cmb_nompro.SelectedValue.ToString());
+                }
+            }
+
+            object fecproT = Cls_funciones.LeerRegistrosEnTablaSql("promociones", "fec_fin_pro", "D", "codigo_pro=" + codpro + "");
+            DateTime fecha = DateTime.Parse(fecproT.ToString());
+            lbl_fechaproT.Text = fecha.ToString("dd/MM/yyyy");
+            txt_nomcliT.Text = txt_nomcli.Text;
+            txt_telfT.Text = nomTcli.ToString();
+            txt_dirT.Text = dirTcli.ToString();
+        }
+            private void LlenarPanelImp()
         {
 
             lbl_numdT.Text = txt_num.Text;
