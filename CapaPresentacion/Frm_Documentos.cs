@@ -988,7 +988,7 @@ namespace CapaPresentacion//
         }
         private void LlenarPanelImp1(int cod_doc)
         {
-            lbl_numdT.Text = txt_num.Text;
+            lbl_numdT.Text = cod_doc.ToString();
             txt_proT.Text = cmb_nompro.Text;
             txt_cedtik.Text = txt_cli.Text;
             object nomTcli = Cls_funciones.LeerRegistrosEnTablaSql("clientes", "celular_cli", "C", "codigo_cli='" + txt_cli.Text + "'");
